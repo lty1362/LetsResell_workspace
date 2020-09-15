@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/* footer css */
+#footer{
+    width: 1200px;
+    height: 200px;
+    background-color: black;
+    margin: auto;
+}
+
+/* footer>div css */
+#footer>div{
+    height: 100%;
+    float: left;
+    padding: 10px;
+}
+
+/* footer_content css */
+#footer_content{
+    width: 80%;
+    color: white;
+    font-size: 13px;
+}
+#footer_content>p{
+	padding:3px;
+}
+
+/* footer_button css */
+#footer_button{
+    width: 20%;
+}
+#footer_button>div{
+    height: 100%;
+    float: left;
+}
+
+#footer_button_facebook{
+    width: 33%;
+}
+
+#footer_button_kakaotalk{
+    width: 33%;
+}
+
+#footer_button_instagram{
+    width: 34%;
+}
