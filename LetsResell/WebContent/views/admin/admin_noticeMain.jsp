@@ -10,6 +10,15 @@
 	        text-decoration-line: underline;
 	        font-weight: bold;
 	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
+	    }
         #notice{
             border-collapse: collapse;
             width: 100%;
@@ -130,11 +139,10 @@
 <body>
 <div id="wrap">
 		<%@ include file= "../common/header.jsp"%>
-		<div id="body">
+			<div id="body">
 	            <div id="body_left">
                 	<%@ include file="admin_sideMenu.jsp" %>
 	            </div>
-	
 	            <div id="body_right">
 	                <div id="title">
 	                    공지사항

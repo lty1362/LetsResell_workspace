@@ -10,6 +10,15 @@
 	        text-decoration-line: underline;
 	        font-weight: bold;
 	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
+	    }
         #title{
             background: lightgray;
             font-size: 25px;

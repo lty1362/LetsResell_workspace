@@ -11,6 +11,15 @@
 	        text-decoration-line: underline;
 	        font-weight: bold;
 	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
+	    }
 	    #title{
             width: 100%;
             height: 50px;
@@ -116,9 +125,12 @@
             height: 40px;
             border:0px;
         }
+        #footer{
+        	margin-top:50px;
+        }
 </style>
 <body>
-	<div id="wrap">
+	<div id="wrap" style="height:1600px">
 		<%@ include file= "../common/header.jsp"%>
 		<div id="body">
 	            <div id="body_left">

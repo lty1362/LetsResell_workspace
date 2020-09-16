@@ -6,32 +6,18 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <style>
-		div{
-            box-sizing: border-box;
-        }
-        #wrap{
-            border: 1px solid black;
-            width:1200px;
-            height:1300px;
-            margin:auto;
-        }
-        #body{
-            width: 90%;
-            height: 65%;
-            margin:auto;
-            margin-top:5%;
-        }
-        #body>div{
-            float:left;
-        }
-        #body_left{
-            width: 25%;
-            height: 90%;
-            padding: 20px;
-        }
         #menu3List>:nth-child(1){
 	        text-decoration-line: underline;
 	        font-weight: bold;
+	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
 	    }
         #body_right{
             width: 75%;

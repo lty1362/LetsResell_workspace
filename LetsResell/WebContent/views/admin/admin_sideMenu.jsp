@@ -64,6 +64,22 @@
     #menu4{
         margin-bottom: 20px;
     }
+    #menu1>a{
+    	text-decoration:none;
+    	color:black;
+    }
+    #menu2>a{
+    	text-decoration:none;
+    	color:black;
+    }
+    #menu3>a{
+    	text-decoration:none;
+    	color:black;
+    }
+    #menu4>a{
+    	text-decoration:none;
+    	color:black;
+    }
     
     #sideMenu>div{
         font-size: 27px;
@@ -89,20 +105,28 @@
 <body>
 	<div id="sideMenu" align="center">
         <div id="menu1">
-            ∨ 회원관리
+        	<a href="<%=contextPath%>/memberMain.admin">∨ 회원관리</a>
+        	<hr>
+        	<a href="<%=contextPath%>/memberMain.admin">회원 조회</a>
         </div>
         <div id="menu2">
-            ∨ 제품관리
+            <a href="<%=contextPath%>/productMain.admin">∨ 제품관리</a>
+        	<hr>
+        	<a href="<%=contextPath%>/productMain.admin">제품 조회</a>
         </div>
-        <div id="menu4">∨ 결제관리</div>
+        <div id="menu4">
+        	<a href="<%=contextPath%>/dealMain.admin">∨ 결제관리</a>
+        	<hr>
+        	<a href="<%=contextPath%>/dealMain.admin">결제 내역 조회</a>
+        </div>
         <div id="menu3">
-        <a>∨ 고객센터</a>
+        	<a href="<%=contextPath%>/noticeMain.admin">∨ 고객센터</a>
             <hr>
             <div id="menu3List">
-	            <a href="<%=contextPath%>/noticeForm.admin">공지사항</a>
-	            <a href="<%=contextPath%>/FAQform.admin">FAQ</a>
-	            <a href="<%=contextPath%>/inquiryForm.admin">1:1 문의</a>
-	            <a href="<%=contextPath%>/reportForm.admin">부정 판매자 신고</a>
+	            <a href="<%=contextPath%>/noticeMain.admin">공지사항</a>
+	            <a href="<%=contextPath%>/FAQmain.admin">FAQ</a>
+	            <a href="<%=contextPath%>/inquiryMain.admin">1:1 문의</a>
+	            <a href="<%=contextPath%>/reportMain.admin">부정 판매자 신고</a>
             </div>
         </div>
     </div>
