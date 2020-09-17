@@ -6,10 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
-        .buy-container{width: 1000px; margin: 0 auto;}
-        .buy-header{height: 60px; overflow: hidden; margin-top: 10px;}
+        .buy-container{width: 1200px; margin: 0 auto;}
         .buy-info{height:500px;}
 
+		.h-container {
+		    width: 1200px;
+		    margin-left: auto;
+		    margin-right: auto;
+		}
+		.buy-h-detail .f-container {	
+		    margin-top: 50px;
+			float: right;
+		}
         .buy-h-image{
             height: 500px;
             background-color: black;
@@ -208,6 +216,11 @@
     </style>
 </head>
 <body>
+	<header>
+		<div class="h-container">
+		<%@ include file= "../common/header.jsp"%>
+		</div>
+	</header>
     <section class="pro-buy">
         <div class="buy-container">
             <div class="buy-header">
@@ -275,6 +288,11 @@
                         <div class="btn-buy-continue" onclick="">구매 입찰</div>
                         <div class="btn-buy-cancel" onclick="">구매 취소</div>
                     </div>
+                    <footer>
+						<div class="f-container">
+							<%@ include file= "../common/footer.jsp"%>
+						</div>
+					</footer>  
                 </div>
             </div>
     </section>

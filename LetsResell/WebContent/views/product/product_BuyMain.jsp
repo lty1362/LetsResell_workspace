@@ -4,14 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구매Mainpage</title>
 
     <style>
-        .pro-container{width: 1000px; margin: 0 auto;}
+        .pro-container{width: 1200px; margin: 0 auto;}
         .pro-header{height: 500px; overflow: hidden; margin-top: 10px;}
         .pro-info{height:360px; overflow: hidden; margin-top: 30px;}
         .pro-sell{height:300px; overflow: hidden; margin-top: 30px;}
 
+		.h-container {
+		    width: 1200px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    margin-bottom: 30px;
+		}
+		.pro-container .f-container {	
+		    margin-top: 30px;
+			float: auto;
+		}
         .pro-h-image{
             height: 500px;
             background-color: pink;
@@ -123,7 +133,7 @@
        /*유튜브*/
         iframe {
             margin-top:15px;
-            width: 485px;
+            width: 600px;
             height: 290px;
             border-width: 2px;
             border-style: inset;
@@ -182,6 +192,11 @@
     </style>
 </head>
 <body>
+	<header>
+		<div class="h-container">
+		<%@ include file= "../common/header.jsp"%>
+		</div>
+	</header>
     <section class="pro-body">
         <div class="pro-container">
             <div class="pro-header">
@@ -295,6 +310,11 @@
                     <span class="title">시세차트</span>
                 </div>
             </div>
+            <footer>
+				<div class="f-container">
+					<%@ include file= "../common/footer.jsp"%>
+				</div>
+			</footer>   
         </div>
     </section>
 </body>
