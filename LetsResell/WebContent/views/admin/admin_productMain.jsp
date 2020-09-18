@@ -327,12 +327,10 @@
                 </div>
                 <div id="search"  align="center">
                     <select name="filter" id="filter">
-                        <option value="" selected>내용</option>
-                        <option value="userCode">회원코드</option>
-                        <option value="userName">이름</option>
-                        <option value="address">주소</option>
-                        <option value="phone">전화번호</option>
-                        <option value="email">이메일</option>
+                        <option value="code" selected>제품코드</option>
+                        <option value="name">제품명</option>
+                        <option value="brand">브랜드</option>
+                        <option value="color">컬러</option>
                     </select>
                     <div id="search_in">
                         <input type="search"><input type="submit" value="검색">
