@@ -44,7 +44,7 @@
             background: rgb(240,240,240);
         	width:100%;
         	height:100%;
-        	padding-left:10px;
+        	padding-left:15px;
         	border:0px;
         	outline-offset:-2px;
         }
@@ -97,6 +97,7 @@
             height: 65%;
             border: 1px solid lightgray;
             margin-top:8%;
+            padding:10px;
         }
         #content_inquiry>textarea{
         	width:100%;

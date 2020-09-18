@@ -151,6 +151,17 @@
             margin-top:30px;
             text-align:center;
         }
+        .modal-header{
+        	margin-top:40px;
+        	font-size:50px;
+        }
+        .modal-body button{
+        	width:100px;
+        	height:50px;
+        	font-size:23px;
+        	margin:20px;
+        	margin-bottom:40px;
+        }
 </style>
 </head>
 <body>
@@ -312,8 +323,7 @@
                 </div>
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="수정">
-                    <input type="button" value="등록">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
                 </div>
                 <div id="search"  align="center">
                     <select name="filter" id="filter">
@@ -355,15 +365,14 @@
                 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                    <h4 class="modal-title">비밀번호변경</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">정말 삭제하시겠습니까?</h4>
+                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
                     </div>
                     
                     <!-- Modal body -->
                     <div class="modal-body" align="center">
 
                         <form action="" method="POST">
-                            삭제기능
                             <br>
                             <button type="submit" class="btn btn-secondary">예</button>
                             <button type="submit" class="btn btn-secondary">아니오</button>
@@ -374,5 +383,13 @@
         </div>
         <%@ include file= "../common/footer.jsp"%>
     </div>
+    <script>
+    	$(function(){
+   			$("#productList>table tr").hover().css("cursor","pointer");
+     		$("#productList>table tr").not($("#users>table tr:first")).click(function(){
+     			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
+    		});
+    	});
+    </script>
 </body>
 </html>

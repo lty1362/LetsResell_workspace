@@ -226,7 +226,6 @@
     		$("#users>table tr").not($("#users>table tr:first")).click(function(){
     			location.href = "<%=contextPath%>/memberDetail.admin";
     		});
-    		
     	});
     </script>
 </body>
