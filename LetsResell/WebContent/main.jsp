@@ -11,7 +11,6 @@
 <!-- header 영역 -->
 <%@ include file="/views/common/header.jsp" %>
 <!-- filter 영역 -->
-<%@ include file="/views/common/filter.jsp" %>
 
 <div class="main_outer">
     
