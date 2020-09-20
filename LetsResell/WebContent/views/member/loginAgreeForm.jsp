@@ -7,6 +7,29 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/member/loginAgree.css">
  <script src="resources/js/member/jquery.min.js"></script>
+ <style>
+ 
+html {
+    height: 100%;
+}
+
+body {
+ 	margin:0;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+
+#wrapper {
+	 margin-left:25%;
+	 width: 460px;
+	 height:780px;
+}
+
+
+ 
+ 
+ 
+ </style>
 </head>
 <body>
 	<!-- header -->
@@ -122,9 +145,7 @@
                         viewTerms();
                     });
             
-                    $("#termsEmail").click(function() {
-                        viewTerms();
-                    });
+                  
             
                     $("#btnCancel").click(function(event) {
                         
@@ -204,6 +225,6 @@
             </script>
     </div>
         <!-- footer -->
-        <%@ include file="..//common/footer.jsp" %>
+        <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

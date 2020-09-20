@@ -16,15 +16,15 @@
 	    margin: 0;
 	}
 	#wrapper {
-	    position: relative;
+	  
 	    height: 100%;
 	}
 	
 	#content {
-		margin-top: 50px;
-	    position: absolute;
-	    margin-left: 35%;
+		
+	    margin:auto; 
 	    width: 460px;
+	    height: 485px;
 	}
 	
 	     
@@ -120,11 +120,14 @@
                     </div>
                    
             </div>
+        
         </div>
+        
     </div>  
-     <!-- footer -->
     
-	<%@ include file="../common/footer.jsp" %>
+        	 <!-- footer -->
+    		
+			<%@ include file="../common/footer.jsp" %>
 	
 </body>
 </html>

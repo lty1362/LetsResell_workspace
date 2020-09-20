@@ -13,15 +13,13 @@
         margin: 0;
         font-family: Dotum,'돋움',Helvetica,sans-serif;
     }
-    #wrapper {
-        position: relative;
+     #wrapper {
+       	height:100%;
     }  
     #content{
-        position:absolute;
-        margin-top: 80px;
-        margin-left: 30%;
-        width: 600px;
-        height: 400px;
+        margin:auto; 
+	    width: 600px;
+	    height: 485px;
     }
     fieldset{
         margin-top: 20px;

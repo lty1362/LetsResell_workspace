@@ -13,15 +13,11 @@
         margin: 0;
         font-family: Dotum,'돋움',Helvetica,sans-serif;
     }
-    #wrapper {
-        position: relative;
-    }  
+   
     #content{
-        position:absolute;
-        margin-top: 80px;
-        margin-left: 30%;
+        margin:auto;
         width: 600px;
-        height: 400px;
+        height: 490px;
     }
     a {
     	text-decoration: none;

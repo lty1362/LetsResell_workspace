@@ -36,29 +36,29 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		
-		String userId = request.getParameter("userId");   // "사용자가입력한아이디"
-		String userPwd = request.getParameter("userPwd"); // "사용자가입력한비밀번호"
+		String userId = request.getParameter("userId");   
+		String userPwd = request.getParameter("userPwd"); 
 		
 		
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		HttpSession session = request.getSession();
 		
-		
-		if(loginUser != null) { // 로그인 성공 => index페이지
+		if(loginUser != null) { 
 			
 			
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("loginUser", loginUser);
 			
 			
 			response.sendRedirect(request.getContextPath());
 			
 			
-		}else { // 로그인 실패 => 에러페이지
+		}else { 
 			
-			// 응답할 뷰에 필요한 데이터 request의 attribute에 담기
-			request.setAttribute("errorMsg", "로그인에 실패했습니다.");
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			session.setAttribute("alertMsg", "로그인에 실패했습니다.");
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/member/loginForm.jsp");
 			view.forward(request, response);
 			
 		}

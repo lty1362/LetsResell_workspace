@@ -1,23 +1,4 @@
-html {
-    height: 100%;
-}
 
-body {
-	height:20%;
-    margin: 0;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
-
-#wrapper {
-    position: relative;
-    height: 100%;
-}
-
-#content {
-    position: absolute;
-    margin-left: 35%;
-    width: 460px;
-}
 h2,p,textarea,ul {
     margin: 0;
     padding: 0

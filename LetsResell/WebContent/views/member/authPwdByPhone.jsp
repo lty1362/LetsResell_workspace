@@ -19,14 +19,12 @@
         font-family: Dotum,'돋움',Helvetica,sans-serif;
     }
     #wrapper {
-        position: relative;
+       	height:100%;
     }  
     #content{
-        position:absolute;
-        margin-top: 80px;
-        margin-left: 30%;
-        width: 600px;
-        height: 400px;
+        margin:auto; 
+	    width: 600px;
+	    height: 485px;
     }
     a {
     	text-decoration: none;
