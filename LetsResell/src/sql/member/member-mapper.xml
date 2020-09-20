@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="loginMember">
+		SELECT /* com.LetsResell.member.model.dao.MemberDao#loginMember() */
+			  	 MEM_USER_NO
+				,MEM_USER_ID
+				,MEM_USER_PWD
+				,MEM_USER_NAME
+				,MEM_PHONE
+				,MEM_ENROLL_DATE
+				,MEM_MODIFY_DATE
+				,MEM_STATUS
+				,MEM_USER_SSN
+				,MEM_OUT_DATE
+				,MEM_REPORT_COUNT
+				,MEM_BLACKLIST_STATUS
+				,MEM_ACCOUNTHOLDER
+				,MEM_ACCOUNT_NUM
+				,MEM_BANKNAME
+		  FROM MEMBER
+		 WHERE MEM_STATUS='Y'
+		   AND MEM_USER_ID=?
+		   AND MEM_USER_PWD=? 
+	</entry>
+	<entry key="insertMember">
+		INSERT /* com.LetsResell.member.model.dao.MemberDao#insertMember() */
+		  INTO MEMBER
+		  (
+		     	 MEM_USER_NO
+				,MEM_USER_ID
+				,MEM_USER_PWD
+				,MEM_USER_NAME
+				,MEM_PHONE
+				,MEM_USER_SSN
+			) 
+		  VALUES
+		  (
+		     MEMBER_SEQ.NEXTVAL
+		   , ?
+		   , ?
+		   , ?
+		   , ?
+		   , ?
+		  )
+	</entry>
+	<entry key="selectByUserName">
+		SELECT /* com.LetsResell.member.model.dao.MemberDao#selectByUserName() */
+			  	 MEM_USER_NO
+				,MEM_USER_ID
+				,MEM_USER_PWD
+				,MEM_USER_NAME
+				,MEM_PHONE
+				,MEM_ENROLL_DATE
+				,MEM_MODIFY_DATE
+				,MEM_STATUS
+				,MEM_USER_SSN
+				,MEM_OUT_DATE
+				,MEM_REPORT_COUNT
+				,MEM_BLACKLIST_STATUS
+				,MEM_ACCOUNTHOLDER
+				,MEM_ACCOUNT_NUM
+				,MEM_BANKNAME
+		  FROM MEMBER
+		 WHERE MEM_USER_NAME = ?
+	</entry>
+	<entry key="selectByUserId">
+		SELECT /* com.LetsResell.member.model.dao.MemberDao#selectByUserId() */
+			  	 MEM_USER_NO
+				,MEM_USER_ID
+				,MEM_USER_PWD
+				,MEM_USER_NAME
+				,MEM_PHONE
+				,MEM_ENROLL_DATE
+				,MEM_MODIFY_DATE
+				,MEM_STATUS
+				,MEM_USER_SSN
+				,MEM_OUT_DATE
+				,MEM_REPORT_COUNT
+				,MEM_BLACKLIST_STATUS
+				,MEM_ACCOUNTHOLDER
+				,MEM_ACCOUNT_NUM
+				,MEM_BANKNAME
+		  FROM MEMBER
+		 WHERE MEM_USER_ID = ?
+	
+	</entry>
+	
+	<entry key="changePwdMember">
+		UPDATE
+				MEMBER
+			SET 
+				MEM_USER_PWD = ?
+			
+			WHERE
+				MEM_USER_PWD = ?
+			and MEM_USER_NAME = ?
+		
+
+	</entry>
+		
+</properties>
+
+
+
