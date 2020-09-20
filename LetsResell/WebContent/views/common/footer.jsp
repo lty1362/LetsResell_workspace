@@ -11,7 +11,6 @@
 		   	margin-top:600px;
 		}
 </Style>
-
 </head>
 <body>
 	<!-- footer 영역 -->
