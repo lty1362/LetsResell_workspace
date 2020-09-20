@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/LetsResell/resources/css/common/filter.css" rel="stylesheet">
+<script src="/LetsResell/resources/js/common/filter.js" rel="javascript"></script>
 </head>
 <body>
 <div id="content">
 
         <div id="content_filter">
             <div id="content_filter_top" align="center">
-                <img src="imgs/equalizer.png" alt="filters" width="40%" height="40%">
+                <img src="/LetsResell/resources/images/common/equalizer.png" alt="filters" width="40%" height="40%">
             </div>
      
             <div id="content_filter_bottom" align="center">
@@ -23,7 +24,7 @@
         <div class="outer" align="center">
 
             <div id="close_outer" align="right">
-                <img src="imgs/close.png" alt="close" width="100%" height="100%">
+                <img src="/LetsResell/resources/images/common/close.png" alt="close" width="100%" height="100%">
             </div>
 
             <h1 align="left">Filters</h1>
@@ -155,39 +156,39 @@
             <div id="filter_color">
     
                 <div id="color_black" align="center">
-                    <img src="imgs/black.png" alt="검정" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/black.png" alt="검정" width="100%" height="100%">
                 </div>
     
                 <div id="color_gray" align="center">
-                    <img src="imgs/gray.png" alt="회색" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/gray.png" alt="회색" width="100%" height="100%">
                 </div>
     
                 <div id="color_white" align="center">
-                    <img src="imgs/white.png" alt="흰색" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/white.png" alt="흰색" width="100%" height="100%">
                 </div>
     
                 <div id="color_red" align="center">
-                    <img src="imgs/red.png" alt="빨강" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/red.png" alt="빨강" width="100%" height="100%">
                 </div>
                 
                 <div id="color_orange" align="center">
-                    <img src="imgs/orange.png" alt="주황" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/orange.png" alt="주황" width="100%" height="100%">
                 </div>
                 
                 <div id="color_yellow" align="center">
-                    <img src="imgs/yellow.png" alt="노랑" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/yellow.png" alt="노랑" width="100%" height="100%">
                 </div>
                 
                 <div id="color_green" align="center">
-                    <img src="imgs/green.png" alt="녹색" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/green.png" alt="녹색" width="100%" height="100%">
                 </div>
                 
                 <div id="color_blue" align="center">
-                    <img src="imgs/blue.png" alt="파랑" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/blue.png" alt="파랑" width="100%" height="100%">
                 </div>
                 
                 <div id="color_purple" align="center">
-                    <img src="imgs/purple.png" alt="보라" width="100%" height="100%">
+                    <img src="/LetsResell/resources/images/common/purple.png" alt="보라" width="100%" height="100%">
                 </div>
     
             </div>
