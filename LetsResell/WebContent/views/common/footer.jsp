@@ -6,6 +6,11 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="/LetsResell/resources/css/common/footer.css" rel="stylesheet">
+<Style>
+#footer{
+		   	margin-top:600px;
+		}
+</Style>
 </head>
 <body>
 	<!-- footer 영역 -->
