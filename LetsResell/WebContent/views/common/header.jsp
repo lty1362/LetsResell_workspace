@@ -27,51 +27,51 @@
 </script>
 </head>
 <body>
-	<!-- wrapper 영역 -->
-	<div id="header">
-	
-	<!-- header_logo 영역 -->
-	<div id="header_logo">
-	    <a href="<%=request.getContextPath()%>">Lets Resell</a>
-	</div>
-	
-	<!-- header_search 영역 -->
-	<div id="header_search">
-	    <form action="" id="header_search_form">
-	
-	        <div id="header_search_form_text">
-	            <input type="search" name="search" placeholder="   Search">
-	        </div>
-	
-	        <div id="header_search_form_btn">
-	            <input type="submit" value="검색">
-	        </div>
-	
-	    </form>
-	</div>
-	
-	<% if(loginUser == null) { %>
-				<!-- 로그인 전 div -->
-	            <!-- header_menu 영역 -->
-	            <div id="header_menu">
-	                <div id="header_menu_div">
-	                    <button onclick="location.href='<%=request.getContextPath()%>/loginForm.me'">로그인</button>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/loginAgree.me'">회원가입</button>
-	                    <button>고객센터</button>
-	                </div>
-	            </div>
-            
-            <% } else{ %>
-				<!-- 로그인 후 div -->
-				<div id="header_menu">
-					<div id="header_menu_div">
-	                    <button onclick="location.href='<%=request.getContextPath()%>/logout.me'">로그아웃</button>
-	                    <button>마이페이지</button>
-	                    <button>고객센터</button>
-	                </div>
-				</div>
-			<% } %>
-	
-	</div>
+<!-- wrapper 영역 -->
+<div id="header">
+
+<!-- header_logo 영역 -->
+<div id="header_logo">
+    <a href="<%=request.getContextPath()%>">Lets Resell</a>
+</div>
+
+<!-- header_search 영역 -->
+<div id="header_search">
+    <form action="" id="header_search_form">
+
+        <div id="header_search_form_text">
+            <input type="search" name="search" placeholder="   Search">
+        </div>
+
+        <div id="header_search_form_btn">
+            <input type="submit" value="검색">
+        </div>
+
+    </form>
+</div>
+
+<% if(loginUser == null) { %>
+<!-- 로그인 전 div -->
+         <!-- header_menu 영역 -->
+         <div id="header_menu">
+             <div id="header_menu_div">
+                 <button onclick="location.href='<%=request.getContextPath()%>/loginForm.me'">로그인</button>
+                 <button onclick="location.href='<%=request.getContextPath()%>/loginAgree.me'">회원가입</button>
+                 <button>고객센터</button>
+             </div>
+         </div>
+        
+        <% } else{ %>
+<!-- 로그인 후 div -->
+<div id="header_menu">
+	<div id="header_menu_div">
+                 <button onclick="location.href='<%=request.getContextPath()%>/logout.me'">로그아웃</button>
+                 <button>마이페이지</button>
+                 <button>고객센터</button>
+             </div>
+</div>
+<% } %>
+
+</div>
 </body>
 </html>

@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <h4 align="right"><b>인기상품순</b></h4>
+    <h3 align="right"><b>인기상품순</b></h3>
 
     <br>
 
@@ -107,7 +107,7 @@
         </div>
     </div>
 
-    <h4 align="right"><b>신규 판매 입찰 제품</b></h4>
+    <h3 align="right"><b>신규 판매 입찰 제품</b></h3>
     <br>
 
     <div id="product_box">
@@ -151,7 +151,7 @@
         </div>
     </div>
 
-    <h4 align="right"><b>신규 구매 입찰 제품</b></h4>
+    <h3 align="right"><b>신규 구매 입찰 제품</b></h3>
     <br>
 
     <div id="product_box">
@@ -195,7 +195,7 @@
         </div>
     </div>
 
-    <h4 align="right"><b>중고 제품</b></h4>
+    <h3 align="right"><b>중고 제품</b></h3>
     <br>
 
     <div id="product_box">

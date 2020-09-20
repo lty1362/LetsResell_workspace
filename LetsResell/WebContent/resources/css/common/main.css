@@ -2,8 +2,9 @@
 .main_outer{
     width: 1000px;
     height: 1900px;
+    margin: auto;
 }
-.main_outer>h4{margin-top: 20px;}
+.main_outer>h3{margin-top: 20px;}
 #event_box{
     width: 100%;
     height: 300px;

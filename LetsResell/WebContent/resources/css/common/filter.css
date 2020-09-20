@@ -7,6 +7,7 @@ button{
 #content{
     width: 1100px;
     height: 1000px;
+    margin: auto;
 }
 #content>div{
     float: left;
