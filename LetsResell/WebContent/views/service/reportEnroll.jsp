@@ -165,9 +165,9 @@
                     </div>
                 </div>
                 <div id="update" align="right">
-                    <input type="submit" value="수정">
+                    <input type="submit" value="작성">
                 </div>
-	        </div>
+	        	</div>
 		</div>
 	    <%@ include file= "../common/footer.jsp"%>
 	</div>

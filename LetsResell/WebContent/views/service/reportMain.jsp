@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.service.model.vo.*" %>
+<%
+	ArrayList<Report> list = (ArrayList<Report>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int pageLimit = pi.getPageLimit();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	int boardLimit = pi.getBoardLimit();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,9 +102,11 @@
         #write a:hover{
         	text-decoration:none;
         }
-        #pages th{
+        .pagingArea{
+        	margin-top:5px;
+        }
+        .pagingArea button{
             background: rgb(236, 236, 236);
-            display: inline-block;
             width: 30px;
             height: 30px;
             margin-left: 5px;
@@ -100,6 +115,7 @@
             font-weight: 400;
             margin-top:30px;
             text-align:center;
+            border:0px;
         }
 </style>
 </head>
@@ -112,64 +128,77 @@
 	            </div>
 	            <div id="body_right">
 	            	<div id="title">부정 판매자 신고</div>
-                <table id="report">
-                    <tr>
-                        <th>No</th>
-                        <th>분류</th>
-                        <th>제목</th>
-                        <th>작성일</th>
-                        <th>답변 상태</th>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>결제</td>
-                        <td>(제목)</td>
-                        <td>2020-05-31</td>
-                        <td>접수 대기</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>물품</td>
-                        <td>(제목)</td>
-                        <td>2020-05-31</td>
-                        <td>접수 대기</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>기타</td>
-                        <td>(제목)</td>
-                        <td>2020-05-31</td>
-                        <td>접수 완료</td>
-                    </tr>
-                </table>
-                 <div id="write" align="right">
-                	<a href="<%=contextPath%>/views/service/reportDetail.jsp">글쓰기</a>
-                </div>
-                <div id="pages"  align="center">
-                    <table>
-                        <tr>
-                            <th>
-                                <
-                            </th>
-                            <th style="background: rgb(74, 74, 74); color:white">1</th>
-                            <th>
-                                >
-                            </th>
-                        </tr>
+               		<table id="report">
+                        <% if(list.isEmpty()){ %>
+			            	<tr>
+			            		<td colspan="5">조회된 리스트가 없습니다.</td>
+			            	</tr>
+	            		<% } else {%>
+		                    <tr>
+		                        <th>No</th>
+		                        <th>분류</th>
+		                        <th>제목</th>
+		                        <th>작성일</th>
+		                        <th>답변 상태</th>
+		                    </tr>
+		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
+			                    <tr>
+									<% int count = listCount-(currentPage*10-10); %>
+			                        <td><%= count-i %></td>
+			                        <td><%= list.get(i).getReportCategory() %></td>
+			                        <td><%= list.get(i).getReportTitle() %></td>
+			                        <td><%= list.get(i).getReportEnrollDate() %></td>
+			                        <td>
+			                        	<% if(list.get(i).getReportStatus().equals("N")){ %>
+			                        		처리 대기
+			                        	<% } else { %>
+			                        		처리 완료
+			                        	<% } %>
+			                        </td>
+			                    </tr>
+			                <% } %>
+	            		<% } %>
                     </table>
+                 <div id="write" align="right">
+                	<a href="<%=contextPath%>/views/service/reportEnroll.jsp">글쓰기</a>
                 </div>
-            </div>
-                </div>
-	    </div>
+                	<div class="pagingArea" align="center">
+			            <%if(currentPage == 1){ %>
+			            	<button>&lt;</button>
+			            <% } else { %>
+			           		<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
+			            <% } %>
+			            
+				            <% for(int p = startPage; p <= endPage ; p++){ %>
+				            	<% if(p != currentPage){ %>
+				            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
+				            	<% } else { %>
+				            	<button disabled><%= p %></button>
+				            	<% } %>
+				            <% } %>
+		            
+			            <%if(currentPage == maxPage){ %>
+			            	<button>&gt;</button>
+			            <% } else {%>
+			            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
+			            <% } %>
+			        </div>
+           		</div>
+        	</div>
 	    <%@ include file= "../common/footer.jsp"%>
-	</div>
-    <script>
-	     $(function(){
-	       $("#report tr td:nth-child(2)").click(function(){
-	         var ino = $(this).children().eq(0).text();
-	         location.href = "<%=contextPath%>/detail.inqury?ino="+ino; // 쿼리스트링
-	       });
-	     });
-    </script>
+	    </div>
+	    <script>
+	    	<% if(list.isEmpty() == false){ %>
+		    	$(function(){
+		    	   if($("#report tr").not("#report tr:first").childern().eq(4).text() != "처리 완료"){
+				    	   $("#report tr").not("#report tr:first").hover().css("cursor","pointer");
+					       $("#report tr").not("#report tr:first").click(function(){
+					         var rno = $(this).children().eq(0).text();
+					         location.href = "<%=contextPath%>/detail.report?writer=<%=list.get(0).getReportWriter()%>&rno="+rno; // 쿼리스트링
+					       });
+		    	   };
+			     });
+	    	<% } %>
+	   </script>
 </body>
 </html>

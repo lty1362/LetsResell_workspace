@@ -4,6 +4,7 @@
 <%
 	ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String category = (String)request.getAttribute("category");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -86,6 +87,10 @@
         }
         .pagingArea{
         	margin-top:5px;
+        	padding-left:300px;
+        }
+        .pagingArea *{
+        	float:left;
         }
         .pagingArea button{
             background: rgb(236, 236, 236);
@@ -98,6 +103,7 @@
             margin-top:30px;
             text-align:center;
             border:0px;
+            display:block;
         }
 </style>
 </head>
@@ -149,12 +155,20 @@
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
+			            	<form action="FAQcategory.service#title_FAQ" method="post">
+			            		<input type="hidden" name="category" value="<%=category%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
+			           			<button type="submit">&lt;</button>
+			           		</form>
 			            <% } %>
 			            
 				            <% for(int p = startPage; p <= endPage ; p++){ %>
 				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
+				            	<form action="FAQcategory.service#title_FAQ" method="post">
+				            		<input type="hidden" name="category" value="<%=category%>">
+				            		<input type="hidden" name="currentPage" value="<%=p%>">
+				           			<button type="submit"><%= p %></button>
+			           			</form>
 				            	<% } else { %>
 				            	<button disabled><%= p %></button>
 				            	<% } %>
@@ -163,7 +177,11 @@
 			            <%if(currentPage == maxPage){ %>
 			            	<button>&gt;</button>
 			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
+			            	<form action="FAQcategory.service#title_FAQ" method="post">
+			            		<input type="hidden" name="category" value="<%=category%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
+			           			<button type="submit">&gt;</button>
+			           		</form>
 			            <% } %>
 			        </div>
                 </div>

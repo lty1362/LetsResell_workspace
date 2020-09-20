@@ -99,16 +99,16 @@
 	    <div id="service">
 	        <div id="serviceTitle">고객센터</div>
 	        <div id="serviceNotice">
-	       		<a href="<%=contextPath%>/noticeForm.service">공지사항</a>
+	       		<a href="<%=contextPath%>/noticeForm.service?currentPage=1">공지사항</a>
 	        </div>
 	        <div id="serviceFAQ">
-	        	<a href="<%=contextPath%>/FAQform.service">FAQ</a>
+	        	<a href="<%=contextPath%>/FAQform.service?currentPage=1">FAQ</a>
 	        </div>
 	        <div id="serviceInquiry">
-	        	<a href="<%=contextPath%>/inquiryForm.service">1:1 문의</a>
+	        	<a href="<%=contextPath%>/inquiryForm.service?currentPage=1">1:1 문의</a>
 	        </div>
 	        <div id="serviceReport">
-	        	<a href="<%=contextPath%>/reportForm.service">부정 판매자 신고</a>
+	        	<a href="<%=contextPath%>/reportForm.service?currentPage=1">부정 판매자 신고</a>
 	        </div>
 	    </div>
 	    <div id="serviceTime">
@@ -122,5 +122,8 @@
 	        </p>
     	 </div>
      </div>
+     <script>
+    	 /* history.replaceState({}, null, location.pathname); */
+     </script>
 </body>
 </html>
