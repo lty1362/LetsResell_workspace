@@ -1,8 +1,47 @@
 <!-- 선경_20200920_v1.1 -->
 <!-- 계좌 등록 기능 추가 (미완성) -->
+<!-- 선경_20200921_v1.2 -->
+<!-- 카드 등록 기능 추가 (미완성) -->
+<!-- 프로필 수정 기능 추가 (미완성) -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
+	<entry key="updateMember">
+		UPDATE /* com.LetsResell.myPage.model.dao.MyPage_dao#updateMember() */
+		       MEMBER
+		   SET MEM_USER_NAME = ?
+		     , MEM_USER_SSN = ?
+		     , MEM_MODIFY_DATE = SYSDATE
+		 WHERE MEM_USER_ID = 'user01'
+	</entry>
+	
+	<entry key="insertCard">
+		INSERT /* com.LetsResell.myPage.model.dao.MyPage_dao#insertCard() */
+		  INTO CARD
+		  (
+		     CARD_NO
+		   , MEM_USER_NO
+		   , CARD_NAME
+		   , CARD_NUMBER
+		   , CARD_VALIDATE
+		   , CARD_MEM_BIRTH
+		   , CARD_PWD
+		   , CARDINFO_NO
+		  )
+		  VALUES
+		  (
+		     SEQ_CNO.NEXTVAL
+		   , 1
+		   , ?
+		   , ?
+		   , ?
+		   , ?
+		   , ?
+		   , 1
+		  )
+	</entry>
+	
 	<entry key="updateAccount">
 		UPDATE
 		       MEMBER

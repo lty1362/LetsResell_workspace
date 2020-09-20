@@ -1,5 +1,5 @@
-// 선경_20200920_v1.1
-// 계좌 등록 기능 추가 (미완성)
+// 선경_20200918_v1.0
+// 회원정보 화면 추가
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
