@@ -76,10 +76,10 @@
                         <a href="">관심상품</a>
                     </li>
                     <li>
-                        <a href="">판매내역</a>
+                        <a href="/LetsResell/salesDetail.mp">판매내역</a>
                     </li>
                     <li>
-                        <a href="">구매내역</a>
+                        <a href="/LetsResell/purchaseDetail.mp">구매내역</a>
                     </li>
                 </ul>
             </div>

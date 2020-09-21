@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.LetsResell.service.model.vo.*"%>
+<%
+	Notice detail = (Notice)request.getAttribute("detail");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,15 +27,16 @@
             height: 50px;
             padding-top:5px;
             font-size: 25px;
+            text-align:center;
         }
         #content{
             height: 90%;
         }
         #content>div{
             border: 1px solid lightgray;
-            font-size: 40px;
+            font-size: 20px;
             height: 100%;
-            padding-top: 4em;
+            padding:10px;
         }
         #back>input{
             border:1px solid rgb(74, 74, 74);
@@ -53,11 +57,11 @@
 	        	<%@ include file="serviceSideMenu.jsp" %>
 		    </div>
 		    <div id="body_right">
-		    	<div id="title_content" align="center">
-                    <div id="title">(제목)</div>
+		    	<div id="title_content">
+                    <div id="title"><%= detail.getNoticeTitle() %></div>
                     <div id="content">
                         <div>
-                            (공지 사항)
+                        	<%= detail.getNoticeContent() %>
                         </div>
                     </div>
                 </div>

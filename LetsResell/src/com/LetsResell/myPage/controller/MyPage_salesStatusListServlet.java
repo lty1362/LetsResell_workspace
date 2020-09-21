@@ -1,5 +1,3 @@
-// 선경_20200918_v1.0
-// 회원정보 화면 추가
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -12,18 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MyPage_memInfoServlet
- * 왼족 메뉴에서 회원정보 버튼 누르면 응답하는 페이지
+ * Servlet implementation class MyPage_salesStatusListServlet
  */
-@WebServlet("/myPage.info")
-public class MyPage_memInfoServlet extends HttpServlet {
-	
+@WebServlet("/salesDetail.mp")
+public class MyPage_salesStatusListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_memInfoServlet() {
+    public MyPage_salesStatusListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +29,9 @@ public class MyPage_memInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("myPage.info");
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_memInfoView.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesStatusList.jsp");
 		view.forward(request, response);
+		
 	}
 
 	/**

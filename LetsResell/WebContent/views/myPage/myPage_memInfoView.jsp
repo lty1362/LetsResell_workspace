@@ -2,6 +2,9 @@
 <%-- 회원정보 화면 추가 --%>
 <%-- 선경_20200920_v1.1 --%>
 <%-- 계좌 등록 기능 추가 (미완성) --%>
+<%-- 선경_20200921_v1.2 --%>
+<%-- 카드 등록 기능 추가 (미완성) --%>
+<%-- 프로필 수정 기능 추가 (미완성) --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,6 +83,17 @@ pageEncoding="UTF-8"%>
 
 	<script>
 	 	$(document).ready(function(){
+	 		// 프로필 수정 > 저장버튼 click 이벤트
+	 		$("#btn_updateMember").on("click", function(){
+	 			$("#updateMemberForm").submit();
+	 		});
+	 		
+	 		// 카드 등록 > 저장버튼 click 이벤트
+	 		$("#btn_insertCard").on("click", function(){
+	 			$("#insertCardForm").submit();
+	 		});
+	 	
+	 		// 계좌 정보 등록 > 저장버튼 click이벤트
 	 		$("#btn_updateAccount").on("click", function(){
 	 			var memAccountNum = document.getElementById("memAccountNum").value;
 	 			var memAccountholder = document.getElementById("memAccountholder").value;
@@ -102,8 +116,6 @@ pageEncoding="UTF-8"%>
 	 	});
 	 </script>
 	 
-	 
-	
 </head>
 
 <body>
@@ -152,6 +164,7 @@ pageEncoding="UTF-8"%>
 		</div>
 	
 	<!-- 카드 등록 정보 영역 -->
+	
 	<div class="div">
 		<div class="div2">
 			<span class="div2_titleFont">카드 등록 정보</span>
@@ -190,37 +203,39 @@ pageEncoding="UTF-8"%>
 	
 	<!-- 프로필 수정 팝업 -->
 	<!-- The Modal -->
-	<div class="modal" id="memberInfo-edit">
-		<div class="modal-dialog">
-			<div class="modal-content" style="font-weight: bold;">
-				<!-- Modal Header -->
-				<div class="modal-header" style="background: black;">
-					<b class="modal-title" style="color: white; font-size: 20px;">프로필 수정</b>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div style="margin-top: 10px;">이름
-						<input type="text" class="form-control" placeholder="이름" style="margin-top: 5px; width: 120px;">
+	<form action="<%= contextPath %>/updateMember.my" id="updateMemberForm" method="POST">
+		<div class="modal" id="memberInfo-edit">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">프로필 수정</b>
 					</div>
-					<div style="margin-top: 25px;">생년월일 <br>
-						<input type="text" class="form-control" placeholder="년(4자)" style="margin-top: 5px; width: 100px; float: left;">
-						<input type="text" class="form-control" placeholder="월" style="margin-top: 5px; margin-left: 5px; width: 70px; float: left;">
-						<input type="text" class="form-control" placeholder="일" style="margin-top: 5px; margin-left: 5px; width: 70px; float: left;"> 
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin-top: 10px;">이름
+							<input type="text" id="name" name="name" class="form-control" placeholder="이름" style="margin-top: 5px; width: 120px;">
+						</div>
+						<div style="margin-top: 25px;">생년월일 <br>
+							<input type="text" id="userSsn1" name="userSsn1" class="form-control" placeholder="년(4자)" style="margin-top: 5px; width: 100px; float: left;">
+							<input type="text" id="userSsn2" name="userSsn2" class="form-control" placeholder="월" style="margin-top: 5px; margin-left: 5px; width: 70px; float: left;">
+							<input type="text" id="userSsn3" name="userSsn3" class="form-control" placeholder="일" style="margin-top: 5px; margin-left: 5px; width: 70px; float: left;"> 
+						</div>
+						<br><br>
+						<div style="margin-top: 25px;">휴대전화 <br>
+							<input type="text" class="form-control" placeholder="휴대전화" style="margin-top: 5px; width: 200px; float: left;">
+							<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="float: left; margin-top: 8px; margin-left: 10px;">인증번호 발송</button><br><br>
+							<input type="text" class="form-control" placeholder="인증번호를 입력하세요." style="margin-top: 5px; width: 170px;">
+						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_updateMember" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                   
 					</div>
-					<br><br>
-					<div style="margin-top: 25px;">휴대전화 <br>
-						<input type="text" class="form-control" placeholder="휴대전화" style="margin-top: 5px; width: 200px; float: left;">
-						<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="float: left; margin-top: 8px; margin-left: 10px;">인증번호 발송</button><br><br>
-						<input type="text" class="form-control" placeholder="인증번호를 입력하세요." style="margin-top: 5px; width: 170px;">
-					</div>
-					<div style="float: right; margin-top: 30px;">
-						<button type="button" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
-						<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
-					</div>                   
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	
 	<!-- 비밀번호 변경 팝업 -->
 	<div class="modal" id="password-edit">
@@ -296,66 +311,68 @@ pageEncoding="UTF-8"%>
 	
 	<!-- 여기서부터 카드, 배송지, 계좌 정보 모달입니다.  -->
 	<!-- 카드 정보 등록 -->
-	<div class="modal" id="cardInfo-edit">
-		<div class="modal-dialog">
-			<div class="modal-content" style="font-weight: bold;">
-				<!-- Modal Header -->
-				<div class="modal-header" style="background: black;">
-					<b class="modal-title" style="color: white; font-size: 20px;">카드 정보 등록</b>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div style="margin-top: 10px;">카드정보</div>
-					<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
-						등록된 카드 정보는 구매대금 결제, 판매자 패널티 부과 시 <br> 결제 용도로 사용됩니다.
+	<form action="<%= contextPath %>/insertCard.my" id="insertCardForm" method="POST">
+		<div class="modal" id="cardInfo-edit">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">카드 정보 등록</b>
 					</div>
-					<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
-					카드 정보는 진행 중인 구매 건이 있을 때에는 변경할 수 없습니다.
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin-top: 10px;">카드정보</div>
+						<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
+							등록된 카드 정보는 구매대금 결제, 판매자 패널티 부과 시 <br> 결제 용도로 사용됩니다.
+						</div>
+						<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
+						카드 정보는 진행 중인 구매 건이 있을 때에는 변경할 수 없습니다.
+						</div>
+						<div style="margin-top: 10px;">
+							<table id="cardInfo-edit-tb">
+								<tr>
+									<td class="cardInfo-edit-td">카드별칭</td>
+									<td><input type="text"  id="cardName" name="cardName" class="form-control" style="width: 200px;" placeholder="ex)신한 두드림(VISA)"></td>
+								</tr>
+								<tr>
+									<td class="cardInfo-edit-td">카드번호 (-제외)</td>
+									<td><input type="text" id="cardNumber" name="cardNumber" class="form-control" style="width: 200px;"></td>
+								</tr>
+								<tr>
+									<td class="cardInfo-edit-td">유효기간(MMYY)</td>
+									<td><input type="text" id="cardValidate1" name="cardValidate1" class="form-control" style="width: 70px; float: left;" placeholder="MONTH">
+										<b style="float: left; margin-left: 10px; margin-right: 10px; margin-top: 3.5px;">/</b>
+										<input type="text"  id="cardValidate2" name="cardValidate2" class="form-control" style="width: 70px;" placeholder="YEAR">
+									</td>
+								</tr>
+								<tr>
+									<td class="cardInfo-edit-td">생년월일(YYMMDD)</td>
+									<td><input type="text"  id="cardMemBirth" name="cardMemBirth" class="form-control" style="width: 170px;"></td>
+								</tr>
+								<tr>
+									<td class="cardInfo-edit-td">비밀번호 앞 두자리</td>
+									<td><input type="password"  id="cardPwd" name="cardPwd" class="form-control" style="width: 70px;"></td>
+								</tr>
+							</table>
+						</div>
+						<div style="margin-top: 10px;">판매 패널티 안내</div>
+						<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
+						아래 규정을 위반할 경우 판매금액의 ?%의 패널티가 부과됩니다.
+						</div>
+						<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
+							[패널티 부과 규정 안내] <br>
+							1. 배송 규정 위반(배송지연, 미배송 등) <br>
+							2. 제품상태 규정 위반(가품, 중고상품, 사이즈, 구성품 등)
+						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_insertCard" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                     
 					</div>
-					<div style="margin-top: 10px;">
-						<table id="cardInfo-edit-tb">
-							<tr>
-								<td class="cardInfo-edit-td">카드별칭</td>
-								<td><input type="text" class="form-control" style="width: 200px;" placeholder="ex)신한 두드림(VISA)"></td>
-							</tr>
-							<tr>
-								<td class="cardInfo-edit-td">카드번호 (-제외)</td>
-								<td><input type="text" class="form-control" style="width: 200px;"></td>
-							</tr>
-							<tr>
-								<td class="cardInfo-edit-td">유효기간(MMYY)</td>
-								<td><input type="text" class="form-control" style="width: 70px; float: left;" placeholder="MONTH">
-									<b style="float: left; margin-left: 10px; margin-right: 10px; margin-top: 3.5px;">/</b>
-									<input type="text" class="form-control" style="width: 70px;" placeholder="YEAR">
-								</td>
-							</tr>
-							<tr>
-								<td class="cardInfo-edit-td">생년월일(YYMMDD)</td>
-								<td><input type="text" class="form-control" style="width: 170px;"></td>
-							</tr>
-							<tr>
-								<td class="cardInfo-edit-td">비밀번호 앞 두자리</td>
-								<td><input type="password" class="form-control" style="width: 70px;"></td>
-							</tr>
-						</table>
-					</div>
-					<div style="margin-top: 10px;">판매 패널티 안내</div>
-					<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
-					아래 규정을 위반할 경우 판매금액의 ?%의 패널티가 부과됩니다.
-					</div>
-					<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
-						[패널티 부과 규정 안내] <br>
-						1. 배송 규정 위반(배송지연, 미배송 등) <br>
-						2. 제품상태 규정 위반(가품, 중고상품, 사이즈, 구성품 등)
-					</div>
-					<div style="float: right; margin-top: 30px;">
-						<button type="button" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
-						<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
-					</div>                     
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	
 	<!-- 배송 정보 등록 -->
 	<div class="modal" id="addressInfo-edit">

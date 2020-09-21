@@ -8,25 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.LetsResell.service.model.service.NoticeService;
-import com.LetsResell.service.model.vo.Notice;
+import com.LetsResell.service.model.service.InquiryService;
+import com.LetsResell.service.model.vo.Inquiry;
 
-/**
- * Servlet implementation class NoticeDetailForm
- */
-@WebServlet("/detail.notice")
-public class NoticeDetailForm extends HttpServlet {
+@WebServlet("/detail.inquiry")
+public class InquiryDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public NoticeDetailForm() {
+    public InquiryDetailServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
-		Notice detail = new NoticeService().selectDetail(noticeNo);
-		request.setAttribute("detail", detail);
-		request.getRequestDispatcher("views/service/noticeDetail.jsp").forward(request, response);
+		int ino = Integer.parseInt(request.getParameter("ino"));
+		int writer = Integer.parseInt(request.getParameter("writer"));
+		Inquiry list = new InquiryService().selectDetail(ino, writer);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/service/inquiryDetail.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

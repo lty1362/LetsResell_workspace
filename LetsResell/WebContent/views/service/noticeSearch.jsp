@@ -4,6 +4,8 @@
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String filter = (String)request.getAttribute("filter");
+	String search = (String)request.getAttribute("search");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -117,6 +119,10 @@
         }
         .pagingArea{
         	margin-top:5px;
+        	padding-left:300px;
+        }
+        .pagingArea *{
+        	float:left;
         }
         .pagingArea button{
             background: rgb(236, 236, 236);
@@ -129,6 +135,7 @@
             margin-top:30px;
             text-align:center;
             border:0px;
+            display:block;
         }
         
 </style>
@@ -182,12 +189,22 @@
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage-1%>#title';">&lt;</button>
+			            	<form action="noticeSearch#title" method="post">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
+			           			<button type="submit">&lt;</button>
+			           		</form>
 			            <% } %>
 			            
 				            <% for(int p = startPage; p <= endPage ; p++){ %>
 				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=p%>#title';"><%= p %></button>
+				            	<form action="noticeSearch#title" method="post">
+				            		<input type="hidden" name="filter" value="<%=filter%>">
+			            			<input type="hidden" name="search" value="<%=search%>">
+				            		<input type="hidden" name="currentPage" value="<%=p%>">
+				           			<button type="submit"><%= p %></button>
+			           			</form>
 				            	<% } else { %>
 				            	<button disabled><%= p %></button>
 				            	<% } %>
@@ -196,7 +213,12 @@
 			            <%if(currentPage == maxPage){ %>
 			            	<button>&gt;</button>
 			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage+1%>#title';">&gt;</button>
+			            	<form action="noticeSearche#title" method="post">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
+			           			<button type="submit">&gt;</button>
+			           		</form>
 			            <% } %>
 			        </div>
 	            </div>
@@ -204,7 +226,7 @@
 	        <%@ include file= "../common/footer.jsp"%>
 	   </div>
 	   <script>
-		   	$(function(){
+		     $(function(){
 		       $("#notice tr").not("#notice tr:first").click(function(){
 		         var nno = $(this).children(0).eq(0).text();
 		         location.href = "<%=contextPath%>/detail.notice?nno="+nno; // 쿼리스트링

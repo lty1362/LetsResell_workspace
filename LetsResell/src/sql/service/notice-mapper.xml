@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM NOTICE
+		  WHERE NOTICE_STATUS = 'Y'
+	</entry>
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT 
+		                   NOTICE_NO
+					     , NOTICE_TITLE
+					     , NOTICE_CONTENT
+					     , NOTICE_ENROLL_DATE
+					     , NOTICE_STATUS
+					 FROM NOTICE
+					WHERE NOTICE_STATUS = 'Y'
+					ORDER BY NOTICE_ENROLL_DATE DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_title">
+		SELECT COUNT(*) LISTCOUNT
+		FROM NOTICE
+		WHERE NOTICE_TITLE LIKE ?
+		AND NOTICE_STATUS = 'Y'
+	</entry>
+	<entry key="searchListCount_content">
+		SELECT COUNT(*) LISTCOUNT
+		FROM NOTICE
+		WHERE NOTICE_CONTENT LIKE ?
+		AND NOTICE_STATUS = 'Y'
+	</entry>
+	<entry key="searchList_title">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT   
+					       NOTICE_NO
+					     , NOTICE_TITLE
+					     , NOTICE_CONTENT
+					     , NOTICE_ENROLL_DATE
+					     , NOTICE_STATUS
+					FROM NOTICE
+					WHERE NOTICE_TITLE LIKE ?
+					AND NOTICE_STATUS = 'Y'
+					ORDER BY NOTICE_ENROLL_DATE DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchList_content">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT   
+					       NOTICE_NO
+					     , NOTICE_TITLE
+					     , NOTICE_CONTENT
+					     , NOTICE_ENROLL_DATE
+					     , NOTICE_STATUS
+					FROM NOTICE
+					WHERE NOTICE_CONTENT LIKE ?
+					AND NOTICE_STATUS = 'Y'
+					ORDER BY NOTICE_ENROLL_DATE DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectDetail">
+		SELECT
+		       NOTICE_NO
+		     , NOTICE_TITLE
+		     , NOTICE_CONTENT
+		     , NOTICE_ENROLL_DATE
+		     , NOTICE_STATUS
+		  FROM NOTICE
+		 WHERE NOTICE_NO = ?
+		   AND NOTICE_STATUS = 'Y'
+	</entry>
+</properties>
