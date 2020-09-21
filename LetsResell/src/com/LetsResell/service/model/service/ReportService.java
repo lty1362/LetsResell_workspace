@@ -1,7 +1,9 @@
 package com.LetsResell.service.model.service;
 
 import static com.LetsResell.template.JDBCTemplate.close;
+import static com.LetsResell.template.JDBCTemplate.commit;
 import static com.LetsResell.template.JDBCTemplate.getConnection;
+import static com.LetsResell.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -33,6 +35,30 @@ public class ReportService {
 		Report list = new ReportDao().selectDetail(conn, ino, writer);
 		close(conn);
 		return list;
+	}
+	
+	public int updateReport(Report update) {
+		Connection conn = getConnection();
+		int result = new ReportDao().updateReport(conn, update);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int insertReport(int writer, Report insert) {
+		Connection conn = getConnection();
+		int result = new ReportDao().insertReport(conn, writer, insert);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }
