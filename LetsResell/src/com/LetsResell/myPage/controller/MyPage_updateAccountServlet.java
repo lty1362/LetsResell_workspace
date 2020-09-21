@@ -1,19 +1,25 @@
 // 선경_20200920_v1.1
 // 계좌 등록 기능 추가 (미완성)
+// 선경_20200921_v1.3
+// 계좌 등록 servlet (완성)
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.LetsResell.myPage.model.service.MyPage_service;
 import com.LetsResell.myPage.model.vo.Account;
 
 /**
  * Servlet implementation class MyPage_updateAccountServlet
+ * 계좌정보 등록하는 Servlet
  */
 @WebServlet("/updateAccount.my")
 public class MyPage_updateAccountServlet extends HttpServlet {
@@ -32,26 +38,24 @@ public class MyPage_updateAccountServlet extends HttpServlet {
 	 */
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// update문
 		request.setCharacterEncoding("UTF-8");
 		
-		
+		String userId = request.getParameter("userId");	//	로그인된 아이디
 		String memBankname = request.getParameter("memBankname");	// 은행명
-		System.out.println(" memBankname : " + memBankname );
 		String memAccountNum = request.getParameter("memAccountNum");	// 계좌번호
-		System.out.println(" memAccountNum : " + memAccountNum );
 		String memAccountholder = request.getParameter("memAccountholder");	// 예금주
-		System.out.println(" memAccountholder : " + memAccountholder );
 		
-		int result = new MyPage_service().updateAccount(memBankname, memAccountNum, memAccountholder);
+		int result = new MyPage_service().updateAccount(userId, memBankname, memAccountNum, memAccountholder);
 		
 		if(result > 0) {
-			System.out.println("성공");
+			// 성공
+			response.sendRedirect(request.getContextPath() + "/success.my");
 		}else {
-			System.out.println("망했음");
+			//실패
+			response.sendRedirect(request.getContextPath() + "/fail.my");
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/myPage.info");
+		//response.sendRedirect(request.getContextPath() + "/myPage.info");
 		
 	}
 
