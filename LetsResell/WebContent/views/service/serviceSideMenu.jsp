@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String contextPath = request.getContextPath();
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>serviceSideMenu</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 	textarea:focus, input:focus{
         	outline:none;
@@ -99,16 +100,16 @@
 	    <div id="service">
 	        <div id="serviceTitle">고객센터</div>
 	        <div id="serviceNotice">
-	       		<a href="<%=contextPath%>/noticeForm.service?currentPage=1">공지사항</a>
+	       		<a href="<%=request.getContextPath()%>/noticeForm.service?currentPage=1">공지사항</a>
 	        </div>
 	        <div id="serviceFAQ">
-	        	<a href="<%=contextPath%>/FAQform.service?currentPage=1">FAQ</a>
+	        	<a href="<%=request.getContextPath()%>/FAQform.service?currentPage=1">FAQ</a>
 	        </div>
 	        <div id="serviceInquiry">
-	        	<a href="<%=contextPath%>/inquiryForm.service?currentPage=1">1:1 문의</a>
+	        	<a href="<%=request.getContextPath()%>/inquiryForm.service?currentPage=1">1:1 문의</a>
 	        </div>
 	        <div id="serviceReport">
-	        	<a href="<%=contextPath%>/reportForm.service?currentPage=1">부정 판매자 신고</a>
+	        	<a href="<%=request.getContextPath()%>/reportForm.service?currentPage=1">부정 판매자 신고</a>
 	        </div>
 	    </div>
 	    <div id="serviceTime">

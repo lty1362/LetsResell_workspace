@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String contextPath = request.getContextPath();
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 	textarea:focus, input:focus{
         	outline:none;
@@ -105,28 +106,28 @@
 <body>
 	<div id="sideMenu" align="center">
         <div id="menu1">
-        	<a href="<%=contextPath%>/memberMain.admin">∨ 회원관리</a>
+        	<a href="<%=request.getContextPath()%>/memberMain.admin">∨ 회원관리</a>
         	<hr>
-        	<a href="<%=contextPath%>/memberMain.admin">회원 조회</a>
+        	<a href="<%=request.getContextPath()%>/memberMain.admin">회원 조회</a>
         </div>
         <div id="menu2">
-            <a href="<%=contextPath%>/productMain.admin">∨ 제품관리</a>
+            <a href="<%=request.getContextPath()%>/productMain.admin">∨ 제품관리</a>
         	<hr>
-        	<a href="<%=contextPath%>/productMain.admin">제품 조회</a>
+        	<a href="<%=request.getContextPath()%>/productMain.admin">제품 조회</a>
         </div>
         <div id="menu4">
-        	<a href="<%=contextPath%>/dealMain.admin">∨ 결제관리</a>
+        	<a href="<%=request.getContextPath()%>/dealMain.admin">∨ 결제관리</a>
         	<hr>
-        	<a href="<%=contextPath%>/dealMain.admin">결제 내역 조회</a>
+        	<a href="<%=request.getContextPath()%>/dealMain.admin">결제 내역 조회</a>
         </div>
         <div id="menu3">
-        	<a href="<%=contextPath%>/noticeMain.admin">∨ 고객센터</a>
+        	<a href="<%=request.getContextPath()%>/noticeMain.admin">∨ 고객센터</a>
             <hr>
             <div id="menu3List">
-	            <a href="<%=contextPath%>/noticeMain.admin">공지사항</a>
-	            <a href="<%=contextPath%>/FAQmain.admin">FAQ</a>
-	            <a href="<%=contextPath%>/inquiryMain.admin">1:1 문의</a>
-	            <a href="<%=contextPath%>/reportMain.admin">부정 판매자 신고</a>
+	            <a href="<%=request.getContextPath()%>/noticeMain.admin">공지사항</a>
+	            <a href="<%=request.getContextPath()%>/FAQmain.admin">FAQ</a>
+	            <a href="<%=request.getContextPath()%>/inquiryMain.admin">1:1 문의</a>
+	            <a href="<%=request.getContextPath()%>/reportMain.admin">부정 판매자 신고</a>
             </div>
         </div>
     </div>

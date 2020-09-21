@@ -130,7 +130,7 @@
                     <tr>
                         <td>3</td>
                         <td>결제</td>
-                        <td><a href="<%=contextPath%>/views/admin/admin_inquiryDetail.jsp">(제목)</a></td>
+                        <td><a href="<%=request.getContextPath()%>/views/admin/admin_inquiryDetail.jsp">(제목)</a></td>
                         <td>(아이디)</td>
                         <td>2020-05-31</td>
                         <td>답변 대기</td>

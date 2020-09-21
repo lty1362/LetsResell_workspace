@@ -130,7 +130,7 @@
 		<%@ include file= "../common/header.jsp"%>
 		<div id="body">
 	            <div id="body_left">
-                	<%@ include file="serviceSideMenu.jsp" %>
+                	<%@ include file="serviceSideMenu.jsp"%>
 	            </div>
 	
 	            <div id="body_right">
