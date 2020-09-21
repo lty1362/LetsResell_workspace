@@ -116,5 +116,48 @@ public class InquiryDao {
 		return list;
 	}
 	
+	public int updateInquiry(Connection conn, Inquiry update) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateInquiry");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, update.getInquiryTitle());
+			pstmt.setString(2, update.getInquiryCategoryBig());
+			pstmt.setString(3, update.getInquiryCategorySmall());
+			pstmt.setString(4, update.getInquiryContent());
+			pstmt.setInt(5, update.getInquiryNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertInquiry(Connection conn, Inquiry insert) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertInquiry");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, insert.getInquiryNo());
+			pstmt.setString(2, insert.getInquiryCategoryBig());
+			pstmt.setString(3, insert.getInquiryCategorySmall());
+			pstmt.setString(4, insert.getInquiryTitle());
+			pstmt.setString(5, insert.getInquiryContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
 	
 }

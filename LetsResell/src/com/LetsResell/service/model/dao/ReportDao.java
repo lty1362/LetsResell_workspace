@@ -111,4 +111,44 @@ public class ReportDao {
 		return list;
 	}
 	
+	public int updateReport(Connection conn, Report update) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReport");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, update.getReportTitle());
+			pstmt.setString(2, update.getReportCategory());
+			pstmt.setInt(3, update.getSaleNo());
+			pstmt.setString(4, update.getReportContent());
+			pstmt.setInt(5, update.getReportNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertReport(Connection conn, int writer, Report insert) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReport");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, writer);
+			pstmt.setInt(2, insert.getSaleNo());
+			pstmt.setString(3, insert.getReportCategory());
+			pstmt.setString(4, insert.getReportTitle());
+			pstmt.setString(5, insert.getReportContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }
