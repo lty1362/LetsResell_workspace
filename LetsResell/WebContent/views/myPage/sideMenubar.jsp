@@ -70,7 +70,7 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="">회원정보</a>
+                        <a href="/LetsResell/myPage.info">회원정보</a>
                     </li>
                     <li>
                         <a href="">관심상품</a>
