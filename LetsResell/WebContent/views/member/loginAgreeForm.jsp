@@ -20,7 +20,7 @@ body {
 
 
 #wrapper {
-	 margin-left:25%;
+	 margin-left:37%;
 	 width: 460px;
 	 height:780px;
 }
