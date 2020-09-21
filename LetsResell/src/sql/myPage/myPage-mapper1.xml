@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <!-- 선경_20200920_v1.1 -->
 <!-- 계좌 등록 기능 추가 (미완성) -->
 <!-- 선경_20200921_v1.2 -->
 <!-- 카드 등록 기능 추가 (미완성) -->
 <!-- 프로필 수정 기능 추가 (미완성) -->
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!-- 선경_20200921_v1.3 -->
+<!-- 계좌 등록 sql문 (완성) -->
 <properties>
 
 	<entry key="updateMember">
@@ -49,7 +51,7 @@
 		     , MEM_ACCOUNT_NUM = ?
 		     , MEM_ACCOUNTHOLDER = ?
 		     , MEM_MODIFY_DATE = SYSDATE
-		 WHERE MEM_USER_ID = 'user01'
+		 WHERE MEM_USER_ID = ?
 	</entry>
 
 </properties>
