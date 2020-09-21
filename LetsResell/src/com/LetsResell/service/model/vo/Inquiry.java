@@ -20,6 +20,16 @@ public class Inquiry {
 	public Inquiry() {
 		
 	}
+	
+	public Inquiry(int inquiryNo, String inquiryTitle, String inquiryCategoryBig, String inquiryCategorySmall, 
+			String inquiryContent) {
+		super();
+		this.inquiryNo = inquiryNo;
+		this.inquiryTitle = inquiryTitle;
+		this.inquiryCategoryBig = inquiryCategoryBig;
+		this.inquiryCategorySmall = inquiryCategorySmall;
+		this.inquiryContent = inquiryContent;
+	}
 	public Inquiry(int inquiryNo, int inquiryWriter, String inquiryCategoryBig, String inquiryCategorySmall,
 			String inquiryTitle, String inquiryContent, Date inquiryEnrollDate, String inquiryStatus,
 			String inquiryAnswer, Date inquiryAnswerDate) {

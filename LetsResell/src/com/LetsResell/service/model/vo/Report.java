@@ -18,6 +18,22 @@ public class Report {
 	public Report() {
 		
 	}
+	public Report(String reportTitle, String reportCategory, int saleNo, String reportContent) {
+		super();
+		this.reportTitle = reportTitle;
+		this.reportCategory = reportCategory;
+		this.saleNo = saleNo;
+		this.reportContent = reportContent;
+	}
+	public Report(String reportTitle, String reportCategory, int saleNo, String reportContent,
+			int reportNo) {
+		super();
+		this.reportNo = reportNo;
+		this.reportTitle = reportTitle;
+		this.reportCategory = reportCategory;
+		this.saleNo = saleNo;
+		this.reportContent = reportContent;
+	}
 	public Report(int reportNo, int saleNo, int reportWriter, String reportCategory, String reportTitle,
 			String reportContent, Date reportEnrollDate, String reportStatus) {
 		super();
