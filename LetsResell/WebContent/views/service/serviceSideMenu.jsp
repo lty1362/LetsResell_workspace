@@ -122,8 +122,5 @@
 	        </p>
     	 </div>
      </div>
-     <script>
-    	 /* history.replaceState({}, null, location.pathname); */
-     </script>
 </body>
 </html>

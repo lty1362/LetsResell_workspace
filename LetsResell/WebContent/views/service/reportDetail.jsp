@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.LetsResell.service.model.vo.*" %>
+<%
+	Report list = (Report)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>부정 판매자 신고</title>
 <style>
+		form{
+			height:100%;
+			width:auto;
+		}
 		#serviceReport>a{
 			text-decoration-line: underline;
 	        font-weight: bold;
@@ -132,9 +140,11 @@
 	            	<div id="title">
                     	부정 판매자 신고
                 	</div>
+                <form action="update.report" method="post">
+                <input type="hidden" name="rno" value="<%=list.getReportNo()%>">
                 <div id="content">
                     <div id="content_title">
-                    	<input type="text" placeholder="제목을 입력하세요">
+                    	<input type="text" name="title" placeholder="제목을 입력하세요" value="<%=list.getReportTitle()%>">
                     </div>
                     <div id="content_category">
                         <div id="category">
@@ -153,23 +163,36 @@
                             <div>
                             	<select name="pastDeal">
                             		<option value="거래내역" selected>거래내역</option>
-                                    <option value="2020-05-01,에어조던1">2020-05-01,에어조던1</option>
-                                    <option value="2020-05-18,에어조던2">2020-05-18,에어조던2</option>
-                                    <option value="2020-05-30,에어조던3">2020-05-30,에어조던3</option>
+                                    <option value="1">2020-05-01,에어조던1</option>
+                                    <option value="1">2020-05-18,에어조던2</option>
+                                    <option value="1">2020-05-30,에어조던3</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div id="content_report">
-                    	<textarea rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"></textarea>
+                    	<textarea name="content" rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getReportContent() %></textarea>
                     </div>
                 </div>
                 <div id="update" align="right">
-                    <input type="submit" value="수정">
+                    <input type="submit" onclick="return filter();" value="수정">
                 </div>
+                </form>
 	        </div>
 		</div>
 	    <%@ include file= "../common/footer.jsp"%>
 	</div>
+	<script>
+		filter = function(){
+	    	if($("select[name=bigCategory]").val()=="분류"){
+	    		alert("분류를 선택하세요.");
+	    		return false;
+	    	};
+	    	if($("select[name=pastDeal]").val()=="거래내역"){
+	    		alert("거래내역을 선택하세요.");
+	    		return false;
+	    	};
+	    }
+	</script>
 </body>
 </html>

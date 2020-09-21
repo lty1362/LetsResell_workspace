@@ -68,23 +68,26 @@
         #inquiry tr>th:nth-child(5){
             border-right: 1px solid white;
         }
-        #inquiry tr td:nth-child(1){
+        #inquiry tr>th:nth-child(6){
+            border-right: 1px solid white;
+        }
+        #inquiry tr td:nth-child(2){
             border-left: 0px;
             width: 3%;
         }
-        #inquiry tr td:nth-child(2){
+        #inquiry tr td:nth-child(3){
             width: 8%;
         }
-        #inquiry tr td:nth-child(3){
+        #inquiry tr td:nth-child(4){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
             width: 42%;
         }
-        #inquiry tr td:nth-child(4){
+        #inquiry tr td:nth-child(5){
             width: 12%;
         }
-        #inquiry tr td:nth-child(5){
+        #inquiry tr td:nth-child(6){
             width: 10%;
             border-right: 0px;
         }
@@ -148,6 +151,7 @@
 		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 			                    <tr>
 									<% int count = listCount-(currentPage*10-10); %>
+			                        <td style="display:none;"><%= list.get(i).getInquiryNo()%></td>
 			                        <td><%=count-i%></td>
 			                        <td><%= list.get(i).getInquiryCategoryBig() %></td>
 			                        <td><%= list.get(i).getInquiryTitle() %></td>
@@ -164,7 +168,7 @@
 	            		<% } %>
                     </table>
                 <div id="write" align="right">
-                	<a href="<%=contextPath%>/views/service/inquiryEnroll.jsp">글쓰기</a>
+                	<a href="<%=contextPath%>/enrollForm.inquiry">글쓰기</a>
                 </div>
                 	<div class="pagingArea" align="center">
 			            <%if(currentPage == 1){ %>

@@ -68,23 +68,23 @@
         #report tr>th:nth-child(5){
             border-right: 1px solid white;
         }
-        #report tr td:nth-child(1){
+        #report tr td:nth-child(2){
             border-left: 0px;
             width: 3%;
         }
-        #report tr td:nth-child(2){
+        #report tr td:nth-child(3){
             width: 8%;
         }
-        #report tr td:nth-child(3){
+        #report tr td:nth-child(4){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
             width: 42%;
         }
-        #report tr td:nth-child(4){
+        #report tr td:nth-child(5){
             width: 12%;
         }
-        #report tr td:nth-child(5){
+        #report tr td:nth-child(6){
             width: 10%;
             border-right: 0px;
         }
@@ -144,6 +144,7 @@
 		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 			                    <tr>
 									<% int count = listCount-(currentPage*10-10); %>
+									<td style="display:none;"><%= list.get(i).getReportNo()%></td>
 			                        <td><%= count-i %></td>
 			                        <td><%= list.get(i).getReportCategory() %></td>
 			                        <td><%= list.get(i).getReportTitle() %></td>
@@ -160,7 +161,7 @@
 	            		<% } %>
                     </table>
                  <div id="write" align="right">
-                	<a href="<%=contextPath%>/views/service/reportEnroll.jsp">글쓰기</a>
+                	<a href="<%=contextPath%>/enrollForm.report">글쓰기</a>
                 </div>
                 	<div class="pagingArea" align="center">
 			            <%if(currentPage == 1){ %>
@@ -188,17 +189,13 @@
 	    <%@ include file= "../common/footer.jsp"%>
 	    </div>
 	    <script>
-	    	<% if(list.isEmpty() == false){ %>
-		    	$(function(){
-		    	   if($("#report tr").not("#report tr:first").childern().eq(4).text() != "처리 완료"){
-				    	   $("#report tr").not("#report tr:first").hover().css("cursor","pointer");
-					       $("#report tr").not("#report tr:first").click(function(){
-					         var rno = $(this).children().eq(0).text();
-					         location.href = "<%=contextPath%>/detail.report?writer=<%=list.get(0).getReportWriter()%>&rno="+rno; // 쿼리스트링
-					       });
-		    	   };
-			     });
-	    	<% } %>
+	    	$(function(){
+	    	    $("#report tr").not("#report tr:first").hover().css("cursor","pointer");
+		        $("#report tr").not("#report tr:first").click(function(){
+		          var rno = $(this).children().eq(0).text();
+		          location.href = "<%=contextPath%>/detail.report?writer=<%=list.get(0).getReportWriter()%>&rno="+rno; // 쿼리스트링
+		        });
+	    	});
 	   </script>
 </body>
 </html>

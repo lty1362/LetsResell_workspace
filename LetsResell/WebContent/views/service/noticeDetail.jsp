@@ -47,6 +47,12 @@
             width: 80px;
             height: 40px;
         }
+        #enrollDate{
+        	border-right:1px solid lightgray;
+        	border-left:1px solid lightgray;
+        	text-align:right;
+        	padding-right:10px;
+        }
 </style>
 </head>
 <body>
@@ -59,6 +65,7 @@
 		    <div id="body_right">
 		    	<div id="title_content">
                     <div id="title"><%= detail.getNoticeTitle() %></div>
+                    <div id="enrollDate">작성일 : <%= detail.getEnrollDate() %></div>
                     <div id="content">
                         <div>
                         	<%= detail.getNoticeContent() %>

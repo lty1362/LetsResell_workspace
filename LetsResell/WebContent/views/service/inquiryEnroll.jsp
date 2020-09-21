@@ -137,7 +137,7 @@
 	            	<div id="title">
                     	1:1 문의
                 	</div>
-                <form action="inquiry.enroll" method="get">
+                <form action="enroll.inquiry" method="post">
                 <div id="content">
                     <div id="content_title">
                     	<input name="title" type="text" placeholder="제목을 입력하세요">
