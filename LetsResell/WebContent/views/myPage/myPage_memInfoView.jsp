@@ -5,6 +5,8 @@
 <%-- 선경_20200921_v1.2 --%>
 <%-- 카드 등록 기능 추가 (미완성) --%>
 <%-- 프로필 수정 기능 추가 (미완성) --%>
+<%-- 선경_20200921_v1.3 --%>
+<%-- header와 sideMenubar 추가, 기타 불필요한 코드 삭제 및 수정 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -106,7 +108,6 @@ pageEncoding="UTF-8"%>
 	 				$('#updateAccountForm').modal('show');
 	 			}else if(memAccountNum != null && memAccountholder != null){
 	 				$("#updateAccountForm").submit();
-	 				window.alert('저장되었습니다.');
 	 			}
 	 			
 	 			console.log(memAccountNum);
@@ -119,8 +120,12 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-	<%@ include file="../../main.jsp" %>
-	
+	<%@ include file="../common/header.jsp" %>
+	<div style="margin-left:150px;"><%@ include file="sideMenubar.jsp" %></div>
+	<%
+		String userId = loginUser.getUserId();
+		String userPwd = loginUser.getUserPwd();
+	%>
 	<div id="wrap">
 		<div class="div">
 			<h2>내정보</h2>
@@ -445,6 +450,7 @@ pageEncoding="UTF-8"%>
 							(수수료 제외)
 						</div>
 						<div style="margin-top: 10px;">
+							<input type="hidden" id="userId" name="userId" value="<%= userId %>">
 							<div>
 								<select id="memBankname" name="memBankname" class="form-control" style="font-size: 12px; width: 125px; float: left; margin-top: 3.5px; margin-right: 10px;"> 
 									<option selected disabled>(은행명 선택)</option>
