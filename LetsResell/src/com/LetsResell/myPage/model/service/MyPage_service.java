@@ -3,6 +3,8 @@
 // 선경_20200921_v1.2
 // 카드 등록 기능 추가 (미완성)
 // 프로필 수정 기능 추가 (미완성)
+// 선경_20200921_v1.3
+// 계좌 등록 method (완성)
 package com.LetsResell.myPage.model.service;
 
 import java.sql.Connection;
@@ -64,11 +66,19 @@ public class MyPage_service {
 		
 	}
 	
-	public int updateAccount(String memBankname, String memAccountNum, String memAccountholder) {
+	/**
+	 * 계좌 정보 등록
+	 * @param userId			로그인된 아이디
+	 * @param memBankname		은행명
+	 * @param memAccountNum		계좌번호
+	 * @param memAccountholder	예금주
+	 * @return
+	 */
+	public int updateAccount(String userId, String memBankname, String memAccountNum, String memAccountholder) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MyPage_dao().updateAccount(conn, memBankname, memAccountNum, memAccountholder);
+		int result = new MyPage_dao().updateAccount(conn, userId, memBankname, memAccountNum, memAccountholder);
 
 		if(result > 0) {
 			commit(conn);
