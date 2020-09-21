@@ -3,6 +3,8 @@
 // 선경_20200921_v1.2
 // 카드 등록 기능 추가 (미완성)
 // 프로필 수정 기능 추가 (미완성)
+// 선경_20200921_v1.3
+// 계좌 등록 method (완성)
 package com.LetsResell.myPage.model.dao;
 
 import java.io.FileInputStream;
@@ -97,9 +99,17 @@ public class MyPage_dao {
 		return result;
 	}
 	
-	public int updateAccount(Connection conn, String memBankname, String memAccountNum, String memAccountholder) {
+	/**
+	 * 계좌 정보 등록
+	 * @param conn
+	 * @param userId			로그인된 아이디
+	 * @param memBankname		은행명
+	 * @param memAccountNum		계좌번호
+	 * @param memAccountholder	예금주
+	 * @return
+	 */
+	public int updateAccount(Connection conn, String userId, String memBankname, String memAccountNum, String memAccountholder) {
 		
-		// update문
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -112,6 +122,7 @@ public class MyPage_dao {
 			pstmt.setString(1, memBankname);
 			pstmt.setString(2, memAccountNum);
 			pstmt.setString(3, memAccountholder);
+			pstmt.setString(4, userId);
 			
 			result = pstmt.executeUpdate();
 			
