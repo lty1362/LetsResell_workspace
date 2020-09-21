@@ -11,20 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.service.model.service.ReportService;
 import com.LetsResell.service.model.vo.Report;
 
-@WebServlet("/detail.report")
-public class ReportDetailServlet extends HttpServlet {
+@WebServlet("/enroll.report")
+public class ReportEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReportDetailServlet() {
+    public ReportEnrollServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rno = Integer.parseInt(request.getParameter("rno"));
-		int writer = Integer.parseInt(request.getParameter("writer"));
-		Report list = new ReportService().selectDetail(rno, writer);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/service/reportDetail.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		int writer = 2;
+		String title = request.getParameter("title");
+		String bigCategory = request.getParameter("bigCategory");
+		int pastDeal = Integer.parseInt(request.getParameter("pastDeal"));
+		String content = request.getParameter("content");
+		
+		Report insert = new Report(title, bigCategory, pastDeal, content);
+		int result = new ReportService().insertReport(writer, insert);
+		if(result > 0) {
+			response.sendRedirect(request.getContextPath() + "/reportForm.service?currentPage=1");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

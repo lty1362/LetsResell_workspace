@@ -22,7 +22,7 @@ public class ReportForm extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int writer = 3;
+		int writer = 2;
 		
 		int listCount; 		
 		int currentPage; 	

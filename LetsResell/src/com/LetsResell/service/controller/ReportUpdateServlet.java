@@ -1,34 +1,37 @@
 package com.LetsResell.service.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.LetsResell.service.model.service.InquiryService;
-import com.LetsResell.service.model.vo.Inquiry;
+import com.LetsResell.service.model.service.ReportService;
+import com.LetsResell.service.model.vo.Report;
 
-@WebServlet("/enroll.inquiry")
-public class InquiryEnrollServlet extends HttpServlet {
+@WebServlet("/update.report")
+public class ReportUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public InquiryEnrollServlet() {
+    public ReportUpdateServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		int writer = 3;
+    	request.setCharacterEncoding("UTF-8");
+    	
 		String title = request.getParameter("title");
 		String bigCategory = request.getParameter("bigCategory");
-		String smallCategory = request.getParameter("smallCategory");
+		int pastDeal = Integer.parseInt(request.getParameter("pastDeal"));
 		String content = request.getParameter("content");
-		Inquiry insert = new Inquiry(writer, title, bigCategory, smallCategory, content);
-		int result = new InquiryService().insertInquiry(insert);
+		int rno = Integer.parseInt(request.getParameter("rno"));
+		
+		Report update = new Report(title, bigCategory, pastDeal, content, rno);
+		int result = new ReportService().updateReport(update);
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1");
+			response.sendRedirect(request.getContextPath() + "/reportForm.service?currentPage=1");
 		}
 	}
 
