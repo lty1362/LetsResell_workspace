@@ -48,9 +48,34 @@
 					     , REPORT_STATUS
 					  FROM REPORT
 					 WHERE REPORT_WRITER = ?
+					   AND REPORT_NO = ?
 					ORDER BY REPORT_ENROLL_DATE DESC
 		            ) A
 		        )
-            WHERE RNUM = ?
+            
+	</entry>
+	<entry key="updateReport">
+		UPDATE REPORT
+		   SET 
+		       REPORT_TITLE = ?
+		     , REPORT_CATEGORY = ?
+		     , SALE_NO = ?
+		     , REPORT_CONTENT = ?
+		 WHERE REPORT_NO = ?
+	</entry>
+	<entry key="insertReport">
+		INSERT
+		  INTO REPORT
+		VALUES
+		     (
+		        SEQ_REPORT_NO.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , SYSDATE
+		      , DEFAULT
+		     )
 	</entry>
 </properties>

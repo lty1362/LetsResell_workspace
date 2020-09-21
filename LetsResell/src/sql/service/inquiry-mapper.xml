@@ -52,9 +52,35 @@
 					     , INQUIRY_ANSWER_DATE
 					 FROM INQUIRY
 					WHERE INQUIRY_WRITER = ?
+					  AND INQUIRY_NO = ?
 					ORDER BY INQUIRY_ENROLL_DATE DESC
 		            ) A
 		        )
-            WHERE RNUM = ?
+	</entry>
+	<entry key="updateInquiry">
+		UPDATE INQUIRY
+		   SET 
+		       INQUIRY_TITLE = ?
+		     , INQUIRY_CATEGORY_BIG = ?
+		     , INQUIRY_CATEGORY_SMALL = ?
+		     , INQUIRY_CONTENT = ?
+		 WHERE INQUIRY_NO = ?
+	</entry>
+	<entry key="insertInquiry">
+		INSERT
+		  INTO INQUIRY
+		VALUES
+		     (
+		        SEQ_INQUIRY_NO.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , SYSDATE
+		      , DEFAULT
+		      , NULL
+		      , NULL
+		     )
 	</entry>
 </properties>
