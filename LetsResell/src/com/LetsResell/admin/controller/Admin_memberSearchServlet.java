@@ -12,24 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.admin.model.service.MemberService;
 import com.LetsResell.admin.model.vo.*;
 
-@WebServlet("/memberMain.admin")
-public class Admin_memberMainServlet extends HttpServlet {
+@WebServlet("/memberSearch.admin")
+public class Admin_memberSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_memberMainServlet() {
+    public Admin_memberSearchServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String filter = request.getParameter("filter");
+		String search = request.getParameter("search");
+		
 		int listCount; 		
 		int currentPage; 	
 		int pageLimit; 		
 		int boardLimit;		
 		int maxPage;		
 		int startPage;		
-		int endPage;	
+		int endPage;		
 		
-		listCount = new MemberService().selectListCount();
+		listCount = new MemberService().searchListCount(filter, search);
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		pageLimit = 10;
 		boardLimit = 15;
@@ -42,12 +46,13 @@ public class Admin_memberMainServlet extends HttpServlet {
 		}
 		
 		Admin_PageInfo pi = new Admin_PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Admin_Member> list = new MemberService().selectList(pi);
+		ArrayList<Admin_Member> list = new MemberService().searchList(filter, search, pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/admin/admin_memberMain.jsp").forward(request, response);
+		request.setAttribute("filter", filter);
+		request.setAttribute("search", search);
+		request.getRequestDispatcher("views/admin/admin_memberSearch.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

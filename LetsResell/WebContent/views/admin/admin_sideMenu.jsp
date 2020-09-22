@@ -106,9 +106,9 @@
 <body>
 	<div id="sideMenu" align="center">
         <div id="menu1">
-        	<a href="<%=request.getContextPath()%>/memberMain.admin">∨ 회원관리</a>
+        	<a href="<%=request.getContextPath()%>/memberMain.admin?currentPage=1">∨ 회원관리</a>
         	<hr>
-        	<a href="<%=request.getContextPath()%>/memberMain.admin">회원 조회</a>
+        	<a href="<%=request.getContextPath()%>/memberMain.admin?currentPage=1">회원 조회</a>
         </div>
         <div id="menu2">
             <a href="<%=request.getContextPath()%>/productMain.admin">∨ 제품관리</a>
