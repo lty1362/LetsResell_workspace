@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
- <style>
+<style>
         #serviceNotice>a{
 			text-decoration-line: underline;
 	        font-weight: bold;
@@ -80,11 +80,9 @@
             width: 17%;
             text-align: center;
         }
-        #notice a{
-        	color:black;
-        }
         #search{
             margin-top: 50px;
+            margin-bottom:10px;
         }
         #search>select{
             height:40px;
@@ -101,9 +99,8 @@
         }
         #search_in>[type="search"]{
             border:0px;
-            height: 100%;
+            height: 95%;
             width: 85%;
-            outline-offset:-2px;
            	padding-top:4px;
 
         }

@@ -40,7 +40,7 @@ public class MemberInsertServlet extends HttpServlet {
 				String userPwd = request.getParameter("userPwd"); 
 				String userName = request.getParameter("name");
 				String phone = request.getParameter("phone");
-				String userSsn = request.getParameter("yy"+ "mm"+ "dd");	   
+				String userSsn = request.getParameter("yy") + request.getParameter("mm") + request.getParameter("dd"); 
 				   
 				
 			

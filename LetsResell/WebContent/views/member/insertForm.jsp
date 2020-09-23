@@ -94,7 +94,7 @@
                             <!-- BIRTH_DD -->
                             <div id="bir_dd">
                                 <span class="box">
-                                    <input type="text" id="dd" name="dd" class="int" maxlength="2" placeholder="일" required>
+                                    <input type="text" id="dd" name="dd" class="int" maxlength="2" placeholder="일(2자리)" required>
                                 </span>
                             </div>
 

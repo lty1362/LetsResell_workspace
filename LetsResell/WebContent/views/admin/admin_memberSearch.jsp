@@ -4,6 +4,8 @@
 <%
 	ArrayList<Admin_Member> list = (ArrayList<Admin_Member>)request.getAttribute("list");
 	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
+	String filter = (String)request.getAttribute("filter");
+	String search = (String)request.getAttribute("search");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -128,6 +130,10 @@
         }
         .pagingArea{
         	margin-top:5px;
+        	padding-left:300px;
+        }
+        .pagingArea *{
+        	float:left;
         }
         .pagingArea button{
             background: rgb(236, 236, 236);
@@ -140,6 +146,7 @@
             margin-top:30px;
             text-align:center;
             border:0px;
+            display:block;
         }
 </style>
 </head>
@@ -198,12 +205,22 @@
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/memberMain.admin?currentPage=<%=currentPage-1%>#userTitle';">&lt;</button>
+			            	<form action="memberSearch.admin#userTitle" method="get">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
+			           			<button type="submit">&lt;</button>
+			           		</form>
 			            <% } %>
 			            
 				            <% for(int p = startPage; p <= endPage ; p++){ %>
 				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/memberMain.admin?currentPage=<%=p%>#userTitle';"><%= p %></button>
+				            	<form action="memberSearch.admin#userTitle" method="get">
+				            		<input type="hidden" name="filter" value="<%=filter%>">
+			            			<input type="hidden" name="search" value="<%=search%>">
+				            		<input type="hidden" name="currentPage" value="<%=p%>">
+				           			<button type="submit"><%= p %></button>
+			           			</form>
 				            	<% } else { %>
 				            	<button disabled><%= p %></button>
 				            	<% } %>
@@ -212,7 +229,12 @@
 			            <%if(currentPage == maxPage){ %>
 			            	<button>&gt;</button>
 			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/memberMain.admin?currentPage=<%=currentPage+1%>#userTitle';">&gt;</button>
+			            	<form action="memberSearch.admin#userTitle" method="get">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
+			           			<button type="submit">&gt;</button>
+			           		</form>
 			            <% } %>
 			        </div>
                 </div>
