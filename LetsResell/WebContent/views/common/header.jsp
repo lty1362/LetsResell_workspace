@@ -65,10 +65,10 @@
 <!-- 로그인 후 div -->
 <div id="header_menu">
 	<div id="header_menu_div">
-                 <button onclick="location.href='<%=request.getContextPath()%>/logout.me';">로그아웃</button>
-                 <button onclick="location.href='<%=request.getContextPath()%>/myPage.info';">마이페이지</button>
-                 <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
-             </div>
+        <button onclick="location.href='<%=request.getContextPath()%>/logout.me';">로그아웃</button>
+        <button onclick="location.href='<%=request.getContextPath()%>/myPage.info';">마이페이지</button>
+        <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
+    </div>
 </div>
 <% } %>
 </div>
