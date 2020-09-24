@@ -29,7 +29,7 @@
                 <div id="wish_btn">
 
                     <div id="wish_btn_img" align="center">
-                        <img src="imgs/heart.png" alt="" width="100%" height="100%">
+                        <img src="/LetsResell/resources/images/product/heart.png" alt="" width="90%" height="90%">
                     </div>
 
                     <div id="wish_btn_name" align="center">
@@ -40,7 +40,7 @@
                 <div id="sell_btn">
 
                     <div id="sell_btn_img">
-                        <img src="imgs/pen.png" alt="" width="100%" height="100%">
+                        <img src="/LetsResell/resources/images/product/pen.png" alt="" width="90%" height="90%">
                     </div>
 
                     <div id="sell_btn_name" align="center">

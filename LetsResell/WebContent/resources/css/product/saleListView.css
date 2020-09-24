@@ -3,7 +3,7 @@
     width: 1200px;
     height: 1400px;
     position: relative;
-    margin: auto;	
+    margin: auto;
 }
 .sale_outer>div{
     float:left;
@@ -58,6 +58,7 @@
     border-radius: 3px;
     margin-right: 3px;
 }
+.pagingArea>button:hover{cursor: pointer;}
 #btn_box{
     width: 100px;
     height: 70px;
@@ -81,3 +82,7 @@
 #wish_btn_name, #sell_btn_name{
     height: 30%;
 }
+#wish_btn_img>img, #sell_btn_img>img{
+    margin-top: 5px;
+}
+#wish_btn:hover, #sell_btn:hover{cursor: pointer;}
