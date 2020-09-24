@@ -67,7 +67,6 @@
             border-right: 1px solid white;
         }
         #users>table tr td:nth-child(1){
-            border-left: 0px;
             font-size:18px;
             width:7%;
         }
@@ -84,7 +83,6 @@
             width: 20%;
         }
         #users>table tr td:nth-child(5){
-        	border-right:0px;
             font-size:18px;
         }
         #userTitle{
