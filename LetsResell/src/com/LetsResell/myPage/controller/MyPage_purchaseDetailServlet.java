@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MyPage_salesStatusListServlet
+ * Servlet implementation class MyPage_purchaseDetailServlet
  */
-@WebServlet("/salesStatus.mp")
-public class MyPage_salesStatusListServlet extends HttpServlet {
+@WebServlet("/purchaseDetail.mp")
+public class MyPage_purchaseDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_salesStatusListServlet() {
+    public MyPage_purchaseDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class MyPage_salesStatusListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesStatusList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseDetailList.jsp");
 		view.forward(request, response);
 		
 	}
