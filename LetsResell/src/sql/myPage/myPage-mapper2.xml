@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="salesCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM MEMBER M, BID B
+		 WHERE M.MEM_USER_NO = B.MEM_USER_NO
+		   AND BID_STATUS = '경매중'
+	</entry>
+</properties>

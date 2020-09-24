@@ -126,14 +126,13 @@
     </style>
 </head>
 <body>
-
+	
 	<%@ include file="../common/header.jsp" %>
 	
 	<div class="content"> <!--바디 전체적으로 감싸는 div-->
         <div class="mypage">    <!--마이페이지 전체적으로 감싸는 div-->
-        
-        	<%@ include file="../myPage/sideMenubar.jsp" %>
             
+            <%@ include file="../myPage/sideMenubar.jsp" %>
             <div class="mypage_body">
                 <p class="sales_title">구매내역</p>
                 <div class="sales_details">
@@ -153,7 +152,7 @@
                                 <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_delivery.png">
                             </div>
                             <a>
-                               	 진행중인 구매 <br>
+                                	진행중인 구매 <br>
                                 <span>0건</span>
                             </a>
                         </li>
@@ -178,20 +177,20 @@
                     </ul>
                     <ul class="sales_tabs">
                             <li class="1">
-                                <a style="color:orange;">
+                                <a>
                                     	입찰현황 <br>
                                     <span>(0)</span>
                                 </a>
                             </li>
                             <li class="2">
                                 <a>
-                                   	 구매진행 <br>
+                                    	구매진행 <br>
                                     <span>(0)</span>
                                 </a>
                             </li>
                             <li class="3">
-                                <a>
-                                   	 구매완료 <br>
+                                <a style="color:orange;">
+                                    	구매완료 <br>
                                     <span>(0)</span>
                                 </a>
                             </li>
@@ -248,9 +247,35 @@
                             <tbody>
                                 <tr>
                                     <td colspan="2">
-                                       	입찰현황
+                                        	구매완료
                                     </td>
                                 </tr>
+                                
+                                <!-- 
+                                	<tr>
+                                    <td width="50">1</td>
+                                    <td width="200">
+                                        <div class="product_img">
+                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
+                                        </div>
+                                    </td>
+                                    <td class="product_info">
+                                        <dl>
+                                            <dt>
+                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
+                                            </dt>
+                                            <dd>
+                                               	 샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br><br>
+                                                <span>890,000</span>
+                                            </dd>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <span>거래완료</span>
+                                    </td>
+                                </tr>
+                                 -->
+                                 
                             </tbody>
                         </table>
                     </div>
@@ -261,6 +286,6 @@
     </div>
     
     <%@ include file="../common/footer.jsp" %>
-    
+
 </body>
 </html>
