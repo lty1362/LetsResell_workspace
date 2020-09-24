@@ -20,70 +20,11 @@ pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <%-- 다음 카카오 주소검색 api --%>
 
-<style>
-	::placeholder {
-		font-size: 12px;
-	}
-	
-	/* 정보 영역 사이즈 및 위치*/
-	#wrap {
-		width: 800px;
-		height: 1000px;
-		float: right;
-		margin-right: 200px;
-		padding: 15px;
-		border: 1px solid red;
-	}
-	.div {
-		border: 1px solid red;
-		margin: 20px;
-	}
-	.div2 {
-		border: 1px solid red;
-		margin: 10px;
-	}
-	
-	/* 프로필 영역 css */
-	#div1 {
-		border: 2px solid gray;
-		border-radius: 3px;
-		width: 700px;
-		height: 200px;
-		position: relative;
-	}
-	#information {
-		position: absolute;
-		float: left;
-		left: 20px;
-	}
-	#iconStyle {
-		border: 1px solid black;
-		width: 100px;
-		height: 100px;
-		position: absolute;
-		float: left;
-		left: 20px;
-		top: 70px;
-	}
-	#informationTable {
-		float: left;
-		position: absolute;
-		left: 170px;
-		top: 95px;
-	}
-	
-	/* 테이블 스타일 */
-	.cardInfo-edit-td, .addressInfo-edit-td {
-		font-size: 13px;
-		font-weight: lighter;
-	}
-	#cardInfo-edit-tb td, #addressInfo-edit-tb td {
-		padding: 10px;
-	}
-</style>
+<%@ include file="../../resources/css/myPage/myPage_memInfoView.css"%>
 
-	<script>
+<%-- 	<script>
 	 	$(document).ready(function(){
 	 		// 프로필 수정 > 저장버튼 click 이벤트
 	 		$("#btn_updateMember").on("click", function(){
@@ -94,28 +35,16 @@ pageEncoding="UTF-8"%>
 	 		$("#btn_insertCard").on("click", function(){
 	 			$("#insertCardForm").submit();
 	 		});
-	 	
-	 		// 계좌 정보 등록 > 저장버튼 click이벤트
-	 		$("#btn_updateAccount").on("click", function(){
-	 			var memAccountNum = document.getElementById("memAccountNum").value;
-	 			var memAccountholder = document.getElementById("memAccountholder").value;
-	 			
-	 			if(memAccountNum == ""){
-	 				div_updateAccountError.innerHTML += "계좌번호를 입력해주세요.";
-	 				$('#updateAccountForm').modal('show');
-	 			}else if(memAccountholder == ""){
-	 				div_updateAccountError.innerHTML += "예금주를 입력해주세요.";
-	 				$('#updateAccountForm').modal('show');
-	 			}else if(memAccountNum != null && memAccountholder != null){
-	 				$("#updateAccountForm").submit();
-	 			}
-	 			
-	 			console.log(memAccountNum);
-	 			console.log(memAccountholder);
-	 		});
-	 		
+
+	 		// 배송지 등록 > 저장버튼 click이벤트
+
 	 	});
-	 </script>
+	 </script> --%>
+	 <!-- 배송지 등록 > 검색버튼 click이벤트 -->
+	 <script type="text/javascript" src="resources/js/myPage/myPage_address.js" ></script> 
+	 <!-- 계좌 정보 등록 > 저장버튼 click이벤트 -->	 	
+	 <script type="text/javascript" src="resources/js/myPage/myPage_account.js" ></script> 
+	
 	 
 </head>
 
@@ -380,58 +309,65 @@ pageEncoding="UTF-8"%>
 	</form>
 	
 	<!-- 배송 정보 등록 -->
-	<div class="modal" id="addressInfo-edit">
-		<div class="modal-dialog">
-			<div class="modal-content" style="font-weight: bold;">
-				<!-- Modal Header -->
-				<div class="modal-header" style="background: black;">
-					<b class="modal-title" style="color: white; font-size: 20px;">배송 정보 등록</b>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div style="margin-top: 10px;">배송 정보</div>
-					<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
-						입력한 배송정보의 주소로 상품을 발송합니다.
+	<form action="<%= contextPath %>/insertAccount.my" id="insertAccountForm" method="POST">
+		<div class="modal" id="addressInfo-edit">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">배송 정보 등록</b>
 					</div>
-					<div style="margin-top: 10px;">
-						<table id="addressInfo-edit-tb">
-							<tr>
-								<td class="addressInfo-edit-td">우편번호</td>
-								<td>
-									<input type="text" class="form-control" style="width: 170px; float: left;">
-									<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="margin-left: 10px; margin-top: 3.5px;">검색</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="addressInfo-edit-td">도로명 주소</td>
-								<td><input type="text" class="form-control" style="width: 300px;"></td>
-							</tr>
-							<tr>
-								<td class="addressInfo-edit-td">상세주소</td>
-								<td><input type="text" class="form-control" style="width: 300px; float: left;"></td>
-							</tr>
-							<tr>
-								<td class="addressInfo-edit-td">핸드폰 번호</td>
-								<td><input type="text" class="form-control" style="width: 200px;"></td>
-							</tr>
-							<tr>
-								<td class="addressInfo-edit-td">배송 메세지</td>
-								<td><input type="text" class="form-control" style="width: 300px;"></td>
-							</tr>
-						</table>
-						<div>
-							<input type="checkbox" style="margin-right: 10px;">
-							<b style="font-size: 13px; font-weight: lighter;">기본배송지로 등록</b>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin-top: 10px;">배송 정보</div>
+						<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;">
+							입력한 배송정보의 주소로 상품을 발송합니다.
 						</div>
+						<div style="margin-top: 10px;">
+							<table id="addressInfo-edit-tb">
+								<tr>
+									<td class="addressInfo-edit-td">배송지 별칭</td>
+									<td><input id="addressName" name="addressName" type="text" class="form-control" style="width: 200px;"></td>
+								</tr>
+								<tr>
+									<td class="addressInfo-edit-td">우편번호</td>
+									<td>
+										<input type="text" id="addressCode" name="addressCode" class="form-control" style="width: 170px; float: left;">
+										<button type="button" id="btn_addressSearch" class="btn btn-dark btn btn-primary btn-sm" style="margin-left: 10px; margin-top: 3.5px;">검색</button>
+										<span id="guide" style="color:#999;display:none"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="addressInfo-edit-td">도로명 주소</td>
+									<td><input id="addressMain" name="addressMain" type="text" class="form-control" style="width: 300px;"></td>
+								</tr>
+								<tr>
+									<td class="addressInfo-edit-td">상세주소</td>
+									<td><input id="addressDetail" name="addressDetail" type="text" class="form-control" style="width: 300px; float: left;"></td>
+								</tr>
+								<tr>
+									<td class="addressInfo-edit-td">핸드폰 번호</td>
+									<td><input id="addressPhone" name="addressPhone" type="text" class="form-control" style="width: 200px;"></td>
+								</tr>
+								<tr>
+									<td class="addressInfo-edit-td">배송 메세지</td>
+									<td><input id="addressMessage" name="addressMessage" type="text" class="form-control" style="width: 300px;"></td>
+								</tr>
+							</table>
+							<div>
+								<input type="checkbox" id="addressBasic" name="addressBasic" style="margin-right: 10px;">
+								<b style="font-size: 13px; font-weight: lighter;">기본배송지로 등록</b>
+							</div>
+						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                     
 					</div>
-					<div style="float: right; margin-top: 30px;">
-						<button type="button" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
-						<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
-					</div>                     
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	
 	<!-- 판매대금 수취 계좌 등록 -->
 	<form action="<%= contextPath %>/updateAccount.my" id="updateAccountForm" method="POST">
