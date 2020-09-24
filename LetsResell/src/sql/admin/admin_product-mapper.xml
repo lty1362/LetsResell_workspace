@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+	</entry>
+	<entry key="selectList">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					 FROM P_REG
+					 ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectCategoryCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_CATEGORY = ?
+	</entry>
+	<entry key="selectCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					 FROM P_REG
+					WHERE PR_CATEGORY = ?
+					 ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>

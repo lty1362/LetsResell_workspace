@@ -225,7 +225,7 @@
     		$("#users>table tr").hover().css("cursor","pointer")
     		$("#users>table tr").not($("#users>table tr:first")).click(function(){
     			var mno = $(this).children().eq(0).text();
-    			location.href = "<%=contextPath%>/memberDetail.admin?mno"+mno;
+    			location.href = "<%=contextPath%>/memberDetail.admin?mno="+mno;
     		});
     	});
     </script>

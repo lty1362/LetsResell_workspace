@@ -20,11 +20,22 @@ public class Admin_Member {
 	private String bankName;
 	private String accountNum;
 	private String accountHolder;
+	private int rnum;
 	
 	//constructor
 	public Admin_Member() {
 		
 	}
+	
+	public Admin_Member(int userNo, String userId, String userName, String phone, String userSsn) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userName = userName;
+		this.phone = phone;
+		this.userSsn = userSsn;
+	}
+
 	public Admin_Member(int userNo, String userId, String userPwd, String userName, String phone, Date enrollDate,
 			Date modifyDate, String status, String userSsn, Date outDate, int reportCount, String blacklistStatus,
 			String bankName, String accountNum, String accountHolder) {
@@ -134,6 +145,12 @@ public class Admin_Member {
 	}
 	public void setAccountHolder(String accountHolder) {
 		this.accountHolder = accountHolder;
+	}
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 	@Override
 	public String toString() {

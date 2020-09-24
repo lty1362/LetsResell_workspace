@@ -127,7 +127,6 @@
             text-align:center;
             border:0px;
         }
-        
 </style>
 </head>
 <body>
@@ -144,9 +143,9 @@
 	                </div>
 	                <table id="notice">
 	                <% if(list.isEmpty()){ %>
-	            	<tr>
-	            		<td colspan="3">조회된 리스트가 없습니다.</td>
-	            	</tr>
+		            	<tr>
+		            		<td colspan="3">조회된 리스트가 없습니다.</td>
+		            	</tr>
             		<% } else {%>
 	                    <tr>
 	                        <th>No</th>

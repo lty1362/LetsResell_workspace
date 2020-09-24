@@ -13,15 +13,16 @@ import com.LetsResell.admin.model.service.ProductService;
 import com.LetsResell.admin.model.vo.Admin_PageInfo;
 import com.LetsResell.admin.model.vo.Admin_Product;
 
-@WebServlet("/productMain.admin")
-public class Admin_productListServlet extends HttpServlet {
+@WebServlet("/productCategory.admin")
+public class Admin_productCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_productListServlet() {
+    public Admin_productCategoryServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String category = request.getParameter("category");
 		int listCount; 		
 		int currentPage; 	
 		int pageLimit; 		
@@ -30,7 +31,7 @@ public class Admin_productListServlet extends HttpServlet {
 		int startPage;		
 		int endPage;	
 		
-		listCount = new ProductService().selectListCount();
+		listCount = new ProductService().selectCategoryCount(category);
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		pageLimit = 10;
 		boardLimit = 10;
@@ -43,12 +44,13 @@ public class Admin_productListServlet extends HttpServlet {
 		}
 		
 		Admin_PageInfo pi = new Admin_PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Admin_Product> list = new ProductService().selectList(pi);
+		ArrayList<Admin_Product> list = new ProductService().selectCategory(category, pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("category", category);
 		
-		request.getRequestDispatcher("views/admin/admin_productMain.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/admin_productCategory.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

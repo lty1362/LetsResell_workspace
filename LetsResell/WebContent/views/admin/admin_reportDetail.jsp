@@ -107,7 +107,7 @@
             margin-top:6%;
             padding:10px;
         }
-         #content_answer{
+        #content_answer{
             width: 94%;
             height: 10%;
             border: 1px solid lightgray;

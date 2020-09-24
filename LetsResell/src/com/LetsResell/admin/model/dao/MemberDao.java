@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import static com.LetsResell.template.JDBCTemplate.*;
 import com.LetsResell.admin.model.vo.*;
-import com.LetsResell.service.model.vo.Notice;
-import com.LetsResell.service.model.vo.PageInfo;
 
 public class MemberDao {
 	
@@ -165,6 +163,33 @@ public class MemberDao {
 		}
 		return list;
 	}
+	
+	public Admin_Member selectDetailMember(Connection conn, int mno) {
+		Admin_Member mem = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetailMember");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				mem = new Admin_Member(rset.getInt(1),
+										rset.getString(2),
+										rset.getString(3),
+										rset.getString(4),
+										rset.getString(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mem;
+	}
+	
+	
 	
 	
 	

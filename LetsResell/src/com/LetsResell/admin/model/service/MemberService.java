@@ -38,4 +38,13 @@ public class MemberService {
 		return list;
 	}
 	
+	public Admin_Member selectDetailMember(int mno) {
+		Connection conn = getConnection();
+		Admin_Member mem = new MemberDao().selectDetailMember(conn, mno);
+		close(conn);
+		return mem;
+	}
+	
+	
+	
 }

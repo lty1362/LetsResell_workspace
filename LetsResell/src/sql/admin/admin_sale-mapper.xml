@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectMemberDetail">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT PR_NO, SALE_NAME, SALE_PRICE, SALE_ENROLL_DATE
+                      FROM SALE
+                     WHERE MEM_USER_NO = ?
+		            ) A
+		        )
+	</entry>
+</properties>
