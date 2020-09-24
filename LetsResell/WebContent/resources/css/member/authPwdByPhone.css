@@ -1,0 +1,80 @@
+@charset "UTF-8";
+<style>
+    body {
+        margin: 0;
+        font-family: Dotum,'돋움',Helvetica,sans-serif;
+    }
+    #wrapper {
+       	height:100%;
+    }  
+    #content{
+        margin:auto; 
+	    width: 600px;
+	    height: 485px;
+    }
+    a {
+    	text-decoration: none;
+    	text-align : center;
+    	font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+	}
+	a:active,
+	a:focus,
+	a:hover {
+	    text-decoration: underline
+	}
+    fieldset{
+        margin-top: 20px;
+        height: 200px;
+    }
+    
+    #btn_area {
+        margin: 30px 0 91px;
+    }
+    #checkBtn{
+        display: block;
+        width: 100px;
+        margin: auto;
+        padding: 21px 0 17px;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        background-color: black;
+        font-size: 15px;
+        font-family: Dotum,'돋움',Helvetica,sans-serif;
+    }
+    #sendPhoneNumber{
+        border: 0;
+        padding: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+        color: white;
+        background-color: black;
+        font-size: 10px;
+    }
+ 
+    #s1{
+        font-size:11px;
+    }
+    .auth{
+        margin-top: 5%;
+        margin-left: 20%;
+        
+    }
+    .auth > div{
+            padding: 20px;
+            height:100%;
+            box-sizing:border-box;
+            float:left;
+    }
+    .authinput > input{
+        margin-bottom: 8px;
+        border: solid 1px #dadada;
+        background: #fff;
+    }
+    .authsend{
+    	margin-top :25px
+    }
+
+</style>

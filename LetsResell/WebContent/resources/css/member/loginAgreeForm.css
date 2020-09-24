@@ -1,4 +1,18 @@
+html {
+    height: 100%;
+}
 
+body {
+ 	margin:0;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+
+#wrapper {
+	 margin-left:37%;
+	 width: 460px;
+	 height:780px;
+}
 h2,p,textarea,ul {
     margin: 0;
     padding: 0

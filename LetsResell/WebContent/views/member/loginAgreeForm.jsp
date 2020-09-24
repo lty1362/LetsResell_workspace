@@ -5,31 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/member/loginAgree.css">
+<link rel="stylesheet" href="resources/css/member/loginAgreeForm.css">
  <script src="resources/js/member/jquery.min.js"></script>
- <style>
  
-html {
-    height: 100%;
-}
-
-body {
- 	margin:0;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
-
-
-#wrapper {
-	 margin-left:37%;
-	 width: 460px;
-	 height:780px;
-}
-
-
- 
- 
- 
- </style>
 </head>
 <body>
 	<!-- header -->
