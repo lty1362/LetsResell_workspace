@@ -2,6 +2,8 @@
 // 계좌 등록 기능 추가 (미완성)
 // 선경_20200921_v1.3
 // 계좌 등록 servlet (완성)
+// 선경_20200925_v1.4
+// 계좌 등록 기능 수정(미완성)
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -54,8 +56,6 @@ public class MyPage_updateAccountServlet extends HttpServlet {
 			//실패
 			response.sendRedirect(request.getContextPath() + "/fail.my");
 		}
-		
-		//response.sendRedirect(request.getContextPath() + "/myPage.info");
 		
 	}
 

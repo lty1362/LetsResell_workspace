@@ -1,9 +1,11 @@
+/* 선경_20200925_v1.4 */
+/* script 분리 */
+
 /* 배송지 정보 관련  내용*/
 
-// 배송지 등록 > 검색버튼 click이벤트
 $(document).ready(function(){
+	// 배송지 등록 > 검색버튼 click이벤트
 	$("#btn_addressSearch").on("click", function(){
-		console.log("클릭됨");
 	    new daum.Postcode({
 	        oncomplete: function(data) {
 	        	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -39,16 +41,19 @@ $(document).ready(function(){
 	                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 	                guideTextBox.style.display = 'block';
 	
-	            } else if(data.autoJibunAddress) {
-	                var expJibunAddr = data.autoJibunAddress;
-	                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	                guideTextBox.style.display = 'block';
 	            } else {
 	                guideTextBox.innerHTML = '';
 	                guideTextBox.style.display = 'none';
 	            }   
 	        } 
 	    }).open();    
+	});
+	
+	// 배송지 등록 > 저장버튼 click이벤트
+	$(document).ready(function(){
+		$("#btn_insertAddress").on("click", function(){
+			$("#insertAddressForm").submit();
+		});
 	});
 });
 

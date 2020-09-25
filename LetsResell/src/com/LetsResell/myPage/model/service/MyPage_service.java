@@ -5,6 +5,8 @@
 // 프로필 수정 기능 추가 (미완성)
 // 선경_20200921_v1.3
 // 계좌 등록 method (완성)
+// 선경_20200925_v1.4
+// 배송지, 카드, 프로필 수정 기능 수정(미완성)
 package com.LetsResell.myPage.model.service;
 
 import java.sql.Connection;
@@ -17,18 +19,17 @@ import com.LetsResell.myPage.model.vo.Account;
 public class MyPage_service {
 	
 	/**
-	 * 
+	 * 프로필 수정
+	 * @param userNo	로그인된 회원의 번호
 	 * @param name		이름
 	 * @param userSsn	생년월일
 	 * @return
 	 */
-	public int updateMember(String name, String userSsn) {
-		
-		//System.out.println("service_updateMember 실행됨");
+	public int updateMember(int userNo, String name, String userSsn) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MyPage_dao().updateMember(conn, name, userSsn);
+		int result = new MyPage_dao().updateMember(conn, userNo, name, userSsn);
 		
 		if(result > 0) {
 			commit(conn);
@@ -42,6 +43,7 @@ public class MyPage_service {
 	
 	/**
 	 * 카드 등록
+	 * @param userNo		로그인된 회원의 번호
 	 * @param cardName		카드별칭
 	 * @param cardNumber	카드번호
 	 * @param cardValidate	유효기간
@@ -49,11 +51,12 @@ public class MyPage_service {
 	 * @param cardPwd		카드비밀번호
 	 * @return
 	 */
-	public int insertCard(String cardName, String cardNumber, String cardValidate, String cardMemBirth, int cardPwd) {
+	public int insertCard(int userNo, String cardName, String cardNumber, String cardValidate,
+						  String cardMemBirth, int cardPwd) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MyPage_dao().insertCard(conn, cardName, cardNumber, cardValidate, cardMemBirth, cardPwd);
+		int result = new MyPage_dao().insertCard(conn, userNo, cardName, cardNumber, cardValidate, cardMemBirth, cardPwd);
 		
 		if(result > 0) {
 			commit(conn);
@@ -80,6 +83,43 @@ public class MyPage_service {
 		
 		int result = new MyPage_dao().updateAccount(conn, userId, memBankname, memAccountNum, memAccountholder);
 
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int insertAddress(int userNo, String addressName, int addressCode, String addressMain,
+							 String addressDetail, String addressPhone, String addressMessage,
+							 String addressBasic) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_dao().insertAddress(conn, userNo, addressName, addressCode, addressMain, addressDetail,
+												 addressPhone, addressMessage, addressBasic);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int updateModifyDate(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_dao().updateModifyDate(conn, userNo);
+		
 		if(result > 0) {
 			commit(conn);
 		}else {

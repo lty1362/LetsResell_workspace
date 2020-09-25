@@ -7,6 +7,8 @@
 <%-- 프로필 수정 기능 추가 (미완성) --%>
 <%-- 선경_20200921_v1.3 --%>
 <%-- header와 sideMenubar 추가, 기타 불필요한 코드 삭제 및 수정 --%>
+<%-- 선경_20200925_v1.4 --%>
+<%-- script 분리, 배송지, 카드, 프로필 수정 기능 수정(미완성) --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,26 +26,15 @@ pageEncoding="UTF-8"%>
 
 <%@ include file="../../resources/css/myPage/myPage_memInfoView.css"%>
 
-<%-- 	<script>
-	 	$(document).ready(function(){
-	 		// 프로필 수정 > 저장버튼 click 이벤트
-	 		$("#btn_updateMember").on("click", function(){
-	 			$("#updateMemberForm").submit();
-	 		});
-	 		
-	 		// 카드 등록 > 저장버튼 click 이벤트
-	 		$("#btn_insertCard").on("click", function(){
-	 			$("#insertCardForm").submit();
-	 		});
 
-	 		// 배송지 등록 > 저장버튼 click이벤트
-
-	 	});
-	 </script> --%>
-	 <!-- 배송지 등록 > 검색버튼 click이벤트 -->
-	 <script type="text/javascript" src="resources/js/myPage/myPage_address.js" ></script> 
-	 <!-- 계좌 정보 등록 > 저장버튼 click이벤트 -->	 	
-	 <script type="text/javascript" src="resources/js/myPage/myPage_account.js" ></script> 
+<!-- 프로필 수정 > 저장버튼 click 이벤트, 비밀번호 변경 > 저장버튼 click 이벤트 -->
+<script type="text/javascript" src="resources/js/myPage/myPage_member.js" ></script> 
+<!-- 카드 등록 > 저장버튼 click 이벤트 -->
+<script type="text/javascript" src="resources/js/myPage/myPage_card.js" ></script> 
+<!-- 배송지 등록 > 검색버튼 click이벤트, 배송지 등록 > 저장버튼 click이벤트 -->
+<script type="text/javascript" src="resources/js/myPage/myPage_address.js" ></script> 
+<!-- 계좌 정보 등록 > 저장버튼 click이벤트 -->	 	
+<script type="text/javascript" src="resources/js/myPage/myPage_account.js" ></script> 
 	
 	 
 </head>
@@ -52,6 +43,7 @@ pageEncoding="UTF-8"%>
 	<%@ include file="../common/header.jsp" %>
 	<div style="margin-left:150px;"><%@ include file="sideMenubar.jsp" %></div>
 	<%
+		int userNo = loginUser.getUserNo();
 		String userId = loginUser.getUserId();
 		String userPwd = loginUser.getUserPwd();
 	%>
@@ -147,6 +139,7 @@ pageEncoding="UTF-8"%>
 					</div>
 					<!-- Modal body -->
 					<div class="modal-body">
+						<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>">
 						<div style="margin-top: 10px;">이름
 							<input type="text" id="name" name="name" class="form-control" placeholder="이름" style="margin-top: 5px; width: 120px;">
 						</div>
@@ -172,35 +165,38 @@ pageEncoding="UTF-8"%>
 	</form>
 	
 	<!-- 비밀번호 변경 팝업 -->
-	<div class="modal" id="password-edit">
-		<div class="modal-dialog">
-			<div class="modal-content" style="font-weight: bold;">
-				<!-- Modal Header -->
-				<div class="modal-header" style="background: black;">
-					<b class="modal-title" style="color: white; font-size: 20px;">비밀번호 변경</b>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div style="margin-top: 10px; font-size: 13px; font-weight: bold;">기존 비밀번호를 입력해 주세요.
-						<input type="password" class="form-control" placeholder="기존 비밀번호" style="margin-top: 5px; width: 120px;">
+	<form action="<%= contextPath %>/updatePwd.my" id="updatePwdForm" method="POST">
+		<div class="modal" id="password-edit">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">비밀번호 변경</b>
 					</div>
-					<div style="margin-top: 25px;">
-						<div style="font-size: 13px; font-weight: bold;">
-							변경하실 비밀번호를 입력해 주세요. <br> 
-							(8자리 이상으로 패스워드 설정. 영문, 특수문자 포함)
+					<!-- Modal body -->
+					<div class="modal-body">
+						<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>">
+						<div style="margin-top: 10px; font-size: 13px; font-weight: bold;">기존 비밀번호를 입력해 주세요.
+							<input type="password" id="oldPwd" name="oldPwd" class="form-control" placeholder="기존 비밀번호" style="margin-top: 5px; width: 120px;">
 						</div>
-						<input type="text" class="form-control" placeholder="변경할 비밀번호" style="margin-top: 5px; width: 120px; float: left;">
-						<br><br>
-						<input type="text" class="form-control" placeholder="비밀번호 확인" style="margin-top: 5px; width: 120px;">
+						<div style="margin-top: 25px;">
+							<div style="font-size: 13px; font-weight: bold;">
+								변경하실 비밀번호를 입력해 주세요. <br> 
+								(8자리 이상으로 패스워드 설정. 영문, 특수문자 포함)
+							</div>
+							<input type="password" id="newPwd" name="newPwd" class="form-control" placeholder="변경할 비밀번호" style="margin-top: 5px; width: 120px; float: left;">
+							<br><br>
+							<input type="password" id="reNewPwd" name="reNewPwd" class="form-control" placeholder="비밀번호 확인" style="margin-top: 5px; width: 120px;">
+						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_updatePwd" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                   
 					</div>
-					<div style="float: right; margin-top: 30px;">
-						<button type="button" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
-						<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
-					</div>                   
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	
 	<!-- 회원 탈퇴 팝업 -->
 	<div class="modal" id="mem-out">
@@ -263,6 +259,7 @@ pageEncoding="UTF-8"%>
 						카드 정보는 진행 중인 구매 건이 있을 때에는 변경할 수 없습니다.
 						</div>
 						<div style="margin-top: 10px;">
+							<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>">
 							<table id="cardInfo-edit-tb">
 								<tr>
 									<td class="cardInfo-edit-td">카드별칭</td>
@@ -309,7 +306,7 @@ pageEncoding="UTF-8"%>
 	</form>
 	
 	<!-- 배송 정보 등록 -->
-	<form action="<%= contextPath %>/insertAccount.my" id="insertAccountForm" method="POST">
+	<form action="<%= contextPath %>/insertAddress.my" id="insertAddressForm" method="POST">
 		<div class="modal" id="addressInfo-edit">
 			<div class="modal-dialog">
 				<div class="modal-content" style="font-weight: bold;">
@@ -324,6 +321,7 @@ pageEncoding="UTF-8"%>
 							입력한 배송정보의 주소로 상품을 발송합니다.
 						</div>
 						<div style="margin-top: 10px;">
+							<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>">
 							<table id="addressInfo-edit-tb">
 								<tr>
 									<td class="addressInfo-edit-td">배송지 별칭</td>
