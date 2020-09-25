@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레츠리셀-상품판매</title>
+<title>레츠리셀-상품이름</title>
 <link rel="stylesheet" href="/LetsResell/resources/css/product/saleListView.css">
 </head>
 <body>
@@ -58,9 +58,9 @@
                 </div>
 
                 <div id="product_detail">
-                    <p>나이키 X 오프화이트</p>
-                    	최저 판매가 <br>
-                    <b>￦ </b><b>500,000</b>
+                    <p>size: 260</p>
+                    <b id="product_condition">New</b>
+                    <b id="product_price">￦ 470,000</b>
                 </div>
 
             </div>

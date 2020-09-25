@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/LetsResell/resources/css/product/productListView.css">
-<title>레츠리셀-제품 리스트</title>
+<title>레츠리셀-제품이름</title>
 </head>
 <body>
 <!-- header 추가 -->
