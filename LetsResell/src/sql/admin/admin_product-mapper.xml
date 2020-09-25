@@ -5,6 +5,7 @@
 		 SELECT 
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
+		  WHERE PR_STATUS = 'Y'
 	</entry>
 	<entry key="selectList">
 	    SELECT *
@@ -15,6 +16,7 @@
 		        FROM (
 		             SELECT *
 					 FROM P_REG
+					 WHERE PR_STATUS = 'Y'
 					 ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -25,6 +27,7 @@
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
 		  WHERE PR_CATEGORY = ?
+		    AND PR_STATUS = 'Y'
 	</entry>
 	<entry key="selectCategory">
 	    SELECT *
@@ -36,6 +39,7 @@
 		             SELECT *
 					 FROM P_REG
 					WHERE PR_CATEGORY = ?
+					AND PR_STATUS = 'Y'
 					 ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -46,6 +50,7 @@
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
 		  WHERE PR_NO LIKE ?
+		  AND PR_STATUS = 'Y'
 	</entry>
 	<entry key="searchList_code">
 	    SELECT *
@@ -57,6 +62,7 @@
 		             SELECT *
 					   FROM P_REG
 					  WHERE PR_NO LIKE ?
+					  AND PR_STATUS = 'Y'
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -67,6 +73,7 @@
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
 		  WHERE PR_COLOR LIKE ?
+		  AND PR_STATUS = 'Y'
 	</entry>
 	<entry key="searchList_color">
 	    SELECT *
@@ -78,6 +85,7 @@
 		             SELECT *
 					   FROM P_REG
 					  WHERE PR_COLOR LIKE ?
+					  AND PR_STATUS = 'Y'
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -88,6 +96,7 @@
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
 		  WHERE PR_NAME LIKE ?
+		  AND PR_STATUS = 'Y'
 	</entry>
 	<entry key="searchList_name">
 	    SELECT *
@@ -99,6 +108,7 @@
 		             SELECT *
 					   FROM P_REG
 					  WHERE PR_NAME LIKE ?
+					  AND PR_STATUS = 'Y'
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -109,6 +119,7 @@
 		        COUNT(*) LISTCOUNT
 		   FROM P_REG
 		  WHERE PR_BRAND LIKE ?
+		  AND PR_STATUS = 'Y'
 	</entry>
 	<entry key="searchList_brand">
 	    SELECT *
@@ -120,6 +131,7 @@
 		             SELECT *
 					   FROM P_REG
 					  WHERE PR_BRAND LIKE ?
+					  AND PR_STATUS = 'Y'
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )

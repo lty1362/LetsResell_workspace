@@ -59,6 +59,10 @@
                  <button onclick="location.href='<%=request.getContextPath()%>/loginAgree.me';">회원가입</button>
                  <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
              </div>
+             <div style="padding-left:280px;">
+             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin';">관리자</button>
+             </div>
+             
          </div>
         
         <% } else{ %>
@@ -72,6 +76,5 @@
 </div>
 <% } %>
 </div>
-	<button style="position:absolute; right:200px; top:100px; background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin';">관리자</button>
 </body>
 </html>
