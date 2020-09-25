@@ -9,6 +9,8 @@
 <%-- header와 sideMenubar 추가, 기타 불필요한 코드 삭제 및 수정 --%>
 <%-- 선경_20200925_v1.4 --%>
 <%-- script 분리, 배송지, 카드, 프로필 수정 기능 수정(미완성) --%>
+<%-- 선경_20200925_v1.5 --%>
+<%-- 비밀번호 변경 기능 수정, 회원 탈퇴 기능 추가 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +29,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../../resources/css/myPage/myPage_memInfoView.css"%>
 
 
-<!-- 프로필 수정 > 저장버튼 click 이벤트, 비밀번호 변경 > 저장버튼 click 이벤트 -->
+<!-- 프로필 수정 > 저장버튼 click 이벤트, 비밀번호 변경 > 저장버튼 click 이벤트, 회원 탈퇴 > 탈퇴버튼 click 이벤트 -->
 <script type="text/javascript" src="resources/js/myPage/myPage_member.js" ></script> 
 <!-- 카드 등록 > 저장버튼 click 이벤트 -->
 <script type="text/javascript" src="resources/js/myPage/myPage_card.js" ></script> 
@@ -199,46 +201,47 @@ pageEncoding="UTF-8"%>
 	</form>
 	
 	<!-- 회원 탈퇴 팝업 -->
-	<div class="modal" id="mem-out">
-		<div class="modal-dialog">
-			<div class="modal-content" style="font-weight: bold;">
-				<!-- Modal Header -->
-				<div class="modal-header" style="background: black;">
-					<b class="modal-title" style="color: white; font-size: 20px;">회원 탈퇴</b>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div style="margin-top: 10px;">비밀번호 재확인
+	<form action="<%= contextPath %>/updateMemStatus.my" id="updateMemStatusForm" method="POST">
+		<div class="modal" id="mem-out">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">회원 탈퇴</b>
 					</div>
-					<table style="margin-top: 30px;">
-						<tr>
-							<td>아이디</td>
-							<td>[회원 아이디값 들어올 자리]</td>
-						</tr>
-						<tr>
-							<td>비밀번호</td>
-							<td><input type="password" class="form-control" style="width: 120px;"></td>
-						</tr>
-					</table>
-					<div class="text-secondary" style="margin-top: 20px; font-size: 13px;">
-						본인확인을 위해 비밀번호를 다시 한번 확인합니다. <br>
-						본인확인 후 최종 회원탈퇴가 가능합니다.
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin-top: 10px;">비밀번호 재확인</div>
+						<input type="hidden" id="userNo" name="userNo" value="<%= userNo %>">
+						<table style="margin-top: 30px;">
+							<tr>
+								<td>아이디</td>
+								<td>[회원 아이디값 들어올 자리]</td>
+							</tr>
+							<tr>
+								<td>비밀번호</td>
+								<td><input type="password" id="pwd" name="pwd" class="form-control" style="width: 120px;"></td>
+							</tr>
+						</table>
+						<div class="text-secondary" style="margin-top: 20px; font-size: 13px;">
+							본인확인을 위해 비밀번호를 다시 한번 확인합니다. <br>
+							본인확인 후 최종 회원탈퇴가 가능합니다.
+						</div>
+						<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 50px;" align="center">
+							회원 탈퇴 시 개인 정보 및 LETSRESELL에서 만들어진 모든 데이터는 삭제됩니다.
+						</div>
+						<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;" align="center">
+							회원 탈퇴 처리 후에는 회원님의 개인 정보를 복원할 수 없으며, 회원 탈퇴 진행 시 해당 아이디는 영구적으로 삭제되어 재가입이 불가합니다.
+						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_updateMemStatus" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">탈퇴</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                   
 					</div>
-					<div class="text-danger" style="font-size: 13px; font-weight: lighter; margin-top: 50px;" align="center">
-						회원 탈퇴 시 개인 정보 및 LETSRESELL에서 만들어진 모든 데이터는 삭제됩니다.
-					</div>
-					<div class="text-secondary" style="font-size: 13px; font-weight: lighter; margin-top: 5px;" align="center">
-						회원 탈퇴 처리 후에는 회원님의 개인 정보를 복원할 수 없으며, 회원 탈퇴 진행 시 해당 아이디는 영구적으로 삭제되어 재가입이 불가합니다.
-					</div>
-					<div style="float: right; margin-top: 30px;">
-						<button type="button" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">탈퇴</button>
-						<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
-					</div>                   
 				</div>
 			</div>
 		</div>
-	</div>
-	
+	</form>
 	<!-- 여기서부터 카드, 배송지, 계좌 정보 모달입니다.  -->
 	<!-- 카드 정보 등록 -->
 	<form action="<%= contextPath %>/insertCard.my" id="insertCardForm" method="POST">

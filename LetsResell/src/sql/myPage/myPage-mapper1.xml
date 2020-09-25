@@ -9,6 +9,8 @@
 <!-- 계좌 등록 sql문 (완성) -->
 <!-- 선경_20200925_v1.4 -->
 <!-- 배송지, 카드, 프로필 sql문 수정(미완성) -->
+<!-- 선경_20200925_v1.5 -->
+<!-- 비밀번호 수정 기능 수정(미완성) -->
 <properties>
 
 	<entry key="updateMember">
@@ -18,6 +20,24 @@
 		     , MEM_USER_SSN = ?
 		     , MEM_MODIFY_DATE = SYSDATE
 		 WHERE MEM_USER_NO = ?
+	</entry>
+	
+	<entry key="updatePwd">
+		UPDATE /* com.LetsResell.myPage.model.dao.MyPage_dao#updatePwd() */
+		       MEMBER
+		   SET MEM_USER_PWD = ?
+		     , MEM_MODIFY_DATE = SYSDATE
+		 WHERE MEM_USER_NO = ?
+		   AND MEM_USER_PWD = ?
+	</entry>
+	
+	<entry key="updateMemStatus">
+		UPDATE
+	       MEMBER
+	   SET MEM_STATUS = 'N'
+	     , MEM_MODIFY_DATE = SYSDATE
+	 WHERE MEM_USER_NO = ?
+	   AND MEM_USER_PWD = ?
 	</entry>
 	
 	<entry key="insertCard">

@@ -7,6 +7,9 @@
 // 계좌 등록 method (완성)
 // 선경_20200925_v1.4
 // 배송지, 카드, 프로필 수정 기능 수정(미완성)
+// 선경_20200925_v1.5
+// 비밀번호 수정 기능 수정, 회원 탈퇴 기능 추가
+
 package com.LetsResell.myPage.model.dao;
 
 import java.io.FileInputStream;
@@ -66,6 +69,72 @@ public class MyPage_dao {
 			close(pstmt);
 		}
 		return(result);
+	}
+	
+	/**
+	 * 비밀번호 변경
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param oldPwd	기존 비밀번호
+	 * @param newPwd	새 비밀번호
+	 * @return
+	 */
+	public int updatePwd(Connection conn, int userNo, String oldPwd, String newPwd) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPwd);
+			pstmt.setInt(2, userNo);
+			pstmt.setString(3, oldPwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;	
+	}
+	
+	/**
+	 * 탈퇴
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param pwd		비밀번호
+	 * @return
+	 */
+	public int updateMemStatus(Connection conn, int userNo, String pwd) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemStatus");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, pwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 	
 	/**

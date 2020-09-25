@@ -7,6 +7,8 @@
 // 계좌 등록 method (완성)
 // 선경_20200925_v1.4
 // 배송지, 카드, 프로필 수정 기능 수정(미완성)
+// 선경_20200925_v1.5
+// 비밀번호 수정 기능 수정, 회원 탈퇴 기능 추가
 package com.LetsResell.myPage.model.service;
 
 import java.sql.Connection;
@@ -39,6 +41,46 @@ public class MyPage_service {
 		close(conn);
 		
 		return result;	
+	}
+	
+	/**
+	 * 비밀번호 변경
+	 * @param userNo	로그인된 회원의 번호
+	 * @param oldPwd	기존 비밀번호
+	 * @param newPwd	새 비밀번호
+	 * @return
+	 */
+	public int updatePwd(int userNo, String oldPwd, String newPwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_dao().updatePwd(conn, userNo, oldPwd, newPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	public int updateMemStatus(int userNo, String pwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_dao().updateMemStatus(conn, userNo, pwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
 	}
 	
 	/**
