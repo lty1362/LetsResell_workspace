@@ -19,6 +19,7 @@
 .product_outer{
     width: 100%;
     height: 100%;
+    position: relative;
 }
 .product_outer>h1{
     margin-left: 20px;
@@ -82,21 +83,28 @@
     font-size: 15px;    
 }
 #sale_youtube{
-    margin-top: 60px;
-    margin-left: 30px;
+    margin-left: 200px;
+    margin-top: 70px;
     width: 600px;
     height: 338px;
-    display: inline-block;
 }
 #sale_youtube>iframe{
     width: 100%;
     height: 100%;
 }
 #sale_detail{
-	margin-top: 60px;
-    margin-left: 20px;
-    width: 320px;
-    height: 338px;
+    width: 400px;
+    height: 300px;
+    padding-top: 0;
+    padding-left: 10px;
     display: inline-block;
-    padding: 5px;
+    position: absolute;
+    bottom: 50px;
+    right: 90px;
+}
+#sale_detail>p{
+    margin: 0;
+    white-space: pre-line;
+    font-size: 13px;
+    font-weight: 700;
 }
