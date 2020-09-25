@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.admin.model.vo.*" %>
-<%	
+<%
 	ArrayList<Admin_Product> list = (ArrayList<Admin_Product>)request.getAttribute("list");
 	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
-
+	String filter = (String)request.getAttribute("filter");
+	String search = (String)request.getAttribute("search");
+	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int pageLimit = pi.getPageLimit();
@@ -155,6 +157,10 @@
         }
         .pagingArea{
         	margin-top:5px;
+        	padding-left:300px;
+        }
+        .pagingArea *{
+        	float:left;
         }
         .pagingArea button{
             background: rgb(236, 236, 236);
@@ -167,6 +173,7 @@
             margin-top:30px;
             text-align:center;
             border:0px;
+            display:block;
         }
         .modal-header{
         	margin-top:40px;
@@ -199,7 +206,7 @@
                     <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=shoes#body_right';">
                 </div>
                 <div id="productList">
-                	<table>
+                    <table>
 	                    <% if(list.isEmpty()){ %>
 			            	<tr>
 			            		<td colspan="6">조회된 리스트가 없습니다.</td>
@@ -252,27 +259,41 @@
                 </form>
                 
                 <div class="pagingArea" align="center">
-		            <%if(currentPage == 1){ %>
-		            	<button>&lt;</button>
-		            <% } else { %>
-		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right;">&lt;</button>
-		            <% } %>
-		            
-			            <% for(int p = startPage; p <= endPage ; p++){ %>
-			            	<% if(p != currentPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%= p %></button>
-			            	<% } else { %>
-			            	<button disabled><%= p %></button>
-			            	<% } %>
+			            <%if(currentPage == 1){ %>
+			            	<button>&lt;</button>
+			            <% } else { %>
+			            	<form action="productSearch.admin#body_right" method="post">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
+			           			<button type="submit">&lt;</button>
+			           		</form>
 			            <% } %>
-	            
-		            <%if(currentPage == maxPage){ %>
-		            	<button>&gt;</button>
-		            <% } else {%>
-		            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage+1%>#body_right';">&gt;</button>
-		            <% } %>
-		        </div>
-		        
+			            
+				            <% for(int p = startPage; p <= endPage ; p++){ %>
+				            	<% if(p != currentPage){ %>
+				            	<form action="productSearch.admin#body_right" method="post">
+				            		<input type="hidden" name="filter" value="<%=filter%>">
+				            		<input type="hidden" name="search" value="<%=search%>">
+				            		<input type="hidden" name="currentPage" value="<%=p%>">
+				           			<button type="submit"><%= p %></button>
+			           			</form>
+				            	<% } else { %>
+				            	<button disabled><%= p %></button>
+				            	<% } %>
+				            <% } %>
+		            
+			            <%if(currentPage == maxPage){ %>
+			            	<button>&gt;</button>
+			            <% } else {%>
+			            	<form action="productSearch.admin#body_right" method="post">
+			            		<input type="hidden" name="filter" value="<%=filter%>">
+			            		<input type="hidden" name="search" value="<%=search%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
+			           			<button type="submit">&gt;</button>
+			           		</form>
+			            <% } %>
+			        </div>
             </div>
         </div>
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->
@@ -302,8 +323,8 @@
     </div>
     <script>
     	$(function(){
-   			$("#productList>table tr").not($(".untouchable")).hover().css("cursor","pointer");
-     		$("#productList>table tr").not($(".untouchable")).click(function(){
+   			$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).hover().css("cursor","pointer");
+     		$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).click(function(){
      			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
     		});
     	});

@@ -103,7 +103,7 @@
         }
         #search_in>[type="search"]{
             border:0px;
-            height: 100%;
+            height: 95%;
             width: 85%;
             outline-offset:-2px;
            	padding-top:4px;
