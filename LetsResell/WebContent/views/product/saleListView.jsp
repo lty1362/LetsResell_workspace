@@ -91,10 +91,10 @@
 
         </div>
 
+	    <!-- filter area 추가 -->
+	    <%@ include file="../common/filterArea.jsp" %>
     </div>
     
-    <!-- filter area 추가 -->
-    <%@ include file="../common/filterArea.jsp" %>
 </div>
 
 <!-- footer 추가 -->
