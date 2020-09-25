@@ -5,215 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <style>
-        .buy-container{width: 1200px; margin: 0 auto;}
-        .buy-info{height:500px;}
-
-		.h-container {
-		    width: 1200px;
-		    margin-left: auto;
-		    margin-right: auto;
-		}
-		.buy-h-detail .f-container {	
-		    margin-top: 50px;
-			float: right;
-		}
-        .buy-h-image{
-            height: 500px;
-            background-color: black;
-            width:50%;
-            float: left;
-
-        }
-        .buy-h-detail{
-            margin-top: 30px;
-            height: 500px;
-            width:49%;
-            float: right;
-        }
-        .buy-header {
-            padding: 40px 0;
-            border-bottom: 1px solid #efefef;
-            margin-bottom: 20px;
-        }
-        .buy-title {
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 40px;
-        }
-        .buy-title span {
-            font-size: 24px;
-            color: #fe4c02;
-        }
-        .buy-text {
-            font-size: 16px;
-        }
-        .pdt-name {
-            font-family: 'NotoSansCJKkr-Medium';
-            font-size: 30px;
-            line-height: 1.2;
-        }
-        .pdt-name-en {
-            font-family: "NotoSansCJKkr-Light";
-            font-size: 19px;
-            margin-top: 6px;
-        }
-        .buy-agree-box {
-            padding: 0 24px;
-            border: 1px solid #efefef;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-        .checkbox-custom input[type="checkbox"] + i {
-            
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-        .buy-grid {
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .btn-buy-continue {
-            border-radius: 3px;
-            background-color: #b0b0b0;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 18px;
-            color: white;
-            line-height: 60px;
-            text-align: center;
-            pointer-events: none;
-        }
-        .btn-buy-cancel {
-            border-radius: 3px;
-            background-color: white;
-            border: 1px solid #b0b0b0;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 18px;
-            color: #b0b0b0;
-            line-height: 60px;
-            text-align: center;
-        }
-        .pdt-title {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            width: 235px;
-            background-color: #ff4c01;;
-            border-radius: 20px;
-            border: 1px solid #ff4c01;
-            color: white;
-            display: inline-block;
-            font-size: 25px;
-            text-align: center;
-            line-height: 70px; 
-        }
-        /*구매희망가입력*/
-        .pdt-buy-price {
-            position: relative;
-            text-align: right;
-        }
-        .buy-price {
-            border: 1px solid #333;
-            border-radius: 5px;
-            height: 58px;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 26px;
-            outline: none;
-            width: 89%;
-            padding: 0 25px;
-            text-align: right;
-        }    
-        .pdt-buy-price label {
-            color: #a1a1a1;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            margin: 8px 0;
-            display: inline-block;
-            padding-left: 25px;
-            background-size: 16px 16px;
-        }   
-         /*최종 금액 안내*/
-        .final-price {
-            padding-top: 40px;
-            padding-bottom: 25px;
-            color: #ff4c01;
-            font-size: 30px;
-        }
-        /*정품 판정비*/
-        .buy-other.step3 {
-            border-top: 1px solid #efefef;
-            border-bottom: 1px solid #efefef;
-            padding-bottom: 20px;  
-        }
-        .buy-other .other-flex {
-            margin: 20px 0;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /*총 결제금액*/
-        .total-price {
-            font-size: px;
-            border-top: 1px solid #efefef;
-            border-bottom: 1px solid #efefef;
-            
-        }
-        .total-price a {
-            font-size: 26px;
-            color: #fe4d01;
-            margin-left: 300px;
-        }
-        
-        .total-price span {
-            font-size: 26px;
-            color: #fe4d01;
-            margin-left: 12px;
-        }
-        /*총 결제금액 END*/
-        /*입찰일 설정*/
-        .buy-other.step3 .other-flex:last-child {
-            border-bottom: 1px solid #efefef;
-            padding-bottom: 30px;
-            margin-top: 25px;
-            margin-bottom: 0;
-            
-        }
-        .buy-info-step3 .step3-flex {
-            border-bottom: 1px solid #efefef;
-            font-size: 17px;
-            align-items: initial;
-            
-        }
-        .buy-info-step3 .step3-flex label {
-            font-family: 'NotoSansCJKkr-Medium';
-            font-size: 18px;
-            width: 140px;
-            flex-shrink: 0;
-            line-height: 50px;
-            padding-left: 36px; 
-        }
-         /*입찰일 설정 END*/
-
-        /*구매 동의 작성*/
-        .buy-info-box {
-            padding: 0 24px;
-            border: 1px solid #efefef;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-        .checkbox {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin: 25px 0;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        /*구매 동의 작성 END*/
-    </style>
+<link href="/LetsResell/resources/css/product/product_TotalBuy.css" rel="stylesheet"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>
 <body>
 	<header>
@@ -268,33 +61,162 @@
                         </div>
                     </div>
                     <div class="buy-info-box">
-                        <label class="checkbox">
-                            <input type="checkbox">
-			                                판매자의 제품 미발송, 판매 거부, 오배송, 검수 불합격 등의 사유로 거래가 
-			                                취소될수 있습니다.
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-			                                입찰 후 금액 수정 및 입찰 삭제는 자유롭게 가능하며, <br>거래 체결 후 단순 변심
-			                                으로 거래 취소는 불가 합니다.
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-			                               구매 약관 위반시 패널티를 부과 하여 <br>구매 및 판매에 취소 및 이용불과
-			                                될수 있습니다.
-                        </label>
-                    </div>
-                    <div class="buy-grid">
-                        <div class="btn-buy-continue" onclick="">구매 입찰</div>
-                        <div class="btn-buy-cancel" onclick="">구매 취소</div>
-                    </div>
-                    <footer>
-						<div class="f-container">
-							<%@ include file= "../common/footer.jsp"%>
-						</div>
-					</footer>  
+                       <!-- 약관동의 -->
+                          <div class="terms_p">
+                            <p class="terms_chk_all">
+                                    <span class="input_chk">
+                                        <input type="checkbox" id="chk_all" name="chk_all">
+                         
+                                        <label for="chk_all"><span class="chk_all_txt">LetsResell 구매 규정과 패널티 안내에 동의하셔야 구매 진행에 모두 동의합니다.</span></label>
+                                    </span>
+                            </p>
+                            <ul class="terms_bx_list">
+                                <li class="terms_bx">
+                                        <span class="input_chk">
+                                            <input type="checkbox" id="termsService" name="termsService" class="chk">
+                                            <label for="termsService">판매자의 제품 미발송, 판매 거부, 오배송, 검수 불합격 등의 사유로 거래가
+                                                                                                                                                             취소될수 있습니다. 
+                                                <span class="terms_choice"></span></label>
+                                        </span>
+                                </li>
+                               
+                                <li class="terms_bx">
+                                        <span class="input_chk">
+                                            <input type="checkbox" id="termsPrivacy" name="termsPrivacy" class="chk">
+                                            <label for="termsPrivacy">입찰 후 금액 수정 및 입찰 삭제는 자유롭게 가능하며
+                                            						     거래 체결 후 단순 변심으로 거래 취소는 불가 합니다.
+                                            <span class="terms_choice"></span></label>  
+                                        </span>
+                                </li>
+                                                            
+                                <li class="terms_bx">
+                                    <span class="input_chk">
+                                        <input type="checkbox" id="termsLocation" name="termsLocation" value="Y" class="chk">
+                                        <label for="termsLocation">구매 약관 위반시 패널티를 부가 하여 구매 및 판매에 취소 및 이용불과 될수 있습니다.
+                                         <span class="terms_choice"></span></label>  
+                                    </span>
+                            </ul><br>
+                            <span class="error" id="agreeMsg" style="display:none">LetsResell 구매 규정과 패널티 안내에 동의하셔야 구매 진행이 가능합니다.</span>
+                        </div>
+                        <!-- //약관동의 -->
+    
+        
+                        <div class="btn_area double">   
+                            <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
+                            <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
+                        </div>   
+      
                 </div>
+                
             </div>
+            
+        </div>
+        
+        <!-- //content -->
+   
+
+            <script>
+                $(document).ready(function() {
+            
+            
+                    $("#chk_all").prop("checked",false);
+            
+                
+                    $("#chk_all").click(function() {
+                        setTerms();
+                    });
+            
+                    $("#termsService").click(function() {
+                        viewTerms();
+                    });
+            
+                    $("#termsPrivacy").click(function() {
+                        viewTerms();
+                    });
+                    $("#termsLocation").click(function() {
+                        viewTerms();
+                    });
+            
+                  
+            
+                    $("#btnCancel").click(function(event) {
+                        
+                        submitDisagree();
+                        
+                    });
+            
+                    $("#btnAgree").click(function(event) {
+                       
+                        submitAgree();
+                       
+                    });
+            
+                
+            
+                });
+            
+            
+            
+                function setTerms() {
+                    if ($("#chk_all").is(":checked")) {
+                        $("#termsService").prop("checked",true);
+                        $("#termsPrivacy").prop("checked",true);
+                        $("#termsLocation").prop("checked",true);
+                    } else {
+                        $("#termsService").prop("checked",false);
+                        $("#termsPrivacy").prop("checked",false);
+                        $("#termsLocation").prop("checked",false);
+                    
+                    }
+            
+                    return true;
+                }
+            
+                
+            
+                function viewTerms() {
+            
+                    if( !$("#termsService").is(":checked") || !$("#termsPrivacy").is(":checked") || !$("#termsLocation").is(":checked")) {
+                        $("#chk_all").prop("checked",false);
+                    }
+            
+                    if( $("#termsService").is(":checked") && $("#termsPrivacy").is(":checked") && $("#termsLocation").is(":checked")) {
+                        $("#chk_all").prop("checked",true);
+                    }
+            
+                    return true;
+                }
+            
+                function checkTerms() {
+                  	var result = true;
+            
+                    if ($("#termsService").is(":checked") == false || $("#termsPrivacy").is(":checked") == false) {
+                        $("#agreeMsg").show();
+                       	result = false;
+                    } else {
+                        $("#agreeMsg").hide();
+                    }
+            
+                   return result;
+                }
+            
+                function submitAgree() {
+                    if (checkTerms() != true) {
+                        return false;
+                    }
+            
+                    $("#join_form").submit();
+                    return true;
+                }
+            
+                function submitDisagree() {
+                    location.href = "<%= contextPath %>";
+                    return true;
+                }
+            
+            </script>   
+                    </div>
+                  
     </section>
 </body>
 </html>

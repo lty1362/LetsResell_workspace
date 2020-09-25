@@ -5,213 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <style>
-        .buy-container{width: 1200px; margin: 0 auto;}
-        .buy-info{height:500px;}
-
-		.h-container {
-		    width: 1200px;
-		    margin-left: auto;
-		    margin-right: auto;
-		}
-		.buy-h-detail .f-container {	
-		    margin-top: 50px;
-			float: right;
-		}
-        .buy-h-image{
-            height: 500px;
-            background-color: black;
-            width:50%;
-            float: left;
-
-        }
-        .buy-h-detail{
-            margin-top: 30px;
-            height: 500px;
-            width:49%;
-            float: right;
-        }
-        .buy-header {
-            padding: 40px 0;
-            border-bottom: 1px solid #efefef;
-            margin-bottom: 20px;
-        }
-        .buy-title {
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 40px;
-        }
-        .buy-title span {
-            font-size: 24px;
-            color: #fe4c02;
-        }
-        .buy-text {
-            font-size: 16px;
-        }
-        .pdt-name {
-            font-family: 'NotoSansCJKkr-Medium';
-            font-size: 30px;
-            line-height: 1.2;
-        }
-        .pdt-name-en {
-            font-family: "NotoSansCJKkr-Light";
-            font-size: 19px;
-            margin-top: 6px;
-        }
-        .buy-agree-box {
-            padding: 0 24px;
-            border: 1px solid #efefef;
-            margin-top: 30px;
-            margin-bottom: 40px;
-        }
-        .checkbox-custom input[type="checkbox"] + i {
-            
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-        .buy-grid {
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .btn-buy-continue {
-            border-radius: 3px;
-            background-color: #b0b0b0;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 18px;
-            color: white;
-            line-height: 60px;
-            text-align: center;
-            pointer-events: none;
-        }
-        .btn-buy-cancel {
-            border-radius: 3px;
-            background-color: white;
-            border: 1px solid #b0b0b0;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 18px;
-            color: #b0b0b0;
-            line-height: 60px;
-            text-align: center;
-        }
-        .pdt-title {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            width: 235px;
-            background-color: #ff4c01;;
-            border-radius: 20px;
-            border: 1px solid #ff4c01;
-            color: white;
-            display: inline-block;
-            font-size: 25px;
-            text-align: center;
-            line-height: 70px; 
-        }
-         /*구매희망가입력*/
-         .pdt-buy-price {
-            position: relative;
-            text-align: right;
-        }
-        .buy-price {
-            border: 1px solid #333;
-            border-radius: 5px;
-            height: 68px;
-            font-family: 'NotoSansCJKkr-Regular';
-            font-size: 26px;
-            outline: none;
-            width: 89%;
-            padding: 0 25px;
-            text-align: right;
-        }    
-        .pdt-buy-price label {
-            color: #a1a1a1;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            margin: 8px 0;
-            display: inline-block;
-            padding-left: 25px;
-            background-size: 16px 16px;
-        }   
-        /*구매희망가입력 END*/ 
-        
-         /*최종 금액 안내*/
-        .final-price {
-            padding-top: 40px;
-            padding-bottom: 25px;
-            color: #ff4c01;
-            font-size: 30px;
-        }
-        /*정품 판정비*/
-        .buy-other.step3 {
-            border-top: 1px solid #efefef;
-            border-bottom: 1px solid #efefef;
-            padding-bottom: 20px;  
-        }
-        .buy-other .other-flex {
-            margin: 20px 0;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /*총 결제금액*/
-        .total-price {
-            font-size: 40px;
-            border-top: 1px solid #efefef;
-            border-bottom: 1px solid #efefef;
-            
-        }
-        .total-price a {
-            font-size: 26px;
-            color: #fe4d01;
-            margin-left: 300px;
-        }
-        
-        .total-price span {
-            font-size: 26px;
-            color: #fe4d01;
-            margin-left: 12px;
-        }
-        /*총 결제금액 END*/
-        .checkbox-confirm{
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin: 25px 0;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        /*입찰일 설정*/
-        .buy-other.step3 .other-flex:last-child {
-            border-bottom: 1px solid #efefef;
-            padding-bottom: 30px;
-            margin-top: 25px;
-            margin-bottom: 0;
-            
-        }
-        .buy-info-step3 .step3-flex {
-            border-bottom: 1px solid #efefef;
-            font-size: 17px;
-            align-items: initial;
-            
-        }
-        .buy-info-step3 .step3-flex label {
-            font-family: 'NotoSansCJKkr-Medium';
-            font-size: 18px;
-            width: 140px;
-            flex-shrink: 0;
-            line-height: 50px;
-            padding-left: 36px; 
-        }
-         /*입찰일 설정 END*/
-
-    </style>
+<link href="/LetsResell/resources/css/product/product_BuyNow.css" rel="stylesheet"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>
 <body>
 	<header>
-		<div class="h-container">
+		<div class="h-containe">
 		<%@ include file= "../common/header.jsp"%>
 		</div>
 	</header>
@@ -257,29 +56,144 @@
                     <div class="buy-info-step3">
                         <div class="step3-flex">
                             <label>입찰일 설정</label>
+                             <div class="input-select-list">
+                                    <input type="text" class="input-select" id="day_type" placeholder="입찰 기간을 선택해주세요."
+                                           readonly/>
+                                    <ul>
+                                        <li data-id="1">1일 후 입찰만료</li>
+                                        <li data-id="2">3일 후 입찰만료</li>
+                                        <li data-id="3">7일 후 입찰만료</li>                                
+                                    </ul>
+                             </div>
                         </div>
                         <div class="step3-flex">
-                            <label>배송지 정보</label>
+                            <label>배송지 정보</label> 
+	                       
                         </div>
+                        
                         <div class="step3-flex">
                             <label>결제 카드</label>
                         </div>
                     </div>
-                    <label class="checkbox-confirm">
-                        <input type="checkbox" id="chk-confirm">
-                        최종 금액을 확인하였으며 체결 후 단순취소가 불가합니다.
-                    </label>
-                    <div class="buy-grid">
-                        <div class="btn-buy-continue" onclick="">구매 입찰</div>
-                        <div class="btn-buy-cancel" onclick="">구매 취소</div>
+                    <!-- 약관동의 -->
+                     <div class="terms_p">
+                           
+                        <ul class="terms_bx_list">
+                            <li class="terms_bx">
+                                    <span class="input_chk">
+                                        <input type="checkbox" id="termsService" name="termsService" class="chk">
+                                        <label for="termsService">"최종 금액을 확인하였으며 체결 후 단순취소가 불가합니다." 
+                                            <span class="terms_choice"></span></label>
+                                    </span>
+                            </li>
+                        </ul><br>
+                        <span class="error" id="agreeMsg" style="display:none">LetsResell 구매 규정과 패널티 안내에 동의하셔야 구매 진행이 가능합니다.</span>
                     </div>
+                    <!-- //약관동의 -->
+
+    
+                    <div class="btn_area double">
+                        <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
+                        <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
+                    </div>  
+                    <br><br><br><br><br>  
                     <footer>
 						<div class="f-container">
 							<%@ include file= "../common/footer.jsp"%>
 						</div>
-					</footer>   
+					</footer>    
                 </div>
             </div>
     </section>
+      <script>
+      //입찰기간 설정
+      initSelect();
+        function initSelect() {
+            $('.input-select').click(function () {
+                if ($(this).next('ul').is(':hidden')) {
+                    $(this).next('ul').slideDown();
+                } else {
+                    $(this).next('ul').slideUp();
+                }
+            });
+    
+            $('.input-select').blur(function () {
+                if (!$(this).next('ul').hasClass('hover')) {
+                    $(this).next('ul').slideUp();
+                }
+            });
+    
+            $('.input-select-list ul').hover(function () {
+                $(this).addClass('hover');
+            }, function () {
+                $(this).removeClass('hover');
+            });
+    
+            $('.input-select-list ul').find('li').click(function () {
+                var value = $(this).data('id');
+                var title = $(this).html();
+                $(this).parent().prev('.input-select').attr('data-value', value);
+                $(this).parent().prev('.input-select').val(title);
+                $(this).parent().find('li').removeClass('active');
+                $(this).addClass('active');
+                $(this).parent('ul').slideUp();
+            });
+        }
+      //입찰기간 설정  END
+	    </script>
+	    
+	    <script>
+        $(document).ready(function() {
+
+            $("#termsService").click(function() {
+                viewTerms();
+            });
+    
+            $("#termsServicebad").click(function() {
+                viewTerms();
+            });
+    
+            $("#btnCancel").click(function(event) {
+                
+                submitDisagree();
+                
+            });
+    
+            $("#btnAgree").click(function(event) {
+               
+                submitAgree();
+               
+            });
+        });
+
+        function checkTerms() {
+              var result = true;
+    
+            if ($("#termsService").is(":checked") == false){
+                $("#agreeMsg").show();
+                   result = false;
+            } else {
+                $("#agreeMsg").hide();
+            }
+    
+           return result;
+        }
+    
+        function submitAgree() {
+            if (checkTerms() != true) {
+                return false;
+            }
+    
+            $("#join_form").submit();
+            return true;
+        }
+    
+        function submitDisagree() {
+            location.href = "<%= contextPath %>";
+            return true;
+        }
+    
+    </script>  
+    
 </body>
 </html>

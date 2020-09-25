@@ -34,11 +34,18 @@
             width:49%;
             float: right;
         }
-        .pro-i-info{
+        .pro-i-info{      
             height: 360px;
             background-color: pink;
             width:50%;
             float: left;
+
+        }
+        .pro-i-info table{   
+        	font-family: "NotoSansCJKkr-Medium";
+		    font-size: 16px;
+		    color: #333;
+		    text-align: center;
 
         }
         .pro-i-you{
@@ -91,6 +98,7 @@
             margin-left: 8px;
         }
         .pro-h-grid{
+        	margin-top: 30px;
             display: grid;
             grid-gap: 30px;
             grid-template-columns: repeat(2, 1fr);  
@@ -105,6 +113,7 @@
             text-align: center;
         }
         .buy-box-menu{
+       	 	text-decoration:none;
             background-color: #003cfffa;
             color: white;
             border-radius: 10px;
@@ -202,38 +211,79 @@
             <div class="pro-header">
                 <div class="pro-h-image"></div>
                 <div class="pro-h-detail">
-                    <div class="pro-h-name">이지부스트 350 V2 자이온</div>
-                        <span class="pro-h-name-en">adidas Yeezy Boost 350 V2 Zyon</span>
-                    <div class="pro-h-flex">
-                        <a>상태: 새상품 / 정품
-                            <span class="badge-new">new</span>
-                        </a>
-                    </div>  
+                    <div class="pro-h-name">
+                    	<table>
+	                        <thead>
+	                            <tr>
+	                                <th>상품명 json으로 뽑아오기</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr>
+	                                <td>상태</td>
+	                                <td>새상품/중고상품</td>
+	                            </tr>
+	                        </tbody>
+                    	</table>
+                    </div>
+                      
                     <div class="pro-h-grid">
                        <div>
-                           <div class="buy-box" onclick="">
-                                입찰구매 <br><span align="center">BUY</span>
+                           <div class="buy-box" href="">
+                               	 입찰구매 <br><span align="center">BUY</span>
                            </div>
-                           <a class="btn-tender-info" onclick="">판매 입찰현황 전체 보기</a>
+                           <a class="btn-tender-info" href="" style="text-decoration:none">판매 입찰현황 전체 보기</a>
                        </div>
                        <div>
-                            <div class="buy-box" onclick="">
-                                즉시구매 <br><span align="center">BUY</span>
+                            <div class="buy-box" href="">
+                               	 즉시구매 <br><span align="center">BUY</span>
                             </div>
-                            <a class="btn-tender-info" onclick="">즉시 판매현황 전체 보기</a>
+                            <a class="btn-tender-info" href="" style="text-decoration:none">즉시 판매현황 전체 보기</a>
                       </div>
                     </div>      
                     <div>
-                        <div class="buy-box-menu" onclick="">
-                            다른상품 보러가기 <span>GoGo</span>
-                        </div>
+                        <a class="buy-box-menu" href="" >
+                           	 다른상품 보러가기 <span>GoGo</span>
+                        </a>
+                          <img class="oos-using-guide" src="" width="100%" height="120" style=" margin-top:30px;">
                      </div>
                 </div>
             </div>
             <div class="pro-info">
                 <div class="pro-i-info">
                     <span class="title">제품정보</span>
-                   
+	                   	 <table>
+	                        <thead>
+	                            <tr>
+	                                <th>모델명</th>
+	                                <td></td>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr>
+	                                <th>발매일</th>
+	                                <td></td>
+	                            </tr>
+	                            <tr>
+	                                <th>발매가</th>
+	                                <td></td>
+	                            </tr>
+	                             <tr>
+	                                <th>사이즈</th>
+	                                <td></td>
+	                            </tr>
+	                             <tr>
+	                                <th>색  상</th>
+	                                <td></td>
+	                            </tr>
+	                            
+	                            
+	                            
+	                            
+	                            
+	                            
+	                        </tbody>
+	                    </table>
                 </div>
     
                 <div class="pro-i-you">
@@ -250,7 +300,7 @@
                             <tr>
                                 <th>사이즈</th>
                                 <th>판매가격</th>
-                                <th>날짜</th>
+                                <th>날자</th>
                                 <th>시간</th>
                             </tr>
                         </thead>
