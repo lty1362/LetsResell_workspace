@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_STATUS = 'Y'
+	</entry>
+	<entry key="selectList">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					 FROM P_REG
+					 WHERE PR_STATUS = 'Y'
+					 ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectCategoryCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_CATEGORY = ?
+		    AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="selectCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					 FROM P_REG
+					WHERE PR_CATEGORY = ?
+					AND PR_STATUS = 'Y'
+					 ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_code">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NO LIKE ?
+		  AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="searchList_code">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NO LIKE ?
+					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_color">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_COLOR LIKE ?
+		  AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="searchList_color">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_COLOR LIKE ?
+					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_name">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NAME LIKE ?
+		  AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="searchList_name">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NAME LIKE ?
+					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_brand">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_BRAND LIKE ?
+		  AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="searchList_brand">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_BRAND LIKE ?
+					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>

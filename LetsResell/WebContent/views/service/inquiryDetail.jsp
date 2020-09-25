@@ -43,7 +43,7 @@
         }
         #content_title{
             width: 100%;
-            height: 7%;
+            height: 40px;
             font-size: 20px;
             padding-left:3%;
             padding-right:3%;
@@ -103,12 +103,20 @@
         	margin-top:10px;
         	font-size: 1.2em;
         }
-
         #content_inquiry{
             width: 94%;
             height: 65%;
             border: 1px solid lightgray;
             margin-top:8%;
+            margin-left:3%;
+            padding:10px;
+        }
+        .content_inquiryY{
+            width: 94%;
+            height: 45%;
+            border: 1px solid lightgray;
+            margin-top:3%;
+            margin-left:3%;
             padding:10px;
         }
         #content_inquiry>textarea{
@@ -127,6 +135,15 @@
             height: 40px;
             border:0px;
         }
+        .hi{
+        	width: 94%;
+            height: 28%;
+            border: 1px solid lightgray;
+            font-size: 15px;
+            margin-top:3%;
+            padding:10px;
+            margin-left:3%;
+        }
 </style>
 </head>
 <body>
@@ -144,65 +161,92 @@
                 <form action="update.inquiry" method="post">
                 <input type="hidden" name="inquiryNo" value="<%=list.getInquiryNo()%>">
                 <div id="content">
-                    <div id="content_title">
-                    	<input type="text" name="title" placeholder="제목을 입력하세요" value="<%=list.getInquiryTitle()%>">
-                    </div>
+                	<%if(list.getInquiryStatus().equals("Y")){ %>
+	                    <div id="content_title">
+	                    	<input type="text" readonly name="title" placeholder="제목을 입력하세요" value="<%=list.getInquiryTitle()%>">
+	                    </div>
+	                <% }else{ %>
+	                    <div id="content_title">
+	                    	<input type="text" required name="title" placeholder="제목을 입력하세요" value="<%=list.getInquiryTitle()%>">
+	                    </div>
+	                <% } %>
                     <div id="content_category">
-                        <div id="category_big">
-                            <div>대분류</div>
-                            <div>
-                            	<select name="bigCategory">
-                            		<option value="대분류" selected>대분류</option>
-                                    <option value="결제">결제</option>
-                                    <option value="물품">물품</option>
-                                    <option value="서비스">서비스</option>
-                                    <option value="회원">회원</option>
-                                    <option value="기타">기타</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="category_small">
-                            <div style="background: lightgray; height: 40%; padding:0px; font-size:1.5em" id="exclude">소분류</div>
-                        	<select id="smallCategory" name="smallCategory">
-                                <option value="소분류">소분류</option>
-                            </select>
-                        	<select id="smallCash" name="smallCategory">
-                                <option value="결제이용">결제이용</option>
-                                <option value="환불">환불</option>
-                                <option value="수수료">수수료</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        	<select id="smallProduct" name="smallCategory">
-                                <option value="구매">구매</option>
-                                <option value="판매">판매</option>
-                                <option value="신규 제품">신규 제품</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        	<select id="smallService" name="smallCategory">
-                                <option value="UI관련">UI관련</option>
-                                <option value="배송조회">배송조회</option>
-                                <option value="거래내역">거래내역</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        	<select id="smallUser" name="smallCategory">
-                                <option value="회원가입">회원가입</option>
-                                <option value="로그인">로그인</option>
-                                <option value="마이페이지">마이페이지</option>
-                                <option value="블랙리스트">블랙리스트</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        	<select id="smallEtc" name="smallCategory">
-                                <option value="기타">기타</option>
-                            </select>
-                        </div>
+                    	<%if(list.getInquiryStatus().equals("Y")){ %>
+	                        <div id="category_big">
+	                            <div>대분류</div>
+	                            <div class="cate"><%=list.getInquiryCategoryBig() %></div>
+	                        </div>
+	                        <div id="category_small">
+	                            <div style="background: lightgray; height: 40%; padding:0px; font-size:1.5em" id="exclude">소분류</div>
+	                            <div class="cate"><%=list.getInquiryCategorySmall() %></div>
+	                        </div>
+		                <% }else{ %>
+	                        <div id="category_big">
+	                            <div>대분류</div>
+	                            <div>
+	                            	<select name="bigCategory">
+	                            		<option value="대분류" selected>대분류</option>
+	                                    <option value="결제">결제</option>
+	                                    <option value="물품">물품</option>
+	                                    <option value="서비스">서비스</option>
+	                                    <option value="회원">회원</option>
+	                                    <option value="기타">기타</option>
+	                                </select>
+	                            </div>
+	                        </div>
+	                        <div id="category_small">
+	                            <div style="background: lightgray; height: 40%; padding:0px; font-size:1.5em" id="exclude">소분류</div>
+	                        	<select id="smallCategory" name="smallCategory">
+	                                <option value="소분류">소분류</option>
+	                            </select>
+	                        	<select id="smallCash" name="smallCategory">
+	                                <option value="결제이용">결제이용</option>
+	                                <option value="환불">환불</option>
+	                                <option value="수수료">수수료</option>
+	                                <option value="기타">기타</option>
+	                            </select>
+	                        	<select id="smallProduct" name="smallCategory">
+	                                <option value="구매">구매</option>
+	                                <option value="판매">판매</option>
+	                                <option value="신규 제품">신규 제품</option>
+	                                <option value="기타">기타</option>
+	                            </select>
+	                        	<select id="smallService" name="smallCategory">
+	                                <option value="UI관련">UI관련</option>
+	                                <option value="배송조회">배송조회</option>
+	                                <option value="거래내역">거래내역</option>
+	                                <option value="기타">기타</option>
+	                            </select>
+	                        	<select id="smallUser" name="smallCategory">
+	                                <option value="회원가입">회원가입</option>
+	                                <option value="로그인">로그인</option>
+	                                <option value="마이페이지">마이페이지</option>
+	                                <option value="블랙리스트">블랙리스트</option>
+	                                <option value="기타">기타</option>
+	                            </select>
+	                        	<select id="smallEtc" name="smallCategory">
+	                                <option value="기타">기타</option>
+	                            </select>
+	                        </div>
+		                <% } %>
                     </div>
-                    <div id="content_inquiry">
-                    	<textarea name="content" rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getInquiryContent() %></textarea>
-                    </div>
+                    <%if(list.getInquiryStatus().equals("Y")){ %>
+	                    <div id="content_inquiry">
+	                    	<textarea name="content" readonly rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getInquiryContent() %></textarea>
+	                    </div>
+	                    <div id="content_answer">(답변 내용)</div>
+	                <% }else{ %>
+	                    <div id="content_inquiry">
+	                    	<textarea name="content" required rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getInquiryContent() %></textarea>
+	                    </div>
+	                <% } %>
                 </div>
-                <div id="update" align="right">
-                    <input type="submit" onclick="return filter();" value="수정">
-                </div>
+                <%if(list.getInquiryStatus().equals("Y")){ %>
+                <% }else{ %>
+	                <div id="update" align="right">
+	                    <input type="submit" onclick="return filter();" value="수정">
+	                </div>
+                <% } %>
                 </form>
 	        </div>
 		</div>
@@ -246,6 +290,15 @@
         			$("#category_small select").not("#smallEtc").attr("disabled",true);
         		}
         	});
+        	
+        	<%if(list.getInquiryStatus().equals("Y")){ %>
+				$(".cate").css("font-size","25px");
+				$("#wrap").css("height","1700px");
+				$("#footer").css("margin-top","85px");
+				$("#body_right").css("height","1300px");
+				$("#content_answer").addClass("hi");
+				$("#content_inquiry").css({"margin-top":"3%", "height":"46%"});
+            <% } %>
         });
         filter = function(){
         	if($("select[name=bigCategory]").val()=="대분류"){

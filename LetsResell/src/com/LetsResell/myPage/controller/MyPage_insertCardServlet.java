@@ -1,5 +1,7 @@
 // 선경_20200921_v1.2
 // 카드 등록 기능 추가 (미완성)
+// 선경_20200925_v1.4
+// 카드 등록 기능 수정(미완성)
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -35,26 +37,26 @@ public class MyPage_insertCardServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String cardName = request.getParameter("cardName"); // 카드별칭
-		System.out.println("cardName : " + cardName);
-		String cardNumber = request.getParameter("cardNumber");	// 카드번호
-		System.out.println("cardNumber : " + cardNumber);
-		String cardValidate = request.getParameter("cardValidate1") + request.getParameter("cardValidate2"); // 유효기간
-		System.out.println("cardValidate : " + cardValidate);
-		String cardMemBirth = request.getParameter("cardMemBirth");	// 생년월일
-		System.out.println("cardMemBirth : " + cardMemBirth);
-		int cardPwd = Integer.parseInt(request.getParameter("cardPwd")); // 카드비밀번호
-		System.out.println("cardPwd : " + cardPwd);
+		int userNo = Integer.parseInt(request.getParameter("userNo"));		// 로그인된 회원의 번호
+		String cardName = request.getParameter("cardName"); 				// 카드별칭
+		String cardNumber = request.getParameter("cardNumber");				// 카드번호
+		String cardValidate = request.getParameter("cardValidate1") +
+							  request.getParameter("cardValidate2"); 		// 유효기간
+		String cardMemBirth = request.getParameter("cardMemBirth");			// 생년월일
+		int cardPwd = Integer.parseInt(request.getParameter("cardPwd")); 	// 카드비밀번호
 		
-		int result = new MyPage_service().insertCard(cardName, cardNumber, cardValidate, cardMemBirth, cardPwd);
+		// 카드 등록
+		int result1 = new MyPage_service().insertCard(userNo, cardName, cardNumber, cardValidate, cardMemBirth, cardPwd);
+		// 회원정보에 수정일 업데이트
+		int result2 = new MyPage_service().updateModifyDate(userNo);
 		
-		if(result > 0) {
-			System.out.println("성공");
+		if(result1 > 0 && result2 > 0) {
+			// 성공
+			response.sendRedirect(request.getContextPath() + "/success.my");
 		}else {
-			System.out.println("망했음");
+			//실패
+			response.sendRedirect(request.getContextPath() + "/fail.my");
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/myPage.info");
 		
 	}
 

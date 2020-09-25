@@ -119,4 +119,14 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="selectDetailMember">
+		SELECT 
+		       MEM_USER_NO
+		     , MEM_USER_ID
+		     , MEM_USER_NAME
+		     , MEM_PHONE
+		     , MEM_USER_SSN
+		  FROM MEMBER
+		 WHERE MEM_USER_NO = ?
+	</entry>
 </properties>

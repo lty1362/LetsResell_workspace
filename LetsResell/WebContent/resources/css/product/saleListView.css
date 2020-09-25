@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.sale_outer{
+    width: 1200px;
+    height: 1400px;
+    margin: auto;
+    position: relative;
+}
+.sale_outer>div{
+    float:left;
+    height: 100%;
+}
+#filter_area{width: 100px;}
+#product_area{
+    width: 1000px;
+    position: absolute;
+    top: 0;
+    left: 130px;
+}
+.product_outer{
+    width: 100%;
+    height: 100%;
+}
+.product_outer>h1{
+    margin-left: 20px;
+    font-size: 35px;
+}
+#product{
+    width: 250px;
+    height: 300px;
+    margin-left: 20px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+#product_img:hover{cursor: pointer;}
+#product_img{
+    width: 100%;
+    height: 200px;
+}
+#product_detail{
+    width: 100%;
+    height: 100px;
+    padding-left: 5px;
+    position: relative;
+}
+#product_detail>p{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+#product_price{
+    font-size: 18px;
+}
+#product_condition{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 17px;
+}
+.pagingArea{margin-top: 10px;}
+.pagingArea>button{
+    background-color: lightgray;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 3px;
+}
+.pagingArea>button:hover{cursor: pointer;}
+#btn_box{
+    width: 100px;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+}
+#btn_box>div{
+    float: left;
+    height: 100%;
+}
+#wish_btn, #sell_btn{
+    width: 50%;
+}
+#wish_btn>div, #sell_btn>div{
+    width: 100%;
+}
+#wish_btn_img, #sell_btn_img{
+    height: 70%;
+}
+#wish_btn_name, #sell_btn_name{
+    height: 30%;
+}
+#wish_btn_img>img, #sell_btn_img>img{
+    margin-top: 5px;
+}
+#wish_btn:hover, #sell_btn:hover{cursor: pointer;}

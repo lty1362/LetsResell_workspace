@@ -105,6 +105,7 @@
             height: 65%;
             border: 1px solid lightgray;
             margin-top:8%;
+            margin-left:3%;
             padding:10px;
         }
         #content_inquiry>textarea{
@@ -140,7 +141,7 @@
                 <form action="enroll.inquiry" method="post">
                 <div id="content">
                     <div id="content_title">
-                    	<input name="title" type="text" placeholder="제목을 입력하세요">
+                    	<input name="title" required type="text" placeholder="제목을 입력하세요">
                     </div>
                     <div id="content_category">
                         <div id="category_big">
@@ -192,7 +193,7 @@
                         </div>
                     </div>
                     <div id="content_inquiry">
-                    	<textarea name="content" rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"></textarea>
+                    	<textarea name="content" required rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"></textarea>
                     </div>
                 </div>
                 <div id="update" align="right">

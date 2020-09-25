@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.admin.model.vo.*" %>
+<%	
+	ArrayList<Admin_Product> list = (ArrayList<Admin_Product>)request.getAttribute("list");
+	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
+
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int pageLimit = pi.getPageLimit();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	int boardLimit = pi.getBoardLimit();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,17 +66,21 @@
         }
         #productList{
             width: 100%;
-            height: 70%;
+            height: auto;
+            margin-bottom:30px;
         }
         #productList>table{
             width: 100%;
             border-collapse: collapse;
             border: 1px solid lightgray
         }
+        #productList>table tr{
+        	height:40px;
+        }
         #productList th{
             background: lightgray;
-            height: 30px;
-            font-size: 15px;
+            height: 50px;
+            font-size: 25px;
             border-right: 1px solid white;
             text-align: center;
         }
@@ -71,29 +88,25 @@
             border-right: 1px solid lightgray;
         }
         #productList>table td:nth-child(1){
-            width: 12%;
-        }
-        #productList>table td:nth-child(2){
-            width: 35%;
+            width: 60px;
         }
         #productList>table td:nth-child(3){
-            width: 15%;
+            width: 150px;
         }
         #productList>table td:nth-child(4){
-            width: 15%;
+            width: 160px;
         }
         #productList>table td:nth-child(5){
-            width: 15%;
+        	width: 120px;
         }
         #productList>table td:nth-child(6){
-            width: 8%;
+        	width:60px;
         }
         #productList td{
             border: 1px solid lightgray;
             text-align:center;
-            font-size:15px;
+            font-size:20px;
         }
-
         #productUpdate>input{
             border:1px solid rgb(74, 74, 74);
             background: rgb(74, 74, 74);
@@ -109,7 +122,7 @@
             text-align:right;
         }
         #search{
-            margin-top: 20px;
+            margin-top: 50px;
         }
         #search>select{
             height:40px;
@@ -126,10 +139,11 @@
         }
         #search_in>[type="search"]{
             border:0px;
-            height: 100%;
+            height: 95%;
             width: 85%;
             outline-offset:-2px;
            	padding-top:4px;
+
         }
         #search_in>[type="submit"]{
             background: lightgray;
@@ -139,9 +153,11 @@
             font-weight: bold;
             font-size:20px;
         }
-        #pages th{
+        .pagingArea{
+        	margin-top:5px;
+        }
+        .pagingArea button{
             background: rgb(236, 236, 236);
-            display: inline-block;
             width: 30px;
             height: 30px;
             margin-left: 5px;
@@ -150,6 +166,7 @@
             font-weight: 400;
             margin-top:30px;
             text-align:center;
+            border:0px;
         }
         .modal-header{
         	margin-top:40px;
@@ -174,189 +191,91 @@
 	        </div>
             <div id="body_right">
                 <div id="category">
-                    <input type="button" value="전체">
-                    <input type="button" value="상의">
-                    <input type="button" value="하의">
-                    <input type="button" value="아우터">
-                    <input type="button" value="악세사리">
-                    <input type="button" value="신발">
+                    <input type="button" value="전체" onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=1#body_right';">
+                    <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=tops#body_right';">
+                    <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=bottoms#body_right';">
+                    <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=outers#body_right';">
+                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=accessories#body_right';">
+                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=shoes#body_right';">
                 </div>
                 <div id="productList">
-                    <table>
-                        <tr>
-                            <th>제품 코드</th>
-                            <th>제품명</th>
-                            <th>브랜드</th>
-                            <th>컬러</th>
-                            <th>사이즈</th>
-                            <th>비고</th>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td>P-001</td>
-                            <td>에어 조던1</td>
-                            <td>나이키</td>
-                            <td>blue, red</td>
-                            <td>210~250</td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                    </table>
+                	<table>
+	                    <% if(list.isEmpty()){ %>
+			            	<tr>
+			            		<td colspan="6">조회된 리스트가 없습니다.</td>
+			            	</tr>
+	            		<% } else {%>
+		                    <tr>
+	                            <th>코드</th>
+	                            <th>제품명</th>
+	                            <th>브랜드</th>
+	                            <th>컬러</th>
+	                            <th>사이즈</th>
+	                            <th>비고</th>
+	                        </tr>
+		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
+				                <tr>
+		                            <td><%= list.get(i).getPRno()%></td>
+		                            <td><%= list.get(i).getPRname()%></td>
+		                            <td><%= list.get(i).getPRbrand()%></td>
+		                            <td><%= list.get(i).getPRcolor()%></td>
+		                            <% if(list.get(i).getPRsize() == null){ %>
+		                            	<td>-</td>
+		                            <% } else {%>
+		                            	<td><%= list.get(i).getPRsize()%></td>
+		                            <% } %>
+		                            <td><input type="checkbox"></td>
+		                        </tr>
+			                <% } %>
+	            		<% } %>
+            		</table>
                 </div>
+                
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
                     <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
                 </div>
-                <div id="search"  align="center">
-                    <select name="filter" id="filter">
-                        <option value="code" selected>제품코드</option>
-                        <option value="name">제품명</option>
-                        <option value="brand">브랜드</option>
-                        <option value="color">컬러</option>
-                    </select>
-                    <div id="search_in">
-                        <input type="search"><input type="submit" value="검색">
-                    </div>
-                </div>
-                <div id="pages"  align="center">
-                    <table>
-                        <tr>
-                            <th>
-                                <
-                            </th>
-                            <th>1</th>
-                            <th style="background: rgb(74, 74, 74); color:white">2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>
-                                >
-                            </th>
-                        </tr>
-                    </table>
-                </div>
+                
+                <form action="productSearch.admin" method="get">
+                	<input type="hidden" name="currentPage" value="1">
+	                <div id="search"  align="center">
+	                    <select name="filter" id="filter">
+	                        <option value="code" selected>제품코드</option>
+	                        <option value="name">제품명</option>
+	                        <option value="brand">브랜드</option>
+	                        <option value="color">컬러</option>
+	                    </select>
+	                    <div id="search_in">
+	                        <input name="search" type="search"><input type="submit" value="검색">
+	                    </div>
+	                </div>
+                </form>
+                
+                <div class="pagingArea" align="center">
+		            <%if(currentPage == 1){ %>
+		            	<button>&lt;</button>
+		            <% } else { %>
+		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right;">&lt;</button>
+		            <% } %>
+		            
+			            <% for(int p = startPage; p <= endPage ; p++){ %>
+			            	<% if(p != currentPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%= p %></button>
+			            	<% } else { %>
+			            	<button disabled><%= p %></button>
+			            	<% } %>
+			            <% } %>
+	            
+		            <%if(currentPage == maxPage){ %>
+		            	<button>&gt;</button>
+		            <% } else {%>
+		            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage+1%>#body_right';">&gt;</button>
+		            <% } %>
+		        </div>
+		        
             </div>
         </div>
-        <!-- 비밀번호변경 버튼 클릭 시 보여질 Modal -->
+        <!-- 삭제 버튼 클릭 시 보여질 Modal -->
         <div class="modal" id="deleteForm">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -383,8 +302,8 @@
     </div>
     <script>
     	$(function(){
-   			$("#productList>table tr").hover().css("cursor","pointer");
-     		$("#productList>table tr").not($("#users>table tr:first")).click(function(){
+   			$("#productList>table tr").not($(".untouchable")).hover().css("cursor","pointer");
+     		$("#productList>table tr").not($(".untouchable")).click(function(){
      			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
     		});
     	});

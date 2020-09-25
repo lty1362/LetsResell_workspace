@@ -184,7 +184,7 @@
                                 </a>
                             </li>
                             <li class="2">
-                                <a>
+                                <a style="color:orange;">
                                    	 구매진행 <br>
                                     <span>(0)</span>
                                 </a>
@@ -196,6 +196,36 @@
                                 </a>
                             </li>
                     </ul>
+                    
+                    <script>
+                    
+	                    $(function(){
+	                    	
+	                    	$(".1").click(function(){
+	                    		
+	                    		$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseDetail.mp"
+	                    		
+	                    	});
+	                    	
+							$(".2").click(function(){
+	                    		
+								$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp"
+	                    		
+	                    	});
+							
+							$(".3").click(function(){
+	                    		
+	                    		$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseCom.mp"
+	                    		
+	                    	});
+	            	   		
+	            	   	});
+
+                    </script>
+                    
                     <div class="myrow" style="margin-top: 20px;">
                         <div class="select_list">
                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
@@ -218,7 +248,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="2">
-                                       	 데이터가 없습니다.
+                                       	 구매진행
                                     </td>
                                 </tr>
                             </tbody>

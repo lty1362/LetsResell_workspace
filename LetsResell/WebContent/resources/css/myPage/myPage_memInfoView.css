@@ -1,0 +1,61 @@
+<style>
+	::placeholder {
+		font-size: 12px;
+	}
+	
+	/* 정보 영역 사이즈 및 위치*/
+	#wrap {
+		width: 800px;
+		height: 1000px;
+		float: right;
+		margin-right: 200px;
+		padding: 15px;
+		border: 1px solid red;
+	}
+	.div {
+		border: 1px solid red;
+		margin: 20px;
+	}
+	.div2 {
+		border: 1px solid red;
+		margin: 10px;
+	}
+	
+	/* 프로필 영역 css */
+	#div1 {
+		border: 2px solid gray;
+		border-radius: 3px;
+		width: 700px;
+		height: 200px;
+		position: relative;
+	}
+	#information {
+		position: absolute;
+		float: left;
+		left: 20px;
+	}
+	#iconStyle {
+		border: 1px solid black;
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		float: left;
+		left: 20px;
+		top: 70px;
+	}
+	#informationTable {
+		float: left;
+		position: absolute;
+		left: 170px;
+		top: 95px;
+	}
+	
+	/* 테이블 스타일 */
+	.cardInfo-edit-td, .addressInfo-edit-td {
+		font-size: 13px;
+		font-weight: lighter;
+	}
+	#cardInfo-edit-tb td, #addressInfo-edit-tb td {
+		padding: 10px;
+	}
+</style>

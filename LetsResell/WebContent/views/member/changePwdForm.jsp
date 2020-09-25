@@ -8,67 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/member/changePwdForm.css">
 </head>
-    <style>
-    body {
-        margin: 0;
-        font-size:12px;
-        font-family: Dotum,'돋움',Helvetica,sans-serif;
-    }
-    #wrapper {
-       	height:100%;
-    }  
-    #content{
-        margin:auto; 
-	    width: 600px;
-	    height: 490px;
-    }
-    fieldset{
-        margin-top: 20px;
-        height: 200px;
-     
-    }
-    
-    #btn_area {
-        margin: 30px 0 91px;
-    }
-    #checkBtn{
-        display: block;
-        width: 100px;
-        margin: auto;
-        padding: 21px 0 17px;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-        color: white;
-        background-color: black;
-        font-size: 15px;
-        font-family: Dotum,'돋움',Helvetica,sans-serif;
-    }
-
-    .changePwd{
-        margin-top: 5%;
-        margin-left: 10%;
-        
-    }
-    .namePwd, .newPwdinput{
-            
-            padding: 20px;
-            height:100%;
-            box-sizing:border-box;
-            display: inline-block;
-    }
-    .newPwdinput > input{
-        width: 200px;
-        margin-bottom: 10px;
-        border: solid 1px #dadada;
-        background: #fff;
-    }
-    .RestricPwd{
-        width: 80%;
-    }
   
-    </style>
 <body>
 	<!-- header -->
        <%@ include file="../common/header.jsp" %>

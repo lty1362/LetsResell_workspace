@@ -96,10 +96,6 @@
             cursor: pointer;
         }
 
-        ul.sales_tabs li a{
-            color: black;
-        }
-
         ul.sales_tabs li span {
             display: block;
             font-size: 14px;
@@ -125,18 +121,17 @@
                 
 </style>
 </head>
-<body>
+<body>   
 
 	<%@ include file="../common/header.jsp" %>
 
-	<div class="outer"> <!-- 내역 && 사이드 메뉴-->
-        <div class="mypage">    <!--내역div-->
-            
-            <%@ include file="../myPage/sideMenubar.jsp" %>
+	<div class="content"> <!--바디 전체적으로 감싸는 div-->
+        <div class="mypage">    <!--마이페이지 전체적으로 감싸는 div-->
+        
+        <%@ include file="../myPage/sideMenubar.jsp" %>
             
             <div class="mypage_body">
                 <p class="sales_title">판매내역</p>
-                
                 <div class="sales_details">
                     <ul class="sales_header">
                         
@@ -163,20 +158,20 @@
                                 <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_paycard.png">
                             </div>
                             <a>
-                                	정산금액 <br>
+                               	 정산금액 <br>
                                 <span>0원</span>
                             </a>
                         </li>
                     </ul>
                     <ul class="sales_tabs">
                             <li class="1">
-                                <a>
+                                <a> 
                                     	등록현황 <br>
                                     <span>(0)</span>
                                 </a>
                             </li>
                             <li class="2">
-                                <a>
+                                <a style="color:orange;">
                                   	  판매진행 <br>
                                     <span>(0)</span>
                                 </a>
@@ -188,10 +183,39 @@
                                 </a>
                             </li>
                     </ul>
+                    
+                    <script>
+                    
+                    $(function(){
+                    	
+                    	$(".1").click(function(){
+                    		
+                    		$(this).css({color:"orange"});
+                    		location.href="<%= contextPath %>/salesDetail.mp"
+                    		
+                    	});
+                    	
+						$(".2").click(function(){
+                    		
+                    		$(this).css({color:"orange"});
+                    		location.href="<%= contextPath %>/salesStatus.mp"
+                    		
+                    	});
+						
+						$(".3").click(function(){
+                    		
+                    		$(this).css({color:"orange"});
+                    		location.href="<%= contextPath %>/salesCom.mp"
+                    		
+                    	});
+            	   		
+            	   	});
+
+                    </script>
                     <div class="myrow" style="margin-top: 20px;">
                         <div class="select_list">
                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
-                               	 전체입찰
+                                	전체입찰
                               </button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">전체입찰</a>
@@ -210,7 +234,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="2">
-                                       	 데이터가 없습니다.
+                                        	판매진행
                                     </td>
                                 </tr>
                             </tbody>

@@ -111,9 +111,9 @@
         	<a href="<%=request.getContextPath()%>/memberMain.admin?currentPage=1">회원 조회</a>
         </div>
         <div id="menu2">
-            <a href="<%=request.getContextPath()%>/productMain.admin">∨ 제품관리</a>
+            <a href="<%=request.getContextPath()%>/productMain.admin?currentPage=1">∨ 제품관리</a>
         	<hr>
-        	<a href="<%=request.getContextPath()%>/productMain.admin">제품 조회</a>
+        	<a href="<%=request.getContextPath()%>/productMain.admin?currentPage=1">제품 조회</a>
         </div>
         <div id="menu4">
         	<a href="<%=request.getContextPath()%>/dealMain.admin">∨ 결제관리</a>
