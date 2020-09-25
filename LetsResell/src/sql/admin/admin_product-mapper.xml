@@ -41,4 +41,88 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="searchListCount_code">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NO LIKE ?
+	</entry>
+	<entry key="searchList_code">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NO LIKE ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_color">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_COLOR LIKE ?
+	</entry>
+	<entry key="searchList_color">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_COLOR LIKE ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_name">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NAME LIKE ?
+	</entry>
+	<entry key="searchList_name">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NAME LIKE ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_brand">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_BRAND LIKE ?
+	</entry>
+	<entry key="searchList_brand">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_BRAND LIKE ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

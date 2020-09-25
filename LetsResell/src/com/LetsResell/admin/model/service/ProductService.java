@@ -40,6 +40,19 @@ public class ProductService {
 		return list;
 	}
 	
+	public int searchListCount(String filter, String search) {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().searchListCount(conn, filter, search);
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Admin_Product> searchList(String filter, String search, Admin_PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Admin_Product> list = new ProductDao().searchList(conn, filter, search, pi);
+		close(conn);
+		return list;
+	}
 	
 	
 }

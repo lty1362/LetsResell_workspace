@@ -148,4 +148,82 @@ private Properties prop = new Properties();
 		return list;
 	}
 	
+	public int searchListCount(Connection conn, String filter, String search) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		if(filter.equals("code")) {
+			sql = prop.getProperty("searchListCount_code");
+		}else if(filter.equals("name")){
+			sql = prop.getProperty("searchListCount_name");
+		}else if(filter.equals("brand")){
+			sql = prop.getProperty("searchListCount_brand");
+		}else if(filter.equals("color")){
+			sql = prop.getProperty("searchListCount_color");
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public ArrayList<Admin_Product> searchList(Connection conn, String filter, String search, Admin_PageInfo pi){
+		ArrayList<Admin_Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		if(filter.equals("code")) {
+			sql = prop.getProperty("searchList_code");
+		}else if(filter.equals("name")){
+			sql = prop.getProperty("searchList_name");
+		}else if(filter.equals("brand")){
+			sql = prop.getProperty("searchList_brand");
+		}else if(filter.equals("color")){
+			sql = prop.getProperty("searchList_color");
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1 ;
+			pstmt.setString(1, "%" + search + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Admin_Product(rset.getInt(2)
+						,rset.getString(3)
+						,rset.getString(4)
+						,rset.getString(5)
+						,rset.getString(6)
+						,rset.getString(7)
+						,rset.getString(8)
+						,rset.getString(9)
+						,rset.getString(10)
+						,rset.getString(11)
+						,rset.getDate(12)
+						,rset.getDate(13)
+						,rset.getInt(14)
+						,rset.getInt(15)
+						,rset.getString(16))
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }
