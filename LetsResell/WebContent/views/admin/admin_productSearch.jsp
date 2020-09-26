@@ -155,26 +155,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        	padding-left:300px;
-        }
-        .pagingArea *{
-        	float:left;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-            display:block;
-        }
         .modal-header{
         	margin-top:40px;
         	font-size:50px;
@@ -240,7 +220,7 @@
                 
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 
                 <form action="productSearch.admin" method="get">
@@ -257,7 +237,7 @@
 	                    </div>
 	                </div>
                 </form>
-                
+            <div id="bigPageArea">
                 <div class="pagingArea" align="center">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
@@ -294,6 +274,7 @@
 			           		</form>
 			            <% } %>
 			        </div>
+			    </div>
             </div>
         </div>
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->

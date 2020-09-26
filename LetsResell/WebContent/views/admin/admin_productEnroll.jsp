@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>관리자페이지</title>
 <style>
+		form{
+			height:100%;
+		}
 		#menu2>*:nth-child(3){
         	font-size:20px;
         	text-decoration:underline;
@@ -69,7 +72,10 @@
             border-collapse: collapse;
             height: 100%;
             width: 100%;
-            text-align: center;
+        }
+        #br_2_1_2 input{
+        	width:100%;
+        	height:40px;
         }
         #br_2_1_2>table td{
             border: 1px solid black;
@@ -78,11 +84,12 @@
             background: lightgray;
             font-weight: bold;
             font-size: 20px;
+            text-align:center;
         }
-        #model{
-            font-size: 25px;
+        #br_2_1_2>table tr>td:nth-child(2){
+        	padding-left:20px;
+        	padding-right:20px;
         }
-
         #br_2_2>table{
             width: 100%;
             height: 100%;
@@ -130,7 +137,7 @@
             background: black;
             color: white;
             border: 0px;
-            width: 70px;
+            width: 100px;
             height: 40px;
             border-radius: 3px;
             margin-right: 3px;
@@ -206,12 +213,33 @@
         #color>:nth-child(18){
         	background:purple;
         }
+        
+        #size input{
+        	width:200px;
+        	height:40px;
+        }
+        
+        input[name="reviewYoutube"]{
+        	width:98%;
+        	height:40px;
+        }
+        
+        textarea[name="reviewDetail"]{
+        	width:100%;
+        	height:100%;
+        }
+        #table1>:nth-last-child(1)>:nth-last-child(2){
+            padding:5px;
+            font-size:20px;
+        }
         #table1>:nth-last-child(1)>:nth-last-child(1){
-            height: 500px;
+            height: 400px;
         }
         #submit{
         	width:98.3%;
         	text-align:right;
+        	margin-top:20px;
+        	margin-left:15px;
         }
         #submit>input{
         	background: rgb(74,74,74);
@@ -225,44 +253,78 @@
         #footer{
         	margin-top:190px;
         }
+        
+        .filebox label{
+	         display: inline-block;
+	         color: white;
+	         width:100%;
+	         height:100%;
+	         font-size: 40px;
+	         line-height: 160px;
+	         vertical-align: middle;
+	         background-color: black;
+	         cursor: pointer;
+	         border: 3px solid black;
+         } 
+        /* 파일 필드 숨기기 */
+        .filebox input[type="file"]{
+	         position: absolute;
+	         width: 1px;
+	         height: 1px;
+	         padding: 0;
+	         margin: -1px;
+	         overflow: hidden;
+	         clip:rect(0,0,0,0);
+	         border: 0;
+         }
+         #titleImg{
+         	display:none;
+         }
 </style>
 </head>
 <body>
 <form action="test.do" method="get">
-<div id="wrap" style="height:2000px;">
+<div id="wrap" style="height:1900px;">
          <%@ include file= "../common/header.jsp"%>
         <div id="body">
 			<div id="body_left">
                 	<%@ include file="admin_sideMenu.jsp" %>
 	        </div>
             <div id="body_right">
+	        <form action="productEnroll.admin" method="post" enctype="multipart/form-data">
                 <div id="br_1">신규 제품 등록</div>
                 <div id="br_2">
                     <div id="br_2_1">
-                        <div id="br_2_1_1">이미지 등록</div>
+                        <div id="br_2_1_1" class="filebox" style="padding:0px;">
+                        	<img src="" id="titleImg" width="100%" height="100%">
+	                        <label for="imageRegister" id="abc">이미지 등록</label>
+	                     	<input type="file" name="image" id="imageRegister" onchange="loadImg(this,1);" required>
+                        </div>
                         <div id="br_2_1_2">
                             <table>
                                 <tr>
                                     <td>Model</td>
-                                    <td id="model">166800C</td>
+                                    <td id="model"><input type="text" name="productCode" required></td>
                                 </tr>
                                 <tr>
                                     <td>제품명</td>
-                                    <td>에어조던 1</td>
+                                    <td><input type="text" name="productName" required></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div id="br_2_2">
                         <table id="table1">
+	                        <input id="hiddenCategory" type="hidden" name="category">
+	                        <input id="hiddenBrand" type="hidden" name="brand">
                             <tr>
                                 <th>분류</th>
                                 <td id="category">
-                                    <input type="button" value="Tops">
-                                    <input type="button" value="Bottoms">
-                                    <input type="button" value="Outers">
-                                    <input type="button" value="Footwear">
-                                    <input type="button" value="Accessories">
+                                    <input type="button" value="tops">
+                                    <input type="button" value="bottoms">
+                                    <input type="button" value="outers">
+                                    <input type="button" value="footwear">
+                                    <input type="button" value="accessories">
                                 </td>
                             </tr>
                             <tr>
@@ -277,11 +339,8 @@
                             </tr>
                             <tr>
                                 <th>사이즈</th>
-                                <td id="size1">
-                                    <input type="text">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text"> (mm)
-                                </td>
-                                <td style="display: none;" id="size2">
-                                    <input type="text"> ~ <input type="text">
+                                <td id="size">
+                                    <input type="text" name="size1">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" name="size2">
                                 </td>
                             </tr>
                             <tr>
@@ -300,26 +359,27 @@
                             </tr>
                             <tr>
                                 <th>유튜브 리뷰</th>
-                                <td><a href="http://www.youtube.com" target="_blank" style="text-decoration: none; border:0px">http://www.youtube.com</a></td>
+                                <td><input type="text" name="reviewYoutube"></td>
+                            </tr>
+                            <tr>
+                            	<th>발매 정보</th>
+                            	<td>
+                            		발매일 : <input type="date" name="releaseDate"> &nbsp;&nbsp;&nbsp;발매가 : <input type="text" name="releasePrice">
+                            	</td>
                             </tr>
                             <tr>
                                 <th>제품 상세 리뷰</th>
-                                <td>
-                                    <textarea name="" id="" cols="55" rows="10">
-                                        천고에 영원히 들어 별과 때문이다. 불어 이는 끓는 되는 이상은 때에, 뿐이다. 얼음에 방황하여도, 눈이 발휘하기 밥을 이것이야말로 끝에 이상이 주는 힘있다. 사랑의 사는가 얼음 황금시대다. 그들은 불어 생의 이상의 희망의 구하기 역사를 철환하였는가? 가지에 바이며, 소리다.이것은 산야에 속에 사막이다. 무엇을 더운지라 기쁘며, 보라. 없으면, 봄바람을 충분히 있으랴? 무엇이 그들의 무엇을 소담스러운 같이, 놀이 청춘의 그리하였는가? <br><br>
-
-것은 돋고, 사는가 천자만홍이 내는 우리 위하여서 가는 없는 이것이다. 하는 피가 때까지 가장 것이다. 곳이 위하여 충분히 청춘에서만 약동하다. 실현에 설레는 용감하고 피고, 웅대한 그들에게 미묘한 사는가 부패뿐이다. 위하여, 인간의 생의 무엇을 얼음 사막이다. 인간의 뼈 트고, 황금시대다. 풀밭에 일월과 노년에게서 열매를 위하여서 대한 타오르고 주는 때문이다. 수 방지하는 같지 거친 능히 있는 그것을 거선의 풀이 힘있다. 눈에 과실이 무엇을 부패뿐이다. 그들의 이상이 이상 못하다 붙잡아 것이다. 끓는 찬미를 꾸며 예수는 끓는 약동하다. <br><br>
-
-이것을 속에서 설산에서 있다. 거선의 있는 목숨을 것이다. 것이 무한한 얼음에 만물은 것이다. 군영과 따뜻한 풀이 실로 때에, 용기가 사막이다. 내려온 실로 눈이 날카로우나 때까지 생명을 같이 있는 힘있다. 위하여, 사랑의 맺어, 것이다. 속잎나고, 남는 품었기 할지니, 보배를 인생에 스며들어 천하를 발휘하기 것이다. 능히 이상의 맺어, 위하여, 보라. 대중을 그들을 구하지 바이며, 끓는다. 가슴에 그들에게 미인을 것이다. 그들에게 따뜻한 같은 긴지라 약동하다.
-                                    </textarea>
+                                <td style="padding:0px;">
+                                    <textarea name="reviewDetail" cols="55" rows="10" style="border:none; margin-top:5px; padding:10px"></textarea>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
-            </div>
-            <div id=submit>
-                <input type="submit" value="등록">
+	            <div id=submit>
+	                <input type="submit" value="등록" onclick="return submit();">
+	            </div>
+	            </form>
             </div>
         </div>
        <%@ include file= "../common/footer.jsp"%>
@@ -327,14 +387,19 @@
 </form>
     <script>
 	   	$(function(){
+	   		
 	   		$("#category>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$("#category>input").not($(this)).css({background:"black", color:"white"});
+	   			$("#hiddenCategory").val($(this).val());
 	   		});
+	   		
 	   		$(".brand>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$(".brand>input").not($(this)).css({background:"black", color:"white"});
+	   			$("#hiddenBrand").val($(this).val());
 	   		});
+	   		
 	   		$("#color label").click(function(){
 	   			if($(this).text()==""){
 	   				$(this).text("V");
@@ -342,7 +407,36 @@
 	   				$(this).text("");
 	   			}
 	   		});
+	   		
+	   		$("#titleImg").click(function(){
+                $("#imageRegister").click();
+            });
+	   		
+	   		$("#footer").css("margin-top","155px");
+	   		
 	   	});
+	   	
+	   	function loadImg(inputFile, num){
+	   		
+	   		$("#abc").css("display","none");
+	   		
+	        if(inputFile.files.length == 1){
+	            var reader = new FileReader();              
+	            reader.readAsDataURL(inputFile.files[0])   
+	            reader.onload = function(e){                 
+	                switch(num){
+	                    case 1 : $("#titleImg").attr("src", e.target.result); break;
+	                }
+	            }
+	        }else{
+	                switch(num){
+	                    case 1 : $("#titleImg").attr("src", null); break;
+	                }
+	        }
+	   		$("#titleImg").css("display","block");
+	        
+	    }
+	   	
     </script>
 </body>
 </html>

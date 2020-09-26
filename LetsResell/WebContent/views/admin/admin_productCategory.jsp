@@ -153,26 +153,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        	padding-left:300px;
-        }
-        .pagingArea *{
-        	float:left;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-            display:block;
-        }
         .modal-header{
         	margin-top:40px;
         	font-size:50px;
@@ -201,7 +181,7 @@
                     <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=bottoms#body_right';">
                     <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=outers#body_right';">
                     <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=accessories#body_right';">
-                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=shoes#body_right';">
+                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=footwear#body_right';">
                 </div>
                 <div id="productList">
                     <table>
@@ -237,7 +217,7 @@
                 </div>
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 <div id="search"  align="center">
                     <select name="filter" id="filter">
@@ -250,7 +230,8 @@
                         <input type="search"><input type="submit" value="검색">
                     </div>
                 </div>
-                <div class="pagingArea" align="center">
+            <div id="bigPageArea">
+                <div class="pagingArea">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
@@ -283,6 +264,7 @@
 			           		</form>
 			            <% } %>
 			        </div>
+			    </div>
             </div>
         </div>
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->
@@ -312,10 +294,18 @@
     </div>
     <script>
     	$(function(){
-   			$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).hover().css("cursor","pointer");
-     		$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).click(function(){
+   			$("#productList>table").not($("tr[class=untouchable]")).hover().css("cursor","pointer");
+     		$("#productList>table").not($("tr[class=untouchable]")).click(function(){
      			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
     		});
+     		var width = $(".pagingArea").css("width");
+     		if(width.length==4){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
+     		} else if(width.length==5){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+     		} else if(width.length==6){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+     		}
     	});
     </script>
 </body>

@@ -137,4 +137,31 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="deleteProduct">
+	    UPDATE P_REG
+		   SET PR_STATUS = 'N'
+		 WHERE PR_NO = ?
+	</entry>
+	<entry key="insertProduct">
+		INSERT 
+		  INTO P_REG
+		VALUES
+		     (
+		        SEQ_P_REG_NO.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , DEFAULT
+		      , ?
+		      , ?
+		      , DEFAULT
+		      , DEFAULT
+		     )
+	</entry>
 </properties>

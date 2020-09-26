@@ -121,19 +121,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        #pages th{
-            background: rgb(236, 236, 236);
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-        }
-	    
 </style>
 </head>
 <body>
@@ -227,19 +214,20 @@
 	                        <input type="search"><input type="submit" value="검색">
 	                    </div>
 	                </div>
-	                <div id="pages"  align="center">
-	                    <table>
-	                        <tr>
-	                            <th>
-	                                <
-	                            </th>
-	                            <th>1</th>
-	                            <th style="background: rgb(74, 74, 74); color:white">2</th>
-	                            <th>
-	                                >
-	                            </th>
-	                        </tr>
-	                    </table>
+	                <div id="bigPageArea">
+		                <div id="pagingArea">
+		                    <table>
+		                        <tr>
+		                            <th>
+		                                <
+		                            </th>
+		                            <th style="background: rgb(74, 74, 74); color:white">1</th>
+		                            <th>
+		                                >
+		                            </th>
+		                        </tr>
+		                    </table>
+		                </div>
 	                </div>
 	            </div>
 	        </div>

@@ -226,4 +226,59 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+	
+	public int productDelete(Connection conn, String[] check) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteProduct");
+		try {
+			for(int i = 0 ; i < check.length ; i++) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(check[i]));
+				result = pstmt.executeUpdate();
+				if(i != check.length-1 && result == 1) {
+					result = 0;
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertProduct(Connection conn, Admin_Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProduct");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getPRimage());
+			pstmt.setString(2, p.getPRmodel());
+			pstmt.setString(3, p.getPRname());
+			pstmt.setString(4, p.getPRcategory());
+			pstmt.setString(5, p.getPRbrand());
+			pstmt.setString(6, p.getPRsize());
+			pstmt.setString(7, p.getPRcolor());
+			pstmt.setString(8, p.getPRreviewYoutube());
+			pstmt.setString(9, p.getPRreviewDetail());
+			pstmt.setDate(10, p.getPRreleaseDate());
+			pstmt.setInt(11, p.getPRreleasePrice());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -1,7 +1,6 @@
 package com.LetsResell.admin.model.service;
 
-import static com.LetsResell.template.JDBCTemplate.close;
-import static com.LetsResell.template.JDBCTemplate.getConnection;
+import static com.LetsResell.template.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -53,6 +52,33 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	public int productDelete(String[] check) {
+		Connection conn = getConnection();
+		int result = new ProductDao().productDelete(conn, check);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int insertProduct(Admin_Product p) {
+		Connection conn = getConnection();
+		int result = new ProductDao().insertProduct(conn, p);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
+	
 	
 	
 }

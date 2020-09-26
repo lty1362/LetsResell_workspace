@@ -124,21 +124,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-        }
 </style>
 </head>
 <body>
@@ -192,6 +177,7 @@
 		                    </div>
 		                </div>
                     </form>
+                <div id="bigPageArea">
                     <div class="pagingArea" align="center">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
@@ -213,6 +199,7 @@
 			            	<button onclick="location.href='<%=contextPath%>/memberMain.admin?currentPage=<%=currentPage+1%>#userTitle';">&gt;</button>
 			            <% } %>
 			        </div>
+			    </div>
                 </div>
             </div>
         </div>

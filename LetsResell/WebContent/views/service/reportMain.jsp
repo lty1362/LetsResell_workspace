@@ -102,21 +102,6 @@
         #write a:hover{
         	text-decoration:none;
         }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-        }
 </style>
 </head>
 <body>
@@ -163,27 +148,29 @@
                  <div id="write" align="right">
                 	<a href="<%=contextPath%>/enrollForm.report">글쓰기</a>
                 </div>
-                	<div class="pagingArea" align="center">
-			            <%if(currentPage == 1){ %>
-			            	<button>&lt;</button>
-			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
-			            <% } %>
-			            
-				            <% for(int p = startPage; p <= endPage ; p++){ %>
-				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
-				            	<% } else { %>
-				            	<button disabled><%= p %></button>
-				            	<% } %>
+	                <div id="bigPageArea">
+	                	<div class="pagingArea" align="center">
+				            <%if(currentPage == 1){ %>
+				            	<button>&lt;</button>
+				            <% } else { %>
+				           		<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
 				            <% } %>
-		            
-			            <%if(currentPage == maxPage){ %>
-			            	<button>&gt;</button>
-			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
-			            <% } %>
-			        </div>
+				            
+					            <% for(int p = startPage; p <= endPage ; p++){ %>
+					            	<% if(p != currentPage){ %>
+					            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
+					            	<% } else { %>
+					            	<button disabled><%= p %></button>
+					            	<% } %>
+					            <% } %>
+			            
+				            <%if(currentPage == maxPage){ %>
+				            	<button>&gt;</button>
+				            <% } else {%>
+				            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
+				            <% } %>
+				        </div>
+				    </div>
            		</div>
         	</div>
 	    <%@ include file= "../common/footer.jsp"%>

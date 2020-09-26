@@ -26,6 +26,40 @@ public class Admin_Product {
 	public Admin_Product() {
 		
 	}
+	
+	public Admin_Product(String pRimage, String pRmodel, String pRname, String pRcategory, String pRbrand,
+			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail) {
+		super();
+		PRimage = pRimage;
+		PRmodel = pRmodel;
+		PRname = pRname;
+		PRcategory = pRcategory;
+		PRbrand = pRbrand;
+		PRsize = pRsize;
+		PRcolor = pRcolor;
+		PRreviewYoutube = pRreviewYoutube;
+		PRreviewDetail = pRreviewDetail;
+	}
+	
+	
+
+	public Admin_Product(String pRimage, String pRmodel, String pRname, String pRcategory, String pRbrand,
+			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail, Date pRreleaseDate,
+			int pRreleasePrice) {
+		super();
+		PRimage = pRimage;
+		PRmodel = pRmodel;
+		PRname = pRname;
+		PRcategory = pRcategory;
+		PRbrand = pRbrand;
+		PRsize = pRsize;
+		PRcolor = pRcolor;
+		PRreviewYoutube = pRreviewYoutube;
+		PRreviewDetail = pRreviewDetail;
+		PRreleaseDate = pRreleaseDate;
+		PRreleasePrice = pRreleasePrice;
+	}
+
 	public Admin_Product(int pRno, String pRimage, String pRmodel, String pRname, String pRcategory, String pRbrand,
 			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail, Date pRenrollDate,
 			Date pRreleaseDate, int pRreleasePrice, int pRhits, String pRstatus) {

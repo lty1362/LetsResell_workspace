@@ -4,7 +4,7 @@
 <%	
 	ArrayList<Admin_Product> list = (ArrayList<Admin_Product>)request.getAttribute("list");
 	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
-
+	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int pageLimit = pi.getPageLimit();
@@ -42,8 +42,8 @@
             font-size: 13px;
         }
         [type="checkbox"]{
-            width: 15px;
-            height: 15px;
+            width: 23px;
+            height: 23px;
         }
         #category{
             margin-bottom: 10px;
@@ -100,6 +100,7 @@
         	width: 120px;
         }
         #productList>table td:nth-child(6){
+        	padding-top:10px;
         	width:60px;
         }
         #productList td{
@@ -153,28 +154,13 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-        }
         .modal-header{
-        	margin-top:40px;
-        	font-size:50px;
+        	margin-top:70px;
+        	font-size:33px;
         }
         .modal-body button{
-        	width:100px;
-        	height:50px;
+        	width:120px;
+        	height:60px;
         	font-size:23px;
         	margin:20px;
         	margin-bottom:40px;
@@ -205,7 +191,7 @@
 			            		<td colspan="6">조회된 리스트가 없습니다.</td>
 			            	</tr>
 	            		<% } else {%>
-		                    <tr>
+		                    <tr class="ut">
 	                            <th>코드</th>
 	                            <th>제품명</th>
 	                            <th>브랜드</th>
@@ -224,7 +210,7 @@
 		                            <% } else {%>
 		                            	<td><%= list.get(i).getPRsize()%></td>
 		                            <% } %>
-		                            <td><input type="checkbox"></td>
+		                            <td class="ut"><input type="checkbox"></td>
 		                        </tr>
 			                <% } %>
 	            		<% } %>
@@ -233,7 +219,7 @@
                 
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 
                 <form action="productSearch.admin" method="get">
@@ -250,17 +236,17 @@
 	                    </div>
 	                </div>
                 </form>
-                
+            <div id="bigPageArea">
                 <div class="pagingArea" align="center">
 		            <%if(currentPage == 1){ %>
 		            	<button>&lt;</button>
 		            <% } else { %>
-		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right;">&lt;</button>
+		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right';">&lt;</button>
 		            <% } %>
 		            
 			            <% for(int p = startPage; p <= endPage ; p++){ %>
 			            	<% if(p != currentPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%= p %></button>
+			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%=p%></button>
 			            	<% } else { %>
 			            	<button disabled><%= p %></button>
 			            	<% } %>
@@ -272,41 +258,53 @@
 		            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage+1%>#body_right';">&gt;</button>
 		            <% } %>
 		        </div>
-		        
+		    </div>
             </div>
         </div>
+        
+        
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->
         <div class="modal" id="deleteForm">
             <div class="modal-dialog">
                 <div class="modal-content">
                 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title">정말 삭제하시겠습니까?</h4>
-                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <div class="modal-header" style="padding-left:100px;">
+                    	<div class="modal-title">Are you sure to delete?</div>
                     </div>
                     
-                    <!-- Modal body -->
                     <div class="modal-body" align="center">
-
                         <form action="" method="POST">
                             <br>
-                            <button type="submit" class="btn btn-secondary">예</button>
-                            <button type="submit" class="btn btn-secondary">아니오</button>
+                            <button type="submit" class="btn btn-secondary" onclick="check();">Yes</button>
+                            <button type="submit" class="btn btn-danger">No</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
+    	// modify
     	$(function(){
-   			$("#productList>table tr").not($(".untouchable")).hover().css("cursor","pointer");
-     		$("#productList>table tr").not($(".untouchable")).click(function(){
-     			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
+   			$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
+     		$("#productList>table tr td").not($(".ut")).click(function(){
+	   			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
     		});
     	});
+    	
+    	// delete
+	    var arr = [];
+    	check = function(){
+	    	$('#productList input').each(function(index){
+	    	    if($(this).is(":checked")==true){
+	    	    	arr.push($(this).closest("td").siblings().eq(0).html());
+	    	    }
+	    	});
+	    	var checked = arr.join();
+	    	location.href="<%=contextPath%>/productDelete.admin?checked="+checked;
+    	}
     </script>
 </body>
 </html>

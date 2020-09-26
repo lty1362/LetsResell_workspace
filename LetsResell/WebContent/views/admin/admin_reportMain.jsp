@@ -91,17 +91,6 @@
         #report a:hover{
         	text-decoration:underline;
         }
-        #pages th{
-            background: rgb(236, 236, 236);
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            line-height: 2em;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:large;
-            font-weight: 400;
-        }
 </style>
 </head>
 <body>
@@ -149,19 +138,21 @@
                         <td>처리 완료</td>
                     </tr>
                 </table>
-                <div id="pages"  align="center">
-                    <table>
-                        <tr>
-                            <th>
-                                <
-                            </th>
-                            <th style="background: rgb(74, 74, 74); color:white">1</th>
-                            <th>
-                                >
-                            </th>
-                        </tr>
-                    </table>
-                </div>
+            	<div id="bigPageArea">
+	                <div id="pages"  align="center">
+	                    <table>
+	                        <tr>
+	                            <th>
+	                                <
+	                            </th>
+	                            <th style="background: rgb(74, 74, 74); color:white">1</th>
+	                            <th>
+	                                >
+	                            </th>
+	                        </tr>
+	                    </table>
+	                </div>
+	            </div>
             </div>
         </div>
         <div id="footer"></div>

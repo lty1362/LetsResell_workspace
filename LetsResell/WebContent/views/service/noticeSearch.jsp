@@ -117,27 +117,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        	padding-left:300px;
-        }
-        .pagingArea *{
-        	float:left;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-            display:block;
-        }
-        
 </style>
 </head>
 <body>
@@ -185,41 +164,43 @@
 			                    </div>
 		                </div>
                     </form>
-	                <div class="pagingArea" align="center">
-			            <%if(currentPage == 1){ %>
-			            	<button>&lt;</button>
-			            <% } else { %>
-			            	<form action="noticeSearch#title" method="post">
-			            		<input type="hidden" name="filter" value="<%=filter%>">
-			            		<input type="hidden" name="search" value="<%=search%>">
-			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
-			           			<button type="submit">&lt;</button>
-			           		</form>
-			            <% } %>
-			            
-				            <% for(int p = startPage; p <= endPage ; p++){ %>
-				            	<% if(p != currentPage){ %>
+                    <div id="bigPageArea">
+		                <div class="pagingArea" align="center">
+				            <%if(currentPage == 1){ %>
+				            	<button>&lt;</button>
+				            <% } else { %>
 				            	<form action="noticeSearch#title" method="post">
 				            		<input type="hidden" name="filter" value="<%=filter%>">
-			            			<input type="hidden" name="search" value="<%=search%>">
-				            		<input type="hidden" name="currentPage" value="<%=p%>">
-				           			<button type="submit"><%= p %></button>
-			           			</form>
-				            	<% } else { %>
-				            	<button disabled><%= p %></button>
-				            	<% } %>
+				            		<input type="hidden" name="search" value="<%=search%>">
+				            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
+				           			<button type="submit">&lt;</button>
+				           		</form>
 				            <% } %>
-		            
-			            <%if(currentPage == maxPage){ %>
-			            	<button>&gt;</button>
-			            <% } else {%>
-			            	<form action="noticeSearche#title" method="post">
-			            		<input type="hidden" name="filter" value="<%=filter%>">
-			            		<input type="hidden" name="search" value="<%=search%>">
-			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
-			           			<button type="submit">&gt;</button>
-			           		</form>
-			            <% } %>
+				            
+					            <% for(int p = startPage; p <= endPage ; p++){ %>
+					            	<% if(p != currentPage){ %>
+					            	<form action="noticeSearch#title" method="post">
+					            		<input type="hidden" name="filter" value="<%=filter%>">
+				            			<input type="hidden" name="search" value="<%=search%>">
+					            		<input type="hidden" name="currentPage" value="<%=p%>">
+					           			<button type="submit"><%= p %></button>
+				           			</form>
+					            	<% } else { %>
+					            	<button disabled><%= p %></button>
+					            	<% } %>
+					            <% } %>
+			            
+				            <%if(currentPage == maxPage){ %>
+				            	<button>&gt;</button>
+				            <% } else {%>
+				            	<form action="noticeSearche#title" method="post">
+				            		<input type="hidden" name="filter" value="<%=filter%>">
+				            		<input type="hidden" name="search" value="<%=search%>">
+				            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
+				           			<button type="submit">&gt;</button>
+				           		</form>
+				            <% } %>
+				        </div>
 			        </div>
 	            </div>
 	        </div>

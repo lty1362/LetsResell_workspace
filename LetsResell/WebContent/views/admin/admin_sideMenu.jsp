@@ -101,6 +101,38 @@
             margin-bottom: 30px;
             padding: 5px;
     }
+    #bigPageArea{
+    	width:100%;
+    	height:50px;
+    	margin-top:35px;
+    	position:relative;
+    }
+    .pagingArea{
+    	width:auto;
+    	height:auto;
+    	margin:auto;
+    	position:absolute;
+    	left:50%;
+    }
+    .pagingArea *{
+    	float:left;
+    }
+    .pagingArea button{
+        background: rgb(236, 236, 236);
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size:20px;
+        font-weight: 400;
+        text-align:center;
+        border:0px;
+        display:block;
+    }
+    .pagingArea button[disabled]{
+    	background:rgb(74,74,74);
+    	color:white;
+    }
 </style>
 </head>
 <body>
@@ -131,5 +163,17 @@
             </div>
         </div>
     </div>
+    <script>
+    	$(function(){
+    		var width = $(".pagingArea").css("width");
+     		if(width.length==4){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
+     		} else if(width.length==5){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+     		} else if(width.length==6){
+	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+     		}
+    	});
+    </script>
 </body>
 </html>

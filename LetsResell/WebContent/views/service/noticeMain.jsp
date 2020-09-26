@@ -112,21 +112,6 @@
             font-weight: bold;
             font-size:20px;
         }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-        }
 </style>
 </head>
 <body>
@@ -174,26 +159,28 @@
 			                    </div>
 		                </div>
                     </form>
-	                <div class="pagingArea" align="center">
-			            <%if(currentPage == 1){ %>
-			            	<button>&lt;</button>
-			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage-1%>#title';">&lt;</button>
-			            <% } %>
-			            
-				            <% for(int p = startPage; p <= endPage ; p++){ %>
-				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=p%>#title';"><%= p %></button>
-				            	<% } else { %>
-				            	<button disabled><%= p %></button>
-				            	<% } %>
+                    <div id="bigPageArea">
+		                <div class="pagingArea" align="center">
+				            <%if(currentPage == 1){ %>
+				            	<button>&lt;</button>
+				            <% } else { %>
+				           		<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage-1%>#title';">&lt;</button>
 				            <% } %>
-		            
-			            <%if(currentPage == maxPage){ %>
-			            	<button>&gt;</button>
-			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage+1%>#title';">&gt;</button>
-			            <% } %>
+				            
+					            <% for(int p = startPage; p <= endPage ; p++){ %>
+					            	<% if(p != currentPage){ %>
+					            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=p%>#title';"><%= p %></button>
+					            	<% } else { %>
+					            	<button disabled><%= p %></button>
+					            	<% } %>
+					            <% } %>
+			            
+				            <%if(currentPage == maxPage){ %>
+				            	<button>&gt;</button>
+				            <% } else {%>
+				            	<button onclick="location.href='<%=contextPath%>/noticeForm.service?currentPage=<%=currentPage+1%>#title';">&gt;</button>
+				            <% } %>
+				        </div>
 			        </div>
 	            </div>
 	        </div>
