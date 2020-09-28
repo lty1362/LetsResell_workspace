@@ -35,7 +35,7 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 		
 		Bid b = new Bid();
 		
-		ArrayList<Bid> list = new MyPage_purchaseService().selectPurchaseList();
+		ArrayList<Bid> list = new MyPage_purchaseService().selectPurchaseList(b);
 		
 		request.setAttribute("list", list);
 		

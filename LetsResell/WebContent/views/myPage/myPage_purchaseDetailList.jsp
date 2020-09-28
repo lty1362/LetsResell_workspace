@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
+<%
+	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	Bid b = (Bid)request.getAttribute("b");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -257,25 +262,25 @@
                                 <%}else { %>
                                 	
                                 	<tr>
-                                    <td width="50">1</td>
+                                    <td width="50"><%= b.getBidNo() %></td>
                                     <td width="200">
                                         <div class="product_img">
-                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
+                                            <a href=""><%= b.getPrImage() %></a>
                                         </div>
                                     </td>
                                     <td class="product_info">
                                         <dl>
                                             <dt>
-                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
+                                                <%= b.getSaleName() %>
                                             </dt>
                                             <dd>
-                                                	샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br><br>
-                                                <span>890,000</span>
+                                                	<%= b.getSaleSize() %> / <%= b.getSaleCategory() %> <br><br>
+                                                <span><%= b.getBidPrice() %></span>
                                             </dd>
                                         </dl>
                                     </td>
                                     <td>
-                                        <span>입찰예정</span> <br>
+                                        <span><%= b.getBidStatus() %></span> <br>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal">
