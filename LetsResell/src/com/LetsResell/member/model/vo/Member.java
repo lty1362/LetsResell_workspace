@@ -16,10 +16,8 @@ public class Member {
 	 private Date outDate;
 	 private int reportCount;
 	 private String blackListStatus;
-	 private String accountHolder;
-	 private String accountNum;
-	 private String bankName;
-
+	
+	 
 
 	 public Member() {}
 	 
@@ -39,8 +37,7 @@ public class Member {
 
 
 	public Member(int userNo, String userId, String userPwd, String name, String phone, Date enrollDate,
-			Date modifyDate, String status, String userSsn, Date outDate, int reportCount, String blackListStatus,
-			String accountHolder, String accountNum, String bankName) {
+			Date modifyDate, String status, String userSsn, Date outDate, int reportCount, String blackListStatus) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -54,10 +51,8 @@ public class Member {
 		this.outDate = outDate;
 		this.reportCount = reportCount;
 		this.blackListStatus = blackListStatus;
-		this.accountHolder = accountHolder;
-		this.accountNum = accountNum;
-		this.bankName = bankName;
 	}
+
 
 
 	public int getUserNo() {
@@ -65,9 +60,11 @@ public class Member {
 	}
 
 
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
 
 
 	public String getUserId() {
@@ -75,9 +72,11 @@ public class Member {
 	}
 
 
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 
 
 	public String getUserPwd() {
@@ -85,9 +84,11 @@ public class Member {
 	}
 
 
+
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
+
 
 
 	public String getName() {
@@ -95,9 +96,11 @@ public class Member {
 	}
 
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 
 	public String getPhone() {
@@ -105,9 +108,11 @@ public class Member {
 	}
 
 
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 
 
 	public Date getEnrollDate() {
@@ -115,9 +120,11 @@ public class Member {
 	}
 
 
+
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
 
 
 	public Date getModifyDate() {
@@ -125,9 +132,11 @@ public class Member {
 	}
 
 
+
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
+
 
 
 	public String getStatus() {
@@ -135,9 +144,11 @@ public class Member {
 	}
 
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 
 	public String getUserSsn() {
@@ -145,9 +156,11 @@ public class Member {
 	}
 
 
+
 	public void setUserSsn(String userSsn) {
 		this.userSsn = userSsn;
 	}
+
 
 
 	public Date getOutDate() {
@@ -155,9 +168,11 @@ public class Member {
 	}
 
 
+
 	public void setOutDate(Date outDate) {
 		this.outDate = outDate;
 	}
+
 
 
 	public int getReportCount() {
@@ -165,9 +180,11 @@ public class Member {
 	}
 
 
+
 	public void setReportCount(int reportCount) {
 		this.reportCount = reportCount;
 	}
+
 
 
 	public String getBlackListStatus() {
@@ -175,39 +192,11 @@ public class Member {
 	}
 
 
+
 	public void setBlackListStatus(String blackListStatus) {
 		this.blackListStatus = blackListStatus;
 	}
 
-
-	public String getAccountHolder() {
-		return accountHolder;
-	}
-
-
-	public void setAccountHolder(String accountHolder) {
-		this.accountHolder = accountHolder;
-	}
-
-
-	public String getAccountNum() {
-		return accountNum;
-	}
-
-
-	public void setAccountNum(String accountNum) {
-		this.accountNum = accountNum;
-	}
-
-
-	public String getBankName() {
-		return bankName;
-	}
-
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
 
 
 	@Override
@@ -215,10 +204,12 @@ public class Member {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", name=" + name
 				+ ", phone=" + phone + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status="
 				+ status + ", userSsn=" + userSsn + ", outDate=" + outDate + ", reportCount=" + reportCount
-				+ ", blackListStatus=" + blackListStatus + ", accountHolder=" + accountHolder + ", accountNum="
-				+ accountNum + ", bankName=" + bankName + "]";
+				+ ", blackListStatus=" + blackListStatus + "]";
 	}
 }
+
+
+	
 	 
 
 

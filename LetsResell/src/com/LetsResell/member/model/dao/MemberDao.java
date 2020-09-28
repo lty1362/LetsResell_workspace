@@ -63,11 +63,9 @@ public class MemberDao {
 						       rset.getString("MEM_USER_SSN"),
 						       rset.getDate("MEM_OUT_DATE"),
 						       rset.getInt("MEM_REPORT_COUNT"),
-						       rset.getString("MEM_BLACKLIST_STATUS"),
-						       rset.getString("MEM_ACCOUNTHOLDER"),
-						       rset.getString("MEM_ACCOUNT_NUM"),
-						       rset.getString("MEM_BANKNAME"));
-				
+						       rset.getString("MEM_BLACKLIST_STATUS"));
+						     
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -140,10 +138,8 @@ public class MemberDao {
 						       rset.getString("MEM_USER_SSN"),
 						       rset.getDate("MEM_OUT_DATE"),
 						       rset.getInt("MEM_REPORT_COUNT"),
-						       rset.getString("MEM_BLACKLIST_STATUS"),
-						       rset.getString("MEM_ACCOUNTHOLDER"),
-						       rset.getString("MEM_ACCOUNT_NUM"),
-						       rset.getString("MEM_BANKNAME"));
+						       rset.getString("MEM_BLACKLIST_STATUS"));
+						     
 				
 			}
 			
@@ -188,10 +184,8 @@ public class MemberDao {
 						       rset.getString("MEM_USER_SSN"),
 						       rset.getDate("MEM_OUT_DATE"),
 						       rset.getInt("MEM_REPORT_COUNT"),
-						       rset.getString("MEM_BLACKLIST_STATUS"),
-						       rset.getString("MEM_ACCOUNTHOLDER"),
-						       rset.getString("MEM_ACCOUNT_NUM"),
-						       rset.getString("MEM_BANKNAME"));
+						       rset.getString("MEM_BLACKLIST_STATUS"));
+						    
 				
 			}
 			
