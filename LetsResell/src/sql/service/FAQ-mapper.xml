@@ -60,4 +60,28 @@
 		   SET FAQ_STATUS = 'N'
 		 WHERE FAQ_NO = ?
 	</entry>
+	<entry key="updateFAQ">
+		UPDATE FAQ
+		   SET 
+		       FAQ_TITLE = ?
+		     , FAQ_CONTENT = ?
+		 WHERE FAQ_NO = ?
+	</entry>
+	<entry key="detailFAQ">
+		SELECT *
+		  FROM FAQ
+		 WHERE FAQ_NO = ?
+	</entry>
+	<entry key="insertFAQ">
+		INSERT
+		  INTO FAQ
+		VALUES
+		     (
+		        SEQ_FAQ_NO.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , DEFAULT
+		     )
+	</entry>
 </properties>

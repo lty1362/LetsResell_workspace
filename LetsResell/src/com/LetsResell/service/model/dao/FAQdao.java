@@ -149,6 +149,67 @@ public class FAQdao {
 		return result;
 	}
 	
+	public int updateFAQ(Connection conn, int fno, String title, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateFAQ");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, fno);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public FAQ detailFAQ(Connection conn, int fno) {
+		FAQ faq = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("detailFAQ");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				faq = new FAQ(rset.getInt(1),
+								rset.getString(2),
+								rset.getString(3),
+								rset.getString(4),
+								rset.getString(5));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return faq;
+	}
+	
+	public int insertFAQ(Connection conn, String title, String content, String category) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertFAQ");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, title);
+			pstmt.setString(3, content);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

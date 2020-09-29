@@ -211,7 +211,7 @@
 		       $("#notice tr td:nth-child(4)").click(function(){
 		         var nno = $(this).closest("td").siblings().eq(0).html();
 		         console.log(nno);
-		         <%-- location.href = "<%=contextPath%>/noticeDetail.admin?nno="+nno; // 쿼리스트링 --%>
+		         location.href = "<%=contextPath%>/noticeDetail.admin?nno="+nno; // 쿼리스트링;
 		       });
 		    });
 		     

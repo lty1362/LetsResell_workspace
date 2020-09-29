@@ -226,11 +226,12 @@
 	   </div>
 	   <script>
 	   
-	   		// modify
+			// modify
 		    $(function(){
-		       $("#notice tr td:nth-child(3)").click(function(){
-		         var nno = $(this).children().eq(0).text();
-		         location.href = "<%=contextPath%>/?nno="+nno; // 쿼리스트링
+		       $("#notice tr td:nth-child(4)").click(function(){
+		         var nno = $(this).closest("td").siblings().eq(0).html();
+		         console.log(nno);
+		         location.href = "<%=contextPath%>/noticeDetail.admin?nno="+nno; // 쿼리스트링;
 		       });
 		    });
 		     

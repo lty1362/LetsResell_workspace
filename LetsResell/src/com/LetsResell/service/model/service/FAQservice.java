@@ -51,5 +51,37 @@ public class FAQservice {
 		return result;
 	}
 	
+	public int updateFAQ(int fno, String title, String content) {
+		Connection conn = getConnection();
+		int result = new FAQdao().updateFAQ(conn, fno, title, content);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public FAQ detailFAQ(int fno) {
+		Connection conn = getConnection();
+		FAQ faq = new FAQdao().detailFAQ(conn, fno);
+		close(conn);
+		return faq;
+	}
+	
+	public int insertFAQ(String title, String content, String category) {
+		Connection conn = getConnection();
+		int result = new FAQdao().insertFAQ(conn, title, content, category);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
 	
 }

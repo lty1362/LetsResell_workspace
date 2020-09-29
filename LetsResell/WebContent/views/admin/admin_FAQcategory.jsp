@@ -184,9 +184,6 @@
 			                        <td><%= count-i %></td>
 				                    <td>
 		                            	<div><%= list.get(i).getFAQtitle() %></div>
-		                            	<p style="display:none; background:lightgray;">
-		                            		 ► <%= list.get(i).getFAQcontent() %>
-		                            	</p>
 		                            </td>
 				                </tr>
 			                <% } %>
@@ -195,6 +192,8 @@
                     
                     <div id="faqUpdate">
 	                    <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
+	                    <input type="button" value="작성" onclick="location.href='<%=contextPath%>/enrollFAQform.admin';">
+	                    
 	                </div>
                     
                     <div id="bigPageArea">
@@ -263,6 +262,16 @@
 	</div>
 	<script>
 		
+		// modify
+		$(function(){
+		
+			$("#FAQ tr").not("#FAQ tr:first").click(function(){
+		         var fno = $(this).children(0).eq(0).text();
+		         location.href = "<%=contextPath%>/FAQdetailCategory.admin?fno="+fno; // 쿼리스트링
+		       });
+			
+		});
+	
 		// delete
 	    var arr = [];
 		check = function(){
@@ -275,19 +284,6 @@
 	    	$("#checked").val(checked);
 		}
 	
-		// 답변보기
-        $(function(){
-            $("td>div").click(function(){
-                var p = $(this).next();
-                if(p.css("display") == "none"){
-                    $("td p").not($(this)).slideUp();
-                    p.slideDown();
-                }else{
-                    p.slideUp();
-                }
-            });
-        });
-		
     	 // category
         function user(){
         	$("#sendCategory").val("user")

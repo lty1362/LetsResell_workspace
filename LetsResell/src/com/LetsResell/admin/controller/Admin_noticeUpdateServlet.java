@@ -9,21 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.service.model.service.NoticeService;
-import com.LetsResell.service.model.vo.Notice;
 
-@WebServlet("/noticeDetail.admin")
-public class Admin_noticeDetailServlet extends HttpServlet {
+@WebServlet("/updateNotice.admin")
+public class Admin_noticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_noticeDetailServlet() {
+    public Admin_noticeUpdateServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nno = Integer.parseInt(request.getParameter("nno"));
-		Notice notice = new NoticeService().selectDetail(nno);
-		request.setAttribute("notice", notice);
-		request.getRequestDispatcher("views/admin/admin_noticeDetail.jsp").forward(request, response);
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int result = new NoticeService().updateNotice(nno, title, content);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "FAQ 수정 성공!!");
+			response.sendRedirect(request.getContextPath() + "/noticeMain.admin?currentPage=1");
+		}else {
+			request.getSession().setAttribute("alertMsg", "FAQ 수정 실패..");
+			response.sendRedirect(request.getContextPath() + "/noticeMain.admin?currentPage=1");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

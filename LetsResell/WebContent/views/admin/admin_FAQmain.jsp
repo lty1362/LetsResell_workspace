@@ -142,37 +142,7 @@
             text-align:right;
         }
         .titleDiv{
-        	padding-left:25px;
         	margin-bottom:5px;
-        }
-        .hideDiv{
-        	display:none; 
-        }
-        .hideDiv div{
-        	float:left;
-        }
-        .hideDiv div:nth-child(1){
-        	height:100%; 
-        	width:3%;
-        }
-        .hideDiv div:nth-child(2){
-        	height:100%; 
-        	width:85%;
-        }
-        .hideDiv textarea{
-        	height:100%;
-        	width:100%;
-        	background:lightgray;
-        	resize:none;
-        }
-        .hideDiv input[type=submit]{
-        	width:60px;
-        	height:40px;
-        	background:rgb(74, 74, 74);
-        	color:white;
-        	border:0px;
-        	margin-left:10px;
-        	margin-top:236px;
         }
 </style>
 </head>
@@ -209,7 +179,6 @@
 	                            <th>질문</th>
                         	</tr>
 		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
-		            			<form>
 					                <tr>
 					                	<td style="display:none;"><%=list.get(i).getFAQno() %></td>
 					                	<td><input type="checkbox"></td>
@@ -217,26 +186,15 @@
 				                        <td><%= count-i %></td>
 					                    <td>
 			                            	<div class="titleDiv"><%= list.get(i).getFAQtitle() %></div>
-			                            	<div class="hideDiv">
-			                            		<div>
-			                            			► 
-			                            		</div>
-			                            		<div>
-					                            	<textarea rows=10 cols=50><%= list.get(i).getFAQcontent() %></textarea>
-			                            		</div>
-			                            		<div>
-			                            			<input type="submit" value="수정">
-			                            		</div>
-			                            	</div>
 			                            </td>
 					                </tr>
-                        		</form>
 			                <% } %>
 	            		<% } %>
                     </table>
                     
                     <div id="faqUpdate">
 	                    <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
+	                    <input type="button" value="작성" onclick="location.href='<%=contextPath%>/enrollFAQform.admin';">
 	                </div>
                     
                     <div id="bigPageArea">
@@ -292,6 +250,16 @@
 	</div>
 	<script>
 		
+		// modify
+		$(function(){
+		
+			$("#FAQ tr").not("#FAQ tr:first").click(function(){
+		         var fno = $(this).children(0).eq(0).text();
+		         location.href = "<%=contextPath%>/FAQdetail.admin?fno="+fno; // 쿼리스트링
+		       });
+			
+		});
+	
 		// delete
 	    var arr = [];
 		check = function(){
@@ -304,22 +272,6 @@
 	    	$("#checked").val(checked);
 		}
 	
-		// 답변보기
-        $(function(){
-            $("td>div").click(function(){
-                var aa = $(this).next();
-                if(aa.css("display") == "none"){
-                    $(".hideDiv").not($(this)).slideUp();
-                    aa.slideDown();
-                }else{
-                    aa.slideUp();
-                }
-            });
-            
-            $("#footer").css("margin-top","120px");
-            
-        });
-        
 		// category
         function user(){
         	$("#sendCategory").val("user")

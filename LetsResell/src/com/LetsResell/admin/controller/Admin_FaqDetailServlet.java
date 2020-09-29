@@ -8,22 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.LetsResell.service.model.service.NoticeService;
-import com.LetsResell.service.model.vo.Notice;
+import com.LetsResell.service.model.service.FAQservice;
+import com.LetsResell.service.model.vo.FAQ;
 
-@WebServlet("/noticeDetail.admin")
-public class Admin_noticeDetailServlet extends HttpServlet {
+@WebServlet("/FAQdetail.admin")
+public class Admin_FaqDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_noticeDetailServlet() {
+    public Admin_FaqDetailServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nno = Integer.parseInt(request.getParameter("nno"));
-		Notice notice = new NoticeService().selectDetail(nno);
-		request.setAttribute("notice", notice);
-		request.getRequestDispatcher("views/admin/admin_noticeDetail.jsp").forward(request, response);
+		int fno = Integer.parseInt(request.getParameter("fno"));
+		
+		FAQ faq = new FAQservice().detailFAQ(fno);
+		request.setAttribute("faq", faq);
+		request.getRequestDispatcher("views/admin/admin_FAQdetail.jsp").forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

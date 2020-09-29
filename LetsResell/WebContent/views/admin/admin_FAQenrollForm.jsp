@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.LetsResell.service.model.vo.*" %>
-<%
-	Notice notice = (Notice)request.getAttribute("notice");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
 <style>
-        #menu3List>:nth-child(1){
+        #menu3List>:nth-child(2){
 	        text-decoration-line: underline;
 	        font-weight: bold;
 	    }
@@ -33,15 +29,25 @@
         	height:700px;
         }
         #title{
-            height: 50px;
-            font-size: 25px;
+            height:50px;
+            font-size:25px;
+        }
+        #title>*{
+        	float:left;
         }
         #title input{
-        	width:100%;
+        	width:712px;
         	height:100%;
         	border:0px;
             background: lightgray;
-        	
+        }
+        #title select{
+        	font-size:30px;
+        	background:black;
+        	color:white;
+        	width:100px;
+        	height:100%;
+        	text-align-last:center;
         }
         #content{
             height: 90%;
@@ -79,20 +85,25 @@
 				<%@ include file="admin_sideMenu.jsp" %>
 		    </div>
 		    <div id="body_right">
-		    	<form action="updateNotice.admin" method="post">
-		    		<input type="hidden" name="nno" value="<%=notice.getNoticeNo()%>">
+		    	<form action="enrollFAQ.admin" method="post">
 			    	<div id="title_content" align="center">
 	                    <div id="title">
-	                    	<input type="text" name="title" value="<%=notice.getNoticeTitle()%>">
+	                    	<input type="text" name="title">
+	                    	<select name="category">
+	                    		<option value="user">user</option>
+	                    		<option value="cash">cash</option>
+	                    		<option value="event">event</option>
+	                    		<option value="etc">etc</option>
+	                    	</select>
 	                    </div>
 	                    <div id="content">
 	                        <div>
-	                            <textarea name="content"><%=notice.getNoticeContent()%></textarea>
+	                            <textarea name="content"></textarea>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div id="update" align="right">
-	                    <input type="submit" value="수정">
+	                    <input type="submit" value="작성">
 	                </div>
                 </form>
 		    </div>

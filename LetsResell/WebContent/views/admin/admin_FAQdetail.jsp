@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.LetsResell.service.model.vo.*" %>
 <%
-	Notice notice = (Notice)request.getAttribute("notice");
+	FAQ faq = (FAQ)request.getAttribute("faq");
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <style>
-        #menu3List>:nth-child(1){
+        #menu3List>:nth-child(2){
 	        text-decoration-line: underline;
 	        font-weight: bold;
 	    }
@@ -79,15 +79,15 @@
 				<%@ include file="admin_sideMenu.jsp" %>
 		    </div>
 		    <div id="body_right">
-		    	<form action="updateNotice.admin" method="post">
-		    		<input type="hidden" name="nno" value="<%=notice.getNoticeNo()%>">
+		    	<form action="updateFAQ.admin" method="post">
+		    		<input type="hidden" name="fno" value="<%=faq.getFAQno() %>">
 			    	<div id="title_content" align="center">
 	                    <div id="title">
-	                    	<input type="text" name="title" value="<%=notice.getNoticeTitle()%>">
+	                    	<input type="text" name="title" value="<%=faq.getFAQtitle() %>">
 	                    </div>
 	                    <div id="content">
 	                        <div>
-	                            <textarea name="content"><%=notice.getNoticeContent()%></textarea>
+	                            <textarea name="content"><%=faq.getFAQcontent() %></textarea>
 	                        </div>
 	                    </div>
 	                </div>
