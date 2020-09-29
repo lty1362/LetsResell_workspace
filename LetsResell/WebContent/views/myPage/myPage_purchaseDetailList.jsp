@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.Bid" %>
+<%
+	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	Bid bid = (Bid)request.getAttribute("bid");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +20,26 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 80px;
+        }
+        
+        #btn{
+            font-size: 12px;
+            padding: 4px;
+            margin: 4px;
+            background-color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .sales_list span{
+            color: red;
+            font-size: 15px;
+        }
+        
+        /*모달*/
+        .container span{
+            color: #333;
         }
 
         /*판매내역 바디*/
@@ -122,6 +147,36 @@
         .sales_list table tbody td{
             height: 100px;
         }
+        
+        /*상품 정보 테이블*/
+        .sales_list table{
+            width: 100%;
+            text-align: center;
+        }
+
+        .sales_list table thead th{
+            background-color: #333;
+            color: white;
+            height: 40px;
+        }
+
+        .sales_list table tbody td{
+            height: 150px;
+        }
+
+        .sales_list table tbody tr{
+            border-bottom: 1px solid rgb(204, 204, 204);
+        }
+
+        .product_info dl{
+            text-align: left;
+            font-size: 13px;
+            margin: 0px;
+        }
+
+        .product_info dd{
+            margin: 0px;
+        }
                 
     </style>
 </head>
@@ -135,7 +190,9 @@
         	<%@ include file="../myPage/sideMenubar.jsp" %>
             
             <div class="mypage_body">
+            	
                 <p class="sales_title">구매내역</p>
+                
                 <div class="sales_details">
                     <ul class="sales_header">
                         
@@ -246,11 +303,111 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="2">
-                                       	입찰현황
+                            	
+                            	<%if(list.isEmpty()) {%>
+	                                <tr>
+	                                    <td colspan="2">
+	                                       	등록된 리스트가 없습니다.
+	                                    </td>
+	                                </tr>
+                                <%}else{ %>
+                                	<tr>
+	                                	<td width="50">1</td>
+	                                    <td width="200">
+	                                        <div class="product_img">
+	                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
+	                                        </div>
+	                                    </td>
+	                                    <td class="product_info">
+	                                        <dl>
+	                                            <dt>
+	                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
+	                                            </dt>
+	                                            <dd>
+	                                                	샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br><br>
+	                                                <span>890,000</span>
+	                                            </dd>
+	                                        </dl>
+	                                    </td>
+	                                    <td>
+                                        <span>입찰예정</span> <br>
+                                        <div class="container">
+                                            <!-- Button to Open the Modal -->
+                                            <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal">
+                                              입찰갱신
+                                            </button>
+                                          
+                                            <!-- The Modal -->
+                                            <div class="modal" id="enrollModal">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                
+                                                  <!-- Modal Header -->
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title">입찰갱신</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  </div>
+                                                  
+                                                  <!-- Modal body -->
+                                                  <div class="modal-body" style="text-align: center;">
+                                                   
+                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
+                                                    <input type="text">
+                                                    <br>
+                                                    <span style="color: red;">
+                                                        * 현재입찰가격 : -- <br>
+                                                        * 현재최고입찰가격 : --
+                                                    </span>
+            
+                                                  </div>
+                                                  
+                                                  <!-- Modal footer -->
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                  </div>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                          </div>
+                                        <div class="container">
+                                            <!-- Button to Open the Modal -->
+                                            <button type="button" id="btn" data-toggle="modal" data-target="#deleteModal">
+                                              입찰취소
+                                            </button>
+                                          
+                                            <!-- The Modal -->
+                                            <div class="modal fade" id="deleteModal">
+                                              <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                
+                                                  <!-- Modal Header -->
+                                                  <div class="modal-header">
+                                                    <h6 class="modal-title">입찰취소</h6>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  </div>
+                                                  
+                                                  <!-- Modal body -->
+                                                  <div class="modal-body">
+                                                    <strong>입찰을 취소하시겠습니까?</strong>
+                                                  </div>
+                                                  
+                                                  <!-- Modal footer -->
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                                                  </div>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                        </div>
                                     </td>
-                                </tr>
+                                	</tr>
+                                <%} %>
                             </tbody>
                         </table>
                     </div>

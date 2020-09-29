@@ -276,9 +276,92 @@ private Properties prop = new Properties();
 		return result;
 	}
 	
+	public Admin_Product selectDetail(Connection conn, int pno) {
+		Admin_Product product = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetail");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				product = new Admin_Product(rset.getInt(1)
+						,rset.getString(2)
+						,rset.getString(3)
+						,rset.getString(4)
+						,rset.getString(5)
+						,rset.getString(6)
+						,rset.getString(7)
+						,rset.getString(8)
+						,rset.getString(9)
+						,rset.getString(10)
+						,rset.getDate(11)
+						,rset.getDate(12)
+						,rset.getInt(13)
+						,rset.getInt(14)
+						,rset.getString(15));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return product;
+	}
 	
-	
-	
-	
+	public int updateProduct(Connection conn, Admin_Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		if(!p.getPRimage().equals("")) {
+			sql = prop.getProperty("updateProduct");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, p.getPRimage());
+				pstmt.setString(2, p.getPRmodel());
+				pstmt.setString(3, p.getPRname());
+				pstmt.setString(4, p.getPRcategory());
+				pstmt.setString(5, p.getPRbrand());
+				pstmt.setString(6, p.getPRsize());
+				pstmt.setString(7, p.getPRcolor());
+				pstmt.setString(8, p.getPRreviewYoutube());
+				pstmt.setString(9, p.getPRreviewDetail());
+				pstmt.setDate(10, p.getPRreleaseDate());
+				pstmt.setInt(11, p.getPRreleasePrice());
+				pstmt.setInt(12, p.getPRno());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		} else {
+			sql = prop.getProperty("noImageProduct");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, p.getPRmodel());
+				pstmt.setString(2, p.getPRname());
+				pstmt.setString(3, p.getPRcategory());
+				pstmt.setString(4, p.getPRbrand());
+				pstmt.setString(5, p.getPRsize());
+				pstmt.setString(6, p.getPRcolor());
+				pstmt.setString(7, p.getPRreviewYoutube());
+				pstmt.setString(8, p.getPRreviewDetail());
+				pstmt.setDate(9, p.getPRreleaseDate());
+				pstmt.setInt(10, p.getPRreleasePrice());
+				pstmt.setInt(11, p.getPRno());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		}
+		return result;
+	}
 	
 }

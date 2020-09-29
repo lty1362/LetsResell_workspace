@@ -92,38 +92,6 @@
             font-size: 33px;
             padding: 5px;
         }
-        #search{
-        	margin-top: 50px;
-        	margin-bottom:10px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
-        }
 </style>
 </head>
 <body>

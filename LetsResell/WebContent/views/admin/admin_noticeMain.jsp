@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.service.model.vo.*" %>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int pageLimit = pi.getPageLimit();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	int boardLimit = pi.getBoardLimit();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,23 +57,23 @@
         #notice tr>th:nth-child(3){
             border-right: 1px solid white;
         }
-        #notice tr td:nth-child(1){
+        #notice tr td:nth-child(2){
             border: 0px;
             width: 10px;
         }
-        #notice tr td:nth-child(2){
+        #notice tr td:nth-child(3){
             border-left: 0px;
             text-align: center;
             width: 30px;
         }
-        #notice tr td:nth-child(3){
+        #notice tr td:nth-child(4){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
             font-size: 0.9em;
             cursor:pointer;
         }
-        #notice tr td:nth-child(4){
+        #notice tr td:nth-child(5){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
@@ -75,51 +88,20 @@
         	width:20px;
         	height:20px;
         }
-        #deleteButton{
-        	padding-top:20px;
-        }
-        #deleteButton>button{
-        	background: rgb(74, 74, 74);
+        #noticeUpdate>input{
+            border:1px solid rgb(74, 74, 74);
+            background: rgb(74, 74, 74);
             color: white;
             border-radius: 3px;
             font-size:20px;
             width: 80px;
             height: 40px;
-            text-align:center;
-            border:0px;
+            margin-left: 10px;
+            margin-bottom:10px;
+            margin-top:20px;
         }
-        
-        #search{
-            margin-top: 30px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-            outline-offset:-2px;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
+        #noticeUpdate{
+            text-align:right;
         }
 </style>
 </head>
@@ -135,111 +117,122 @@
 	                    공지사항
 	                </div>
 	                <table id="notice">
-	                    <tr>
-	                        <th></th>
-	                        <th>No</th>
-	                        <th>제목</th>
-	                        <th>등록일</th>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>10</td>
-	                        <td><a href="<%=contextPath%>/views/admin/admin_noticeDetail.jsp">무엇을 품으며, 구하지 과실이 그리하였는가?</a></td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>9</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>8</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>7</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>6</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>5</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>4</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>3</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>2</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="checkbox"></td>
-	                        <td>1</td>
-	                        <td>무엇을 품으며, 구하지 과실이 그리하였는가?</td>
-	                        <td>2020-05-31</td>
-	                    </tr>
+	                	<% if(list.isEmpty()){ %>
+			            	<tr>
+			            		<td colspan="3">조회된 리스트가 없습니다.</td>
+			            	</tr>
+	            		<% } else {%>
+		                    <tr>
+		                    	<th></th>
+		                        <th>No</th>
+		                        <th>제목</th>
+		                        <th>등록일</th>
+		                    </tr>
+		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
+				                <tr>
+				                	<td style="display:none;"><%=list.get(i).getNoticeNo() %></td>
+				                	<td><input type="checkbox"></td>
+				                    <% int count = listCount-(currentPage*10-10); %>
+				                    <td><%= count-i %></td>
+				                    <td><%= list.get(i).getNoticeTitle() %></td>
+				                    <td><%= list.get(i).getEnrollDate() %></td>
+				                </tr>
+			                <% } %>
+	            		<% } %>
                 	</table>
-                	<div id="deleteButton" align="right">
-                		<button type="button">삭제</button>
-                	</div>
-	                <div id="search"  align="center">
-	                    <select name="filter" id="filter">
-	                        <option value="content" selected>내용</option>
-	                        <option value="title">제목</option>
-	                    </select>
-	                    <div id="search_in">
-	                        <input type="search"><input type="submit" value="검색">
-	                    </div>
+                	
+                	<div id="noticeUpdate">
+	                    <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
+                		<input type="button" value="작성" onclick="enroll();">
 	                </div>
-	                <div id="bigPageArea">
-		                <div id="pagingArea">
-		                    <table>
-		                        <tr>
-		                            <th>
-		                                <
-		                            </th>
-		                            <th style="background: rgb(74, 74, 74); color:white">1</th>
-		                            <th>
-		                                >
-		                            </th>
-		                        </tr>
-		                    </table>
+                
+	                <form action="noticeSearch.admin#title" method="post">
+                    	<input type="hidden" name="currentPage" value="1">
+		                <div id="search"  align="center">
+		                    <select name="filter" id="filter">
+		                        <option value="title" selected>제목</option>
+		                        <option value="content">내용</option>
+		                    </select>
+		 	                    <div id="search_in">
+			                        <input type="search" name=search><input type="submit" value="검색">
+			                    </div>
 		                </div>
+                    </form>
+	                <div id="bigPageArea">
+		                <div class="pagingArea" align="center">
+				            <%if(currentPage == 1){ %>
+				            	<button>&lt;</button>
+				            <% } else { %>
+				           		<button onclick="location.href='<%=contextPath%>/noticeMain.admin?currentPage=<%=currentPage-1%>#title';">&lt;</button>
+				            <% } %>
+				            
+					            <% for(int p = startPage; p <= endPage ; p++){ %>
+					            	<% if(p != currentPage){ %>
+					            	<button onclick="location.href='<%=contextPath%>/noticeMain.admin?currentPage=<%=p%>#title';"><%= p %></button>
+					            	<% } else { %>
+					            	<button disabled><%= p %></button>
+					            	<% } %>
+					            <% } %>
+			            
+				            <%if(currentPage == maxPage){ %>
+				            	<button>&gt;</button>
+				            <% } else {%>
+				            	<button onclick="location.href='<%=contextPath%>/noticeMain.admin?currentPage=<%=currentPage+1%>#title';">&gt;</button>
+				            <% } %>
+				        </div>
+			        </div>
+	            </div>
+	        </div>
+	        <!-- 삭제 버튼 클릭 시 보여질 Modal -->
+	        <div class="modal" id="deleteForm">
+	            <div class="modal-dialog">
+	                <div class="modal-content">
+	                
+	                    <div class="modal-header" style="padding-left:100px;">
+	                    	<div class="modal-title">Are you sure to delete?</div>
+	                    </div>
+	                    
+	                    <div class="modal-body" align="center">
+	                        <form action="" method="POST">
+	                            <br>
+	                            <button type="submit" class="btn btn-secondary" onclick="check();">Yes</button>
+	                            <button type="submit" class="btn btn-danger">No</button>
+	                        </form>
+	                    </div>
+	                    
 	                </div>
 	            </div>
 	        </div>
 	        <%@ include file= "../common/footer.jsp"%>
 	   </div>
-	   <%-- <script>
-		     $(function(){
-		       $("#notice tr td:nth-child(2)").click(function(){
-		         var nno = $(this).children().eq(0).text();
-		         location.href = "<%=contextPath%>/detail.notice?nno="+nno; // 쿼리스트링
+	   <script>
+	   		// modify
+		    $(function(){
+		       $("#notice tr td:nth-child(4)").click(function(){
+		         var nno = $(this).closest("td").siblings().eq(0).html();
+		         console.log(nno);
+		         <%-- location.href = "<%=contextPath%>/noticeDetail.admin?nno="+nno; // 쿼리스트링 --%>
 		       });
-		     });
-	   </script> --%>
+		    });
+		     
+		  	// delete
+		    var arr = [];
+	    	check = function(){
+		    	$('#notice input').each(function(index){
+		    	    if($(this).is(":checked")==true){
+		    	    	arr.push($(this).closest("td").siblings().eq(0).html());
+		    	    }
+		    	});
+		    	var checked = arr.join();
+		    	location.href="<%=contextPath%>/noticeMainDelete.admin?checked="+checked;
+	    	}
+	    	
+	    	// enroll
+	    	enroll = function(){
+	    		var nno = $(this).closest("td").siblings().eq(0).html();
+	    		location.href = "<%=contextPath%>/noticeEnrollForm.admin";
+	    	}
+	    	
+	   </script>
 </body>
 </html>

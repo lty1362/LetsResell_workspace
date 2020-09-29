@@ -164,4 +164,43 @@
 		      , DEFAULT
 		     )
 	</entry>
+	<entry key="selectDetail">
+		SELECT *
+		  FROM P_REG
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="updateProduct">
+		UPDATE P_REG 
+		   SET 
+		       PR_IMAGE = ?
+		     , PR_MODEL = ?
+		     , PR_NAME = ?
+		     , PR_CATEGORY = ?
+		     , PR_BRAND = ?
+		     , PR_SIZE = ?
+		     , PR_COLOR = ?
+		     , PR_REVIEW_YOUTUBE = ?
+		     , PR_REVIEW_DETAIL = ?
+		     , PR_RELEASE_DATE = ?
+		     , PR_RELEASE_PRICE = ?
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="noImageProduct">
+		UPDATE P_REG 
+		   SET 
+		       PR_MODEL = ?
+		     , PR_NAME = ?
+		     , PR_CATEGORY = ?
+		     , PR_BRAND = ?
+		     , PR_SIZE = ?
+		     , PR_COLOR = ?
+		     , PR_REVIEW_YOUTUBE = ?
+		     , PR_REVIEW_DETAIL = ?
+		     , PR_RELEASE_DATE = ?
+		     , PR_RELEASE_PRICE = ?
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
 </properties>

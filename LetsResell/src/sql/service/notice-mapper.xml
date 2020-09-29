@@ -22,7 +22,7 @@
 					     , NOTICE_STATUS
 					 FROM NOTICE
 					WHERE NOTICE_STATUS = 'Y'
-					ORDER BY NOTICE_ENROLL_DATE DESC
+					ORDER BY NOTICE_NO DESC
 		            ) A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -55,7 +55,7 @@
 					FROM NOTICE
 					WHERE NOTICE_TITLE LIKE ?
 					AND NOTICE_STATUS = 'Y'
-					ORDER BY NOTICE_ENROLL_DATE DESC
+					ORDER BY NOTICE_NO DESC
 		            ) A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -76,7 +76,7 @@
 					FROM NOTICE
 					WHERE NOTICE_CONTENT LIKE ?
 					AND NOTICE_STATUS = 'Y'
-					ORDER BY NOTICE_ENROLL_DATE DESC
+					ORDER BY NOTICE_NO DESC
 		            ) A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -91,5 +91,22 @@
 		  FROM NOTICE
 		 WHERE NOTICE_NO = ?
 		   AND NOTICE_STATUS = 'Y'
+	</entry>
+	<entry key="deleteNotice">
+	    UPDATE NOTICE
+		   SET NOTICE_STATUS = 'N'
+		 WHERE NOTICE_NO = ?
+	</entry>
+	<entry key="insertNotice">
+		INSERT
+		  INTO NOTICE
+		VALUES
+		     (
+		        SEQ_NOTICE_NO.NEXTVAL
+		      , ?
+		      , ?
+		      , SYSDATE
+		      , DEFAULT
+		     )
 	</entry>
 </properties>

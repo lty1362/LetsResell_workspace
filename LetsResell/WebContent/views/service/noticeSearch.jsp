@@ -62,19 +62,19 @@
         #notice tr>th:nth-child(2){
             border-right: 1px solid white;
         }
-        #notice tr td:nth-child(1){
+        #notice tr td:nth-child(2){
             border-left: 0px;
             text-align: center;
             width: 30px;
         }
-        #notice tr td:nth-child(2){
+        #notice tr td:nth-child(3){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
             font-size: 0.9em;
             cursor:pointer;
         }
-        #notice tr td:nth-child(3){
+        #notice tr td:nth-child(4){
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
@@ -84,38 +84,6 @@
         }
         #notice a{
         	color:black;
-        }
-        #search{
-            margin-top: 50px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-            outline-offset:-2px;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
         }
 </style>
 </head>
@@ -144,6 +112,7 @@
 	                    </tr>
 	            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 			                <tr>
+			                	<td style="display:none;"><%=list.get(i).getNoticeNo() %></td>
 			                    <% int count = listCount-(currentPage*10-10); %>
 			                    <td><%= count-i %></td>
 			                    <td><%= list.get(i).getNoticeTitle() %></td>

@@ -85,6 +85,30 @@
             padding-left: 10px;
             cursor:pointer;
         }
+        .titleDiv{
+        	padding-left:25px;
+        	margin-bottom:5px;
+        }
+        .hideDiv{
+        	display:none; 
+        }
+        .hideDiv div{
+        	float:left;
+        }
+        .hideDiv div:nth-child(1){
+        	height:100%; 
+        	width:3%;
+        }
+        .hideDiv div:nth-child(2){
+        	height:100%; 
+        	width:97%;
+        }
+        .contentDiv{
+        	background:lightgray;
+        	height:100%;
+        	width:100%;
+        	padding-left:3px;
+        }
 </style>
 </head>
 <body>
@@ -97,13 +121,14 @@
 		    <div id="body_right">
 		    	<form action="FAQcategory.service#title_FAQ" method="post">
 		    		<input type="hidden" name="currentPage" value="1">
+		    		<input type="hidden" name="category" id="sendCategory">
 			    	<div id="title_FAQ">FAQ</div>
 		                <div id="category">
 		                    <input onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=1#title_FAQ';" type="button" value="전체">
-		                    <input type="submit" name="category" value="회원">
-		                    <input type="submit" name="category" value="결제">
-		                    <input type="submit" name="category" value="이벤트">
-		                    <input type="submit" name="category" value="기타">
+		                    <input onclick="user();" type="submit" value="회원">
+		                    <input onclick="cash();" type="submit" value="결제">
+		                    <input onclick="event1();" type="submit" value="이벤트">
+		                    <input onclick="etc1();" type="submit" value="기타">
 		                </div>
                 </form>
                 <div id="br_2">
@@ -122,10 +147,15 @@
 				                    <% int count = listCount-(currentPage*10-10); %>
 			                        <td><%= count-i %></td>
 				                    <td>
-		                            	<div><%= list.get(i).getFAQtitle() %></div>
-		                            	<p style="display:none; background:lightgray;">
-		                            		 ► <%= list.get(i).getFAQcontent() %>
-		                            	</p>
+		                            	<div class="titleDiv"><%= list.get(i).getFAQtitle() %></div>
+		                            	<div class="hideDiv">
+		                            		<div>
+		                            			► 
+		                            		</div>
+		                            		<div class="contentDiv">
+				                            	<%= list.get(i).getFAQcontent() %>
+		                            		</div>
+		                            	</div>
 		                            </td>
 				                </tr>
 			                <% } %>
@@ -172,17 +202,35 @@
 		<%@ include file= "../common/footer.jsp"%>
 	</div>
 	<script>
-        $(function(){
-            $("td>div").click(function(){
-                var p = $(this).next();
-                if(p.css("display") == "none"){
-                    $("td p").not($(this)).slideUp();
-                    p.slideDown();
-                }else{
-                    p.slideUp();
-                }
-            });
-        });
+		 	$(function(){
+		        $("td>div").click(function(){
+		            var p = $(this).next();
+		            if(p.css("display") == "none"){
+		                $(".hideDiv").not($(this)).slideUp();
+		                p.slideDown();
+		            }else{
+		                p.slideUp();
+		            }
+		        });
+		    });
+		 
+			// category
+	        function user(){
+	        	$("#sendCategory").val("user")
+	        };
+	        
+	        function cash(){
+	        	$("#sendCategory").val("cash")
+	        };
+	        
+	        function event1(){
+	        	$("#sendCategory").val("event")
+	        };
+	        
+	        function etc1(){
+	        	$("#sendCategory").val("etc")
+	        };
+		 
     </script>
 </body>
 </html>

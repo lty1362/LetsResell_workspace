@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>레츠리셀-상품이름</title>
 <link rel="stylesheet" href="/LetsResell/resources/css/product/noDataListView.css">
+<script src="/LetsResell/resources/js/product/noDataListView.js" rel="javascript"></script>
 </head>
 <body>
 <!-- header 추가 -->
@@ -58,13 +59,13 @@
                     <div id="sale_img">
 
                         <div id="sale_img1">
-                            <img src="" alt="img1" width="100%" height="100%">
+                            <img src="/LetsResell/resources/images/product/sample1.jpg" alt="img1" width="100%" height="100%" onclick="imgPop(this.src);">
                         </div>
                         <div id="sale_img2">
-                            <img src="" alt="img2" width="100%" height="100%">
+                            <img src="/LetsResell/resources/images/product/sample2.jpg" alt="img2" width="100%" height="100%" onclick="imgPop(this.src);">
                         </div>
                         <div id="sale_img3">
-                            <img src="" alt="img3" width="100%" height="100%">
+                            <img src="/LetsResell/resources/images/product/sample3.jpg" alt="img3" width="100%" height="100%" onclick="imgPop(this.src);">
                         </div>
 
                     </div>

@@ -283,7 +283,6 @@
 </style>
 </head>
 <body>
-<form action="test.do" method="get">
 <div id="wrap" style="height:1900px;">
          <%@ include file= "../common/header.jsp"%>
         <div id="body">
@@ -364,7 +363,7 @@
                             <tr>
                             	<th>발매 정보</th>
                             	<td>
-                            		발매일 : <input type="date" name="releaseDate"> &nbsp;&nbsp;&nbsp;발매가 : <input type="text" name="releasePrice">
+                            		발매일 : <input type="date" name="releaseDate" required> &nbsp;&nbsp;&nbsp;발매가 : <input type="text" name="releasePrice" required>
                             	</td>
                             </tr>
                             <tr>
@@ -377,14 +376,13 @@
                     </div>
                 </div>
 	            <div id=submit>
-	                <input type="submit" value="등록" onclick="return submit();">
+	                <input type="submit" value="등록" onclick="return check();">
 	            </div>
 	            </form>
             </div>
         </div>
        <%@ include file= "../common/footer.jsp"%>
     </div>
-</form>
     <script>
 	   	$(function(){
 	   		
@@ -436,6 +434,22 @@
 	   		$("#titleImg").css("display","block");
 	        
 	    }
+	   	
+	   	function check(){
+	   		if($("#hiddenCategory").val() == ""){
+	   			alert("분류를 선택하세요!");
+	   			return false;
+	   		}
+	   		if($("#hiddenBrand").val() == ""){
+	   			alert("브랜드를 선택하세요!");
+	   			return false;
+	   		}
+	   		if($("#color label").text() == ""){
+	   			alert("컬러를 선택하세요!");
+	   			return false;
+	   		}
+	   		
+	   	}
 	   	
     </script>
 </body>
