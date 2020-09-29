@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT 
+			   COUNT(*) LISTCOUNT
+		  FROM P_REG
+		 WHERE PR_STATUS='Y'
+	</entry>
+	
+	<entry key="searchList">
+		SELECT *
+				    FROM (
+				            SELECT 
+				                    ROWNUM RNUM
+				                    , A.*
+				              FROM (	
+			
+										SELECT 
+										        PR_IMG_URL || PR_IMAGE "TITLEIMG"
+										        , PR_NAME
+										        , PR_STATUS
+										    FROM P_REG
+										    JOIN P_IMG USING(PR_NO)
+										    WHERE PR_BRAND= ? 
+										    OR PR_NAME= ?
+									) A
+						)
+						WHERE RNUM BETWEEN ? AND ?  
+	</entry>
+	
+
+</properties>
