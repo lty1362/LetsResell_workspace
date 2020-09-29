@@ -33,9 +33,9 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Bid b = new Bid();
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		ArrayList<Bid> list = new MyPage_purchaseService().selectPurchaseList(b);
+		ArrayList<Bid> list = new MyPage_purchaseService().selectPurchaseList(userNo);
 		
 		request.setAttribute("list", list);
 		

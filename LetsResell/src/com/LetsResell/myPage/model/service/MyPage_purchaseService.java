@@ -10,11 +10,11 @@ import com.LetsResell.myPage.model.vo.*;
 
 public class MyPage_purchaseService {
 
-	public ArrayList<Bid> selectPurchaseList(Bid b) {
+	public ArrayList<Bid> selectPurchaseList(int userNo) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Bid> list = new MyPage_purchaseDao().selectPurchaseList(conn, b);
+		ArrayList<Bid> list = new MyPage_purchaseDao().selectPurchaseList(conn, userNo);
 		
 		close(conn);
 		

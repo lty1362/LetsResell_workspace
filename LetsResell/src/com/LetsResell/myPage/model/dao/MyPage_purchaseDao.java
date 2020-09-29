@@ -28,7 +28,7 @@ public class MyPage_purchaseDao {
 		}
 	}
 
-	public ArrayList<Bid> selectPurchaseList(Connection conn, Bid b) {
+	public ArrayList<Bid> selectPurchaseList(Connection conn, int userNo) {
 		
 		ArrayList<Bid> list = new ArrayList<>();
 		
@@ -41,7 +41,7 @@ public class MyPage_purchaseDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, b.getMemUserNo());
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
