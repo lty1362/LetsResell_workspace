@@ -122,49 +122,6 @@
         #productUpdate{
             text-align:right;
         }
-        #search{
-            margin-top: 50px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-            outline-offset:-2px;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
-        }
-        .modal-header{
-        	margin-top:70px;
-        	font-size:33px;
-        }
-        .modal-body button{
-        	width:120px;
-        	height:60px;
-        	font-size:23px;
-        	margin:20px;
-        	margin-bottom:40px;
-        }
 </style>
 </head>
 <body>
@@ -222,7 +179,7 @@
                     <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 
-                <form action="productSearch.admin" method="get">
+                <form action="productSearch.admin" method="post">
                 	<input type="hidden" name="currentPage" value="1">
 	                <div id="search"  align="center">
 	                    <select name="filter" id="filter">
@@ -290,7 +247,8 @@
     	$(function(){
    			$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
      		$("#productList>table tr td").not($(".ut")).click(function(){
-	   			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
+     			var code = $(this).siblings().eq(0).html();
+	   			location.href = "<%=contextPath%>/productDetail.admin?productCode="+code;
     		});
     	});
     	
@@ -303,7 +261,7 @@
 	    	    }
 	    	});
 	    	var checked = arr.join();
-	    	location.href="<%=contextPath%>/productDelete.admin?checked="+checked;
+	    	location.href="<%=contextPath%>/productMainDelete.admin?checked="+checked;
     	}
     </script>
 </body>

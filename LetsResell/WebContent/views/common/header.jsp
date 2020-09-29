@@ -37,18 +37,18 @@
 
 <!-- header_search 영역 -->
 <div id="header_search">
-    <form action="" id="header_search_form">
-
-        <div id="header_search_form_text">
-            <input type="search" name="search" placeholder="   Search">
-        </div>
-
-        <div id="header_search_form_btn">
-            <input type="submit" value="검색">
-        </div>
-
-    </form>
-</div>
+	    <form action="<%= request.getContextPath() %>/search.bo?currentPage=1" id="header_search_form" method="post">
+	
+	        <div id="header_search_form_text">
+	            <input type="search" name="search" placeholder="브랜드,종목명">
+	        </div>
+	
+	        <div id="header_search_form_btn">
+	            <input type="submit" value="검색">
+	        </div>
+	
+	    </form>
+	</div>
 
 <% if(loginUser == null) { %>
 <!-- 로그인 전 div -->

@@ -77,8 +77,23 @@ public class ProductService {
 		return result;
 	}
 	
+	public Admin_Product selectDetail(int pno) {
+		Connection conn = getConnection();
+		Admin_Product product = new ProductDao().selectDetail(conn, pno);
+		close(conn);
+		return product;
+	}
 	
-	
-	
+	public int updateProduct(Admin_Product p) {
+		Connection conn = getConnection();
+		int result = new ProductDao().updateProduct(conn, p);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 }

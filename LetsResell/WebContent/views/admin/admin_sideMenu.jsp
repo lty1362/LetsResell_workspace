@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.LetsResell.member.model.vo.Member" %>    
+<%
+	Member login = (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,6 +137,49 @@
     	background:rgb(74,74,74);
     	color:white;
     }
+   #search{
+   	margin-top: 50px;
+   	margin-bottom:10px;
+   }
+   #search>select{
+       height:40px;
+       width:100px;
+       border: 1px solid lightgray;
+       text-align-last: center;
+       font-size: 20px;
+   }
+   #search_in{
+       display:inline-block;
+       height: 40px;
+       width: 400px;
+       border: 1px solid lightgray;
+   }
+   #search_in>[type="search"]{
+       border:0px;
+       height: 95%;
+       width: 85%;
+      	padding-top:4px;
+
+   }
+   #search_in>[type="submit"]{
+       background: lightgray;
+       border: 0px;
+       height: 100%;
+       width: 15%;
+       font-weight: bold;
+       font-size:20px;
+   }
+   .modal-header{
+        	margin-top:70px;
+        	font-size:33px;
+        }
+        .modal-body button{
+        	width:120px;
+        	height:60px;
+        	font-size:23px;
+        	margin:20px;
+        	margin-bottom:40px;
+        }
 </style>
 </head>
 <body>
@@ -148,31 +195,33 @@
         	<a href="<%=request.getContextPath()%>/productMain.admin?currentPage=1">제품 조회</a>
         </div>
         <div id="menu4">
-        	<a href="<%=request.getContextPath()%>/dealMain.admin">∨ 결제관리</a>
+        	<a href="<%=request.getContextPath()%>/dealMain.admin?currentPage=1">∨ 결제관리</a>
         	<hr>
-        	<a href="<%=request.getContextPath()%>/dealMain.admin">결제 내역 조회</a>
+        	<a href="<%=request.getContextPath()%>/dealMain.admin?currentPage=1">결제 내역 조회</a>
         </div>
         <div id="menu3">
-        	<a href="<%=request.getContextPath()%>/noticeMain.admin">∨ 고객센터</a>
+        	<a href="<%=request.getContextPath()%>/noticeMain.admin?currentPage=1">∨ 고객센터</a>
             <hr>
             <div id="menu3List">
-	            <a href="<%=request.getContextPath()%>/noticeMain.admin">공지사항</a>
-	            <a href="<%=request.getContextPath()%>/FAQmain.admin">FAQ</a>
-	            <a href="<%=request.getContextPath()%>/inquiryMain.admin">1:1 문의</a>
-	            <a href="<%=request.getContextPath()%>/reportMain.admin">부정 판매자 신고</a>
+	            <a href="<%=request.getContextPath()%>/noticeMain.admin?currentPage=1">공지사항</a>
+	            <a href="<%=request.getContextPath()%>/FAQmain.admin?currentPage=1">FAQ</a>
+	            <a href="<%=request.getContextPath()%>/inquiryMain.admin?currentPage=1">1:1 문의</a>
+	            <a href="<%=request.getContextPath()%>/reportMain.admin?currentPage=1">부정 판매자 신고</a>
             </div>
         </div>
     </div>
     <script>
     	$(function(){
-    		var width = $(".pagingArea").css("width");
-     		if(width.length==4){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
-     		} else if(width.length==5){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
-     		} else if(width.length==6){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
-     		}
+    		if($(".pagingArea").is("div")){
+	    		var width = $(".pagingArea").css("width");
+	     		if(width.length==4){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
+	     		} else if(width.length==5){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+	     		} else if(width.length==6){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+	     		}
+    		}
     	});
     </script>
 </body>

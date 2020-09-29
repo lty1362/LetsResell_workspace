@@ -14,4 +14,133 @@
 		            ) A
 		        )
 	</entry>
+	<entry key="selectListCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM SALE
+	</entry>
+	<entry key="selectList">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT 
+		                    SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_NAME
+		                  , SALE_PRICE
+		                  , SALE_ENROLL_DATE
+					 FROM SALE
+					 ORDER BY SALE_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_saleCode">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM SALE
+		  WHERE SALE_NO LIKE ?
+	</entry>
+	<entry key="searchList_saleCode">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_NAME
+		                  , SALE_PRICE
+		                  , SALE_ENROLL_DATE
+					   FROM SALE
+					  WHERE SALE_NO LIKE ?
+					  ORDER BY SALE_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_productCode">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM SALE
+		  WHERE PR_NO LIKE ?
+	</entry>
+	<entry key="searchList_productCode">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_NAME
+		                  , SALE_PRICE
+		                  , SALE_ENROLL_DATE
+					   FROM SALE
+					  WHERE PR_NO LIKE ?
+					  ORDER BY SALE_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_name">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM SALE
+		  WHERE SALE_NAME LIKE ?
+	</entry>
+	<entry key="searchList_name">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_NAME
+		                  , SALE_PRICE
+		                  , SALE_ENROLL_DATE
+					   FROM SALE
+					  WHERE SALE_NAME LIKE ?
+					  ORDER BY SALE_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_user">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM SALE
+		  WHERE MEM_USER_NO LIKE ?
+	</entry>
+	<entry key="searchList_user">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_NAME
+		                  , SALE_PRICE
+		                  , SALE_ENROLL_DATE
+					   FROM SALE
+					  WHERE MEM_USER_NO LIKE ?
+					  ORDER BY SALE_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

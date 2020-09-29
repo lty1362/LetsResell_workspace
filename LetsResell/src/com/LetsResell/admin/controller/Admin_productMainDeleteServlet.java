@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.admin.model.service.ProductService;
 
-@WebServlet("/productDelete.admin")
-public class Admin_productDeleteServlet extends HttpServlet {
+@WebServlet("/productMainDelete.admin")
+public class Admin_productMainDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_productDeleteServlet() {
+    public Admin_productMainDeleteServlet() {
         super();
     }
 

@@ -39,7 +39,6 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			if(mr.getOriginalFileName("image") != null) {
 				image = mr.getFilesystemName("image");
 			}
-			System.out.println(image);
 			String productCode = mr.getParameter("productCode");
 			String productName = mr.getParameter("productName");
 			String category = mr.getParameter("category");

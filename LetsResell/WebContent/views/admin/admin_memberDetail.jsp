@@ -225,7 +225,7 @@
                                 <% for(int i = 0 ; i < saleList.size() ; i++){ %>
 	                                <tr>
 	                                    <td><%= saleList.get(i).getrNum() %></td>
-	                                    <td><%= saleList.get(i).getPRnum() %></td>
+	                                    <td><%= saleList.get(i).getPrNum()%></td>
 	                                    <td><%= saleList.get(i).getSaleName() %></td>
 	                                    <% 
 		                                    String comma = String.valueOf(saleList.get(i).getSalePrice());
@@ -251,7 +251,7 @@
                                 <% for(int i = 0 ; i < saleList.size() ; i++){ %>
 	                                <tr>
 	                                    <td><%= saleList.get(i).getrNum() %></td>
-	                                    <td><%= saleList.get(i).getPRnum() %></td>
+	                                    <td><%= saleList.get(i).getPrNum() %></td>
 	                                    <td><%= saleList.get(i).getSaleName() %></td>
 	                                    <% 
 		                                    String comma = String.valueOf(saleList.get(i).getSalePrice());
