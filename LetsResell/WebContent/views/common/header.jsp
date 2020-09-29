@@ -60,7 +60,7 @@
                  <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
              </div>
              <div style="padding-left:280px;">
-             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin';">관리자</button>
+             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin?currentPage=1';">관리자</button>
              </div>
              
          </div>
