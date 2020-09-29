@@ -19,7 +19,7 @@ public class MyPage_purchaseDao {
 	
 	public MyPage_purchaseDao() {
 		
-		String fileName = MyPage_purchaseDao.class.getResource("sql/MyPage/myPage-mapper2.xml").getPath();
+		String fileName = MyPage_purchaseDao.class.getResource("/sql/myPage/myPage-mapper2.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
@@ -35,7 +35,7 @@ public class MyPage_purchaseDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectListPurchaseList");
+		String sql = prop.getProperty("selectPurchaseList");
 		
 		try {
 			
@@ -47,17 +47,17 @@ public class MyPage_purchaseDao {
 			
 			while(rset.next()) {
 				
-				Bid B = new Bid();
-				B.setBidNo(rset.getInt("BID_NO"));
-				B.setBidPrice(rset.getInt("BID_PRICE"));
-				B.setBidStatus(rset.getString("BID_STATUS"));
-				B.setSaleName(rset.getString("SALE_NAME"));
-				B.setSaleCondition(rset.getString("SALE_CONDITION"));
-				B.setSaleSize(rset.getString("SALE_SIZE"));
-				B.setSaleCategory(rset.getString("SALE_CATEGORY"));
-				B.setPrImage(rset.getString("PR_IMAGE"));
+				Bid bid = new Bid();
+				bid.setBidNo(rset.getInt("BID_NO"));
+				bid.setBidPrice(rset.getInt("BID_PRICE"));
+				bid.setBidStatus(rset.getString("BID_STATUS"));
+				bid.setSaleName(rset.getString("SALE_NAME"));
+				bid.setSaleCondition(rset.getString("SALE_CONDITION"));
+				bid.setSaleSize(rset.getString("SALE_SIZE"));
+				bid.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				bid.setPrImage(rset.getString("PR_IMAGE"));
 				
-				list.add(B);
+				list.add(bid);
 				
 			}
 			

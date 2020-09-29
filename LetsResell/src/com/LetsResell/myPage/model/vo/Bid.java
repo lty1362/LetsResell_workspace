@@ -6,7 +6,7 @@ public class Bid {
 	
 	private int bidNo; 		//경매번호
 	private int saleNo; 	//상품판매번호
-	private int memUserNo;	//회원번호
+	private int memUserNo;	//구매자 = 회원번호
 	private int bidPrice;	//입찰가
 	private Date bidDate;	//입찰날짜
 	private int addressNo; 	//회원주소등록번호
