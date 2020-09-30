@@ -22,7 +22,7 @@ public class Admin_productCategoryDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("category");
 		String[] check = request.getParameter("checked").split(",");
-		int result = new ProductService().productDelete(check);
+		int result = new ProductService().deleteProduct(check);
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "삭제 성공!");
 			response.sendRedirect(request.getContextPath() + "/productCategory.admin?currentPage=1&category="+category);

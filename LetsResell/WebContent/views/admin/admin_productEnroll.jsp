@@ -24,7 +24,7 @@
 	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
 	    	display:none;
 	    }
-        #br_1{
+        #title{
             background: lightgray;
             height: 5%;
             border: 1px solid lightgray;
@@ -33,79 +33,68 @@
             font-weight:bold;
             padding-top:5px;
         }
-        #br_2{
-            height: 95%;
+        #registerWrap{
+            height: 1200px;
             border: 1px solid lightgray;
         }
-        #br_2_1{
-            height: 20%;
+        #registerImage{
+            height: 250px;
             padding: 20px;
         }
-        #br_2_1_1{
+        #registerImageForm{
         	height:100%;
         }
-        #br_2_2{
-            height: 80%;
-            padding: 20px;
-            padding-top: 0px;
+        #registerImage div{
+            float:left;
+            border:2px solid lightgray;
         }
-        #br_2_1>div{
-            float:left
+        #registerImageMain{
+        	width:40%;
+        	height:100%;
         }
-        #br_2_1>div:nth-child(1){
-            width:40%;
-            height: 100%;
-            background: black;
-            color: white;
-            font-size: 35px;
-            text-align: center;
-            padding-top: 2em;
+        #registerImageDetail{
+        	width:60%;
+        	height:100%;
         }
-        #br_2_1>div:nth-child(2){
-            width:60%;
-            height: 100%;
+        #registerImageDetail div{
+        	float:left;
         }
-        #br_2_1_2{
-        	padding-bottom:1px;
+        #registerImageDetail1{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table{
-            border-collapse: collapse;
-            height: 100%;
-            width: 100%;
+        #registerImageDetail2{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2 input{
-        	width:100%;
-        	height:40px;
+        #registerImageDetail3{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table td{
-            border: 1px solid black;
+        #registerImageDetail4{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table tr>td:nth-child(1){
-            background: lightgray;
-            font-weight: bold;
-            font-size: 20px;
-            text-align:center;
+        
+        #registerProduct{
+        	width:95%;
+        	margin:auto;
         }
-        #br_2_1_2>table tr>td:nth-child(2){
-        	padding-left:20px;
-        	padding-right:20px;
-        }
-        #br_2_2>table{
+        #registerProduct>table{
             width: 100%;
             height: 100%;
             border-collapse: collapse;
-
         }
-        #br_2_2>table *{
+        #registerProduct>table *{
             border: 1px solid black;
         }
-        #br_2_2>table th{
+        #registerProduct>table th{
             width: 20%;
             background: lightgray;
             text-align:center;
             font-size:20px;
         }
-        #br_2_2>table td{
+        #registerProduct>table td{
             padding-left: 15px;
         }
         #category>input{
@@ -223,17 +212,27 @@
         	width:98%;
         	height:40px;
         }
-        
+        input[name="productCode"]{
+        	width:98%;
+        	height:40px;
+        }
+        input[name="productName"]{
+        	width:98%;
+        	height:40px;
+        }
         textarea[name="reviewDetail"]{
         	width:100%;
         	height:100%;
         }
-        #table1>:nth-last-child(1)>:nth-last-child(2){
-            padding:5px;
+        #table1 tr{
+        	height:70px;
+        }
+        #table1 tr:nth-last-child(2){
+        	padding:5px;
             font-size:20px;
         }
-        #table1>:nth-last-child(1)>:nth-last-child(1){
-            height: 400px;
+        #table1 tr:nth-last-child(1){
+        	height:365px;
         }
         #submit{
         	width:98.3%;
@@ -253,19 +252,22 @@
         #footer{
         	margin-top:190px;
         }
-        
         .filebox label{
-	         display: inline-block;
 	         color: white;
 	         width:100%;
 	         height:100%;
-	         font-size: 40px;
-	         line-height: 160px;
-	         vertical-align: middle;
+	         text-align:center;
 	         background-color: black;
 	         cursor: pointer;
-	         border: 3px solid black;
-         } 
+         }
+         #main{
+         	line-height:200px;
+         	font-size:40px;
+         }
+         #registerImageDetail label{
+         	line-height:100px;
+         	font-size:25px;
+         }
         /* 파일 필드 숨기기 */
         .filebox input[type="file"]{
 	         position: absolute;
@@ -276,9 +278,6 @@
 	         overflow: hidden;
 	         clip:rect(0,0,0,0);
 	         border: 0;
-         }
-         #titleImg{
-         	display:none;
          }
 </style>
 </head>
@@ -291,31 +290,49 @@
 	        </div>
             <div id="body_right">
 	        <form action="productEnroll.admin" method="post" enctype="multipart/form-data">
-                <div id="br_1">신규 제품 등록</div>
-                <div id="br_2">
-                    <div id="br_2_1">
-                        <div id="br_2_1_1" class="filebox" style="padding:0px;">
+                <div id="title">신규 제품 등록</div>
+                <div id="registerWrap">
+                    <div id="registerImage">
+                        <div id="registerImageMain" class="filebox" style="padding:0px;">
                         	<img src="" id="titleImg" width="100%" height="100%">
-	                        <label for="imageRegister" id="abc">이미지 등록</label>
-	                     	<input type="file" name="image" id="imageRegister" onchange="loadImg(this,1);" required>
+	                        <label for="registerMainImage" id="main">메인 이미지 등록</label>
+	                     	<input type="file" name="image1" id="registerMainImage" onchange="loadImg(this,1);" required>
                         </div>
-                        <div id="br_2_1_2">
-                            <table>
-                                <tr>
-                                    <td>Model</td>
-                                    <td id="model"><input type="text" name="productCode" required></td>
-                                </tr>
-                                <tr>
-                                    <td>제품명</td>
-                                    <td><input type="text" name="productName" required></td>
-                                </tr>
-                            </table>
+                        <div id="registerImageDetail">
+	                        <div id="registerImageDetail1" class="filebox" style="padding:0px;">
+	                        	<img src="" id="detailImg1" width="100%" height="100%">
+		                        <label for="registerDetailImage1" id="detail1">상세 이미지 등록</label>
+		                     	<input type="file" name="image2" id="registerDetailImage1" onchange="loadImg(this,2);">
+	                        </div>
+	                        <div id="registerImageDetail2" class="filebox" style="padding:0px;">
+	                        	<img src="" id="detailImg2" width="100%" height="100%">
+		                        <label for="registerDetailImage2" id="detail2">상세 이미지 등록</label>
+		                     	<input type="file" name="image3" id="registerDetailImage2" onchange="loadImg(this,3);">
+	                        </div>
+	                        <div id="registerImageDetail3" class="filebox" style="padding:0px;">
+	                        	<img src="" id="detailImg3" width="100%" height="100%">
+		                        <label for="registerDetailImage3" id="detail3">상세 이미지 등록</label>
+		                     	<input type="file" name="image4" id="registerDetailImage3" onchange="loadImg(this,4);">
+	                        </div>
+	                        <div id="registerImageDetail4" class="filebox" style="padding:0px;">
+	                        	<img src="" id="detailImg4" width="100%" height="100%">
+		                        <label for="registerDetailImage4" id="detail4">상세 이미지 등록</label>
+		                     	<input type="file" name="image5" id="registerDetailImage4" onchange="loadImg(this,5);">
+	                        </div>
                         </div>
                     </div>
-                    <div id="br_2_2">
+                    <div id="registerProduct">
                         <table id="table1">
 	                        <input id="hiddenCategory" type="hidden" name="category">
 	                        <input id="hiddenBrand" type="hidden" name="brand">
+                            <tr>
+                                <th>Model</th>
+                                <td><input type="text" name="productCode" required></td>
+                            </tr>
+                            <tr>
+                                <th>제품명</th>
+                                <td><input type="text" name="productName" required></td>
+                            </tr>
                             <tr>
                                 <th>분류</th>
                                 <td id="category">
@@ -369,7 +386,7 @@
                             <tr>
                                 <th>제품 상세 리뷰</th>
                                 <td style="padding:0px;">
-                                    <textarea name="reviewDetail" cols="55" rows="10" style="border:none; margin-top:5px; padding:10px"></textarea>
+                                    <textarea name="reviewDetail" style="border:none; margin-top:5px; padding:10px"></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -386,6 +403,7 @@
     <script>
 	   	$(function(){
 	   		
+	   		// category, brand, color 요청값
 	   		$("#category>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$("#category>input").not($(this)).css({background:"black", color:"white"});
@@ -406,35 +424,103 @@
 	   			}
 	   		});
 	   		
+	   		// 이미지 등록
 	   		$("#titleImg").click(function(){
-                $("#imageRegister").click();
+                $("#registerMainImage").click();
             });
 	   		
+	   		$("#detailImg1").click(function(){
+	   			$("#registerDetailImage1").click();
+	   		});
+	   		
+	   		$("#detailImg2").click(function(){
+	   			$("#registerDetailImage2").click();
+	   		});
+	   		
+	   		$("#detailImg3").click(function(){
+	   			$("#registerDetailImage3").click();
+	   		});
+	   		
+	   		$("#detailImg4").click(function(){
+	   			$("#registerDetailImage4").click();
+	   		});
+	   		
+	   		// 첫 로딩 시 이미지 숨기기
+	   		$("#titleImg").css("display","none");
+	   		$("#detailImg1").css("display","none");
+	   		$("#detailImg2").css("display","none");
+	   		$("#detailImg3").css("display","none");
+	   		$("#detailImg4").css("display","none");
+	   		
+	   		// footer 위치 조정
 	   		$("#footer").css("margin-top","155px");
 	   		
 	   	});
 	   	
+	   	function test(){
+	   		console.log();
+	   	}
+	   	
+	   	// 미리보기
 	   	function loadImg(inputFile, num){
-	   		
-	   		$("#abc").css("display","none");
-	   		
+			
+   			if($("#registerMainImage").val()!=""){
+		   		$("#main").css("display","none");
+	   		}
+   			if($("#registerDetailImage1").val()!=""){
+		   		$("#detail1").css("display","none");
+	   		}
+   			if($("#registerDetailImage2").val()!=""){
+		   		$("#detail2").css("display","none");
+	   		}
+   			if($("#registerDetailImage3").val()!=""){
+		   		$("#detail3").css("display","none");
+	   		}
+   			if($("#registerDetailImage4").val()!=""){
+		   		$("#detail4").css("display","none");
+	   		}
+				   			
 	        if(inputFile.files.length == 1){
 	            var reader = new FileReader();              
 	            reader.readAsDataURL(inputFile.files[0])   
 	            reader.onload = function(e){                 
-	                switch(num){
-	                    case 1 : $("#titleImg").attr("src", e.target.result); break;
-	                }
+                switch(num){
+                    case 1 : $("#titleImg").attr("src", e.target.result); break;
+                    case 2 : $("#detailImg1").attr("src", e.target.result); break;
+                    case 3 : $("#detailImg2").attr("src", e.target.result); break;
+                    case 4 : $("#detailImg3").attr("src", e.target.result); break;
+                    case 5 : $("#detailImg4").attr("src", e.target.result); break;
+                }
 	            }
 	        }else{
-	                switch(num){
-	                    case 1 : $("#titleImg").attr("src", null); break;
-	                }
+                switch(num){
+                    case 1 : $("#titleImg").attr("src", null); break;
+                    case 2 : $("#detailImg1").attr("src", null); break;
+                    case 3 : $("#detailImg2").attr("src", null); break;
+                    case 4 : $("#detailImg3").attr("src", null); break;
+                    case 5 : $("#detailImg4").attr("src", null); break;
+                }
 	        }
-	   		$("#titleImg").css("display","block");
+	        
+	        if($("#registerMainImage").val()!=""){
+		        $("#titleImg").css("display","block");
+	   		}
+	        if($("#registerDetailImage1").val()!=""){
+		        $("#detailImg1").css("display","block");
+	   		}
+	        if($("#registerDetailImage2").val()!=""){
+		        $("#detailImg2").css("display","block");
+	   		}
+	        if($("#registerDetailImage3").val()!=""){
+		        $("#detailImg3").css("display","block");
+	   		}
+	        if($("#registerDetailImage4").val()!=""){
+		        $("#detailImg4").css("display","block");
+	   		}
 	        
 	    }
 	   	
+	   	// required
 	   	function check(){
 	   		if($("#hiddenCategory").val() == ""){
 	   			alert("분류를 선택하세요!");
@@ -448,7 +534,6 @@
 	   			alert("컬러를 선택하세요!");
 	   			return false;
 	   		}
-	   		
 	   	}
 	   	
     </script>

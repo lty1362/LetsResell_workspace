@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.LetsResell.service.model.vo.*" %>
+<% 
+	Report report = (Report)request.getAttribute("report");
+	int currentPage = (int)request.getAttribute("currentPage");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +12,10 @@
 <title>관리자페이지</title>
 </head>
 <style>
+		form{
+			width:100%;
+			height:100%;
+		}
         #menu3List>:nth-child(4){
 	        text-decoration-line: underline;
 	        font-weight: bold;
@@ -32,7 +41,7 @@
         }
         #content{
             width: 100%;
-            height:100%;
+            height:740px;
             border: 1px solid lightgray;
             margin-bottom: 20px;
         }
@@ -102,18 +111,20 @@
 
         #content_report{
             width: 94%;
-            height: 57%;
+            height: 400px;
             border: 1px solid lightgray;
             margin-top:6%;
+            margin-left: 3%;
             padding:10px;
         }
         #content_answer{
             width: 94%;
-            height: 10%;
+            height: 100px;
             border: 1px solid lightgray;
             font-size: 30px;
             margin-top:3%;
-            padding-top:10px;
+            margin-left: 3%;
+            padding-top:25px;
             padding-left:10px;
         }
         #update>input{
@@ -130,7 +141,7 @@
         }
 </style>
 <body>
-	<div id="wrap" style="height:1600px">
+	<div id="wrap" style="height:1600px;">
 		<%@ include file= "../common/header.jsp"%>
 		<div id="body">
 	            <div id="body_left">
@@ -138,34 +149,46 @@
 	            </div>
 	
 	            <div id="body_right">
-	            	<div id="title">
-                    	부정 판매자 신고
-                	</div>
-                <div id="content">
-                    <div id="content_title">
-                    	<div>(제목)</div>
-                    </div>
-                    <div id="content_category">
-                        <div id="category_big">
-                            <div>대분류</div>
-                            <div>결제</div>
-                        </div>
-                        <div id="category_small">
-                            <div>거래내역</div>
-                            <div>2020-05-12,에어조던1 (거래번호 : 1)</div>
-                        </div>
-                    </div>
-                    <div id="content_report">
-                    	(문의 내용)
-                    </div>
-                    <div id="content_answer">요청하신 접수가 처리되었습니다.</div>
-                </div>
-                <div id="update" align="right">
-                    <input type="submit" value="처리 완료">
-                </div>
+	            	<form action="updateReport.admin" method="post">
+	            		<input type="hidden" name="rno" value="<%=report.getReportNo()%>">
+	            		<input type="hidden" name="currentPage" value="<%=currentPage%>">
+		            	<div id="title">
+	                    	부정 판매자 신고
+	                	</div>
+		                <div id="content">
+		                    <div id="content_title">
+		                    	<div><%=report.getReportTitle() %></div>
+		                    </div>
+		                    <div id="content_category">
+		                        <div id="category_big">
+		                            <div>대분류</div>
+		                            <div><%=report.getReportCategory()%></div>
+		                        </div>
+		                        <div id="category_small">
+		                            <div>거래내역</div>
+		                            <div><%=report.getSaleNo()%></div>
+		                        </div>
+		                    </div>
+		                    <div id="content_report">
+		                    	<%=report.getReportContent() %>
+		                    </div>
+		                    <div id="content_answer">
+		                    	<%if(report.getReportStatus().equals("Y")){ %>
+		                    		요청하신 접수가 처리되었습니다.
+		                    	<%}else{ %>
+		                    	<%} %>
+		                    </div>
+		                </div>
+		                <div id="update" align="right">
+		                    <input type="submit" value="처리 완료">
+		                </div>
+                	</form>
 	        	</div>
-		</div>
+			</div>
 	    <%@ include file= "../common/footer.jsp"%>
 	</div>
+	<script>
+		$("#footer").css("margin-top","50px");
+	</script>
 </body>
 </html>

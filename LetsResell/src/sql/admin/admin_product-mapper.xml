@@ -147,8 +147,7 @@
 		  INTO P_REG
 		VALUES
 		     (
-		        SEQ_P_REG_NO.NEXTVAL
-		      , ?
+		        SEQ_P_REG.NEXTVAL
 		      , ?
 		      , ?
 		      , ?
@@ -162,6 +161,19 @@
 		      , ?
 		      , DEFAULT
 		      , DEFAULT
+		     )
+	</entry>
+	<entry key="insertProductImage">
+		INSERT 
+		  INTO P_IMG
+		VALUES 
+		     (
+		       SEQ_P_IMG.NEXTVAL
+		     , SEQ_P_REG.CURRVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
 		     )
 	</entry>
 	<entry key="selectDetail">

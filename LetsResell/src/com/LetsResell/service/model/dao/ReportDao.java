@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -150,5 +151,104 @@ public class ReportDao {
 		}
 		return result;
 	}
+	
+	public int selectReportAllCount(Connection conn) {
+		int result = 0;
+		Statement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReportAllCount");
+		try {
+			pstmt = conn.createStatement();
+			rset = pstmt.executeQuery(sql);
+			if(rset.next()) {
+				result = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public ArrayList<Report> selectReportAll(Connection conn, PageInfo pi){
+		ArrayList<Report> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReportAll");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1 ;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Report(rset.getInt(2),
+						   rset.getInt(3),
+						   rset.getInt(4),
+						   rset.getString(5),
+						   rset.getString(6),
+						   rset.getString(7),
+						   rset.getDate(8),
+						   rset.getString(9)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public Report selectDetailUpdate(Connection conn, int rno) {
+		Report report = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetailUpdate");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				report = new Report(rset.getInt(1),
+						   rset.getInt(2),
+						   rset.getInt(3),
+						   rset.getString(4),
+						   rset.getString(5),
+						   rset.getString(6),
+						   rset.getDate(7),
+						   rset.getString(8));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return report;
+	}
+	
+	public int updateReportAnswer(Connection conn, int rno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReportAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
 	
 }

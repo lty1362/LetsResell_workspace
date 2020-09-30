@@ -1,11 +1,15 @@
 package com.LetsResell.admin.model.service;
 
-import static com.LetsResell.template.JDBCTemplate.*;
+import static com.LetsResell.template.JDBCTemplate.close;
+import static com.LetsResell.template.JDBCTemplate.commit;
+import static com.LetsResell.template.JDBCTemplate.getConnection;
+import static com.LetsResell.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.LetsResell.admin.model.dao.ProductDao;
+import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_PageInfo;
 import com.LetsResell.admin.model.vo.Admin_Product;
 
@@ -53,9 +57,9 @@ public class ProductService {
 		return list;
 	}
 	
-	public int productDelete(String[] check) {
+	public int deleteProduct(String[] check) {
 		Connection conn = getConnection();
-		int result = new ProductDao().productDelete(conn, check);
+		int result = new ProductDao().deleteProduct(conn, check);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -65,16 +69,17 @@ public class ProductService {
 		return result;
 	}
 	
-	public int insertProduct(Admin_Product p) {
+	public int insertProduct(Admin_Product p, ArrayList<Admin_Image> list) {
 		Connection conn = getConnection();
-		int result = new ProductDao().insertProduct(conn, p);
-		if(result > 0) {
+		int result1 = new ProductDao().insertProduct(conn, p);
+		int result2 = new ProductDao().insertProductImage(conn, list);
+		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		close(conn);
-		return result;
+		return result1 * result2;
 	}
 	
 	public Admin_Product selectDetail(int pno) {

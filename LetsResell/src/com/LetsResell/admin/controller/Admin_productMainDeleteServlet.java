@@ -20,7 +20,7 @@ public class Admin_productMainDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] check = request.getParameter("checked").split(",");
-		int result = new ProductService().productDelete(check);
+		int result = new ProductService().deleteProduct(check);
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "삭제 성공!");
 			response.sendRedirect(request.getContextPath() + "/productMain.admin?currentPage=1");

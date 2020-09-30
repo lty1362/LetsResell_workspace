@@ -61,4 +61,37 @@ public class ReportService {
 		return result;
 	}
 	
+	public int selectReportAllCount() {
+		Connection conn = getConnection();
+		int listCount = new ReportDao().selectReportAllCount(conn);
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Report> selectReportAll(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Report> list = new ReportDao().selectReportAll(conn, pi);
+		close(conn);
+		return list;
+	}
+	
+	public Report selectDetailUpdate(int rno) {
+		Connection conn = getConnection();
+		Report report = new ReportDao().selectDetailUpdate(conn, rno);
+		close(conn);
+		return report;
+	}
+	
+	public int updateReportAnswer(int rno) {
+		Connection conn = getConnection();
+		int result = new ReportDao().updateReportAnswer(conn, rno);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 }

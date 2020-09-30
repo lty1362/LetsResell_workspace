@@ -1,11 +1,8 @@
 package com.LetsResell.admin.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.LetsResell.admin.model.service.ProductService;
+import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_Product;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -31,14 +29,31 @@ public class Admin_productEnrollServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		if(ServletFileUpload.isMultipartContent(request)) {
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/admin/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/product/");
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
 			
-			String image="";
-			if(mr.getOriginalFileName("image") != null) {
-				image = mr.getFilesystemName("image");
+			ArrayList<Admin_Image> list = new ArrayList<>();
+			for(int i = 1 ; i <= 5 ; i++) {
+				String key = "image" + i;
+				if(mr.getOriginalFileName(key) != null) {
+					Admin_Image img = new Admin_Image();
+					img.setProductImageOriginName(mr.getOriginalFileName(key));
+					img.setProductImageChangeName(mr.getFilesystemName(key));
+					img.setProductImgUrl("resources/images/product/");
+					if(i == 1) {
+						img.setFileLevel(1);
+					}else {
+						img.setFileLevel(2);
+					}
+					
+					list.add(img);
+				}
 			}
+			for(Admin_Image a : list) {
+				System.out.println(a);
+			}
+			
 			String productCode = mr.getParameter("productCode");
 			String productName = mr.getParameter("productName");
 			String category = mr.getParameter("category");
@@ -61,7 +76,6 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			int releasePrice = Integer.parseInt(mr.getParameter("releasePrice"));
 			
 			Admin_Product p = new Admin_Product();
-			p.setPRimage(image);
 			p.setPRmodel(productCode);
 			p.setPRname(productName);
 			p.setPRcategory(category);
@@ -73,11 +87,11 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			p.setPRreleaseDate(d);
 			p.setPRreleasePrice(releasePrice);
 			
-			int result = new ProductService().insertProduct(p);
+			int result = new ProductService().insertProduct(p, list);
 			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "제품 등록 성공!!");
-				response.sendRedirect(request.getContextPath()+"/productMain.admin?currentPage=1");
+			response.sendRedirect(request.getContextPath()+"/productMain.admin?currentPage=1");
 			}else {
 				request.getSession().setAttribute("alertMsg", "제품 등록 실패..");
 				response.sendRedirect(request.getContextPath()+"/productMain.admin?currentPage=1");

@@ -59,7 +59,6 @@ public class Admin_productModifyServlet extends HttpServlet {
 			int pno = Integer.parseInt(mr.getParameter("pno"));
 			
 			Admin_Product p = new Admin_Product();
-			p.setPRimage(image);
 			p.setPRmodel(productCode);
 			p.setPRname(productName);
 			p.setPRcategory(category);

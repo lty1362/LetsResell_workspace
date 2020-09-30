@@ -78,4 +78,46 @@
 		      , DEFAULT
 		     )
 	</entry>
+	<entry key="selectReportAllCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM REPORT
+	</entry>
+	<entry key="selectReportAll">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		            SELECT 
+					       REPORT_NO
+					     , SALE_NO
+					     , REPORT_WRITER
+					     , REPORT_CATEGORY
+					     , REPORT_TITLE
+					     , REPORT_CONTENT
+					     , REPORT_ENROLL_DATE
+					     , REPORT_STATUS
+					  FROM REPORT
+					ORDER BY REPORT_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectReportAllCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM REPORT
+	</entry>
+	<entry key="selectDetailUpdate">
+		SELECT *
+		  FROM REPORT
+		 WHERE REPORT_NO = ?
+	</entry>
+	<entry key="updateReportAnswer">
+		UPDATE REPORT
+		   SET REPORT_STATUS = 'Y'
+		 WHERE REPORT_NO = ?
+	</entry>
 </properties>

@@ -23,7 +23,7 @@ public class Admin_productSearchDeleteServlet extends HttpServlet {
 		String filter = request.getParameter("filter");
 		String search = request.getParameter("search");
 		String[] check = request.getParameter("checked").split(",");
-		int result = new ProductService().productDelete(check);
+		int result = new ProductService().deleteProduct(check);
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "삭제 성공!");
 			response.sendRedirect(request.getContextPath() + "/productSearch.admin?currentPage=1&filter="+filter+"&search="+search);

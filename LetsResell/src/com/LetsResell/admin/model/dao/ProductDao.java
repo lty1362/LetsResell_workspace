@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_PageInfo;
 import com.LetsResell.admin.model.vo.Admin_Product;
 
@@ -70,12 +71,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -131,12 +131,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -210,12 +209,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -227,7 +225,7 @@ private Properties prop = new Properties();
 		return list;
 	}
 	
-	public int productDelete(Connection conn, String[] check) {
+	public int deleteProduct(Connection conn, String[] check) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteProduct");
@@ -255,19 +253,41 @@ private Properties prop = new Properties();
 		String sql = prop.getProperty("insertProduct");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, p.getPRimage());
-			pstmt.setString(2, p.getPRmodel());
-			pstmt.setString(3, p.getPRname());
-			pstmt.setString(4, p.getPRcategory());
-			pstmt.setString(5, p.getPRbrand());
-			pstmt.setString(6, p.getPRsize());
-			pstmt.setString(7, p.getPRcolor());
-			pstmt.setString(8, p.getPRreviewYoutube());
-			pstmt.setString(9, p.getPRreviewDetail());
-			pstmt.setDate(10, p.getPRreleaseDate());
-			pstmt.setInt(11, p.getPRreleasePrice());
-			
+			pstmt.setString(1, p.getPRmodel());
+			pstmt.setString(2, p.getPRname());
+			pstmt.setString(3, p.getPRcategory());
+			pstmt.setString(4, p.getPRbrand());
+			pstmt.setString(5, p.getPRsize());
+			pstmt.setString(6, p.getPRcolor());
+			pstmt.setString(7, p.getPRreviewYoutube());
+			pstmt.setString(8, p.getPRreviewDetail());
+			pstmt.setDate(9, p.getPRreleaseDate());
+			pstmt.setInt(10, p.getPRreleasePrice());
 			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertProductImage(Connection conn, ArrayList<Admin_Image> list) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProductImage");
+		try {
+			for(Admin_Image at : list) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, at.getProductImgUrl());
+				pstmt.setString(2, at.getProductImageOriginName());
+				pstmt.setString(3, at.getProductImageChangeName());
+				pstmt.setInt(4, at.getFileLevel());
+				result = pstmt.executeUpdate();
+				if(result == 0) {
+					return 0;
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -295,12 +315,11 @@ private Properties prop = new Properties();
 						,rset.getString(7)
 						,rset.getString(8)
 						,rset.getString(9)
-						,rset.getString(10)
+						,rset.getDate(10)
 						,rset.getDate(11)
-						,rset.getDate(12)
+						,rset.getInt(12)
 						,rset.getInt(13)
-						,rset.getInt(14)
-						,rset.getString(15));
+						,rset.getString(14));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -314,32 +333,7 @@ private Properties prop = new Properties();
 	public int updateProduct(Connection conn, Admin_Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "";
-		if(!p.getPRimage().equals("")) {
-			sql = prop.getProperty("updateProduct");
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, p.getPRimage());
-				pstmt.setString(2, p.getPRmodel());
-				pstmt.setString(3, p.getPRname());
-				pstmt.setString(4, p.getPRcategory());
-				pstmt.setString(5, p.getPRbrand());
-				pstmt.setString(6, p.getPRsize());
-				pstmt.setString(7, p.getPRcolor());
-				pstmt.setString(8, p.getPRreviewYoutube());
-				pstmt.setString(9, p.getPRreviewDetail());
-				pstmt.setDate(10, p.getPRreleaseDate());
-				pstmt.setInt(11, p.getPRreleasePrice());
-				pstmt.setInt(12, p.getPRno());
-				
-				result = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-		} else {
-			sql = prop.getProperty("noImageProduct");
+		String sql = prop.getProperty("noImageProduct");
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, p.getPRmodel());
@@ -360,7 +354,6 @@ private Properties prop = new Properties();
 			} finally {
 				close(pstmt);
 			}
-		}
 		return result;
 	}
 	

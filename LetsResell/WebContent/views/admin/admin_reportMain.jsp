@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.service.model.vo.*" %>
+<%
+	ArrayList<Report> list = (ArrayList<Report>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int pageLimit = pi.getPageLimit();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	int boardLimit = pi.getBoardLimit();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,10 +85,10 @@
             border-right: 0px;
             padding: 7px;
             padding-left: 10px;
-            width: 42%;
+            width: 30%;
         }
         #report tr td:nth-child(4){
-            width: 14%;
+            width: 26%;
         }
         #report tr td:nth-child(5){
             width: 18%;
@@ -95,7 +108,7 @@
 </head>
 <body>
     <div id="wrap">
-        <div id="header"></div>
+        <%@ include file="../common/header.jsp" %>
         <div id="body">
             <div id="body_left">
             	<%@ include file="admin_sideMenu.jsp" %>
@@ -105,57 +118,69 @@
                     부정 판매자 신고
                 </div>
                 <table id="report">
-                    <tr>
-                        <th>No</th>
-                        <th>분류</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>답변 상태</th>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>결제</td>
-                        <td><a href="<%=request.getContextPath()%>/views/admin/admin_reportDetail.jsp">(제목)</a></td>
-                        <td>(아이디)</td>
-                        <td>2020-05-31</td>
-                        <td>처리 대기</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>기타</td>
-                        <td>(제목)</td>
-                        <td>(아이디)</td>
-                        <td>2020-05-31</td>
-                        <td>처리 대기</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>회원</td>
-                        <td>(제목)</td>
-                        <td>(아이디)</td>
-                        <td>2020-05-31</td>
-                        <td>처리 완료</td>
-                    </tr>
+                    <% if(list.isEmpty()){ %>
+		            	<tr>
+		            		<td colspan="5">조회된 리스트가 없습니다.</td>
+		            	</tr>
+            		<% } else {%>
+	                    <tr>
+	                        <th>No</th>
+	                        <th>분류</th>
+	                        <th>제목</th>
+	                        <th>작성자</th>
+	                        <th>작성일</th>
+	                        <th>답변 상태</th>
+	                    </tr>
+	            		<% for(int i = 0 ; i < list.size() ; i++){ %>
+			                <tr>
+			                    <td><%=list.get(i).getReportNo()%></td>
+                                <td><%=list.get(i).getReportCategory()%></td>
+                                <td><%=list.get(i).getReportTitle() %></td>
+                                <td><%=list.get(i).getReportWriter()%>@naver.com</td>
+                                <td><%=list.get(i).getReportEnrollDate()%></td>
+                                <%if(list.get(i).getReportStatus().equals("Y")){ %>
+                                	<td style="color:gray;">답변 완료</td>
+                                <%} else{%>
+                                	<td>답변 대기</td>
+                                <% }%>
+			                </tr>
+		                <% } %>
+            		<% } %>
                 </table>
             	<div id="bigPageArea">
-	                <div id="pages"  align="center">
-	                    <table>
-	                        <tr>
-	                            <th>
-	                                <
-	                            </th>
-	                            <th style="background: rgb(74, 74, 74); color:white">1</th>
-	                            <th>
-	                                >
-	                            </th>
-	                        </tr>
-	                    </table>
-	                </div>
-	            </div>
+                    <div class="pagingArea" align="center">
+			            <%if(currentPage == 1){ %>
+			            	<button>&lt;</button>
+			            <% } else { %>
+			           		<button onclick="location.href='<%=contextPath%>/reportMain.admin?currentPage=<%=currentPage-1%>#title';">&lt;</button>
+			            <% } %>
+			            
+				            <% for(int p = startPage; p <= endPage ; p++){ %>
+				            	<% if(p != currentPage){ %>
+				            	<button onclick="location.href='<%=contextPath%>/reportMain.admin?currentPage=<%=p%>#title';"><%= p %></button>
+				            	<% } else { %>
+				            	<button disabled><%= p %></button>
+				            	<% } %>
+				            <% } %>
+		            
+			            <%if(currentPage == maxPage){ %>
+			            	<button>&gt;</button>
+			            <% } else {%>
+			            	<button onclick="location.href='<%=contextPath%>/reportMain.admin?currentPage=<%=currentPage+1%>#title';">&gt;</button>
+			            <% } %>
+			        </div>
+			    </div>
+
             </div>
         </div>
-        <div id="footer"></div>
+        <%@ include file="../common/footer.jsp" %>
     </div>
+    <script>
+    	$("#report tr").not("#report tr:first").hover().css("cursor","pointer");
+    	$("#report tr").not("#report tr:first").click(function(){
+    		var rno = $(this).children().eq(0).html();
+    		location.href="<%=contextPath%>/updateReportForm.admin?currentPage=<%=currentPage%>&rno="+rno;
+    	});
+    </script>
 </body>
 </html>

@@ -83,4 +83,65 @@
 		      , NULL
 		     )
 	</entry>
+	<entry key="selectInquiryAllCount">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM INQUIRY
+	</entry>
+	<entry key="selectInquiryAll">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		            SELECT 
+					       INQUIRY_NO
+					     , INQUIRY_WRITER
+					     , INQUIRY_CATEGORY_BIG
+					     , INQUIRY_CATEGORY_SMALL
+					     , INQUIRY_TITLE
+					     , INQUIRY_CONTENT
+					     , INQUIRY_ENROLL_DATE
+					     , INQUIRY_STATUS
+					     , INQUIRY_ANSWER
+					     , INQUIRY_ANSWER_DATE
+					 FROM INQUIRY
+					ORDER BY INQUIRY_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectDetailUpdate">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		            SELECT 
+					       INQUIRY_NO
+					     , INQUIRY_WRITER
+					     , INQUIRY_CATEGORY_BIG
+					     , INQUIRY_CATEGORY_SMALL
+					     , INQUIRY_TITLE
+					     , INQUIRY_CONTENT
+					     , INQUIRY_ENROLL_DATE
+					     , INQUIRY_STATUS
+					     , INQUIRY_ANSWER
+					     , INQUIRY_ANSWER_DATE
+					 FROM INQUIRY
+					WHERE INQUIRY_NO = ?
+					ORDER BY INQUIRY_ENROLL_DATE DESC
+		            ) A
+		        )
+	</entry>
+	<entry key="updateInquiryAnswer">
+		UPDATE INQUIRY
+		   SET 
+		       INQUIRY_ANSWER = ?
+		     , INQUIRY_ANSWER_DATE = SYSDATE
+		     , INQUIRY_STATUS = 'Y'
+		 WHERE INQUIRY_NO = ?
+	</entry>
 </properties>
