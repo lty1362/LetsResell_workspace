@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="searchProduct">
+		SELECT
+		       PR_NO
+		     , PR_MODEL
+		     , PR_NAME
+		     , PR_RELEASE_PRICE
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM P_REG PR
+		  JOIN P_IMG PI USING(PR_NO)
+		 WHERE PR.PR_NAME LIKE ?
+		   AND PR.PR_STATUS = 'Y'
+		   AND PI.PR_FILE_LEVEL = '1'
+		 ORDER BY PR.PR_NO DESC
+	</entry>
+	<entry key="selectListCount">
+		SELECT COUNT(*)
+		  FROM P_REG
+		 WHERE PR_STATUS = 'Y';
+	</entry>
+</properties>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.LetsResell.member.model.vo.Member" %>    
 <%
+	String contextPath = request.getContextPath();
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
@@ -36,7 +37,7 @@
 
 <!-- header_search 영역 -->
 <div id="header_search">
-    <form action="<%= request.getContextPath() %>/search.do" id="header_search_form">
+    <form action="<%= request.getContextPath() %>/searchProduct.do" id="header_search_form" method="GET">
 
         <div id="header_search_form_text">
             <input type="search" name="search" placeholder="   Product o.o">

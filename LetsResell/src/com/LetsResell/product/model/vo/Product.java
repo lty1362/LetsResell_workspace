@@ -4,30 +4,29 @@ import java.sql.Date;
 
 public class Product {
 	
-	private int prNo;
-	private String prImage;
-	private String prModel;
-	private String prName;
-	private String prCategory;
-	private String prBrand;
-	private String prSize;
-	private String prColor;
-	private String prReviewYoutube;
-	private String prReviewDetail;
-	private Date prEnrollDate;
-	private Date prReleaseDate;
-	private int prReleasePrice;
-	private int prHits;
-	private String prStatus;
+	private int prNo;					// 제품 번호
+	private String prModel;				// 제품 모델 명
+	private String prName;				// 제품 이름
+	private String prCategory;			// 제품 카테고리
+	private String prBrand;				// 제품 브랜드
+	private String prSize;				// 제품 사이즈
+	private String prColor;				// 제품 색상
+	private String prReviewYoutube;		// 제품 유튜브 리뷰
+	private String prReviewDetail;		// 제품 상세 설명
+	private Date prEnrollDate;			// 제품 등록일
+	private Date prReleaseDate;			// 제품 발매일
+	private int prReleasePrice;			// 제품 발매가
+	private int prHits;					// 제품 조회수
+	private String prStatus;			// 제품 상태
+	private String titleImg;			// 제품 대표 이미지
 	
 	public Product() {}
 
-	public Product(int prNo, String prImage, String prModel, String prName, String prCategory, String prBrand,
-			String prSize, String prColor, String prReviewYoutube, String prReviewDetail, Date prEnrollDate,
-			Date prReleaseDate, int prReleasePrice, int prHits, String prStatus) {
+	public Product(int prNo, String prModel, String prName, String prCategory, String prBrand, String prSize,
+			String prColor, String prReviewYoutube, String prReviewDetail, Date prEnrollDate, Date prReleaseDate,
+			int prReleasePrice, int prHits, String prStatus, String titleImg) {
 		super();
 		this.prNo = prNo;
-		this.prImage = prImage;
 		this.prModel = prModel;
 		this.prName = prName;
 		this.prCategory = prCategory;
@@ -41,6 +40,16 @@ public class Product {
 		this.prReleasePrice = prReleasePrice;
 		this.prHits = prHits;
 		this.prStatus = prStatus;
+		this.titleImg = titleImg;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [prNo=" + prNo + ", prModel=" + prModel + ", prName=" + prName + ", prCategory=" + prCategory
+				+ ", prBrand=" + prBrand + ", prSize=" + prSize + ", prColor=" + prColor + ", prReviewYoutube="
+				+ prReviewYoutube + ", prReviewDetail=" + prReviewDetail + ", prEnrollDate=" + prEnrollDate
+				+ ", prReleaseDate=" + prReleaseDate + ", prReleasePrice=" + prReleasePrice + ", prHits=" + prHits
+				+ ", prStatus=" + prStatus + ", titleImg=" + titleImg + "]";
 	}
 
 	public int getPrNo() {
@@ -49,14 +58,6 @@ public class Product {
 
 	public void setPrNo(int prNo) {
 		this.prNo = prNo;
-	}
-
-	public String getPrImage() {
-		return prImage;
-	}
-
-	public void setPrImage(String prImage) {
-		this.prImage = prImage;
 	}
 
 	public String getPrModel() {
@@ -163,14 +164,12 @@ public class Product {
 		this.prStatus = prStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [prNo=" + prNo + ", prImage=" + prImage + ", prModel=" + prModel + ", prName=" + prName
-				+ ", prCategory=" + prCategory + ", prBrand=" + prBrand + ", prSize=" + prSize + ", prColor=" + prColor
-				+ ", prReviewYoutube=" + prReviewYoutube + ", prReviewDetail=" + prReviewDetail + ", prEnrollDate="
-				+ prEnrollDate + ", prReleaseDate=" + prReleaseDate + ", prReleasePrice=" + prReleasePrice + ", prHits="
-				+ prHits + ", prStatus=" + prStatus + "]";
+	public String getTitleImg() {
+		return titleImg;
 	}
-	
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
 	
 }
