@@ -21,6 +21,11 @@
 		margin: 10px;
 	}
 	
+	.div_info{
+		margin: 10px;
+		font-size: 12px;
+	}
+	
 	/* 프로필 영역 css */
 	#div1 {
 		border: 2px solid gray;
@@ -35,9 +40,6 @@
 		left: 20px;
 	}
 	#iconStyle {
-		border: 1px solid black;
-		width: 100px;
-		height: 100px;
 		position: absolute;
 		float: left;
 		left: 20px;
@@ -51,6 +53,10 @@
 	}
 	
 	/* 테이블 스타일 */
+	#table_info {
+		text-align: center;
+	}
+	
 	.cardInfo-edit-td, .addressInfo-edit-td {
 		font-size: 13px;
 		font-weight: lighter;

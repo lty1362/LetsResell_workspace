@@ -13,6 +13,13 @@
 <%-- 비밀번호 변경 기능 수정, 회원 탈퇴 기능 추가 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.LetsResell.member.model.vo.Member" %>
+<%@ page import="com.LetsResell.myPage.model.vo.*" %>
+<%
+	ArrayList<Address> addressList = (ArrayList<Address>)request.getAttribute("addressList");
+	ArrayList<Card> cardList = (ArrayList<Card>)request.getAttribute("cardList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +54,8 @@ pageEncoding="UTF-8"%>
 	<%
 		int userNo = loginUser.getUserNo();
 		String userId = loginUser.getUserId();
+		String userName = loginUser.getName();
+		String userPhone = loginUser.getPhone();
 		String userPwd = loginUser.getUserPwd();
 	%>
 	<div id="wrap">
@@ -55,36 +64,25 @@ pageEncoding="UTF-8"%>
 			<div id="div1">
 				<div id="information">
 					<table>
-						<td><h4>프로필&nbsp;&nbsp;&nbsp;&nbsp;</h4></td>
-						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#memberInfo-edit">프로필 수정</button></td>
-						<td>&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#password-edit">비밀번호 변경</button></td>
-						<td>&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#mem-out">탈퇴하기</button></td>
+						<td><h4>프로필</h4></td>
+						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#password-edit">비밀번호 변경</button></td>
+						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#mem-out">탈퇴하기</button></td>
 					</table>
 				</div>
-				<span id="iconStyle">프로필icon영역</span>
+				<span id="iconStyle">
+					<img src="resources/images/admin/user.png" width="100px" height="100px">
+				</span>
 				<span id="informationTable">
-					<table>
+					<table id="table_info">
 						<tr>
-							<td>계정&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-							</td>
-							<td>이름&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-							</td>
-							<td>핸드폰 번호&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;
-							</td>
+							<td width="250">계정</td>
+							<td width="130">이름</td>
+							<td width="200">핸드폰 번호</td>
 						</tr>
 						<tr>
-							<td>계정1</td>
-							<td>이름1</td>
-							<td>핸드폰번호1</td>
+							<td><%= userId %></td>
+							<td><%= userName %></td>
+							<td><%= userPhone %></td>
 						</tr>
 					</table>
 				</span>
@@ -97,10 +95,19 @@ pageEncoding="UTF-8"%>
 		<div class="div2">
 			<span class="div2_titleFont">카드 등록 정보</span>
 			&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#cardInfo-edit">등록</button>
-			&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">삭제</button>
+			&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteCard">삭제</button>
 		</div>
-		<div class="div2">
-			카드 등록 정보 표시
+		<div class="div_info">
+			<%if(cardList.isEmpty()) { %>
+				등록된 카드가 없습니다.
+			<% }else {%>
+				<% for(Card card : cardList) { %>
+				<table>
+	                <tr><td><%= card.getCardName() %></td></tr>
+	                <tr><td><%= card.getCardNumber() %></td></tr>
+                </table>
+            	<% } %>
+			<% } %>
 		</div>
 	</div>
 	
@@ -109,10 +116,22 @@ pageEncoding="UTF-8"%>
 		<div class="div2">
 			<span class="div2_titleFont">배송지 등록 정보</span>
 			&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#addressInfo-edit">등록</button>
-			&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">삭제</button>
+			&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAddress">삭제</button>
 		</div>
-		<div class="div2">
-			배송지 등록 정보 표시
+		<div class="div_info">
+			<%if(addressList.isEmpty()) { %>
+				등록된 배송지가 없습니다.
+			<% }else {%>
+				<% for(Address address : addressList) { %>
+				<table>
+	                <tr><td><%= address.getAddressName() %></td></tr>
+	                <tr><td><%= address.getAddressCode() %></td></tr>
+	                <tr><td><%= address.getAddressMain() %></td></tr>
+	                <tr><td><%= address.getAddressDetail() %></td></tr>
+	                <tr><td><%= address.getAddressPhone() %></td></tr>
+                </table>
+            	<% } %>
+			<% } %>
 		</div>
 	</div>
 	
@@ -122,8 +141,14 @@ pageEncoding="UTF-8"%>
 			<span class="div2_titleFont">계좌 정보</span>
 			&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#accountInfo-edit">등록</button>
 		</div>
-		<div class="div2">
-			계좌 정보 표시
+		<div class="div_info">
+			<%-- <%if(loginUser.getBankName() == null) { %>
+				등록된 계좌가 없습니다.
+			<% }else {%>
+				<%= loginUser.getBankName() %>
+				<%= loginUser.getAccountNum() %>
+				<%= loginUser.getAccountHolder() %>
+			<% } %> --%>
 		</div>
 	</div>
 	
@@ -216,7 +241,7 @@ pageEncoding="UTF-8"%>
 						<table style="margin-top: 30px;">
 							<tr>
 								<td>아이디</td>
-								<td>[회원 아이디값 들어올 자리]</td>
+								<td><%= userId %></td>
 							</tr>
 							<tr>
 								<td>비밀번호</td>
@@ -308,6 +333,38 @@ pageEncoding="UTF-8"%>
 		</div>
 	</form>
 	
+	<!-- 카드 정보 삭제 -->
+	<form action="<%= contextPath %>/insertAddress.my" id="deleteAddressForm" method="POST">
+		<div class="modal" id="deleteCard">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">등록된 배송지 목록</b>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<%if(cardList.isEmpty()) { %>
+							등록된 배송지가 없습니다.
+						<% }else {%>
+							<% for(Card card : cardList) { %>
+								<div style="width: 350px; font-weight: normal;">
+							    <div><%= card.getCardName() %></div>
+							    <div><%= card.getCardNumber() %></div>
+							    <button class="btn btn-dark btn btn-primary btn-sm">삭제</button>
+							    </div>
+			            	<% } %>
+						<% } %>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                     
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
 	<!-- 배송 정보 등록 -->
 	<form action="<%= contextPath %>/insertAddress.my" id="insertAddressForm" method="POST">
 		<div class="modal" id="addressInfo-edit">
@@ -360,6 +417,42 @@ pageEncoding="UTF-8"%>
 								<b style="font-size: 13px; font-weight: lighter;">기본배송지로 등록</b>
 							</div>
 						</div>
+						<div style="float: right; margin-top: 30px;">
+							<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
+						</div>                     
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- 배송 정보 삭제 -->
+	<form action="<%= contextPath %>/insertAddress.my" id="deleteAddressForm" method="POST">
+		<div class="modal" id="deleteAddress">
+			<div class="modal-dialog">
+				<div class="modal-content" style="font-weight: bold;">
+					<!-- Modal Header -->
+					<div class="modal-header" style="background: black;">
+						<b class="modal-title" style="color: white; font-size: 20px;">등록된 배송지 목록</b>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<%if(addressList.isEmpty()) { %>
+							등록된 배송지가 없습니다.
+						<% }else {%>
+							<% for(Address address : addressList) { %>
+								<div style="width: 350px; font-weight: normal;">
+							    <div><%= address.getAddressName() %></div>
+							    <div><%= address.getAddressCode() %></div>
+							    <div><%= address.getAddressMain() %></div>
+							    <div><%= address.getAddressDetail() %></div>
+							    <div><%= address.getAddressPhone() %></div>
+							    <div><%= address.getAddressMessage() %></div>
+							    <button class="btn btn-dark btn btn-primary btn-sm">삭제</button>
+							    </div>
+			            	<% } %>
+						<% } %>
 						<div style="float: right; margin-top: 30px;">
 							<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
 							<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>

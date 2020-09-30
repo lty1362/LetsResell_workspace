@@ -14,6 +14,13 @@ public class Card {
 	private int cardinfoNo;			// 카드 정보 코드
 	
 	public Card() {}
+	
+	// selectCard
+	public Card(String cardName, String cardNumber) {
+		super();
+		this.cardName = cardName;
+		this.cardNumber = cardNumber;
+	}
 
 	public Card(int cardNo, int memUserNo, String cardName, String cardNumber, String cardValidate, String cardMemBirth,
 			int cardPwd, int cardinfoNo) {

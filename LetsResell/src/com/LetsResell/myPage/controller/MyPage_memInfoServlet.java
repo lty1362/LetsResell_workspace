@@ -3,6 +3,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.LetsResell.myPage.model.service.MyPage_service;
+import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Card;
 
 /**
  * Servlet implementation class MyPage_memInfoServlet
@@ -33,9 +38,22 @@ public class MyPage_memInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("myPage.info");
+		request.setCharacterEncoding("UTF-8");
+		
+		int userNo = Integer.parseInt(request.getParameter("userNo"));	// 로그인된 회원의 번호
+		
+		// 등록된 카드 조회
+		ArrayList<Card> cardList = new MyPage_service().selectCard(userNo);
+		request.setAttribute("cardList", cardList);
+		
+		// 등록된 주소 조회
+		ArrayList<Address> addressList = new MyPage_service().selectAddress(userNo);
+		request.setAttribute("addressList", addressList);
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_memInfoView.jsp");
 		view.forward(request, response);
+		
 	}
 
 	/**

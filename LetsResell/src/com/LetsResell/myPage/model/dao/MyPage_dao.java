@@ -16,12 +16,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.LetsResell.template.JDBCTemplate.*;
 import com.LetsResell.myPage.model.vo.Account;
+import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Card;
 
 public class MyPage_dao {
 	
@@ -36,6 +40,83 @@ public class MyPage_dao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	/**
+	 * 등록된 카드 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Card> selectCard(Connection conn, int userNo) {
+		
+		ArrayList<Card> cardList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				cardList.add(new Card(rset.getString("CARD_NAME"),
+									  rset.getString("CARD_NUMBER")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cardList;
+	}
+	
+	
+	/**
+	 * 등록된 주소 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Address> selectAddress(Connection conn, int userNo) {
+		
+		ArrayList<Address> addressList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAddress");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				addressList.add(new Address(rset.getInt("ADDRESS_CODE"),
+											rset.getString("ADDRESS_MAIN"),
+											rset.getString("ADDRESS_DETAIL"),
+											rset.getString("ADDRESS_PHONE"),
+											rset.getString("ADDRESS_NAME"),
+											rset.getString("ADDRESS_MESSAGE")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return addressList;
 	}
 
 	/**
