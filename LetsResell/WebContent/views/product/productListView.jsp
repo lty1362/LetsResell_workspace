@@ -33,7 +33,7 @@
 	
 	            <div id="product_detail">
 	                <p>나이키 X 오프화이트</p>
-	                	최저 판매가 <br>
+	                	발매가 <br>
 	                <b>￦ </b><b>500,000</b>
 	            </div>
 	

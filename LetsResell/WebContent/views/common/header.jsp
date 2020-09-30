@@ -4,7 +4,6 @@
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,14 +36,14 @@
 
 <!-- header_search 영역 -->
 <div id="header_search">
-    <form action="" id="header_search_form">
+    <form action="<%= request.getContextPath() %>/search.do" id="header_search_form">
 
         <div id="header_search_form_text">
-            <input type="search" name="search" placeholder="   Search">
+            <input type="search" name="search" placeholder="   Product o.o">
         </div>
 
         <div id="header_search_form_btn">
-            <input type="submit" value="검색">
+            <input type="submit" value="Search">
         </div>
 
     </form>
