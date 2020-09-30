@@ -12,13 +12,50 @@
 package com.LetsResell.myPage.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import static com.LetsResell.template.JDBCTemplate.*;
 
 import com.LetsResell.myPage.model.dao.MyPage_dao;
 import com.LetsResell.myPage.model.vo.Account;
+import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Card;
 
 public class MyPage_service {
+	
+	/**
+	 * 등록된 카드 조회
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Card> selectCard(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Card> cardList = new MyPage_dao().selectCard(conn, userNo);
+		
+		close(conn);
+		
+		return cardList;
+		
+	}
+	
+	/**
+	 * 등록된 주소 조회
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Address> selectAddress(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Address> addressList = new MyPage_dao().selectAddress(conn, userNo);
+		
+		close(conn);
+		
+		return addressList;
+		
+	}
 	
 	/**
 	 * 프로필 수정
