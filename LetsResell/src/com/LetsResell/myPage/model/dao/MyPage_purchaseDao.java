@@ -28,14 +28,14 @@ public class MyPage_purchaseDao {
 		}
 	}
 
-	public ArrayList<Bid> selectPurchaseList(Connection conn, int userNo) {
+	public int purchaseListCount(Connection conn, int userNo) {
 		
-		ArrayList<Bid> list = new ArrayList<>();
+		int listCount = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectPurchaseList");
+		String sql = prop.getProperty("purchaseCount");
 		
 		try {
 			
@@ -47,29 +47,18 @@ public class MyPage_purchaseDao {
 			
 			while(rset.next()) {
 				
-				Bid bid = new Bid();
-				bid.setBidNo(rset.getInt("BID_NO"));
-				bid.setBidPrice(rset.getInt("BID_PRICE"));
-				bid.setBidStatus(rset.getString("BID_STATUS"));
-				bid.setSaleName(rset.getString("SALE_NAME"));
-				bid.setSaleCondition(rset.getString("SALE_CONDITION"));
-				bid.setSaleSize(rset.getString("SALE_SIZE"));
-				bid.setSaleCategory(rset.getString("SALE_CATEGORY"));
-				bid.setPrImage(rset.getString("PR_IMAGE"));
-				
-				list.add(bid);
+				listCount = rset.getInt("LISTCOUNT");
 				
 			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(conn);
+			close(pstmt);
 		}
 		
-		return list;
+		return listCount;
 	}
 
 }

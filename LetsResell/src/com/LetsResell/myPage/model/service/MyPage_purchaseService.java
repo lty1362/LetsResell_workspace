@@ -9,17 +9,22 @@ import com.LetsResell.myPage.model.dao.MyPage_purchaseDao;
 import com.LetsResell.myPage.model.vo.*;
 
 public class MyPage_purchaseService {
-
-	public ArrayList<Bid> selectPurchaseList(int userNo) {
+	
+	/**
+	 * 1. 구매내역 입찰진행중인 거래 수
+	 * @param userNo  로그인한 회원번호
+	 * @return
+	 */
+	public int purchaseListCount(int userNo) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Bid> list = new MyPage_purchaseDao().selectPurchaseList(conn, userNo);
+		int listCount = new MyPage_purchaseDao().purchaseListCount(conn, userNo);
 		
 		close(conn);
 		
-		return list;
-		
+		return listCount;
 	}
+
 
 }

@@ -312,7 +312,7 @@
 	                                </tr>
                                 <%}else{ %>
                                 	<tr>
-	                                	<td width="50">1</td>
+	                                	<td width="50">10</td>
 	                                    <td width="200">
 	                                        <div class="product_img">
 	                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
@@ -334,7 +334,7 @@
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal">
-                                              입찰갱신
+                                             	 입찰갱신
                                             </button>
                                           
                                             <!-- The Modal -->
@@ -375,7 +375,7 @@
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#deleteModal">
-                                              입찰취소
+                                              	입찰취소
                                             </button>
                                           
                                             <!-- The Modal -->

@@ -2,23 +2,9 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectPurchaseList">
-		SELECT
-		       BID_NO
-		     , BID_PRICE
-		     , BID_STATUS
-		     , SALE_NAME
-		     , SALE_CONDITION
-		     , SALE_SIZE
-		     , SALE_CATEGORY
-		     , PR_IMAGE
-		  FROM BID B
-		  JOIN SALE USING(SALE_NO)
-		  JOIN P_REG USING(PR_NO)
-		 WHERE B.MEM_USER_NO = ?
-		 ORDER 
-		    BY BID_NO DESC
+		
 	</entry>
-	<entry key="salesCount">
+	<entry key="purchaseCount">
 		SELECT COUNT(*) LISTCOUNT
 		  FROM BID
 		  JOIN MEMBER USING(MEM_USER_NO)
