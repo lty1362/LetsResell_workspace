@@ -25,6 +25,22 @@ public class MyPage_purchaseService {
 		
 		return listCount;
 	}
+	
+	/**
+	 * 2. 구매내역 리스트조회
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Bid> purchaseListView(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Bid> list = new MyPage_purchaseDao().purchaseListView(conn, userNo);
+		
+		close(conn);
+		
+		return list;
+	}
 
 
 }

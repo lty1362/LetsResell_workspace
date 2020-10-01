@@ -80,10 +80,10 @@
                         <a href="myPage.wishList?userNo=<%=login.getUserNo()%>">관심상품</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/salesDetail.mp?currentPage=1?userNo=<%=login.getUserNo()%>">판매내역</a>
+                        <a href="/LetsResell/salesDetail.mp?userNo=<%=login.getUserNo()%>">판매내역</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/purchaseDetail.mp?currentPage=1?userNo=<%=login.getUserNo()%>">구매내역</a>
+                        <a href="/LetsResell/purchaseDetail.mp?userNo=<%=login.getUserNo()%>">구매내역</a>
                     </li>
                 </ul>
             </div>

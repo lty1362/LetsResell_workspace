@@ -229,14 +229,14 @@
                         <table class="sales_table">
                             <thead>
                                 <tr>
-                                    <th>등록정보</th>
-                                    <th>관리</th>
+                                    <th colspan="3">등록정보</th>
+                                    <th width="200px">관리</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="4">
                                        	 등록현황
                                     </td>
                                 </tr>

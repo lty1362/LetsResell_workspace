@@ -3,7 +3,6 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.Bid" %>
 <%
 	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
-	Bid bid = (Bid)request.getAttribute("bid");
 %>
 <!DOCTYPE html>
 <html>
@@ -202,7 +201,29 @@
                             </div>
                             <a>
                                 	구매입찰현황 <br>
-                                <span>0건</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	건
+                                
+                                
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -237,7 +258,25 @@
                             <li class="1">
                                 <a style="color:orange;">
                                     	입찰현황 <br>
-                                    <span>(0)</span>
+                                    <span>(
+                                    
+                                    <%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    
+                                    	<%int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    		<% result = i+1; %>
+                                    	<%} %>
+                                    	
+                                    	<%=result %>
+                                    
+                                    <%} %>
+                                    
+                                    )</span>
                                 </a>
                             </li>
                             <li class="2">
@@ -298,39 +337,40 @@
                         <table class="sales_table">
                             <thead>
                                 <tr>
-                                    <th>등록정보</th>
-                                    <th>관리</th>
+                                    <th colspan="3">등록정보</th>
+                                    <th width="200px">관리</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	
                             	<%if(list.isEmpty()) {%>
 	                                <tr>
-	                                    <td colspan="2">
+	                                    <td colspan="4">
 	                                       	등록된 리스트가 없습니다.
 	                                    </td>
 	                                </tr>
                                 <%}else{ %>
+                                	<%for(int i = 0 ; i < list.size() ; i++) { %>
                                 	<tr>
-	                                	<td width="50">10</td>
+	                                	<td width="50"><%=i+1 %></td>
 	                                    <td width="200">
 	                                        <div class="product_img">
-	                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
+	                                            <a href=""><img src=<%=list.get(i).getTitleImg()%>></a>
 	                                        </div>
 	                                    </td>
 	                                    <td class="product_info">
 	                                        <dl>
 	                                            <dt>
-	                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
+	                                                <%=list.get(i).getSaleName() %>
 	                                            </dt>
 	                                            <dd>
-	                                                	샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br><br>
-	                                                <span>890,000</span>
+	                                                	<%=list.get(i).getSaleCategory()%>/<%=list.get(i).getSaleSize()%> <br><br>
+	                                                <span><%=list.get(i).getBidPrice()%></span>
 	                                            </dd>
 	                                        </dl>
 	                                    </td>
 	                                    <td>
-                                        <span>입찰예정</span> <br>
+                                        <span><%=list.get(i).getBidStatus() %></span> <br>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal">
@@ -352,11 +392,11 @@
                                                   <div class="modal-body" style="text-align: center;">
                                                    
                                                     <span style="margin-right: 10px;">입찰갱신가격</span>
-                                                    <input type="text">
+                                                    <input type="number" name="enrollPrice">
                                                     <br>
                                                     <span style="color: red;">
-                                                        * 현재입찰가격 : -- <br>
-                                                        * 현재최고입찰가격 : --
+                                                        * 현재입찰가격 : <%=list.get(i).getBidPrice() %> <br>
+                                                        * 현재최고입찰가격 : 
                                                     </span>
             
                                                   </div>
@@ -370,7 +410,7 @@
                                                 </div>
                                               </div>
                                             </div>
-                                            
+                                             
                                           </div>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
@@ -407,6 +447,7 @@
                                         </div>
                                     </td>
                                 	</tr>
+                                	<%} %>
                                 <%} %>
                             </tbody>
                         </table>

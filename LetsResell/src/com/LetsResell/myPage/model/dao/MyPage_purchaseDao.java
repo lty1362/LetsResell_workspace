@@ -61,4 +61,47 @@ public class MyPage_purchaseDao {
 		return listCount;
 	}
 
+	public ArrayList<Bid> purchaseListView(Connection conn, int userNo) {
+		
+		ArrayList<Bid> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPurchaseList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Bid b = new Bid();
+				b.setBidNo(rset.getInt("BID_NO"));
+				b.setBidPrice(rset.getInt("BID_PRICE"));
+				b.setBidStatus(rset.getString("BID_STATUS"));
+				b.setSaleName(rset.getString("SALE_NAME"));
+				b.setSaleCondition(rset.getString("SALE_CONDITION"));
+				b.setSaleSize(rset.getString("SALE_SIZE"));
+				b.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				b.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(b);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
