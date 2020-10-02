@@ -44,7 +44,7 @@
         </div>
 
         <div id="header_search_form_btn">
-            <input type="submit" value="Search">
+            <input type="submit" value="검색">
         </div>
 
     </form>

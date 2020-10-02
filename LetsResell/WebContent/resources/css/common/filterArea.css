@@ -15,7 +15,7 @@ button:hover{cursor: pointer;}
     top: 0;
     display: none;
 }
-
+.filter_outer img:hover{ cursor:pointer;}
 #close_outer{
     margin-top: 15px;
     margin-left: 900px;
@@ -39,6 +39,7 @@ button:hover{cursor: pointer;}
     width: 900px;
     height: 100px;
 }
+#category_top>img{margin-top: 7px;}
 #filter_category>div{
     float: left;
     height: 100%;
@@ -46,17 +47,35 @@ button:hover{cursor: pointer;}
     margin-right: 20px;
 }
 #category_top{
-    background-color: lightgray;
+    background-color: white;
     border-radius: 15px;
     width: 100%;
     height: 80%;
 }
 #category_bottom{
-    align: center;
     color: white;
     font-weight: 700;
 }
-
+#filter_brand{
+    width: 900px;
+    height: 100px;
+}
+#filter_brand>div{
+    float: left;
+    height: 100%;
+    width: 80px;
+    margin-right: 20px;
+}
+#brand_top{
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    height: 80%;
+}
+#brand_bottom{
+    color: white;
+    font-weight: 700;
+}
 #filter_color{
     width: 900px;
     height: 50px;
@@ -95,3 +114,4 @@ button:hover{cursor: pointer;}
     margin-right: 20px;
     font-size: 13px;
 }
+#price_value{margin-left: 95px;}
