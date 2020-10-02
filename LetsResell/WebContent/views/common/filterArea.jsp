@@ -40,7 +40,7 @@
         
         <div id="category_2">
             <div id="category_top">
-                <img src="/LetsResell/resources/images/common/jeans.png" alt="바지" width="80%" height="80%" onclikc="cateBottom();">
+                <img src="/LetsResell/resources/images/common/jeans.png" alt="바지" width="80%" height="80%" onclick="cateBottom();">
             </div>
             
             <div id="category_bottom">
@@ -92,7 +92,7 @@
 
         <div id="brand_1">
             <div id="brand_top">
-                <img src="" width="100%" height="100%" onclick="clickBrand(1);">
+                <img src="/LetsResell/resources/images/common/Supreme.png" width="100%" height="100%" onclick="clickBrand(1);">
             </div>
 
             <div id="brand_bottom">
@@ -102,7 +102,7 @@
         
         <div id="brand_2">
             <div id="brand_top">
-                <img src="" width="100%" height="100%" onclick="clickBrand(2);">
+                <img src="/LetsResell/resources/images/common/Stone_Island.png" width="100%" height="100%" onclick="clickBrand(2);">
             </div>
             
             <div id="brand_bottom">
@@ -112,7 +112,7 @@
 
         <div id="brand_3">
             <div id="brand_top">
-                <img src="" width="100%" height="100%" onclick="clickBrand(3);">
+                <img src="/LetsResell/resources/images/common/Ralph_Lauren.png" width="100%" height="100%" onclick="clickBrand(3);">
             </div>
             
             <div id="brand_bottom">
@@ -122,7 +122,7 @@
 
         <div id="brand_4">
             <div id="brand_top">
-                <img src="" width="100%" height="100%" onclick="clickBrand(4);">
+                <img src="/LetsResell/resources/images/common/Stussy.png" width="100%" height="100%" onclick="clickBrand(4);">
             </div>
             
             <div id="brand_bottom">

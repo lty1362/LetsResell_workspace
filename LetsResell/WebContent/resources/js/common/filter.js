@@ -60,16 +60,16 @@ function cateTop(){
     $("#category_1").children().eq(0).css("background-color","gray");
     
     // 브랜드
-    $("#brand_1").children().eq(0).children().attr("src", "imgs/Supreme.png");
+    $("#brand_1").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Supreme.png");
     $("#brand_1").children().eq(1).text("Supreme");
 
-    $("#brand_2").children().eq(0).children().attr("src", "imgs/Stone_Island.png");
+    $("#brand_2").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Stone_Island.png");
     $("#brand_2").children().eq(1).text("Stone Island");
 
-    $("#brand_3").children().eq(0).children().attr("src", "imgs/Ralph_Lauren.png");
+    $("#brand_3").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Ralph_Lauren.png");
     $("#brand_3").children().eq(1).text("Ralph Lauren");
 
-    $("#brand_4").children().eq(0).children().attr("src", "imgs/Stussy.png");
+    $("#brand_4").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Stussy.png");
     $("#brand_4").children().eq(1).text("Stussy");
 
     resetBrand();
@@ -87,16 +87,16 @@ function cateBottom(){
     $("#category_2").children().eq(0).css("background-color","gray");
 
     // 브랜드
-    $("#brand_1").children().eq(0).children().attr("src", "imgs/Calvin_Klein.png");
+    $("#brand_1").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Calvin_Klein.png");
     $("#brand_1").children().eq(1).text("Calvin Klein");
 
-    $("#brand_2").children().eq(0).children().attr("src", "imgs/Gucci.png");
+    $("#brand_2").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Gucci.png");
     $("#brand_2").children().eq(1).text("Gucci");
 
-    $("#brand_3").children().eq(0).children().attr("src", "imgs/Adidas.png");
+    $("#brand_3").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Adidas.png");
     $("#brand_3").children().eq(1).text("Adidas");
 
-    $("#brand_4").children().eq(0).children().attr("src", "imgs/Nike.png");
+    $("#brand_4").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Nike.png");
     $("#brand_4").children().eq(1).text("Nike");
 
     resetBrand();
@@ -114,16 +114,16 @@ function cateOuter(){
     $("#category_3").children().eq(0).css("background-color","gray");
 
     // 브랜드
-    $("#brand_1").children().eq(0).children().attr("src", "imgs/Gucci.png");
+    $("#brand_1").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Gucci.png");
     $("#brand_1").children().eq(1).text("Gucci");
 
-    $("#brand_2").children().eq(0).children().attr("src", "imgs/Luios_Vuitton.png");
+    $("#brand_2").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Luios_Vuitton.png");
     $("#brand_2").children().eq(1).text("Louis Vuitton");
 
-    $("#brand_3").children().eq(0).children().attr("src", "imgs/Nike.png");
+    $("#brand_3").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Nike.png");
     $("#brand_3").children().eq(1).text("Nike");
 
-    $("#brand_4").children().eq(0).children().attr("src", "imgs/Ralph_Lauren.png");
+    $("#brand_4").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Ralph_Lauren.png");
     $("#brand_4").children().eq(1).text("Ralph Lauren");
 
     resetBrand();
@@ -141,16 +141,16 @@ function cateFoot(){
     $("#category_4").children().eq(0).css("background-color","gray");
 
     // 브랜드
-    $("#brand_1").children().eq(0).children().attr("src", "imgs/Adidas.png");
+    $("#brand_1").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Adidas.png");
     $("#brand_1").children().eq(1).text("Adidas");
 
-    $("#brand_2").children().eq(0).children().attr("src", "imgs/Nike.png");
+    $("#brand_2").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Nike.png");
     $("#brand_2").children().eq(1).text("Nike");
 
-    $("#brand_3").children().eq(0).children().attr("src", "imgs/Balenciaga.png");
+    $("#brand_3").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Balenciaga.png");
     $("#brand_3").children().eq(1).text("Balenciaga");
 
-    $("#brand_4").children().eq(0).children().attr("src", "imgs/Jordan.png");
+    $("#brand_4").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Jordan.png");
     $("#brand_4").children().eq(1).text("Jordan");
 
     resetBrand();
@@ -168,16 +168,16 @@ function cateAcce(){
     $("#category_5").children().eq(0).css("background-color","gray");
 
     // 브랜드
-    $("#brand_1").children().eq(0).children().attr("src", "imgs/Luios_Vuitton.png");
+    $("#brand_1").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Luios_Vuitton.png");
     $("#brand_1").children().eq(1).text("Louis Vuitton");
 
-    $("#brand_2").children().eq(0).children().attr("src", "imgs/Stone_Island.png");
+    $("#brand_2").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Stone_Island.png");
     $("#brand_2").children().eq(1).text("Stone Island");
 
-    $("#brand_3").children().eq(0).children().attr("src", "imgs/Balenciaga.png");
+    $("#brand_3").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Balenciaga.png");
     $("#brand_3").children().eq(1).text("Balenciaga");
 
-    $("#brand_4").children().eq(0).children().attr("src", "imgs/Gosha.png");
+    $("#brand_4").children().eq(0).children().attr("src", "/LetsResell/resources/images/common/Gosha.png");
     $("#brand_4").children().eq(1).text("Gosha");
 
     resetBrand();
