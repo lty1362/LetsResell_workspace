@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	<entry key="selectSalesList">
+		SELECT 
+		       SALE_NO
+		     , SALE_PRICE
+		     , SALE_NAME
+		     , SALE_ENROLL_DATE
+		     , SALE_CONDITION
+		     , SALE_STATUS
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , SALE_PERIOD
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM SALE S
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE S.MEM_USER_NO = ?
+	</entry>
 </properties>
