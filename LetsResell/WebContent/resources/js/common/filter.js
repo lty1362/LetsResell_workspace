@@ -1,13 +1,13 @@
-/**
- * 제이쿼리
- */
-$(function() {
-    var category = "";
-    var brand = "";
-    var color = "";
-    var price = "";
-    var condition = "";
+var filter = {
+    category: "",
+    brand: "",
+    color: "",
+    price: "",
+    condition: "",
+    order: "null"
+}
 
+$(function() {
     $("#content_filter").click(function(){
         $(".filter_outer").show();
     });
@@ -16,19 +16,23 @@ $(function() {
         $(".filter_outer").hide();
     });
 
+    // price button
     $("#price_btn>button").click(function(){
-        // console.log($(this).attr("id") == $("#lowest_btn").attr("id"));
         if($(this).attr("id") == $("#lowest_btn").attr("id")) {
+        	filter.order = "asc";
             $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
             $(this).next().css({"background-color":"white", "color":"black", "border":"none"});
         } else {
+        	filter.order = "desc";
             $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
             $(this).prev().css({"background-color":"white", "color":"black", "border":"none"});
         }
     });
 
+    //condition button
     $("#condition_btn>button").click(function(){
-        // console.log($(this).attr("id") == $("#lowest_btn").attr("id"));
+        filter.condition = $(this).text();
+
         if($(this).attr("id") == $("#new_btn").attr("id")) {
             $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
             $(this).next().css({"background-color":"white", "color":"black", "border":"none"});
@@ -38,18 +42,22 @@ $(function() {
         }
     });
 
+
     $("#btn_search").click(function() {
-        console.log(category);
-        console.log(brand);
-        console.log(color);
-        console.log(price);
-        console.log(condition);
-        // location.href="filterSearch.do?category=" + category + "&brand=" + brand + "&color=" + color + "&price=" + price + "&condition=" + condition;
+        // console.log(filter.category);
+        // console.log(filter.brand);
+        // console.log(filter.color);
+        // console.log(filter.price);
+        // console.log(filter.condition);
+        // console.log(filter.order);
+        location.href = "filterSearch.do?category=" + filter.category + "&brand=" + filter.brand + "&color=" + filter.color 
+                                      + "&price=" + filter.price + "&condition=" + filter.condition + "&order=" + filter.order;
     });
 });
 
 // 상의 카테고리
 function cateTop(){
+    filter.category = "top";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -77,6 +85,7 @@ function cateTop(){
 
 // 하의 카테고리
 function cateBottom(){
+    filter.category = "bottom";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -104,6 +113,7 @@ function cateBottom(){
 
 // 겉옷 카테고리
 function cateOuter(){
+    filter.category = "outer";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -131,6 +141,7 @@ function cateOuter(){
 
 // 신발 카테고리
 function cateFoot(){
+    filter.category = "footwear";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -158,6 +169,7 @@ function cateFoot(){
 
 // 악세 카테고리
 function cateAcce(){
+    filter.category = "accessory";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -185,6 +197,8 @@ function cateAcce(){
 
 // 브랜드 클릭
 function clickBrand(index){
+    filter.brand = $("#brand_" + index).children().eq(1).text().trim();
+    
     $("#brand_1").children().eq(0).css("background-color","white");
     $("#brand_2").children().eq(0).css("background-color","white");
     $("#brand_3").children().eq(0).css("background-color","white");
@@ -205,6 +219,8 @@ function resetBrand(){
 
 // 컬러 버튼
 function colorBtn(color) {
+    filter.color = color;
+    color1 = color;
     switch(color){
         case 'black':
             $("#color_" + color).css("border", "1px solid white");
@@ -247,6 +263,7 @@ function colorBtn(color) {
 
 // range
 function rangePrice(value) {
+    filter.price = value;
     var price = "￦ " + value
     $("#price_value").text(price);
 }
