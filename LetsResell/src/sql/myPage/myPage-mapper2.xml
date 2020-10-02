@@ -28,5 +28,11 @@
 		       BID
 		   SET BID_PRICE = ?
 		 WHERE BID_NO = ?
+	</entry>  
+	<entry key="highestPrice">
+		SELECT 
+		   MAX(BID_PRICE)
+		  FROM BID
+		 WHERE SALE_NO = ?
 	</entry>
 </properties>

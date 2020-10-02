@@ -1,7 +1,6 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.LetsResell.myPage.model.service.MyPageSalesService;
-import com.LetsResell.myPage.model.vo.Sale;
+import com.LetsResell.myPage.model.service.MyPage_purchaseService;
+import com.LetsResell.myPage.model.vo.Bid;
 
 /**
- * Servlet implementation class MyPage_salesDetailServlet
+ * Servlet implementation class myPagePurchaseEnrollPriceServlet
  */
-@WebServlet("/salesDetail.mp")
-public class MyPage_salesDetailServlet extends HttpServlet {
+@WebServlet("/enrollPrice.mp")
+public class myPagePurchaseEnrollPriceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_salesDetailServlet() {
+    public myPagePurchaseEnrollPriceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +32,14 @@ public class MyPage_salesDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		int bidNo = Integer.parseInt(request.getParameter("bidNo"));
+		int enrollPrice = Integer.parseInt(request.getParameter("enrollPrice"));
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		Bid b = new Bid();
+		b.setBidNo(bidNo);
+		b.setBidPrice(enrollPrice);
 		
-		ArrayList<Sale> list = new MyPageSalesService().salesListView(userNo);
-		request.setAttribute("list", list);
-		 
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesDetailList.jsp");
-		view.forward(request, response);
+		int result = new MyPage_purchaseService().enrollPrice(b);
 		
 	}
 

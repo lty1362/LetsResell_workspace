@@ -41,6 +41,28 @@ public class MyPage_purchaseService {
 		
 		return list;
 	}
+	
+	/**
+	 * 3. 입찰가격갱신
+	 * @param b
+	 * @return
+	 */
+	public int enrollPrice(Bid b) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_purchaseDao().enrollPrice(conn, b);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 
 
 }

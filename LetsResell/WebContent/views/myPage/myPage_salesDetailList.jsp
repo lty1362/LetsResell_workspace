@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
+<%
+	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +19,21 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 80px;
+        }
+        
+        #btn{
+            font-size: 12px;
+            padding: 4px;
+            margin: 4px;
+            background-color: #333;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .sales_list span{
+            color: red;
+            font-size: 15px;
         }
 
         /*판매내역 바디*/
@@ -118,6 +137,36 @@
         .sales_list table tbody td{
             height: 100px;
         }
+        
+        /*상품 정보 테이블*/
+        .sales_list table{
+            width: 100%;
+            text-align: center;
+        }
+
+        .sales_list table thead th{
+            background-color: #333;
+            color: white;
+            height: 40px;
+        }
+
+        .sales_list table tbody td{
+            height: 150px;
+        }
+
+        .sales_list table tbody tr{
+            border-bottom: 1px solid rgb(204, 204, 204);
+        }
+
+        .product_info dl{
+            text-align: left;
+            font-size: 13px;
+            margin: 0px;
+        }
+
+        .product_info dd{
+            margin: 0px;
+        }
                 
 </style>
 </head>
@@ -142,7 +191,28 @@
                             </div>
                             <a>
                                	 판매수량 <br>
-                                <span>0건</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                	
+                                		0
+                                	
+                                	<%}else { %>
+                                	
+                                		<%int result = 0; %>
+                                	
+                                		<%for(int i = 0; i < list.size(); i++){ %>
+                                		
+                                			<%result = i+1; %>
+                                		
+                                		<%} %>
+                                		
+                                		<%=result %>
+                                	
+                                	<%} %>
+                                	건
+                                
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -168,7 +238,25 @@
                             <li class="1">
                                 <a style="color:orange;"> 
                                     	등록현황 <br>
-                                    <span>(0)</span>
+                                    <span>(
+                                    	<%if(list.isEmpty()) {%>
+                                	
+                                		0
+                                	
+                                	<%}else { %>
+                                	
+                                		<%int result = 0; %>
+                                	
+                                		<%for(int i = 0; i < list.size(); i++){ %>
+                                		
+                                			<%result = i+1; %>
+                                		
+                                		<%} %>
+                                		
+                                		<%=result %>
+                                	
+                                	<%} %>
+                                    )</span>
                                 </a>
                             </li>
                             <li class="2">
@@ -234,13 +322,76 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	
+                            	<%if(list.isEmpty()) {%>
                                 <tr>
                                     <td colspan="4">
-                                       	 등록현황
+                                       	 등록된 입찰정보가 없습니다.
                                     </td>
                                 </tr>
+                                <%}else { %>
                                 
+                                	<%for(int i = 0; i < list.size(); i++){ %>
+                                	
+                                	<tr>
+                                    <td width="50"><%=i+1 %></td>
+                                    <td width="200">
+                                        <div class="product_img">
+                                            <a href=""><img src="<%=list.get(i).getTitleImg()%>"></a>
+                                        </div>
+                                    </td>
+                                    <td class="product_info">
+                                        <dl>
+                                            <dt>
+                                                <%=list.get(i).getSaleName() %>
+                                            </dt>
+                                            <dd>
+                                               	 <%=list.get(i).getSaleCondition() %>/<%=list.get(i).getSaleCategory() %>/<%=list.get(i).getSaleSize() %> <br><br>
+                                                                                                             판매가격 : <%=list.get(i).getSalePrice() %>
+                                            </dd>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <span><%=list.get(i).getSaleStatus() %></span> <br>
+                                        <button id="btn" src="location.href=">입찰진행</button> <br>
+                                        <div class="container">
+                                            <!-- Button to Open the Modal -->
+                                            <button type="button" id="btn" data-toggle="modal" data-target="#myModal<%=i%>">
+                                             	 입찰취소
+                                            </button>
+                                          
+                                            <!-- The Modal -->
+                                            <div class="modal fade" id="myModal<%=i%>">
+                                              <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                
+                                                  <!-- Modal Header -->
+                                                  <div class="modal-header">
+                                                    <h6 class="modal-title">입찰취소</h6>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  </div>
+                                                  
+                                                  <!-- Modal body -->
+                                                  <div class="modal-body">
+                                                    <strong>입찰을 취소하시겠습니까?</strong>
+                                                  </div>
+                                                  
+                                                  <!-- Modal footer -->
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                                                  </div>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                	
+                                	<%} %>
+                                
+                                <%} %>
                             </tbody>
                         </table>
                     </div>

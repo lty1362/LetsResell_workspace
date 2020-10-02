@@ -14,6 +14,7 @@ public class Sale {
 	private String saleCategory;	//제품분류
 	private String salePeriod;		//입찰기간
 	private String boxStatus;		//박스상태
+	private String titleImg;			// 대표 이미지
 	
 	public Sale() {
 		
@@ -32,6 +33,31 @@ public class Sale {
 		this.saleCategory = saleCategory;
 		this.salePeriod = salePeriod;
 		this.boxStatus = boxStatus;
+	}
+
+	public Sale(int saleNo, int salePrice, String saleName, Date saleEnrollDate, String saleCondition,
+			String saleStatus, String saleSize, String saleCategory, String salePeriod, String boxStatus,
+			String titleImg) {
+		super();
+		this.saleNo = saleNo;
+		this.salePrice = salePrice;
+		this.saleName = saleName;
+		this.saleEnrollDate = saleEnrollDate;
+		this.saleCondition = saleCondition;
+		this.saleStatus = saleStatus;
+		this.saleSize = saleSize;
+		this.saleCategory = saleCategory;
+		this.salePeriod = salePeriod;
+		this.boxStatus = boxStatus;
+		this.titleImg = titleImg;
+	}
+	
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	public int getSaleNo() {

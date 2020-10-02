@@ -103,5 +103,31 @@ public class MyPage_purchaseDao {
 		
 		return list;
 	}
+	
+	public int enrollPrice(Connection conn, Bid b) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("enrollPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b.getBidPrice());
+			pstmt.setInt(2, b.getBidNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.Bid" %>
+<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	Bid b = (Bid)session.getAttribute("bid");
 %>
 <!DOCTYPE html>
 <html>
@@ -373,12 +374,12 @@
                                         <span><%=list.get(i).getBidStatus() %></span> <br>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
-                                            <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal">
-                                             	 입찰갱신
-                                            </button>
+	                                            <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal<%=i%>">
+	                                             	 입찰갱신
+	                                            </button>
                                           
                                             <!-- The Modal -->
-                                            <div class="modal" id="enrollModal">
+                                            <div class="modal" id="enrollModal<%=i%>">
                                               <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 
@@ -390,21 +391,21 @@
                                                   
                                                   <!-- Modal body -->
                                                   <div class="modal-body" style="text-align: center;">
-                                                   
-                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
-                                                    <input type="number" name="enrollPrice">
-                                                    <br>
-                                                    <span style="color: red;">
-                                                        * 현재입찰가격 : <%=list.get(i).getBidPrice() %> <br>
-                                                        * 현재최고입찰가격 : 
-                                                    </span>
-            
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                   <form action="enrollPrice.mp" method="get" id="enroll">
+                                                   <input type="hidden" name="bidNo" id="bidNo" value="<%=list.get(i).getBidNo()%>">
+	                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
+	                                                    <input type="number" name="enrollPrice" id="enrollPrice" value="<%=list.get(i).getBidPrice()%>">
+	                                                    <br>
+	                                                    <span style="color: red;">
+	                                                        * 현재입찰가격 : <%=list.get(i).getBidPrice()%> <br>
+	                                                        * 현재최고입찰가격 : 
+	                                                    </span>
+	                                                    
+	                                                    <hr>
+	                                                    
+	                                                    <button type="submit" class="btn btn-primary" id="enroll">확인</button>
+	                                                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            									   </form>
                                                   </div>
                                                   
                                                 </div>
@@ -414,12 +415,12 @@
                                           </div>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
-                                            <button type="button" id="btn" data-toggle="modal" data-target="#deleteModal">
+                                            <button type="button" id="btn" data-toggle="modal" data-target="#deleteModal<%=i%>">
                                               	입찰취소
                                             </button>
                                           
                                             <!-- The Modal -->
-                                            <div class="modal fade" id="deleteModal">
+                                            <div class="modal fade" id="deleteModal<%=i%>">
                                               <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                 
@@ -431,13 +432,14 @@
                                                   
                                                   <!-- Modal body -->
                                                   <div class="modal-body">
+                                                  <form>
                                                     <strong>입찰을 취소하시겠습니까?</strong>
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                                                  </form>   
                                                   </div>
                                                   
                                                 </div>
