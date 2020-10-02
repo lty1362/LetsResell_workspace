@@ -333,7 +333,7 @@ private Properties prop = new Properties();
 	public int updateProduct(Connection conn, Admin_Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("noImageProduct");
+		String sql = prop.getProperty("updateProduct");
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, p.getPRmodel());
@@ -355,6 +355,59 @@ private Properties prop = new Properties();
 				close(pstmt);
 			}
 		return result;
+	}
+	
+//	public int updateImage(Connection conn, ArrayList<Admin_Image> list) {
+//		int result = 0;
+//		PreparedStatement pstmt = null;
+//		String sql = prop.getProperty("updateImage");
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, p.getPRmodel());
+//			pstmt.setString(2, p.getPRname());
+//			pstmt.setString(3, p.getPRcategory());
+//			pstmt.setString(4, p.getPRbrand());
+//			pstmt.setString(5, p.getPRsize());
+//			pstmt.setString(6, p.getPRcolor());
+//			pstmt.setString(7, p.getPRreviewYoutube());
+//			pstmt.setString(8, p.getPRreviewDetail());
+//			pstmt.setDate(9, p.getPRreleaseDate());
+//			pstmt.setInt(10, p.getPRreleasePrice());
+//			pstmt.setInt(11, p.getPRno());
+//			
+//			result = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		return result;
+//	}
+	
+	public ArrayList<Admin_Image> selectImage(Connection conn, int pno) {
+		ArrayList<Admin_Image> image = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectImage");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Admin_Image img = new Admin_Image(rset.getInt(1),
+						rset.getInt(2),
+						rset.getString(3),
+						rset.getString(4),
+						rset.getString(5),
+						rset.getInt(6));
+				image.add(img);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return image;
 	}
 	
 }

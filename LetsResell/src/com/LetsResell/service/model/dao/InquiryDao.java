@@ -190,7 +190,7 @@ public class InquiryDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Inquiry(rset.getInt(2),
-						   rset.getInt(3),
+						   rset.getString(3),
 						   rset.getString(4),
 						   rset.getString(5),
 						   rset.getString(6),

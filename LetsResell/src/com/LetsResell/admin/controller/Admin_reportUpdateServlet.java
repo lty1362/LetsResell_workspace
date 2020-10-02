@@ -24,10 +24,10 @@ public class Admin_reportUpdateServlet extends HttpServlet {
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int result = new ReportService().updateReportAnswer(rno);
 		if(result  >0) {
-			request.getSession().setAttribute("alertMsg", "답변 성공!!");
+			request.getSession().setAttribute("alertMsg", "처리 성공!!");
 			response.sendRedirect(request.getContextPath() + "/reportMain.admin?currentPage="+currentPage+"#title");
 		}else {
-			request.getSession().setAttribute("alertMsg", "답변 실패..");
+			request.getSession().setAttribute("alertMsg", "처리 실패..");
 			response.sendRedirect(request.getContextPath() + "/reportMain.admin?currentPage="+currentPage+"#title");
 		}
 	}

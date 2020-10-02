@@ -4,7 +4,8 @@
 <%
 	ArrayList<Report> list = (ArrayList<Report>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
+	int writer = (int)request.getAttribute("writer");
+
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int pageLimit = pi.getPageLimit();
@@ -88,7 +89,7 @@
             width: 10%;
             border-right: 0px;
         }
-        #write a{
+        #write input{
         	background: rgb(74, 74, 74);
             color: white;
             border-radius: 3px;
@@ -98,9 +99,11 @@
             display:block;
             text-align:center;
             padding-top:5px;
+            border:0px;
         }
-        #write a:hover{
-        	text-decoration:none;
+        #serviceReportLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
         }
 </style>
 </head>
@@ -145,9 +148,14 @@
 			                <% } %>
 	            		<% } %>
                     </table>
-                 <div id="write" align="right">
-                	<a href="<%=contextPath%>/enrollForm.report">글쓰기</a>
-                </div>
+                 <%if(writer!=0){ %>
+	                 <div id="write" align="right">
+	                 	<form action="enrollForm.report" method="post">
+	                		<input type="hidden" name="userNo" value="<%=writer%>">
+	                		<input type="submit" value="글쓰기">
+	                	</form>
+	                </div>
+                 <% } %>
 	                <div id="bigPageArea">
 	                	<div class="pagingArea" align="center">
 				            <%if(currentPage == 1){ %>
@@ -180,7 +188,7 @@
 	    	    $("#report tr").not("#report tr:first").hover().css("cursor","pointer");
 		        $("#report tr").not("#report tr:first").click(function(){
 		          var rno = $(this).children().eq(0).text();
-		          location.href = "<%=contextPath%>/detail.report?writer=<%=list.get(0).getReportWriter()%>&rno="+rno; // 쿼리스트링
+		          location.href = "<%=contextPath%>/detail.report?writer=<%=writer%>&rno="+rno; // 쿼리스트링
 		        });
 	    	});
 	   </script>

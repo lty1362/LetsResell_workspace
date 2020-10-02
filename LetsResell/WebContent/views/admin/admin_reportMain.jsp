@@ -136,12 +136,12 @@
 			                    <td><%=list.get(i).getReportNo()%></td>
                                 <td><%=list.get(i).getReportCategory()%></td>
                                 <td><%=list.get(i).getReportTitle() %></td>
-                                <td><%=list.get(i).getReportWriter()%>@naver.com</td>
+                                <td><%=list.get(i).getUserId()%></td>
                                 <td><%=list.get(i).getReportEnrollDate()%></td>
                                 <%if(list.get(i).getReportStatus().equals("Y")){ %>
-                                	<td style="color:gray;">답변 완료</td>
+                                	<td style="color:gray;">처리 완료</td>
                                 <%} else{%>
-                                	<td>답변 대기</td>
+                                	<td>처리 대기</td>
                                 <% }%>
 			                </tr>
 		                <% } %>

@@ -138,7 +138,7 @@
 			                    <td><%=list.get(i).getInquiryNo()%></td>
                                 <td><%=list.get(i).getInquiryCategoryBig()%></td>
                                 <td><%=list.get(i).getInquiryTitle() %></td>
-                                <td><%=list.get(i).getInquiryWriter() %>@naver.com</td>
+                                <td><%=list.get(i).getUserId()%></td>
                                 <td><%=list.get(i).getInquiryEnrollDate()%></td>
                                 <%if(list.get(i).getInquiryStatus().equals("Y")){ %>
                                 	<td style="color:gray;">답변 완료</td>

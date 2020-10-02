@@ -1,4 +1,4 @@
-package com.LetsResell.service.controller;
+package com.LetsResell.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/enrollForm.inquiry")
-public class InquiryEnrollFormServlet extends HttpServlet {
+import com.LetsResell.admin.model.service.MemberService;
+
+@WebServlet("/blackMember.admin")
+public class Admin_memberBlacklistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public InquiryEnrollFormServlet() {
+    public Admin_memberBlacklistServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		request.setAttribute("userNo", userNo);
-		request.getRequestDispatcher("views/service/inquiryEnroll.jsp").forward(request, response);
+		String black = request.getParameter("black");
+		new MemberService().blackMember(black, userNo);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

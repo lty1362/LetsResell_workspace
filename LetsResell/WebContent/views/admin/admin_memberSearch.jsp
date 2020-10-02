@@ -148,17 +148,17 @@
 			                    <tr>
 	                                <th>코드</th>
 	                                <th>이름</th>
-	                                <th>주소</th>
+	                                <th>이메일</th>
 	                                <th>전화번호</th>
-	                                <th style="border-right: 1px solid lightgray;">이메일</th>
+	                                <th style="border-right: 1px solid lightgray;">가입일</th>
 	                            </tr>
 			            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 					                <tr>
 					                    <td><%=list.get(i).getUserNo()%></td>
 		                                <td><%=list.get(i).getUserName() %></td>
-		                                <td>-</td> <!-- 나중에 address table join -->
+		                                <td><%=list.get(i).getUserId() %></td>
 		                                <td><%=list.get(i).getPhone() %></td>
-		                                <td><%=list.get(i).getUserId() %>@naver.com</td>
+		                                <td><%=list.get(i).getEnrollDate() %></td>
 					                </tr>
 				                <% } %>
 		            		<% } %>
@@ -170,9 +170,8 @@
 		                    <select name="filter" id="filter">
 	                            <option value="userCode" selected>회원코드</option>
 	                            <option value="userName">이름</option>
-	                            <option value="address">주소</option>
-	                            <option value="phone">전화번호</option>
 	                            <option value="email">이메일</option>
+	                            <option value="phone">전화번호</option>
 	                        </select>
 	 	                    <div id="search_in">
 		                        <input type="search" name=search><input type="submit" value="검색">
@@ -224,10 +223,10 @@
     </div>
     <script>
     	$(function(){
-    		$("#users>table tr").hover().css("cursor","pointer")
-    		$("#users>table tr").not($("#users>table tr:first")).click(function(){
-    			var mno = $(this).children().eq(0).text();
-    			location.href = "<%=contextPath%>/memberDetail.admin?mno"+mno;
+    		$("#memberList tr").hover().css("cursor","pointer")
+    		$("#memberList tr").not($("#memberList tr:first")).click(function(){
+    			var mno = $(this).children().eq(0).html();
+    			location.href = "<%=contextPath%>/memberDetail.admin?mno="+mno;
     		});
     	});
     </script>

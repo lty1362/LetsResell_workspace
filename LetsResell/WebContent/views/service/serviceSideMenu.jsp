@@ -161,9 +161,25 @@
     	background:rgb(74,74,74);
     	color:white;
     }
+    #serviceInquiryLogin input{
+    	border:0px;
+    	background:white;
+    	font-size:25px;
+		margin-top:50px;
+		margin-left:-5px;
+    }
+    #serviceReportLogin input{
+    	border:0px;
+    	background:white;
+    	font-size:25px;
+		margin-top:50px;
+		margin-left:-5px;
+		margin-bottom:40px;
+    }
 </style>
 </head>
 <body>
+	<%if(login == null){ %>
 	<div id="sideMenu">
 	    <div id="service">
 	        <div id="serviceTitle">고객센터</div>
@@ -191,16 +207,55 @@
 	        </p>
     	 </div>
      </div>
+     <% }else{ %>
+     <div id="sideMenu">
+	    <div id="service">
+	        <div id="serviceTitle">고객센터</div>
+	        <div id="serviceNotice">
+	       		<a href="<%=request.getContextPath()%>/noticeForm.service?currentPage=1">공지사항</a>
+	        </div>
+	        <div id="serviceFAQ">
+	        	<a href="<%=request.getContextPath()%>/FAQform.service?currentPage=1">FAQ</a>
+	        </div>
+	        <div id="serviceInquiryLogin">
+	        	<form action="inquiryForm.service" method="post">
+	        		<input type="hidden" name="currentPage" value="1">
+	        		<input type="hidden" name="un" value="<%=login.getUserNo()%>">
+		        	<input type="submit" value="1:1 문의">
+	        	</form>
+	        </div>
+	        <div id="serviceReportLogin">
+	        	<form action="reportForm.service" method="post">
+	        		<input type="hidden" name="currentPage" value="1">
+	        		<input type="hidden" name="un" value="<%=login.getUserNo()%>">
+		        	<input type="submit" value="부정 판매자 신고">
+	        	</form>
+	        </div>
+	    </div>
+	    <div id="serviceTime">
+	        <p>고객센터 <br>
+	            1588-9393
+	        </p>
+	        <p>
+	            월 - 금 <br>
+	            09:00 ~ 17:00 <br>
+	            (토 / 일 / 공휴일 휴무)
+	        </p>
+    	 </div>
+     </div>
+     <% } %>
      <script>
     	$(function(){
-    		var width = $(".pagingArea").css("width");
-     		if(width.length==4){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
-     		} else if(width.length==5){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
-     		} else if(width.length==6){
-	     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
-     		}
+    		if($(".pagingArea").is("div")){
+	    		var width = $(".pagingArea").css("width");
+	     		if(width.length==4){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,2))/2);
+	     		} else if(width.length==5){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+	     		} else if(width.length==6){
+		     		$(".pagingArea").css("margin-left",-Number(width.substring(0,3))/2);
+	     		}
+    		}
     	});
     </script>
 </body>

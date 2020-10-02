@@ -2,6 +2,7 @@ package com.LetsResell.admin.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.ServletException;
@@ -13,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.LetsResell.admin.model.service.ProductService;
+import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_Product;
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet("/productModify.admin")
+@WebServlet("/productUpdate.admin")
 public class Admin_productModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,10 +34,23 @@ public class Admin_productModifyServlet extends HttpServlet {
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
 			
-			String image="";
-			if(mr.getOriginalFileName("image") != null) {
-				image = mr.getFilesystemName("image");
+			ArrayList<Admin_Image> list = new ArrayList<>();
+			for(int i = 1 ; i <= 5 ; i++) {
+				String key = "image" + i;
+				if(mr.getOriginalFileName(key) != null) {
+					Admin_Image img = new Admin_Image();
+					img.setProductImageOriginName(mr.getOriginalFileName(key));
+					img.setProductImageChangeName(mr.getFilesystemName(key));
+					img.setProductImgUrl("resources/images/product/");
+					if(i == 1) {
+						img.setFileLevel(1);
+					}else {
+						img.setFileLevel(2);
+					}
+					list.add(img);
+				}
 			}
+			
 			String productCode = mr.getParameter("productCode");
 			String productName = mr.getParameter("productName");
 			String category = mr.getParameter("category");

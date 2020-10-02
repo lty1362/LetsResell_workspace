@@ -20,7 +20,7 @@ public class InquiryEnrollServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int writer = 3;
+		int writer = Integer.parseInt(request.getParameter("userNo"));
 		String title = request.getParameter("title");
 		String bigCategory = request.getParameter("bigCategory");
 		String smallCategory = request.getParameter("smallCategory");
@@ -28,7 +28,7 @@ public class InquiryEnrollServlet extends HttpServlet {
 		Inquiry insert = new Inquiry(writer, title, bigCategory, smallCategory, content);
 		int result = new InquiryService().insertInquiry(insert);
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1");
+			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1&un="+writer);
 		}
 	}
 

@@ -203,13 +203,13 @@
                         </div>
                         <div id="userInfo_closer">
                             <p>회원코드 : <%= mem.getUserNo()%></p>
-                            <p>아이디 : <%= mem.getUserId()%>@naver.com</p>
+                            <p>아이디 : <%= mem.getUserId()%></p>
                             <p>이름 : <%= mem.getUserName()%></p>
                             <p>전화번호 : <%= mem.getPhone()%></p>
                             <% if(mem.getUserSsn() != null){ %>
                             	<p>생년월일 : <%= mem.getUserSsn()%></p>
                             <% } %>
-                            <textarea rows="2" cols="4" readonly>주소 :&nbsp;</textarea><textarea rows="2" cols="30" readonly>서울특별시 동대문구 이문동 천장산로 302호 </textarea>
+                            <p>가입일 : <%=mem.getEnrollDate() %>
                         </div>
                     </div>
                     <div id="userInfo_mid"></div>
@@ -273,24 +273,18 @@
                                     <th>신고 날짜</th>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>허위 매물 등록</td>
-                                    <td>2020-05-21</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>미배송 처리</td>
-                                    <td>2020-07-21</td>
-                                </tr>
-                                <tr>
                                     <td>누적</td>
-                                    <td colspan="2">2회</td>
+                                    <td colspan="2"><%=mem.getReportCount() %>회</td>
                                 </tr>
                             </table>
                         <div id="userStop">
-                            <div id="activation">활성 상태</div>
+                        	<%if(mem.getBlacklistStatus().equals("Y")){ %>
+                            	<div id="activation">비활성 상태</div>
+                        	<% }else{ %>
+                            	<div id="activation">활성 상태</div>
+                        	<% } %>
                             <div>
-                            	<input id="activationButton" type="button" value="비활성화" onclick="activation();">
+                            	<input id="activationButton" type="button" value="변경" onclick="black();">
                             </div>
                         </div>
                     </div>
@@ -303,14 +297,54 @@
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
-    	activation = function(){
-    		if($("#activation").html() == "활성 상태"){
-    			$("#activation").html("비활성 상태");
-    			$("#activationButton").val("활성화");
-    		}else{
-    			$("#activation").html("활성 상태");
-    			$("#activationButton").val("비활성화");
-    		}
+    	function black(){
+    		
+	    	$.ajax({
+	    		url:"blackYesNo.admin",
+                data:{userNo:<%=mem.getUserNo()%>, black:"<%=mem.getBlacklistStatus()%>"},
+                type:"get",
+                success:function(blackYN){
+                	if(blackYN =="Y"){
+                		
+                		$.ajax({
+            	    		url:"blackMember.admin",
+                            data:{userNo:<%=mem.getUserNo()%>, black:"Y"},
+                            type:"get",
+                            success:function(){
+                            	alert("변경 성공!!");
+                            },
+                            error:function(){
+                            	console.log("실패");
+                            }
+            	    	});
+                		
+                	}else{
+                		
+                		$.ajax({
+            	    		url:"blackMember.admin",
+                            data:{userNo:<%=mem.getUserNo()%>, black:"N"},
+                            type:"get",
+                            success:function(){
+                            	alert("변경 성공!!");
+                            },
+                            error:function(){
+                            	console.log("실패");
+                            }
+            	    	});
+                		
+                	}
+                },
+                error:function(){
+                	console.log("실패");
+                }
+	    	});
+	    	
+	    	if($("#activation").html()=="비활성 상태"){
+		    	$("#activation").html("활성 상태");
+	    	}else{
+		    	$("#activation").html("비활성 상태");
+	    	}
+	    	
     	}
     </script>
 </body>

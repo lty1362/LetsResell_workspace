@@ -50,10 +50,7 @@ public class Admin_productEnrollServlet extends HttpServlet {
 					list.add(img);
 				}
 			}
-			for(Admin_Image a : list) {
-				System.out.println(a);
-			}
-			
+
 			String productCode = mr.getParameter("productCode");
 			String productName = mr.getParameter("productName");
 			String category = mr.getParameter("category");
@@ -97,7 +94,6 @@ public class Admin_productEnrollServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath()+"/productMain.admin?currentPage=1");
 			}
 		}
-		
 	}
 		
 

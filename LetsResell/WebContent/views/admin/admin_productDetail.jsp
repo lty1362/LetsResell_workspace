@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.admin.model.vo.*" %>
 <%	
 	Admin_Product product = (Admin_Product)request.getAttribute("product");
+	ArrayList<Admin_Image> images = (ArrayList<Admin_Image>)request.getAttribute("image");
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@
 	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
 	    	display:none;
 	    }
-        #br_1{
+        #title{
             background: lightgray;
             height: 5%;
             border: 1px solid lightgray;
@@ -37,79 +38,68 @@
             font-weight:bold;
             padding-top:5px;
         }
-        #br_2{
-            height: 95%;
+        #registerWrap{
+            height: 1200px;
             border: 1px solid lightgray;
         }
-        #br_2_1{
-            height: 20%;
+        #registerImage{
+            height: 250px;
             padding: 20px;
         }
-        #br_2_1_1{
+        #registerImageForm{
         	height:100%;
         }
-        #br_2_2{
-            height: 80%;
-            padding: 20px;
-            padding-top: 0px;
+        #registerImage div{
+            float:left;
+            border:2px solid lightgray;
         }
-        #br_2_1>div{
-            float:left
+        #registerImageMain{
+        	width:40%;
+        	height:100%;
         }
-        #br_2_1>div:nth-child(1){
-            width:40%;
-            height: 100%;
-            background: black;
-            color: white;
-            font-size: 35px;
-            text-align: center;
-            padding-top: 2em;
+        #registerImageDetail{
+        	width:60%;
+        	height:100%;
         }
-        #br_2_1>div:nth-child(2){
-            width:60%;
-            height: 100%;
+        #registerImageDetail div{
+        	float:left;
         }
-        #br_2_1_2{
-        	padding-bottom:1px;
+        #registerImageDetail1{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table{
-            border-collapse: collapse;
-            height: 100%;
-            width: 100%;
+        #registerImageDetail2{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2 input{
-        	width:100%;
-        	height:40px;
+        #registerImageDetail3{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table td{
-            border: 1px solid black;
+        #registerImageDetail4{
+        	width:50%;
+        	height:50%;
         }
-        #br_2_1_2>table tr>td:nth-child(1){
-            background: lightgray;
-            font-weight: bold;
-            font-size: 20px;
-            text-align:center;
+        
+        #registerProduct{
+        	width:95%;
+        	margin:auto;
         }
-        #br_2_1_2>table tr>td:nth-child(2){
-        	padding-left:20px;
-        	padding-right:20px;
-        }
-        #br_2_2>table{
+        #registerProduct>table{
             width: 100%;
             height: 100%;
             border-collapse: collapse;
-
         }
-        #br_2_2>table *{
+        #registerProduct>table *{
             border: 1px solid black;
         }
-        #br_2_2>table th{
+        #registerProduct>table th{
             width: 20%;
             background: lightgray;
             text-align:center;
             font-size:20px;
         }
-        #br_2_2>table td{
+        #registerProduct>table td{
             padding-left: 15px;
         }
         #category>input{
@@ -141,27 +131,12 @@
             background: black;
             color: white;
             border: 0px;
-            width: 100px;
+            width: 130px;
             height: 40px;
             border-radius: 3px;
-            margin-right: 3px;
+            margin-right: 15px;
             margin-left: 3px;
             font-size:20px;
-        }
-        .brand>:nth-child(1){
-        	
-        }
-        .brand>:nth-child(2){
-        	
-        }
-        .brand>:nth-child(3){
-        	
-        }
-        .brand>:nth-child(4){
-        	
-        }
-        .brand>:nth-child(5){
-        	
         }
         #size1>input, #size2>input{
             height: 25px;
@@ -227,17 +202,27 @@
         	width:98%;
         	height:40px;
         }
-        
+        input[name="productCode"]{
+        	width:98%;
+        	height:40px;
+        }
+        input[name="productName"]{
+        	width:98%;
+        	height:40px;
+        }
         textarea[name="reviewDetail"]{
         	width:100%;
         	height:100%;
         }
-        #table1>:nth-last-child(1)>:nth-last-child(2){
-            padding:5px;
+        #table1 tr{
+        	height:70px;
+        }
+        #table1 tr:nth-last-child(2){
+        	padding:5px;
             font-size:20px;
         }
-        #table1>:nth-last-child(1)>:nth-last-child(1){
-            height: 400px;
+        #table1 tr:nth-last-child(1){
+        	height:365px;
         }
         #submit{
         	width:98.3%;
@@ -257,19 +242,22 @@
         #footer{
         	margin-top:190px;
         }
-        
         .filebox label{
-	         display: inline-block;
 	         color: white;
 	         width:100%;
 	         height:100%;
-	         font-size: 40px;
-	         line-height: 160px;
-	         vertical-align: middle;
+	         text-align:center;
 	         background-color: black;
 	         cursor: pointer;
-	         border: 3px solid black;
-         } 
+         }
+         #main{
+         	line-height:200px;
+         	font-size:40px;
+         }
+         #registerImageDetail label{
+         	line-height:100px;
+         	font-size:25px;
+         }
         /* 파일 필드 숨기기 */
         .filebox input[type="file"]{
 	         position: absolute;
@@ -291,33 +279,83 @@
                 	<%@ include file="admin_sideMenu.jsp" %>
 	        </div>
             <div id="body_right">
-	        <form action="productModify.admin" method="post" enctype="multipart/form-data">
+	        <form action="productUpdate.admin" method="post" enctype="multipart/form-data">
 	        	<input type="hidden" name="pno" value="<%=product.getPRno()%>">
-                <div id="br_1">제품 수정</div>
-                <div id="br_2">
-                    <div id="br_2_1">
-                        <div id="br_2_1_1" class="filebox" style="padding:0px; padding-left:40px; padding-right:40px;">
-                        	<img src="<%=contextPath%>/resources/images/admin/<%=product.getPRimage() %>" id="titleImg" width="100%" height="100%">
-	                        <label for="imageRegister" id="abc">이미지 등록</label>
-	                     	<input type="file" name="image" id="imageRegister" onchange="loadImg(this,1);" required>
+                <div id="title">제품 수정</div>
+                <div id="registerWrap">
+                    <div id="registerImage">
+                        <div id="registerImageMain" class="filebox" style="padding:0px;">
+                        	<img src="<%=contextPath%>/<%=images.get(0).getProductImgUrl() + images.get(0).getProductImageChangeName()%>" id="titleImg" width="100%" height="100%">
+	                        <label for="registerMainImage" id="main">메인 이미지 등록</label>
+	                     	<input type="file" name="image1" id="registerMainImage" onchange="loadImg(this,1);">
                         </div>
-                        <div id="br_2_1_2">
-                            <table>
-                                <tr>
-                                    <td>Model</td>
-                                    <td id="model"><input type="text" name="productCode" required value="<%=product.getPRmodel()%>"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품명</td>
-                                    <td><input type="text" name="productName" required value="<%=product.getPRname()%>"></td>
-                                </tr>
-                            </table>
+                        <div id="registerImageDetail">
+	                        <div id="registerImageDetail1" class="filebox" style="padding:0px;">
+	                        	<%if(images.size() > 1){ %>
+		                        	<%for(int i = 1 ; i < images.size() ; i++){ %>
+		                        		<%if(i<images.size()){ %>
+			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
+		                        		<% break;}%>
+		                        	<% } %>
+	                        	<% }else{ %>
+	                        		<img src="" id="detailImg1" width="100%" height="100%">
+	                        	<% } %>
+		                        <label for="registerDetailImage1" id="detail1">상세 이미지 등록</label>
+		                     	<input type="file" name="image2" id="registerDetailImage1" onchange="loadImg(this,2);">
+	                        </div>
+	                        <div id="registerImageDetail2" class="filebox" style="padding:0px;">
+	                        	<%if(images.size() > 2){ %>
+		                        	<%for(int i = 2 ; i < images.size() ; i++){ %>
+		                        		<%if(i<images.size()){ %>
+			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
+		                        		<% break;}%>
+		                        	<% } %>
+	                        	<% }else{ %>
+	                        		<img src="" id="detailImg2" width="100%" height="100%">
+	                        	<% } %>
+		                        <label for="registerDetailImage2" id="detail2">상세 이미지 등록</label>
+		                     	<input type="file" name="image3" id="registerDetailImage2" onchange="loadImg(this,3);">
+	                        </div>
+	                        <div id="registerImageDetail3" class="filebox" style="padding:0px;">
+		                        <%if(images.size() > 3){ %>
+		                        	<%for(int i = 3 ; i < images.size() ; i++){ %>
+		                        		<%if(i<images.size()){ %>
+			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
+		                        		<% break;}%>
+		                        	<% } %>
+	                        	<% }else{ %>
+	                        		<img src="" id="detailImg3" width="100%" height="100%">
+	                        	<% } %>
+		                        <label for="registerDetailImage3" id="detail3">상세 이미지 등록</label>
+		                     	<input type="file" name="image4" id="registerDetailImage3" onchange="loadImg(this,4);">
+	                        </div>
+	                        <div id="registerImageDetail4" class="filebox" style="padding:0px;">
+	                        	<%if(images.size() > 4){ %>
+		                        	<%for(int i = 4 ; i < images.size() ; i++){ %>
+		                        		<%if(i<images.size()){ %>
+			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
+		                        		<% break;}%>
+		                        	<% } %>
+	                        	<% }else{ %>
+	                        		<img src="" id="detailImg4" width="100%" height="100%">
+	                        	<% } %>
+		                        <label for="registerDetailImage4" id="detail4">상세 이미지 등록</label>
+		                     	<input type="file" name="image5" id="registerDetailImage4" onchange="loadImg(this,5);">
+	                        </div>
                         </div>
                     </div>
-                    <div id="br_2_2">
+                    <div id="registerProduct">
                         <table id="table1">
 	                        <input id="hiddenCategory" type="hidden" name="category">
 	                        <input id="hiddenBrand" type="hidden" name="brand">
+                             <tr>
+                                <th>Model</th>
+                                <td><input type="text" name="productCode" value="<%=product.getPRmodel() %>" required></td>
+                            </tr>
+                            <tr>
+                                <th>제품명</th>
+                                <td><input type="text" name="productName" value="<%=product.getPRname() %>" required></td>
+                            </tr>
                             <tr>
                                 <th>분류</th>
                                 <td id="category">
@@ -328,14 +366,37 @@
                                     <input type="button" value="accessories">
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="brandChoose">
                                 <th>브랜드</th>
-                                <td class="brand">
-                                    <input type="button" value="brand1">
-                                    <input type="button" value="brand2">
-                                    <input type="button" value="brand3">
-                                    <input type="button" value="brand4">
-                                    <input type="button" value="brand5">
+                                <td class="brand topsBrand">
+                                    <input type="button" value="Supreme">
+                                    <input type="button" value="StoneIsland">
+                                    <input type="button" value="RalphLauren">
+                                    <input type="button" value="Stussy">
+                                </td>
+                                <td class="brand bottomsBrand" style="display:none;">
+                                    <input type="button" value="CalvinKlein">
+                                    <input type="button" value="Gucci">
+                                    <input type="button" value="Adidas">
+                                    <input type="button" value="Nike">
+                                </td>
+                                <td class="brand outersBrand" style="display:none;">
+                                    <input type="button" value="Gucci">
+                                    <input type="button" value="LouisVuitton">
+                                    <input type="button" value="Nike">
+                                    <input type="button" value="RalphLauren">
+                                </td>
+                                <td class="brand footwearBrand" style="display:none;">
+                                    <input type="button" value="Adidas">
+                                    <input type="button" value="Nike">
+                                    <input type="button" value="Balenciaga">
+                                    <input type="button" value="Jordan">
+                                </td>
+                                <td class="brand accessoriesBrand" style="display:none;">
+                                    <input type="button" value="LouisVuitton">
+                                    <input type="button" value="StoneIsland">
+                                    <input type="button" value="Balenciaga">
+                                    <input type="button" value="Gosha">
                                 </td>
                             </tr>
                             <tr>
@@ -358,7 +419,7 @@
                                     <input type="checkbox" id="color_red" name="color" value="red"><label for="color_red" id="redColor"></label>
                                     <input type="checkbox" id="color_orange" name="color" value="orange"><label for="color_orange" id="orangeColor"></label>
                                     <input type="checkbox" id="color_yellow" name="color" value="yellow"><label for="color_yellow" id="yellowColor"></label>
-                                    <input type="checkbox" id="color_greenyellow" name="color" value="greenyellow"><label for="color_greenyellow" id="greenyellowColor"></label>
+                                    <input type="checkbox" id="color_green" name="color" value="green"><label for="color_green" id="greenColor"></label>
                                     <input type="checkbox" id="color_blue" name="color" value="blue"><label for="color_blue" id="blueColor"></label>
                                     <input type="checkbox" id="color_purple" name="color" value="purple"><label for="color_purple" id="purpleColor"></label>
                                 </td>
@@ -393,8 +454,6 @@
     <script>
 	   	$(function(){
 	   		
-   			$("#abc").css("display","none");
-	   		
 	   		$("#category>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$("#category>input").not($(this)).css({background:"black", color:"white"});
@@ -416,35 +475,176 @@
 	   		});
 	   		
 	   		$("#titleImg").click(function(){
-                $("#imageRegister").click();
+                $("#registerMainImage").click();
             });
 	   		
+	   		$("#detailImg1").click(function(){
+                $("#registerDetailImage1").click();
+            });
+	   		
+	   		$("#detailImg2").click(function(){
+                $("#registerDetailImage2").click();
+            });
+	   		
+	   		$("#detailImg3").click(function(){
+                $("#registerDetailImage3").click();
+            });
+	   		
+	   		$("#detailImg4").click(function(){
+                $("#registerDetailImage4").click();
+            });
+	   		
+	   		// 분류에 대한 브랜드 선택
+	   		$("input[value=tops]").click(function(){
+	   			$(".topsBrand").css("display","");
+	   			$(".brand").not(".topsBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=bottoms]").click(function(){
+	   			$(".bottomsBrand").css("display","");
+	   			$(".brand").not(".bottomsBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=outers]").click(function(){
+	   			$(".outersBrand").css("display","");
+	   			$(".brand").not(".outersBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=footwear]").click(function(){
+	   			$(".footwearBrand").css("display","");
+	   			$(".brand").not(".footwearBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=accessories]").click(function(){
+	   			$(".accessoriesBrand").css("display","");
+	   			$(".brand").not(".accessoriesBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		
+	   		// 로딩 시 미리보기 여부에 따른 라벨 유무
+	   		if($("#titleImg").attr("src")!=""){
+	   			$("#main").css("display","none");
+	   		}else{
+	   			$("#main").css("display","");
+	   		}
+	   		
+	   		if($("#detailImg1").attr("src")!=""){
+	   			$("#detail1").css("display","none");
+	   		}else{
+	   			$("#detail1").css("display","");
+	   		}
+	   		
+	   		if($("#detailImg2").attr("src")!=""){
+	   			$("#detail2").css("display","none");
+	   		}else{
+	   			$("#detail2").css("display","");
+	   		}
+	   		
+	   		if($("#detailImg3").attr("src")!=""){
+	   			$("#detail3").css("display","none");
+	   		}else{
+	   			$("#detail3").css("display","");
+	   		}
+	   		
+	   		if($("#detailImg4").attr("src")!=""){
+	   			$("#detail4").css("display","none");
+	   		}else{
+	   			$("#detail4").css("display","");
+	   		}
+	   		
+	   		// 로딩 시 미리보기 여부에 따른 이미지 유무
+	   		if($("#titleImg").attr("src")!=""){
+	   			$("#titleImg").css("display","");
+	   		}else{
+	   			$("#titleImg").css("display","none");
+	   		}
+	   		
+	   		if($("#detailImg1").attr("src")!=""){
+	   			$("#detailImg1").css("display","");
+	   		}else{
+	   			$("#detailImg1").css("display","none");
+	   		}
+	   		
+	   		if($("#detailImg2").attr("src")!=""){
+	   			$("#detailImg2").css("display","");
+	   		}else{
+	   			$("#detailImg2").css("display","none");
+	   		}
+	   		
+	   		if($("#detailImg3").attr("src")!=""){
+	   			$("#detailImg3").css("display","");
+	   		}else{
+	   			$("#detailImg3").css("display","none");
+	   		}
+	   		
+	   		if($("#detailImg4").attr("src")!=""){
+	   			$("#detailImg4").css("display","");
+	   		}else{
+	   			$("#detailImg4").css("display","none");
+	   		}
+	   		// footer 위치 조정
 	   		$("#footer").css("margin-top","155px");
 	   		
+	   		// 로딩 시 버튼 클릭
+	   		// category
 	   		<%if(product.getPRcategory().equals("tops")){%>
 	   			$("input[value=tops]").click();
+	   			<%if(product.getPRbrand().equals("Supreme")){%>
+	   				$("input[value=Supreme]").click();
+	   			<% }else if(product.getPRbrand().equals("StoneIsland")){ %>
+	   				$("input[value=StoneIsland]").click();
+   				<%}else if(product.getPRbrand().equals("RalphLauren")){%>
+		   			$("input[value=RalphLauren]").click();
+		   		<%}else if(product.getPRbrand().equals("Stussy")){%>
+		   			$("input[value=Stussy]").click();
+		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("bottoms")){%>
 	   			$("input[value=bottoms]").click();
+	   			<%if(product.getPRbrand().equals("CalvinKlein")){%>
+		   			$("input[value=CalvinKlein]").click();
+		   		<%}else if(product.getPRbrand().equals("Gucci")){%>
+		   			$("input[value=Gucci]").click();
+		   		<%}else if(product.getPRbrand().equals("Adidas")){%>
+		   			$("input[value=Adidas]").click();
+		   		<%}else if(product.getPRbrand().equals("Nike")){%>
+		   			$("input[value=Nike]").click();
+		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("outers")){%>
 	   			$("input[value=outers]").click();
+	   			<%if(product.getPRbrand().equals("Gucci")){%>
+		   			$("input[value=CalvinKlein]").click();
+		   		<%}else if(product.getPRbrand().equals("LouisVuitton")){%>
+		   			$("input[value=Gucci]").click();
+		   		<%}else if(product.getPRbrand().equals("Nike")){%>
+		   			$("input[value=Adidas]").click();
+		   		<%}else if(product.getPRbrand().equals("RalphLauren")){%>
+		   			$("input[value=Nike]").click();
+		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("footwear")){%>
 	   			$("input[value=footwear]").click();
+	   			<%if(product.getPRbrand().equals("Adidas")){%>
+		   			$("input[value=Adidas]").click();
+		   		<%}else if(product.getPRbrand().equals("Nike")){%>
+		   			$("input[value=Nike]").click();
+		   		<%}else if(product.getPRbrand().equals("Balenciaga")){%>
+		   			$("input[value=Balenciaga]").click();
+		   		<%}else if(product.getPRbrand().equals("Jordan")){%>
+		   			$("input[value=Jordan]").click();
+		   		<%}%>
 	   		<%}else{%>
 	   			$("input[value=accessories]").click();
+	   			<%if(product.getPRbrand().equals("LouisVuitton")){%>
+		   			$("input[value=LouisVuitton]").click();
+		   		<%}else if(product.getPRbrand().equals("StoneIsland")){%>
+		   			$("input[value=StoneIsland]").click();
+		   		<%}else if(product.getPRbrand().equals("Balenciaga")){%>
+		   			$("input[value=Balenciaga]").click();
+		   		<%}else if(product.getPRbrand().equals("Gosha")){%>
+		   			$("input[value=Gosha]").click();
+		   		<%}%>
 	   		<%}%>
 	   		
-	   		<%if(product.getPRbrand().equals("brand1")){%>
-	   			$("input[value=brand1]").click();
-	   		<%}else if(product.getPRbrand().equals("brand2")){%>
-	   			$("input[value=brand2]").click();
-	   		<%}else if(product.getPRbrand().equals("brand3")){%>
-	   			$("input[value=brand3]").click();
-	   		<%}else if(product.getPRbrand().equals("brand4")){%>
-	   			$("input[value=brand4]").click();
-	   		<%}else{%>
-	   			$("input[value=brand5]").click();
-	   		<%}%>
-	   		
+	   		// color
 	   		<%if(product.getPRcolor().indexOf("black")>=0){%>
 	   			$("#blackColor").click();
 	   		<%}%>
@@ -463,8 +663,8 @@
 	   		<%if(product.getPRcolor().indexOf("yellow")>=0){%>
 	   			$("#yellowColor").click();
 	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("greenyellow")>=0){%>
-	   			$("#greenyellowColor").click();
+	   		<%if(product.getPRcolor().indexOf("green")>=0){%>
+	   			$("#greenColor").click();
 	   		<%}%>
 	   		<%if(product.getPRcolor().indexOf("blue")>=0){%>
 	   			$("#blueColor").click();
@@ -472,64 +672,63 @@
 	   		<%if(product.getPRcolor().indexOf("purple")>=0){%>
 	   			$("#purpleColor").click();
 	   		<%}%>
-<%-- 	   		<%if(product.getPRcolor().indexOf("black")>=0){%>
-	   			$("#blackColor").click();
-	   			$("#color_black").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("gray")>=0){%>
-	   			$("#grayColor").click();
-	   			$("#color_gray").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("white")>=0){%>
-	   			$("#whiteColor").click();
-	   			$("#color_white").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("red")>=0){%>
-	   			$("#redColor").click();
-	   			$("#color_red").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("orange")>=0){%>
-	   			$("#orangeColor").click();
-	   			$("#color_orange").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("yellow")>=0){%>
-	   			$("#yellowColor").click();
-	   			$("#color_yellow").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("greenyellow")>=0){%>
-	   			$("#greenyellowColor").click();
-	   			$("#color_greenyeloow").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("blue")>=0){%>
-	   			$("#blueColor").click();
-	   			$("#color_blue").attr("checked",true);
-	   		<%}%>
-	   		<%if(product.getPRcolor().indexOf("purple")>=0){%>
-	   			$("#purpleColor").click();
-	   			$("#color_purple").attr("checked",true);
-	   		<%}%> --%>
-	   		
-	   		
 	   	});
 	   	
 	   	function loadImg(inputFile, num){
 	   		
-	   		$("#abc").css("display","none");
-	   		
+	   		if($("#registerMainImage").val()!=""){
+		   		$("#main").css("display","none");
+	   		}
+   			if($("#registerDetailImage1").val()!=""){
+		   		$("#detail1").css("display","none");
+	   		}
+   			if($("#registerDetailImage2").val()!=""){
+		   		$("#detail2").css("display","none");
+	   		}
+   			if($("#registerDetailImage3").val()!=""){
+		   		$("#detail3").css("display","none");
+	   		}
+   			if($("#registerDetailImage4").val()!=""){
+		   		$("#detail4").css("display","none");
+	   		}
+				   			
 	        if(inputFile.files.length == 1){
 	            var reader = new FileReader();              
 	            reader.readAsDataURL(inputFile.files[0])   
 	            reader.onload = function(e){                 
                 switch(num){
                     case 1 : $("#titleImg").attr("src", e.target.result); break;
+                    case 2 : $("#detailImg1").attr("src", e.target.result); break;
+                    case 3 : $("#detailImg2").attr("src", e.target.result); break;
+                    case 4 : $("#detailImg3").attr("src", e.target.result); break;
+                    case 5 : $("#detailImg4").attr("src", e.target.result); break;
                 }
-            }
+	            }
 	        }else{
                 switch(num){
                     case 1 : $("#titleImg").attr("src", null); break;
+                    case 2 : $("#detailImg1").attr("src", null); break;
+                    case 3 : $("#detailImg2").attr("src", null); break;
+                    case 4 : $("#detailImg3").attr("src", null); break;
+                    case 5 : $("#detailImg4").attr("src", null); break;
                 }
 	        }
-	   		$("#titleImg").css("display","block");
+	        
+	        if($("#registerMainImage").val()!=""){
+		        $("#titleImg").css("display","block");
+	   		}
+	        if($("#registerDetailImage1").val()!=""){
+		        $("#detailImg1").css("display","block");
+	   		}
+	        if($("#registerDetailImage2").val()!=""){
+		        $("#detailImg2").css("display","block");
+	   		}
+	        if($("#registerDetailImage3").val()!=""){
+		        $("#detailImg3").css("display","block");
+	   		}
+	        if($("#registerDetailImage4").val()!=""){
+		        $("#detailImg4").css("display","block");
+	   		}
 	    }
 	   	
 	   	function check(){
@@ -544,9 +743,6 @@
 	   		if($("#color label").text() == ""){
 	   			alert("컬러를 선택하세요!");
 	   			return false;
-	   		}
-	   		if($("#imageRegister").val() == ""){
-	   			$("#imageRegister").attr("disabled",true);
 	   		}
 	   	}
 	   	

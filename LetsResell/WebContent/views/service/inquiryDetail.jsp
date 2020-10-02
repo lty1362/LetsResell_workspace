@@ -153,6 +153,10 @@
             padding:10px;
             margin-left:3%;
         }
+        #serviceInquiryLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
 </style>
 </head>
 <body>
@@ -169,6 +173,7 @@
                 	</div>
                 <form action="update.inquiry" method="post">
                 <input type="hidden" name="inquiryNo" value="<%=list.getInquiryNo()%>">
+                <input type="hidden" name="userNo" value="<%=login.getUserNo()%>">
                 <div id="content">
                 	<%if(list.getInquiryStatus().equals("Y")){ %>
 	                    <div id="content_title">
@@ -313,12 +318,14 @@
 				$("#content_inquiry").css({"margin-top":"5%", "height":"46%"});
             <% } %>
         });
+        
         filter = function(){
         	if($("select[name=bigCategory]").val()=="대분류"){
         		alert("대분류를 선택하세요.");
         		return false;
         	};
         }
+        
 	</script>
 </body>
 </html>

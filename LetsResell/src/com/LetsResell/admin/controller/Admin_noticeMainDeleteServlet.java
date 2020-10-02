@@ -20,6 +20,7 @@ public class Admin_noticeMainDeleteServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String[] check = request.getParameter("checked").split(",");
 		int result = new NoticeService().noticeDelete(check);
 		if(result > 0) {

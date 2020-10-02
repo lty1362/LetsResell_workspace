@@ -40,11 +40,6 @@
 		FROM MEMBER
 		WHERE MEM_USER_ID LIKE ?
 	</entry>
-	<entry key="searchListCount_address">
-		SELECT COUNT(*) LISTCOUNT
-		FROM MEMBER
-		WHERE LIKE ?
-	</entry>
 	<entry key="searchList_code">
 		SELECT *
 		  FROM (
@@ -105,27 +100,23 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
-	<entry key="searchList_address">
-		SELECT *
-		  FROM (
-		        SELECT 
-		                ROWNUM RNUM
-		              , A.*
-		        FROM (
-		             SELECT *
-					 FROM MEMBER
-					 ORDER BY MEM_USER_NO DESC
-		            ) A
-		        )
-		 WHERE RNUM BETWEEN ? AND ?
-	</entry>
 	<entry key="selectDetailMember">
-		SELECT 
-		       MEM_USER_NO
-		     , MEM_USER_ID
-		     , MEM_USER_NAME
-		     , MEM_PHONE
-		     , MEM_USER_SSN
+		SELECT *
+		  FROM MEMBER
+		 WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="activeMember">
+		UPDATE MEMBER
+		   SET MEM_BLACKLIST_STATUS = 'N'
+		 WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="blackMember">
+		UPDATE MEMBER
+		   SET MEM_BLACKLIST_STATUS = 'Y'
+		 WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="blackYesNo">
+		SELECT MEM_BLACKLIST_STATUS
 		  FROM MEMBER
 		 WHERE MEM_USER_NO = ?
 	</entry>

@@ -4,6 +4,7 @@
 <%
 	ArrayList<Inquiry> list = (ArrayList<Inquiry>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int writer = (int)request.getAttribute("writer");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
@@ -91,7 +92,7 @@
             width: 10%;
             border-right: 0px;
         }
-        #write a{
+        #write input{
         	background: rgb(74, 74, 74);
             color: white;
             border-radius: 3px;
@@ -101,10 +102,13 @@
             display:block;
             text-align:center;
             padding-top:5px;
+            border:0px;
         }
-        #write a:hover{
-        	text-decoration:none;
+        #serviceInquiryLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
         }
+        
 </style>
 </head>
 <body>
@@ -151,9 +155,14 @@
 			                <% } %>
 	            		<% } %>
                     </table>
-                <div id="write" align="right">
-                	<a href="<%=contextPath%>/enrollForm.inquiry">글쓰기</a>
-                </div>
+                <%if(writer!=0){ %>
+	                <div id="write" align="right">
+	                	<form action="enrollForm.inquiry" method="post">
+	                		<input type="hidden" name="userNo" value="<%=writer%>">
+	                		<input type="submit" value="글쓰기">
+	                	</form>
+	                </div>
+                <% } %>
                		<div id="bigPageArea">
 	                	<div class="pagingArea" align="center">
 				            <%if(currentPage == 1){ %>
@@ -186,7 +195,7 @@
 	    	   $("#inquiry tr").not("#inquiry tr:first").hover().css("cursor","pointer");
 		       $("#inquiry tr").not("#inquiry tr:first").click(function(){
 		         var ino = $(this).children().eq(0).text();
-		         location.href = "<%=contextPath%>/detail.inquiry?writer=<%=list.get(0).getInquiryWriter()%>&ino="+ino; // 쿼리스트링
+		         location.href = "<%=contextPath%>/detail.inquiry?writer=<%=writer%>&ino="+ino; // 쿼리스트링
 		       });
 		     });
 	   </script>

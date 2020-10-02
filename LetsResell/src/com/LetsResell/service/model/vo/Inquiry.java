@@ -15,12 +15,31 @@ public class Inquiry {
 	private String inquiryStatus;
 	private String inquiryAnswer;
 	private Date inquiryAnswerDate;
+	private String userId;
 	
 	// constructor
 	public Inquiry() {
 		
 	}
 	
+	
+	public Inquiry(int inquiryNo, String userId, String inquiryCategoryBig, String inquiryCategorySmall, String inquiryTitle,
+			String inquiryContent, Date inquiryEnrollDate, String inquiryStatus, String inquiryAnswer,
+			Date inquiryAnswerDate) {
+		super();
+		this.inquiryNo = inquiryNo;
+		this.userId = userId;
+		this.inquiryCategoryBig = inquiryCategoryBig;
+		this.inquiryCategorySmall = inquiryCategorySmall;
+		this.inquiryTitle = inquiryTitle;
+		this.inquiryContent = inquiryContent;
+		this.inquiryEnrollDate = inquiryEnrollDate;
+		this.inquiryStatus = inquiryStatus;
+		this.inquiryAnswer = inquiryAnswer;
+		this.inquiryAnswerDate = inquiryAnswerDate;
+	}
+
+
 	public Inquiry(int inquiryNo, String inquiryTitle, String inquiryCategoryBig, String inquiryCategorySmall, 
 			String inquiryContent) {
 		super();
@@ -47,9 +66,20 @@ public class Inquiry {
 	}
 	
 	// method
+	
 	public int getInquiryNo() {
 		return inquiryNo;
 	}
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
 	public void setInquiryNo(int inquiryNo) {
 		this.inquiryNo = inquiryNo;
 	}
@@ -107,13 +137,15 @@ public class Inquiry {
 	public void setInquiryAnswerDate(Date inquiryAnswerDate) {
 		this.inquiryAnswerDate = inquiryAnswerDate;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Inquiry [inquiryNo=" + inquiryNo + ", inquiryWriter=" + inquiryWriter + ", inquiryCategoryBig="
 				+ inquiryCategoryBig + ", inquiryCategorySmall=" + inquiryCategorySmall + ", inquiryTitle="
 				+ inquiryTitle + ", inquiryContent=" + inquiryContent + ", inquiryEnrollDate=" + inquiryEnrollDate
 				+ ", inquiryStatus=" + inquiryStatus + ", inquiryAnswer=" + inquiryAnswer + ", inquiryAnswerDate="
-				+ inquiryAnswerDate + "]";
+				+ inquiryAnswerDate + ", userId=" + userId + "]";
 	}
 	
 	

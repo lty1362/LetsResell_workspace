@@ -71,7 +71,7 @@
 		  INTO INQUIRY
 		VALUES
 		     (
-		        SEQ_INQUIRY_NO.NEXTVAL
+		        SEQ_INQUIRY.NEXTVAL
 		      , ?
 		      , ?
 		      , ?
@@ -97,7 +97,7 @@
 		        FROM (
 		            SELECT 
 					       INQUIRY_NO
-					     , INQUIRY_WRITER
+					     , M.MEM_USER_ID
 					     , INQUIRY_CATEGORY_BIG
 					     , INQUIRY_CATEGORY_SMALL
 					     , INQUIRY_TITLE
@@ -106,7 +106,8 @@
 					     , INQUIRY_STATUS
 					     , INQUIRY_ANSWER
 					     , INQUIRY_ANSWER_DATE
-					 FROM INQUIRY
+					 FROM INQUIRY I
+					 JOIN MEMBER M ON (I.INQUIRY_WRITER = M.MEM_USER_NO)
 					ORDER BY INQUIRY_NO DESC
 		            ) A
 		        )

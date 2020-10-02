@@ -71,8 +71,9 @@ public class ReportDao {
 						   rset.getString(5),
 						   rset.getString(6),
 						   rset.getString(7),
-						   rset.getDate(8),
-						   rset.getString(9)));
+						   rset.getString(8),
+						   rset.getDate(9),
+						   rset.getString(10)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,8 +101,9 @@ public class ReportDao {
 						   rset.getString(5),
 						   rset.getString(6),
 						   rset.getString(7),
-						   rset.getDate(8),
-						   rset.getString(9));
+						   rset.getString(8),
+						   rset.getDate(9),
+						   rset.getString(10));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,7 +122,7 @@ public class ReportDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, update.getReportTitle());
 			pstmt.setString(2, update.getReportCategory());
-			pstmt.setInt(3, update.getSaleNo());
+			pstmt.setString(3, update.getReportPastDeal());
 			pstmt.setString(4, update.getReportContent());
 			pstmt.setInt(5, update.getReportNo());
 			result = pstmt.executeUpdate();
@@ -138,11 +140,12 @@ public class ReportDao {
 		String sql = prop.getProperty("insertReport");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, writer);
-			pstmt.setInt(2, insert.getSaleNo());
+			pstmt.setInt(1, insert.getSaleNo());
+			pstmt.setInt(2, writer);
 			pstmt.setString(3, insert.getReportCategory());
 			pstmt.setString(4, insert.getReportTitle());
 			pstmt.setString(5, insert.getReportContent());
+			pstmt.setString(6, insert.getReportPastDeal());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,12 +190,13 @@ public class ReportDao {
 			while(rset.next()) {
 				list.add(new Report(rset.getInt(2),
 						   rset.getInt(3),
-						   rset.getInt(4),
+						   rset.getString(4),
 						   rset.getString(5),
 						   rset.getString(6),
 						   rset.getString(7),
-						   rset.getDate(8),
-						   rset.getString(9)));
+						   rset.getString(8),
+						   rset.getDate(9),
+						   rset.getString(10)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -219,8 +223,9 @@ public class ReportDao {
 						   rset.getString(4),
 						   rset.getString(5),
 						   rset.getString(6),
-						   rset.getDate(7),
-						   rset.getString(8));
+						   rset.getString(7),
+						   rset.getDate(8),
+						   rset.getString(9));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

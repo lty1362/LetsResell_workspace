@@ -119,7 +119,7 @@
 	                <table id="notice">
 	                	<% if(list.isEmpty()){ %>
 			            	<tr>
-			            		<td colspan="3">조회된 리스트가 없습니다.</td>
+			            		<td colspan="3" style="text-align:center;">조회된 리스트가 없습니다.</td>
 			            	</tr>
 	            		<% } else {%>
 		                    <tr>

@@ -101,4 +101,14 @@ public class ProductService {
 		return result;
 	}
 	
+	public ArrayList<Admin_Image> selectImage(int pno) {
+		Connection conn = getConnection();
+		ArrayList<Admin_Image> image = new ProductDao().selectImage(conn, pno);
+		close(conn);
+		return image;
+	}
+	
+	
+	
+	
 }

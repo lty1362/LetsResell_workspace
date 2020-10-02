@@ -126,27 +126,12 @@
             background: black;
             color: white;
             border: 0px;
-            width: 100px;
+            width: 130px;
             height: 40px;
             border-radius: 3px;
-            margin-right: 3px;
+            margin-right: 15px;
             margin-left: 3px;
             font-size:20px;
-        }
-        .brand>:nth-child(1){
-        	
-        }
-        .brand>:nth-child(2){
-        	
-        }
-        .brand>:nth-child(3){
-        	
-        }
-        .brand>:nth-child(4){
-        	
-        }
-        .brand>:nth-child(5){
-        	
         }
         #size1>input, #size2>input{
             height: 25px;
@@ -343,14 +328,37 @@
                                     <input type="button" value="accessories">
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="brandChoose">
                                 <th>브랜드</th>
-                                <td class="brand">
-                                    <input type="button" value="brand1">
-                                    <input type="button" value="brand2">
-                                    <input type="button" value="brand3">
-                                    <input type="button" value="brand4">
-                                    <input type="button" value="brand5">
+                                <td class="brand topsBrand">
+                                    <input type="button" value="Supreme">
+                                    <input type="button" value="StoneIsland">
+                                    <input type="button" value="RalphLauren">
+                                    <input type="button" value="Stussy">
+                                </td>
+                                <td class="brand bottomsBrand" style="display:none;">
+                                    <input type="button" value="CalvinKlein">
+                                    <input type="button" value="Gucci">
+                                    <input type="button" value="Adidas">
+                                    <input type="button" value="Nike">
+                                </td>
+                                <td class="brand outersBrand" style="display:none;">
+                                    <input type="button" value="Gucci">
+                                    <input type="button" value="LouisVuitton">
+                                    <input type="button" value="Nike">
+                                    <input type="button" value="RalphLauren">
+                                </td>
+                                <td class="brand footwearBrand" style="display:none;">
+                                    <input type="button" value="Adidas">
+                                    <input type="button" value="Nike">
+                                    <input type="button" value="Balenciaga">
+                                    <input type="button" value="Jordan">
+                                </td>
+                                <td class="brand accessoriesBrand" style="display:none;">
+                                    <input type="button" value="LouisVuitton">
+                                    <input type="button" value="StoneIsland">
+                                    <input type="button" value="Balenciaga">
+                                    <input type="button" value="Gosha">
                                 </td>
                             </tr>
                             <tr>
@@ -368,7 +376,7 @@
                                     <input type="checkbox" id="color_red" name="color" value="red"><label for="color_red"></label>
                                     <input type="checkbox" id="color_orange" name="color" value="orange"><label for="color_orange"></label>
                                     <input type="checkbox" id="color_yellow" name="color" value="yellow"><label for="color_yellow"></label>
-                                    <input type="checkbox" id="color_greenyellow" name="color" value="greenyellow"><label for="color_greenyellow"></label>
+                                    <input type="checkbox" id="color_green" name="color" value="green"><label for="color_green" id="greenColor"></label>
                                     <input type="checkbox" id="color_blue" name="color" value="blue"><label for="color_blue"></label>
                                     <input type="checkbox" id="color_purple" name="color" value="purple"><label for="color_purple"></label>
                                 </td>
@@ -455,11 +463,34 @@
 	   		// footer 위치 조정
 	   		$("#footer").css("margin-top","155px");
 	   		
+	   		// 분류에 대한 브랜드 선택
+	   		$("input[value=tops]").click(function(){
+	   			$(".topsBrand").css("display","");
+	   			$(".brand").not(".topsBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=bottoms]").click(function(){
+	   			$(".bottomsBrand").css("display","");
+	   			$(".brand").not(".bottomsBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=outers]").click(function(){
+	   			$(".outersBrand").css("display","");
+	   			$(".brand").not(".outersBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=footwear]").click(function(){
+	   			$(".footwearBrand").css("display","");
+	   			$(".brand").not(".footwearBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		$("input[value=accessories]").click(function(){
+	   			$(".accessoriesBrand").css("display","");
+	   			$(".brand").not(".accessoriesBrand").css("display","none");
+	   			$(".brand input").css({"background":"black","color":"white"});
+	   		});
+	   		
 	   	});
-	   	
-	   	function test(){
-	   		console.log();
-	   	}
 	   	
 	   	// 미리보기
 	   	function loadImg(inputFile, num){

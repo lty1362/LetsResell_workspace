@@ -166,7 +166,7 @@
 		                        </div>
 		                        <div id="category_small">
 		                            <div>거래내역</div>
-		                            <div><%=report.getSaleNo()%></div>
+		                            <div><%=report.getReportPastDeal()%></div>
 		                        </div>
 		                    </div>
 		                    <div id="content_report">
@@ -175,7 +175,6 @@
 		                    <div id="content_answer">
 		                    	<%if(report.getReportStatus().equals("Y")){ %>
 		                    		요청하신 접수가 처리되었습니다.
-		                    	<%}else{ %>
 		                    	<%} %>
 		                    </div>
 		                </div>

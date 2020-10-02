@@ -22,9 +22,10 @@ public class InquiryForm extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int writer = 3;
-		
+		int writer = 0;
+		if(request.getParameter("un") != null) {
+			writer = Integer.parseInt(request.getParameter("un"));
+		}
 		int listCount; 		
 		int currentPage; 	
 		int pageLimit; 		
@@ -51,6 +52,7 @@ public class InquiryForm extends HttpServlet {
 		ArrayList<Inquiry> list = new InquiryService().selectList(writer, pi);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("writer", writer);
 		request.getRequestDispatcher("views/service/inquiryMain.jsp").forward(request, response);
 		
 	}

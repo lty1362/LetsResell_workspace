@@ -21,17 +21,19 @@ public class ReportUpdateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
-    	
+		
+    	int writer = Integer.parseInt(request.getParameter("userNo"));
 		String title = request.getParameter("title");
-		String bigCategory = request.getParameter("bigCategory");
-		int pastDeal = Integer.parseInt(request.getParameter("pastDeal"));
+		String category = request.getParameter("bigCategory");
+		String pastDeal = request.getParameter("pastDeal");
 		String content = request.getParameter("content");
 		int rno = Integer.parseInt(request.getParameter("rno"));
 		
-		Report update = new Report(title, bigCategory, pastDeal, content, rno);
+		Report update = new Report(title, category, pastDeal, content, rno);
 		int result = new ReportService().updateReport(update);
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/reportForm.service?currentPage=1");
+			request.getSession().setAttribute("alertMsg", "신고 수정 성공!!");
+			response.sendRedirect(request.getContextPath() + "/reportForm.service?currentPage=1&un="+writer);
 		}
 	}
 

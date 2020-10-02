@@ -21,6 +21,7 @@
 					     , REPORT_CATEGORY
 					     , REPORT_TITLE
 					     , REPORT_CONTENT
+					     , REPORT_PASTDEAL
 					     , REPORT_ENROLL_DATE
 					     , REPORT_STATUS
 					  FROM REPORT
@@ -44,6 +45,7 @@
 					     , REPORT_CATEGORY
 					     , REPORT_TITLE
 					     , REPORT_CONTENT
+					     , REPORT_PASTDEAL
 					     , REPORT_ENROLL_DATE
 					     , REPORT_STATUS
 					  FROM REPORT
@@ -59,7 +61,7 @@
 		   SET 
 		       REPORT_TITLE = ?
 		     , REPORT_CATEGORY = ?
-		     , SALE_NO = ?
+		     , REPORT_PASTDEAL = ?
 		     , REPORT_CONTENT = ?
 		 WHERE REPORT_NO = ?
 	</entry>
@@ -68,7 +70,8 @@
 		  INTO REPORT
 		VALUES
 		     (
-		        SEQ_REPORT_NO.NEXTVAL
+		        SEQ_REPORT.NEXTVAL
+		      , ?
 		      , ?
 		      , ?
 		      , ?
@@ -93,13 +96,15 @@
 		            SELECT 
 					       REPORT_NO
 					     , SALE_NO
-					     , REPORT_WRITER
+					     , M.MEM_USER_ID
 					     , REPORT_CATEGORY
 					     , REPORT_TITLE
 					     , REPORT_CONTENT
+					     , REPORT_PASTDEAL
 					     , REPORT_ENROLL_DATE
 					     , REPORT_STATUS
-					  FROM REPORT
+					 FROM REPORT R
+					 JOIN MEMBER M ON (R.REPORT_WRITER = M.MEM_USER_NO)
 					ORDER BY REPORT_NO DESC
 		            ) A
 		        )

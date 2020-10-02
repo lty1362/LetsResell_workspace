@@ -171,7 +171,7 @@
 			            		<td colspan="3">조회된 리스트가 없습니다.</td>
 			            	</tr>
 	            		<% } else {%>
-		                    <tr>
+		                    <tr class="ut">
 		                    	<th></th>
 	                            <th>No</th>
 	                            <th>질문</th>
@@ -179,7 +179,7 @@
 		            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 				                <tr>
 				                	<td style="display:none;"><%=list.get(i).getFAQno() %></td>
-				                	<td><input type="checkbox"></td>
+				                	<td class="ut"><input type="checkbox"></td>
 				                    <% int count = listCount-(currentPage*10-10); %>
 			                        <td><%= count-i %></td>
 				                    <td>
@@ -264,12 +264,11 @@
 		
 		// modify
 		$(function(){
-		
-			$("#FAQ tr").not("#FAQ tr:first").click(function(){
-		         var fno = $(this).children(0).eq(0).text();
-		         location.href = "<%=contextPath%>/FAQdetailCategory.admin?fno="+fno; // 쿼리스트링
+			$("#FAQ tr td").not($(".ut")).hover().css("cursor","pointer");
+			$("#FAQ tr td").not($(".ut")).click(function(){
+		         var fno = $(this).siblings().eq(0).html();
+		         location.href = "<%=contextPath%>/FAQdetail.admin?fno="+fno; // 쿼리스트링
 		       });
-			
 		});
 	
 		// delete

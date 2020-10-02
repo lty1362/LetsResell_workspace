@@ -77,7 +77,7 @@
 		  INTO FAQ
 		VALUES
 		     (
-		        SEQ_FAQ_NO.NEXTVAL
+		        SEQ_FAQ.NEXTVAL
 		      , ?
 		      , ?
 		      , ?

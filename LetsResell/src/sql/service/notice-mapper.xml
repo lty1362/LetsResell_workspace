@@ -102,7 +102,7 @@
 		  INTO NOTICE
 		VALUES
 		     (
-		        SEQ_NOTICE_NO.NEXTVAL
+		        SEQ_NOTICE.NEXTVAL
 		      , ?
 		      , ?
 		      , SYSDATE

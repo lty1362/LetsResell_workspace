@@ -66,11 +66,7 @@ public class MemberDao {
 						,rset.getString(10)
 						,rset.getDate(11)
 						,rset.getInt(12)
-						,rset.getString(13)
-						,rset.getString(14)
-						,rset.getString(15)
-						,rset.getString(16))
-						);
+						,rset.getString(13)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,8 +90,6 @@ public class MemberDao {
 			sql = prop.getProperty("searchListCount_phone");
 		}else if(filter.equals("email")) {
 			sql = prop.getProperty("searchListCount_email");
-		}else {
-			sql = prop.getProperty("searchListCount_address");
 		}
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -126,8 +120,6 @@ public class MemberDao {
 			sql = prop.getProperty("searchList_phone");
 		}else if(filter.equals("email")) {
 			sql = prop.getProperty("searchList_email");
-		}else {
-			sql = prop.getProperty("searchList_address");
 		}
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -149,10 +141,7 @@ public class MemberDao {
 						,rset.getString(10)
 						,rset.getDate(11)
 						,rset.getInt(12)
-						,rset.getString(13)
-						,rset.getString(14)
-						,rset.getString(15)
-						,rset.getString(16))
+						,rset.getString(13))
 						);
 			}
 		} catch (SQLException e) {
@@ -174,11 +163,18 @@ public class MemberDao {
 			pstmt.setInt(1, mno);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				mem = new Admin_Member(rset.getInt(1),
-										rset.getString(2),
-										rset.getString(3),
-										rset.getString(4),
-										rset.getString(5));
+				mem = new Admin_Member(rset.getInt(1)
+						,rset.getString(2)
+						,rset.getString(3)
+						,rset.getString(4)
+						,rset.getString(5)
+						,rset.getDate(6)
+						,rset.getDate(7)
+						,rset.getString(8)
+						,rset.getString(9)
+						,rset.getDate(10)
+						,rset.getInt(11)
+						,rset.getString(12));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -189,7 +185,45 @@ public class MemberDao {
 		return mem;
 	}
 	
+	public int blackMember(Connection conn, String black, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		if(black.equals("Y")) {
+			sql = prop.getProperty("activeMember");
+		} else if(black.equals("N")) {
+			sql = prop.getProperty("blackMember");
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
+	public String blackYN(Connection conn, int userNo) {
+		String blackYesNo = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("blackYesNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				blackYesNo = rset.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return blackYesNo;
+	}
 	
 	
 	
