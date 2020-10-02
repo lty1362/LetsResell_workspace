@@ -32,6 +32,10 @@ public class SearchProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String search = request.getParameter("search");
+		
 		// 페이징 처리
 		int listCount;		// 현재 총 게시글 갯수
 		int currentPage;	// 현재 페이지(요청한 페이지)
@@ -43,11 +47,10 @@ public class SearchProductServlet extends HttpServlet {
 		int endPage;		// 현재 페이지 하단에 보여질 페이징 바의 끝 수
 		
 		// * listCount: 총 게시글 갯수
-		listCount = new ProductService().selectListCount();
+		listCount = new ProductService().selectSearchListCount(search);
 		
 		// * currentPage: 현재 페이지(요청한 페이지)
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		
 		// * pageLimit: 한 페이지 하단에 보여질 페이지 최대 갯수(페이지 목록들 몇 개 단위)
 		pageLimit = 5;
 		
@@ -86,14 +89,11 @@ public class SearchProductServlet extends HttpServlet {
 		// 1. 페이징바 만들 때 필요한 PageInfo 객체 생성
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String search = request.getParameter("search");
-		
-		ArrayList<Product> list = new ProductService().searchProduct(search);
+		ArrayList<Product> list = new ProductService().searchProduct(search, pi);
 		
 		if(list.isEmpty()) {	// 검색된 값이 없을 때
-			request.getSession().setAttribute("alertMsg", "해당하는" + search + "제품이 없습니다.");
+			request.getSession().setAttribute("alertMsg", "해당하는 " + search + " 제품이 없습니다.");
+			response.sendRedirect(request.getContextPath());
 		} else {				// 검색된 값이 있을 때
 			request.setAttribute("search", search);
 			request.setAttribute("pi", pi);

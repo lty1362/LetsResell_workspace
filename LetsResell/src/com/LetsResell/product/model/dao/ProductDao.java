@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.common.member.vo.PageInfo;
 import com.LetsResell.product.model.vo.Product;
 import static com.LetsResell.template.JDBCTemplate.*;
 
@@ -27,38 +28,46 @@ public class ProductDao {
 		}
 	}
 	
-	public int selectListCount(Connection conn) {
+	public int selectSearchListCount(Connection conn, String search) {
 		int listCount = 0;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectListCount");
+		String sql = prop.getProperty("selectSearchListCount");
 		
 		try {
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(sql);
 			
-			rset = stmt.executeQuery(sql);
+			pstmt.setString(1, "%" + search + "%");
+			
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				listCount = rset.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		return listCount;
 	}
 	
-	public ArrayList<Product> searchProduct(Connection conn, String search) {
+	public ArrayList<Product> searchProduct(Connection conn, String search, PageInfo pi) {
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("searchProduct");
-		String searchText = "%" + search + "%";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
 			
-			pstmt.setString(1, searchText);
+			pstmt.setString(1, "%" + search + "%");			
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
@@ -68,17 +77,11 @@ public class ProductDao {
 				p.setPrNo(rset.getInt("PR_NO"));
 				p.setPrModel(rset.getString("PR_MODEL"));
 				p.setPrName(rset.getString("PR_NAME"));
-				p.setPrReleaseDate(rset.getDate("PR_RELEASE_DATE"));
+				p.setPrReleasePrice(rset.getInt("PR_RELEASE_PRICE"));
 				p.setTitleImg(rset.getString("TITLEIMG"));
 				
 				list.add(p);
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

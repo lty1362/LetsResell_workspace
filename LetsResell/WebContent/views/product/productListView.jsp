@@ -19,7 +19,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/LetsResell/resources/css/product/productListView.css">
-<script scr="/LetsResell/resources/js/product/productListView.js" rel="javascript"></script>
+<script src="/LetsResell/resources/js/product/productListView.js" rel="javascript"></script>
 <title>레츠리셀-제품이름</title>
 </head>
 <body>
@@ -60,26 +60,26 @@
 	         <div class="pagingArea" align="center">
 				<% if(currentPage != 1) { %>
 	            <!-- 맨 처음으로 (<<) -->
-	            <button onclick="location.href='<%=contextPath%>/search.do?currentPage=1';">&lt;&lt;</button>
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=1&search=<%=search%>';">&lt;&lt;</button>
 	
 	            <!-- 이전 페이지로 (<) -->
-	            <button onclick="location.href='<%=contextPath%>/search.do?currentPage=<%=currentPage-1%>';">&lt;</button>
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=currentPage-1%>&search=<%=search%>';">&lt;</button>
 	            <% } %>
 	            
-	            <% for(int p=startPage; p<=endPage; p++) { %>
-	            	<% if(p != currentPage) { %>
-	            	<button onclick="location.href='<%=contextPath%>/search.do?currentPage=<%=p%>';"><%= p %></button>
+	            <% for(int i=startPage; i<=endPage; i++) { %>
+	            	<% if(i != currentPage) { %>
+	            	<button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=i%>&search=<%=search%>';"><%= i%></button>
 	            	<% } else { %>
-	            	<button disabled><%= p %></button>
+	            	<button disabled><%= i %></button>
 	            	<% } %>
 	            <% } %>
 	            
 	            <% if(currentPage != maxPage) { %>
 	            <!-- 다음 페이지로 (>) -->
-	            <button onclick="location.href='<%=contextPath%>/search.do?currentPage=<%=currentPage+1%>';">&gt;</button>
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=currentPage+1%>&search=<%=search%>';">&gt;</button>
 	
 	            <!-- 맨 끝으로 (>>) -->
-	            <button onclick="location.href='<%= contextPath%>/search.do?currentPage=<%=maxPage%>';">&gt;&gt;</button>
+	            <button onclick="location.href='<%= contextPath%>/searchProduct.do?currentPage=<%=maxPage%>&search=<%=search%>';">&gt;&gt;</button>
 				<% } %>
 	        </div>
 

@@ -31,8 +31,7 @@ $(function() {
 
     //condition button
     $("#condition_btn>button").click(function(){
-        filter.condition = $(this).text();
-
+    	filter.condition = $(this).text();
         if($(this).attr("id") == $("#new_btn").attr("id")) {
             $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
             $(this).next().css({"background-color":"white", "color":"black", "border":"none"});
