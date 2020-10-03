@@ -45,10 +45,6 @@ public class Admin_dealSearchServlet extends HttpServlet {
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
-		System.out.println(listCount);
-		System.out.println(currentPage);
-		System.out.println(maxPage);
-		System.out.println(endPage);
 		
 		Admin_PageInfo pi = new Admin_PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Admin_Sale> list = new SaleService().searchList(filter, search, pi);

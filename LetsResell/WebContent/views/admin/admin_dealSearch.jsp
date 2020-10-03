@@ -128,9 +128,9 @@
 				                <tr>
 		                            <td><%= list.get(i).getSaleNum()%></td>
 		                            <td><%= list.get(i).getPrNum()%></td>
-		                            <td><%= list.get(i).getSaleMember()%></td>
+		                            <td><%= list.get(i).getUserId()%></td>
 		                            <td><%= list.get(i).getSaleName()%></td>
-		                            <td><%= list.get(i).getSalePrice()%></td>
+		                            <td>￦ <%= list.get(i).getSalePrice()%></td>
 		                            <td><%= list.get(i).getSaleDate()%></td>
 		                        </tr>
 			                <% } %>

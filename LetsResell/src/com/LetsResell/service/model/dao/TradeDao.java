@@ -122,4 +122,36 @@ public class TradeDao {
 		}
 		return tradeDay;
 	}
+	
+	public ArrayList<Trade> selectMemberDetail(Connection conn, int mno){
+		ArrayList<Trade> tradeList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberDetail");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Trade t = new Trade(rset.getInt(1),
+									rset.getInt(2),
+									rset.getString(3),
+									rset.getInt(4),
+									rset.getDate(5));
+				tradeList.add(t);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return tradeList;
+	}
+	
+	
+	
+	
+	
+	
 }

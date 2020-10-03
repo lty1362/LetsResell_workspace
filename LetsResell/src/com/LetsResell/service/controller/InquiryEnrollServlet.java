@@ -28,6 +28,7 @@ public class InquiryEnrollServlet extends HttpServlet {
 		Inquiry insert = new Inquiry(writer, title, bigCategory, smallCategory, content);
 		int result = new InquiryService().insertInquiry(insert);
 		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "1:1문의 등록 성공!!");
 			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1&un="+writer);
 		}
 	}

@@ -57,7 +57,12 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			String brand = mr.getParameter("brand");
 			String size1 = mr.getParameter("size1");
 			String size2 = mr.getParameter("size2");
-			String size = size1 + "~" + size2;
+			String size = "";
+			if(size1.equals("") && size2.equals("")) {
+				size = "-";
+			}else {
+				size = size1 + "~" + size2;
+			}
 			String[] colorArr = mr.getParameterValues("color");
 			String color = "";
 			for(int i = 0 ; i < colorArr.length ; i++) {

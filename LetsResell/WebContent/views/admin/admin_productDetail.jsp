@@ -402,7 +402,7 @@
                             <tr>
                                 <th>사이즈</th>
                                 <td id="size">
-                                	<%if(product.getPRsize()!= null){ %>
+                                	<%if(!product.getPRsize().equals("-")){ %>
                                 		<%String[] size = product.getPRsize().split("~"); %>
                                     	<input type="text" name="size1" value="<%=size[0]%>">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" name="size2" value="<%=size[1]%>">
                                     <% }else{ %>
@@ -591,56 +591,76 @@
 	   			$("input[value=tops]").click();
 	   			<%if(product.getPRbrand().equals("Supreme")){%>
 	   				$("input[value=Supreme]").click();
+	   				$("input[value=Supreme]").css({background:"white",color:"black"});
 	   			<% }else if(product.getPRbrand().equals("StoneIsland")){ %>
 	   				$("input[value=StoneIsland]").click();
+	   				$("input[value=StoneIsland]").css({background:"white",color:"black"});
    				<%}else if(product.getPRbrand().equals("RalphLauren")){%>
 		   			$("input[value=RalphLauren]").click();
+		   			$("input[value=StoneIsland]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Stussy")){%>
 		   			$("input[value=Stussy]").click();
+		   			$("input[value=Stussy]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("bottoms")){%>
 	   			$("input[value=bottoms]").click();
 	   			<%if(product.getPRbrand().equals("CalvinKlein")){%>
 		   			$("input[value=CalvinKlein]").click();
+		   			$("input[value=CalvinKlein]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Gucci")){%>
 		   			$("input[value=Gucci]").click();
+		   			$("input[value=Gucci]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Adidas")){%>
 		   			$("input[value=Adidas]").click();
+		   			$("input[value=Adidas]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Nike")){%>
 		   			$("input[value=Nike]").click();
+		   			$("input[value=Nike]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("outers")){%>
 	   			$("input[value=outers]").click();
 	   			<%if(product.getPRbrand().equals("Gucci")){%>
-		   			$("input[value=CalvinKlein]").click();
-		   		<%}else if(product.getPRbrand().equals("LouisVuitton")){%>
 		   			$("input[value=Gucci]").click();
+		   			$("input[value=Gucci]").css({background:"white",color:"black"});
+		   		<%}else if(product.getPRbrand().equals("LouisVuitton")){%>
+		   			$("input[value=LouisVuitton]").click();
+		   			$("input[value=LouisVuitton]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Nike")){%>
-		   			$("input[value=Adidas]").click();
-		   		<%}else if(product.getPRbrand().equals("RalphLauren")){%>
 		   			$("input[value=Nike]").click();
+		   			$("input[value=Nike]").css({background:"white",color:"black"});
+		   		<%}else if(product.getPRbrand().equals("RalphLauren")){%>
+		   			$("input[value=RalphLauren]").click();
+		   			$("input[value=RalphLauren]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}else if(product.getPRcategory().equals("footwear")){%>
 	   			$("input[value=footwear]").click();
 	   			<%if(product.getPRbrand().equals("Adidas")){%>
 		   			$("input[value=Adidas]").click();
+		   			$("input[value=Adidas]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Nike")){%>
 		   			$("input[value=Nike]").click();
+		   			$("input[value=Nike]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Balenciaga")){%>
 		   			$("input[value=Balenciaga]").click();
+		   			$("input[value=Balenciaga]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Jordan")){%>
 		   			$("input[value=Jordan]").click();
+		   			$("input[value=Jordan]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}else{%>
 	   			$("input[value=accessories]").click();
 	   			<%if(product.getPRbrand().equals("LouisVuitton")){%>
 		   			$("input[value=LouisVuitton]").click();
+		   			$("input[value=LouisVuitton]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("StoneIsland")){%>
 		   			$("input[value=StoneIsland]").click();
+		   			$("input[value=StoneIsland]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Balenciaga")){%>
 		   			$("input[value=Balenciaga]").click();
+		   			$("input[value=Balenciaga]").css({background:"white",color:"black"});
 		   		<%}else if(product.getPRbrand().equals("Gosha")){%>
 		   			$("input[value=Gosha]").click();
+		   			$("input[value=Gosha]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}%>
 	   		

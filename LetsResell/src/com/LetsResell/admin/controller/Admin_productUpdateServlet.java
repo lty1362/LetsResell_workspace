@@ -19,17 +19,17 @@ import com.LetsResell.admin.model.vo.Admin_Product;
 import com.oreilly.servlet.MultipartRequest;
 
 @WebServlet("/productUpdate.admin")
-public class Admin_productModifyServlet extends HttpServlet {
+public class Admin_productUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Admin_productModifyServlet() {
+    public Admin_productUpdateServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
 		if(ServletFileUpload.isMultipartContent(request)) {
+			request.setCharacterEncoding("UTF-8");
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/admin/");
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
@@ -57,7 +57,12 @@ public class Admin_productModifyServlet extends HttpServlet {
 			String brand = mr.getParameter("brand");
 			String size1 = mr.getParameter("size1");
 			String size2 = mr.getParameter("size2");
-			String size = size1 + "~" + size2;
+			String size = "";
+			if(size1.equals("") && size2.equals("")) {
+				size = "-";
+			}else {
+				size = size1 + "~" + size2;
+			}
 			String[] colorArr = mr.getParameterValues("color");
 			String color = "";
 			for(int i = 0 ; i < colorArr.length ; i++) {

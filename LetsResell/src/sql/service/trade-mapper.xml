@@ -22,4 +22,18 @@
 		  WHERE MEM_USER_NO = ?
 		    AND SALE_NO = ?
 	</entry>
+	<entry key="selectMemberDetail">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		            SELECT S.SALE_NO, S.SALE_NAME, T.TRADE_PRICE, T.TRADE_END
+					  FROM TRADE T
+					  JOIN SALE S ON (S.SALE_NO = T.SALE_NO)
+					 WHERE T.MEM_USER_NO = ?
+		            ) A
+		        )
+	</entry>
 </properties>

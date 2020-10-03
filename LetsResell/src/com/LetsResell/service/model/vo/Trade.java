@@ -5,6 +5,8 @@ import java.sql.Date;
 public class Trade {
 	
 	// field
+	private int rNum;
+	private String saleName;
 	private int tradeNo;
 	private int saleNo;
 	private int userNo;
@@ -21,6 +23,16 @@ public class Trade {
 	public Trade() {
 		
 	}
+	
+	public Trade(int rNum, int saleNo, String saleName, int tradePrice, Date tradeEnd) {
+		super();
+		this.rNum = rNum;
+		this.saleNo = saleNo;
+		this.saleName = saleName;
+		this.tradePrice = tradePrice;
+		this.tradeEnd = tradeEnd;
+	}
+
 	public Trade(int tradeNo, int saleNo, int userNo, int addressNo, String tradeStatus, String tradeService,
 			int tradeNumber, Date tradeConclude, Date tradeEnd, int tradePrice, int bidNo) {
 		super();
@@ -38,9 +50,19 @@ public class Trade {
 	}
 	
 	// method
+	
 	public int getTradeNo() {
 		return tradeNo;
 	}
+	public int getrNum() {
+		return rNum;
+	}
+
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
+	}
+
+
 	public void setTradeNo(int tradeNo) {
 		this.tradeNo = tradeNo;
 	}
@@ -104,12 +126,22 @@ public class Trade {
 	public void setBidNo(int bidNo) {
 		this.bidNo = bidNo;
 	}
+
+	public String getSaleName() {
+		return saleName;
+	}
+
+	public void setSaleName(String saleName) {
+		this.saleName = saleName;
+	}
+
 	@Override
 	public String toString() {
-		return "Trade [tradeNo=" + tradeNo + ", saleNo=" + saleNo + ", userNo=" + userNo + ", addressNo=" + addressNo
-				+ ", tradeStatus=" + tradeStatus + ", tradeService=" + tradeService + ", tradeNumber=" + tradeNumber
-				+ ", tradeConclude=" + tradeConclude + ", tradeEnd=" + tradeEnd + ", tradePrice=" + tradePrice
-				+ ", bidNo=" + bidNo + "]";
+		return "Trade [rNum=" + rNum + ", saleName=" + saleName + ", tradeNo=" + tradeNo + ", saleNo=" + saleNo
+				+ ", userNo=" + userNo + ", addressNo=" + addressNo + ", tradeStatus=" + tradeStatus + ", tradeService="
+				+ tradeService + ", tradeNumber=" + tradeNumber + ", tradeConclude=" + tradeConclude + ", tradeEnd="
+				+ tradeEnd + ", tradePrice=" + tradePrice + ", bidNo=" + bidNo + "]";
 	}
+
 	
 }

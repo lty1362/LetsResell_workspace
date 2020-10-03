@@ -40,5 +40,12 @@ public class TradeService {
 		return tradeDay;
 	}
 	
+	public ArrayList<Trade> selectMemberDetail(int mno){
+		Connection conn = getConnection();
+		ArrayList<Trade> tradeList = new TradeDao().selectMemberDetail(conn, mno);
+		close(conn);
+		return tradeList;
+	}
+	
 	
 }
