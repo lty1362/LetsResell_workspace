@@ -4,6 +4,13 @@
 <%@ page import="com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>)request.getAttribute("wishlist");
+	WishlistPageInfo wishlistPage = (WishlistPageInfo)request.getAttribute("wishlistPage");
+	
+	int wishlistCount = wishlistPage.getWishlistCount();
+	int currentPage = wishlistPage.getCurrentPage();
+	int startPage = wishlistPage.getStartPage();
+	int endPage = wishlistPage.getEndPage();
+	int maxPage = wishlistPage.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -136,14 +143,22 @@
                   </div>
                   <div class="page">
                     <div class="pageNumberBar">
-                    <a href="#">&laquo;</a>
-                    <a href="#">1</a>
-                    <a href="#" class="active">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">&raquo;</a>
+                    <% if(currentPage != 1){ %>
+			            <!-- 맨 처음으로 (<<) -->
+			            <a href="<%=contextPath%>/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=1">&laquo;</a>
+					<% } %>
+                    <% for(int pageNum=startPage; pageNum<=endPage; pageNum++){ %>
+						<% if(pageNum != currentPage){ %>
+		            	<a href="<%=contextPath%>/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=<%=pageNum%>"><%=pageNum%></a>
+		            	<% }else{ %>
+		            	<a class="active" style="pointer-events: none; cursor: default;"><%=pageNum%></a>
+		            	<% } %>
+		            <% } %>
+ 					<% if(currentPage != maxPage){ %>
+			            <!-- 맨 끝으로 (>>) -->
+			            <a href="<%=contextPath%>/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=<%=maxPage%>">&raquo;</a>
+					<% } %>
+                    
                     </div>
                   </div>
             </div>

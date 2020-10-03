@@ -21,6 +21,7 @@ import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Card;
 import com.LetsResell.myPage.model.vo.Wishlist;
+import com.LetsResell.myPage.model.vo.WishlistPageInfo;
 
 public class MyPage_service {
 	
@@ -236,15 +237,32 @@ public class MyPage_service {
 	}
 	
 	/**
+	 * 현재 총 찜 제품 갯수 조회
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public int selectWishlistCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int wishlistCount = new MyPage_dao().selectWishlistCount(conn, userNo);
+		
+		close(conn);
+		
+		return wishlistCount;
+		
+	}
+	
+	/**
 	 * 위시리스트 조회
 	 * @param userNo	로그인된 회원의 번호
 	 * @return
 	 */
-	public ArrayList<Wishlist> selectWishlist(int userNo) {
+	public ArrayList<Wishlist> selectWishlist(int userNo, WishlistPageInfo wishlistPage) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Wishlist> wishlist = new MyPage_dao().selectWishlist(conn, userNo);
+		ArrayList<Wishlist> wishlist = new MyPage_dao().selectWishlist(conn, userNo, wishlistPage);
 		
 		close(conn);
 		

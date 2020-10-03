@@ -130,12 +130,30 @@
 	</entry>
 	
 	<!-- 위시리스트 sql문 -->
+	<entry key="selectWishlistCount">
+		SELECT /* com.LetsResell.myPage.model.dao.MyPage_dao#selectWishlistCount() */
+		       COUNT(*) WISHLISTCOUNT
+		  FROM WISHLIST
+		 WHERE WISHLIST_MCODE = ?
+	</entry>
+	
 	<entry key="selectWishlist">
-		SELECT	/* com.LetsResell.myPage.model.dao.MyPage_dao#selectWishlist() */
-		       WISHLIST_ADD_DATE
-		     , PR_NAME
-		FROM WISHLIST
-		JOIN P_REG ON (WISHLIST_PCODE = PR_NO)
-		WHERE WISHLIST_MCODE = ?
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       WISHLIST_ADD_DATE
+		                     , PR_NAME
+		                  FROM WISHLIST WISH
+		                  JOIN P_REG ON (WISHLIST_PCODE=PR_NO)
+		                 WHERE WISHLIST_MCODE = ?
+		                 ORDER
+		                    BY WISHLIST_ADD_DATE DESC
+		              ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

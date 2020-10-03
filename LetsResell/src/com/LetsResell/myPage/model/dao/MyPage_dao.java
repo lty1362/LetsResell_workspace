@@ -27,6 +27,7 @@ import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Card;
 import com.LetsResell.myPage.model.vo.Wishlist;
+import com.LetsResell.myPage.model.vo.WishlistPageInfo;
 
 public class MyPage_dao {
 	
@@ -363,7 +364,44 @@ public class MyPage_dao {
 		return result;
 	}
 	
-	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo) {
+	/**
+	 * 현재 총 찜 제품 갯수 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public int selectWishlistCount(Connection conn, int userNo) {
+		
+		int wishlistCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishlistCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				wishlistCount = rset.getInt("WISHLISTCOUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return wishlistCount;
+		
+	}
+	
+	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo, WishlistPageInfo wishlistPage) {
 		
 		ArrayList<Wishlist> wishlist = new ArrayList<>();
 		
@@ -375,7 +413,12 @@ public class MyPage_dao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			int startRow = (wishlistPage.getCurrentPage() - 1) * wishlistPage.getWishlistLimit() + 1;
+			int endRow = startRow + wishlistPage.getWishlistLimit() - 1;
+			
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			
