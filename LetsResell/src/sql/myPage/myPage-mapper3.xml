@@ -17,4 +17,28 @@
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE S.MEM_USER_NO = ?
 	</entry>
+	<entry key="selectDetailInfo">
+		SELECT 
+		       SALE_PRICE
+		     , SALE_NAME
+		     , SALE_ENROLL_DATE
+		     , SALE_CONDITION
+		     , SALE_STATUS
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , SALE_PERIOD
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM SALE
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="selectPurchaseInfo">
+		SELECT
+		        MEM_USER_ID
+		      , BID_PRICE
+		      , BID_DATE
+		  FROM BID
+		  JOIN MEMBER USING(MEM_USER_NO)
+		  WHERE SALE_NO = 1
+	</entry>
 </properties>

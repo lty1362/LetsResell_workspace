@@ -352,7 +352,7 @@
                                     </td>
                                     <td>
                                         <span><%=list.get(i).getSaleStatus() %></span> <br>
-                                        <button id="btn" src="location.href=">입찰진행</button> <br>
+                                        <button id="btn" onclick="location.href='<%= contextPath %>/detailInfo.mp?sno=<%=list.get(i).getSaleNo()%>';">입찰진행</button> <br>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#myModal<%=i%>">
