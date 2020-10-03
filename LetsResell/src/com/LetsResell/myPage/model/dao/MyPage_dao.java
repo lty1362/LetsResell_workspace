@@ -26,6 +26,7 @@ import static com.LetsResell.template.JDBCTemplate.*;
 import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Card;
+import com.LetsResell.myPage.model.vo.Wishlist;
 
 public class MyPage_dao {
 	
@@ -257,6 +258,50 @@ public class MyPage_dao {
 	}
 	
 	/**
+	 * 배송지 등록
+	 * @param conn
+	 * @param userNo			로그인된 회원의 번호
+	 * @param addressName		주소 별칭
+	 * @param addressCode		우편 번호
+	 * @param addressMain		도로명 주소
+	 * @param addressDetail		상세 주소
+	 * @param addressPhone		핸드폰 번호
+	 * @param addressMessage	배송 메세지
+	 * @param addressBasic		기본 배송지 등록 여부 ("Y"/"N")
+	 * @return
+	 */
+	public int insertAddress(Connection conn, int userNo, String addressName, int addressCode, String addressMain,
+							 String addressDetail, String addressPhone, String addressMessage,
+							 String addressBasic) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAddress");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, addressCode);
+			pstmt.setString(3, addressMain);
+			pstmt.setString(4, addressDetail);
+			pstmt.setString(5, addressPhone);
+			pstmt.setString(6, addressName);
+			pstmt.setString(7, addressBasic);
+			pstmt.setString(8, addressMessage);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	/**
 	 * 계좌 정보 등록
 	 * @param conn
 	 * @param userId			로그인된 아이디
@@ -290,38 +335,13 @@ public class MyPage_dao {
 		}		
 		return result;
 	}
-	
-	public int insertAddress(Connection conn, int userNo, String addressName, int addressCode, String addressMain,
-							 String addressDetail, String addressPhone, String addressMessage,
-							 String addressBasic) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("insertAddress");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, addressCode);
-			pstmt.setString(3, addressMain);
-			pstmt.setString(4, addressDetail);
-			pstmt.setString(5, addressPhone);
-			pstmt.setString(6, addressName);
-			pstmt.setString(7, addressBasic);
-			pstmt.setString(8, addressMessage);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-		
-	}
-	
+
+	/**
+	 * 회원 정보 수정일 업데이트
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
 	public int updateModifyDate(Connection conn, int userNo) {
 		int result = 0;
 		
@@ -341,6 +361,37 @@ public class MyPage_dao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo) {
+		
+		ArrayList<Wishlist> wishlist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishlist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				wishlist.add(new Wishlist(rset.getDate("WISHLIST_ADD_DATE"),
+										  rset.getString("PR_NAME")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(wishlist);
+		return wishlist;
 	}
 	
 

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.LetsResell.myPage.model.vo.*" %>
+<%
+	ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>)request.getAttribute("wishlist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,21 +108,21 @@
                         </tr>
                       </thead>
                       <tbody>
+                      	<%if(wishlist.isEmpty()) { %>
+							<tr><td colspan="3">추가하신 관심 상품이 없습니다.</td></tr>
+						<% }else {%>
+							<% for(Wishlist wish : wishlist) { %>
+							<tr>
+	                          <td><input type="checkbox"></td>
+	                          <td><%= wish.getPrName() %></td>
+	                          <td>1,300,000</td>
+	                          <td>1,300,000</td>
+	                        </tr>
+			            	<% } %>
+						<% } %>
                         <tr>
                           <td><input type="checkbox"></td>
                           <td>Doe</td>
-                          <td>1,300,000</td>
-                          <td>1,300,000</td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox"></td>
-                          <td>Moe</td>
-                          <td>1,300,000</td>
-                          <td>1,300,000</td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox"></td>
-                          <td>Dooley</td>
                           <td>1,300,000</td>
                           <td>1,300,000</td>
                         </tr>

@@ -65,6 +65,7 @@ pageEncoding="UTF-8"%>
 				<div id="information">
 					<table>
 						<td><h4>프로필</h4></td>
+						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#memberInfo-edit">프로필 수정</button></td>
 						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#password-edit">비밀번호 변경</button></td>
 						<td><button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#mem-out">탈퇴하기</button></td>
 					</table>

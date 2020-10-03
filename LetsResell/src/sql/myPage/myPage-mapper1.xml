@@ -129,4 +129,13 @@
 		 WHERE MEM_USER_NO = ?
 	</entry>
 	
+	<!-- 위시리스트 sql문 -->
+	<entry key="selectWishlist">
+		SELECT	/* com.LetsResell.myPage.model.dao.MyPage_dao#selectWishlist() */
+		       WISHLIST_ADD_DATE
+		     , PR_NAME
+		FROM WISHLIST
+		JOIN P_REG ON (WISHLIST_PCODE = PR_NO)
+		WHERE WISHLIST_MCODE = ?
+	</entry>
 </properties>

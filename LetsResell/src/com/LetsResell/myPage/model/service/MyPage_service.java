@@ -20,6 +20,7 @@ import com.LetsResell.myPage.model.dao.MyPage_dao;
 import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Card;
+import com.LetsResell.myPage.model.vo.Wishlist;
 
 public class MyPage_service {
 	
@@ -103,6 +104,13 @@ public class MyPage_service {
 		return result;
 	}
 	
+	
+	/**
+	 * 회원 탈퇴
+	 * @param userNo	로그인된 회원의 번호
+	 * @param pwd		로그인된 회원의 비밀번호
+	 * @return
+	 */
 	public int updateMemStatus(int userNo, String pwd) {
 		
 		Connection conn = getConnection();
@@ -149,6 +157,38 @@ public class MyPage_service {
 	}
 	
 	/**
+	 * 배송지 등록
+	 * @param userNo			로그인된 회원의 번호
+	 * @param addressName		주소 별칭
+	 * @param addressCode		우편 번호
+	 * @param addressMain		도로명 주소
+	 * @param addressDetail		상세 주소
+	 * @param addressPhone		핸드폰 번호
+	 * @param addressMessage	배송 메세지
+	 * @param addressBasic		기본 배송지 등록 여부 ("Y"/"N")
+	 * @return
+	 */
+	public int insertAddress(int userNo, String addressName, int addressCode, String addressMain,
+			String addressDetail, String addressPhone, String addressMessage,
+			String addressBasic) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_dao().insertAddress(conn, userNo, addressName, addressCode, addressMain, addressDetail,
+				addressPhone, addressMessage, addressBasic);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	/**
 	 * 계좌 정보 등록
 	 * @param userId			로그인된 아이디
 	 * @param memBankname		은행명
@@ -173,26 +213,11 @@ public class MyPage_service {
 		
 	}
 	
-	public int insertAddress(int userNo, String addressName, int addressCode, String addressMain,
-							 String addressDetail, String addressPhone, String addressMessage,
-							 String addressBasic) {
-		
-		Connection conn = getConnection();
-		
-		int result = new MyPage_dao().insertAddress(conn, userNo, addressName, addressCode, addressMain, addressDetail,
-												 addressPhone, addressMessage, addressBasic);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return result;
-		
-	}
-	
+	/**
+	 * 회원 정보 수정일 업데이트
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
 	public int updateModifyDate(int userNo) {
 		
 		Connection conn = getConnection();
@@ -207,6 +232,23 @@ public class MyPage_service {
 		close(conn);
 		
 		return result;
+		
+	}
+	
+	/**
+	 * 위시리스트 조회
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Wishlist> selectWishlist(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Wishlist> wishlist = new MyPage_dao().selectWishlist(conn, userNo);
+		
+		close(conn);
+		
+		return wishlist;
 		
 	}
 
