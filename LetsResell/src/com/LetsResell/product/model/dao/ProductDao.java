@@ -107,6 +107,17 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, filter.getCategory());
+			pstmt.setString(2, filter.getBrand());
+			pstmt.setString(3, filter.getColor());
+			pstmt.setInt(4, filter.getPrice());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -127,6 +138,31 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setString(1, filter.getCategory());
+			pstmt.setString(2, filter.getBrand());
+			pstmt.setString(3, filter.getColor());
+			pstmt.setInt(4, filter.getPrice());
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				
+				p.setPrNo(rset.getInt("PR_NO"));
+				p.setPrModel(rset.getString("PR_MODEL"));
+				p.setPrName(rset.getString("PR_NAME"));
+				p.setPrBrand(rset.getString("PR_BRAND"));
+				p.setPrReleasePrice(rset.getInt("PR_RELEASE_PRICE"));
+				p.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(p);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -147,6 +183,30 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setString(1, filter.getCategory());
+			pstmt.setString(2, filter.getBrand());
+			pstmt.setString(3, filter.getColor());
+			pstmt.setInt(4, filter.getPrice());
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				
+				p.setPrNo(rset.getInt("PR_NO"));
+				p.setPrModel(rset.getString("PR_MODEL"));
+				p.setPrName(rset.getString("PR_NAME"));
+				p.setPrReleasePrice(rset.getInt("PR_RELEASE_PRICE"));
+				p.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(p);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -167,6 +227,30 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setString(1, filter.getCategory());
+			pstmt.setString(2, filter.getBrand());
+			pstmt.setString(3, filter.getColor());
+			pstmt.setInt(4, filter.getPrice());
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				
+				p.setPrNo(rset.getInt("PR_NO"));
+				p.setPrModel(rset.getString("PR_MODEL"));
+				p.setPrName(rset.getString("PR_NAME"));
+				p.setPrReleasePrice(rset.getInt("PR_RELEASE_PRICE"));
+				p.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(p);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -58,6 +58,8 @@ public class FilterSearchServlet extends HttpServlet {
 		
 		ArrayList<Product> list = new ProductService().filterSearchProduct(filter, pi, order);
 		
+		filter.setOrder(order);
+		
 		if(list.isEmpty()) {
 			request.getSession().setAttribute("alertMsg", "해당하는 제품이 없습니다.");
 			response.sendRedirect(request.getContextPath());

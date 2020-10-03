@@ -90,7 +90,7 @@ public class SearchProductServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		ArrayList<Product> list = new ProductService().searchProduct(search, pi);
-		
+		System.out.println(list);
 		if(list.isEmpty()) {	// 검색된 값이 없을 때
 			request.getSession().setAttribute("alertMsg", "해당하는 " + search + " 제품이 없습니다.");
 			response.sendRedirect(request.getContextPath());

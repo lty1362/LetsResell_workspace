@@ -35,18 +35,98 @@
 	</entry>
 	
 	<entry key="searchFilterCount">
-	
+		SELECT COUNT(*)
+		  FROM P_REG
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE PR_STATUS = 'Y'
+		   AND PR_CATEGORY = ?
+		   AND PR_BRAND = ?
+		   AND PR_COLOR = ?
+		   AND PR_RELEASE_PRICE >= ?
+		   AND PR_FILE_LEVEL = '1'
 	</entry>
 	
 	<entry key="filterSearchProduct">
-	
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_NO DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="filterSearchProductPriceAsc">
-	
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_RELEASE_PRICE ASC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="filterSearchProductPriceDesc">
-	
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_RELEASE_PRICE DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

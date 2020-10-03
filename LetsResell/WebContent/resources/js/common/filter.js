@@ -41,7 +41,7 @@ $(function() {
 
 // 상의 카테고리
 function cateTop(){
-    filter.category = "top";
+    filter.category = "Tops";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -69,7 +69,7 @@ function cateTop(){
 
 // 하의 카테고리
 function cateBottom(){
-    filter.category = "bottom";
+    filter.category = "Bottoms";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -97,7 +97,7 @@ function cateBottom(){
 
 // 겉옷 카테고리
 function cateOuter(){
-    filter.category = "outer";
+    filter.category = "Outers";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -125,7 +125,7 @@ function cateOuter(){
 
 // 신발 카테고리
 function cateFoot(){
-    filter.category = "footwear";
+    filter.category = "Footwear";
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
@@ -153,7 +153,7 @@ function cateFoot(){
 
 // 악세 카테고리
 function cateAcce(){
-    filter.category = "accessory";
+    filter.category = "Accessory";	
     // 카테고리
     $("#category_1").children().eq(0).css("background-color","white");
     $("#category_2").children().eq(0).css("background-color","white");
