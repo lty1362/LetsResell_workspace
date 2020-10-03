@@ -5,15 +5,18 @@ import static com.LetsResell.template.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.LetsResell.common.member.vo.Filter;
 import com.LetsResell.common.member.vo.PageInfo;
 import com.LetsResell.product.model.dao.ProductDao;
 import com.LetsResell.product.model.vo.Product;
 
 public class ProductService {
 
+	
 	/**
-	 * 1. Product 게시글 갯수 조회
-	 * @return: 게시글 갯수
+	 * 1. search 조건 제품 게시글 갯수
+	 * @param search: 검색 조건
+	 * @return
 	 */
 	public int selectSearchListCount(String search) {
 		Connection conn = getConnection();
@@ -25,14 +28,55 @@ public class ProductService {
 	}
 	
 	/**
-	 * 2. Search Product
-	 * @param search: 사용자가 입력한 검색값
-	 * @return: 검색된 제품 갯수
+	 * 2. 검색창을 통한 제품 게시글 갯수
+	 * @param search : 검색 조건
+	 * @param pi : 페이징 처리
+	 * @return
 	 */
 	public ArrayList<Product> searchProduct(String search, PageInfo pi){
 		Connection conn = getConnection();
 		
 		ArrayList<Product> list = new ProductDao().searchProduct(conn, search, pi);
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 3. 필터를 통한 제품 게시글 갯수
+	 * @param filter: 필터 조건
+	 * @return
+	 */
+	public int selectFilterCount(Filter filter) {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().searchFilterCount(conn, filter);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 4. 필터를 통한 제품 검색
+	 * @param filter
+	 * @param pi
+	 * @param order = null or "asc" or "desc"
+	 * @return
+	 */
+	public ArrayList<Product> filterSearchProduct(Filter filter, PageInfo pi, String order) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ArrayList<>();
+		
+		if(order.equals("asc")) {
+			list = new ProductDao().filterSearchProductPriceAsc(conn, filter, pi);
+		} else if(order.equals("desc")) {
+			list = new ProductDao().filterSearchProductPriceDesc(conn, filter, pi);
+		} else {
+			list = new ProductDao().filterSearchProduct(conn, filter, pi);
+		}
+		
 		close(conn);
 		
 		return list;

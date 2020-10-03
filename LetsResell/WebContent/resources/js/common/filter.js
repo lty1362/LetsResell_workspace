@@ -3,7 +3,6 @@ var filter = {
     brand: "",
     color: "",
     price: "",
-    condition: "",
     order: "null"
 }
 
@@ -29,28 +28,14 @@ $(function() {
         }
     });
 
-    //condition button
-    $("#condition_btn>button").click(function(){
-    	filter.condition = $(this).text();
-        if($(this).attr("id") == $("#new_btn").attr("id")) {
-            $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
-            $(this).next().css({"background-color":"white", "color":"black", "border":"none"});
-        } else {
-            $(this).css({"background-color":"black", "color":"white", "border":"1px solid white"});
-            $(this).prev().css({"background-color":"white", "color":"black", "border":"none"});
-        }
-    });
-
-
     $("#btn_search").click(function() {
         // console.log(filter.category);
         // console.log(filter.brand);
         // console.log(filter.color);
         // console.log(filter.price);
-        // console.log(filter.condition);
         // console.log(filter.order);
         location.href = "filterSearch.do?category=" + filter.category + "&brand=" + filter.brand + "&color=" + filter.color 
-                                      + "&price=" + filter.price + "&condition=" + filter.condition + "&order=" + filter.order;
+                                      + "&price=" + filter.price + "&order=" + filter.order + "&currentPage=1";
     });
 });
 

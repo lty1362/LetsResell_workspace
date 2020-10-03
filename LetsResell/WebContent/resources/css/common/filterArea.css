@@ -106,12 +106,4 @@ button:hover{cursor: pointer;}
     margin-right: 10px;
     font-size: 13px;
 }
-
-#condition_btn{ width: 900px;}
-#condition_btn>button{
-    width: 60px;
-    height: 30px;
-    margin-right: 20px;
-    font-size: 13px;
-}
 #price_value{margin-left: 95px;}

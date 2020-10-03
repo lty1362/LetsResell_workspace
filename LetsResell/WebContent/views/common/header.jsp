@@ -37,7 +37,7 @@
 
 <!-- header_search 영역 -->
 <div id="header_search">
-    <form action="<%= request.getContextPath() %>/searchProduct.do?" id="header_search_form" method="GET">
+    <form action="<%= request.getContextPath() %>/searchProduct.do" id="header_search_form" method="GET">
 		<input type="hidden" name="currentPage" value="1">
         <div id="header_search_form_text">
             <input type="search" name="search" placeholder="   Only Product Name o.o">

@@ -6,19 +6,25 @@ public class Filter {
 	private String brand;
 	private String color;
 	private int price;
-	private String condition;
 	private String order;
 	
 	public Filter() {}
 
-	public Filter(String category, String brand, String color, int price, String condition, String order) {
+	public Filter(String category, String brand, String color, int price, String order) {
 		super();
 		this.category = category;
 		this.brand = brand;
 		this.color = color;
 		this.price = price;
-		this.condition = condition;
 		this.order = order;
+	}
+
+	public Filter(String category, String brand, String color, int price) {
+		super();
+		this.category = category;
+		this.brand = brand;
+		this.color = color;
+		this.price = price;
 	}
 
 	public String getCategory() {
@@ -53,14 +59,6 @@ public class Filter {
 		this.price = price;
 	}
 
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
 	public String getOrder() {
 		return order;
 	}
@@ -72,15 +70,6 @@ public class Filter {
 	@Override
 	public String toString() {
 		return "Filter [category=" + category + ", brand=" + brand + ", color=" + color + ", price=" + price
-				+ ", condition=" + condition + ", order=" + order + "]";
-	}
-
-	public Filter(String category, String brand, String color, int price, String condition) {
-		super();
-		this.category = category;
-		this.brand = brand;
-		this.color = color;
-		this.price = price;
-		this.condition = condition;
+				+ ", order=" + order + "]";
 	}
 }

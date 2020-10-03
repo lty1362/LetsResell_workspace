@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.common.member.vo.Filter;
 import com.LetsResell.common.member.vo.PageInfo;
 import com.LetsResell.product.model.vo.Product;
 import static com.LetsResell.template.JDBCTemplate.*;
@@ -30,8 +31,10 @@ public class ProductDao {
 	
 	public int selectSearchListCount(Connection conn, String search) {
 		int listCount = 0;
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		
 		String sql = prop.getProperty("selectSearchListCount");
 		
 		try {
@@ -56,8 +59,10 @@ public class ProductDao {
 	
 	public ArrayList<Product> searchProduct(Connection conn, String search, PageInfo pi) {
 		ArrayList<Product> list = new ArrayList<>();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		
 		String sql = prop.getProperty("searchProduct");
 		
 		try {
@@ -92,5 +97,83 @@ public class ProductDao {
 		return list;
 	}
 	
+	public int searchFilterCount(Connection conn, Filter filter) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 	
+		String sql = prop.getProperty("searchFilterCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public ArrayList<Product> filterSearchProduct(Connection conn, Filter filter, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("filterSearchProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Product> filterSearchProductPriceAsc(Connection conn, Filter filter, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("filterSearchProductPriceAsc");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Product> filterSearchProductPriceDesc(Connection conn, Filter filter, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("filterSearchProductPriceDesc");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

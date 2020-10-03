@@ -24,6 +24,7 @@
 		          	   )
   		WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
 	<entry key="selectSearchListCount">
 		SELECT COUNT(*)
 		  FROM P_REG
@@ -31,5 +32,21 @@
 		 WHERE PR_STATUS = 'Y'
 		   AND PR_NAME LIKE ?
 		   AND PR_FILE_LEVEL = '1'
+	</entry>
+	
+	<entry key="searchFilterCount">
+	
+	</entry>
+	
+	<entry key="filterSearchProduct">
+	
+	</entry>
+	
+	<entry key="filterSearchProductPriceAsc">
+	
+	</entry>
+	
+	<entry key="filterSearchProductPriceDesc">
+	
 	</entry>
 </properties>

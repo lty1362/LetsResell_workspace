@@ -198,20 +198,7 @@
         <button class="filter_btn" id="lowest_btn">Lowest First</button>
         <button class="filter_btn" id="highest_btn">Highest First</button>
     </div>
-
-    <br>
     
-    <div id="filter_hr">
-        <hr>
-    </div>
-
-    <h3 align="left">Condition</h3>
-
-    <div id="condition_btn" align="left">
-        <button class="filter_btn" id="new_btn">New</button>
-        <button class="filter_btn" id="used_btn">Used</button>
-    </div>
-
 </div>
 </body>
 </html>

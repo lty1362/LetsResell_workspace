@@ -1,3 +1,4 @@
+<%@page import="com.LetsResell.common.member.vo.Filter"%>
 <%@page import="com.LetsResell.common.member.vo.PageInfo"%>
 <%@page import="com.LetsResell.product.model.vo.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,6 +8,7 @@
 	String search = (String)request.getAttribute("search");
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	Filter filter = (Filter)request.getAttribute("filter");
 	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
