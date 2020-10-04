@@ -21,6 +21,7 @@ public class ProductService {
 	 */
 	public int selectSearchListCount(String search) {
 		Connection conn = getConnection();
+		
 		int listCount = new ProductDao().selectSearchListCount(conn, search);
 		
 		close(conn);
@@ -38,6 +39,7 @@ public class ProductService {
 		Connection conn = getConnection();
 		
 		ArrayList<Product> list = new ProductDao().searchProduct(conn, search, pi);
+		
 		close(conn);
 		
 		return list;
@@ -101,5 +103,25 @@ public class ProductService {
 		close(conn);
 		
 		return list;
+	}
+	
+	public Product selectProductInfo(int prNo) {
+		Connection conn = getConnection();
+		
+		Product p = new ProductDao().selectProductInfo(conn, prNo);
+		
+		close(conn);
+		
+		return p;
+	}
+	
+	public ArrayList<Product> selectProductImgList(int prNo, PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> imgList = new ProductDao().selectProductImgList(conn, prNo, pi);
+		
+		close(conn);
+		
+		return imgList;
 	}
 }

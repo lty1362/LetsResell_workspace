@@ -62,12 +62,26 @@ public class SaleListViewServlet extends HttpServlet {
 		
 		ArrayList<Sale> list = new ProductService().selectSaleList(prNo, pi);
 		
-		request.setAttribute("list", list);
-		request.setAttribute("pi", pi);
 		
 		if(list.isEmpty()) {
+			pageLimit = 4;
+			boardLimit = 4;
+			
+			pi.setPageLimit(pageLimit);
+			pi.setBoardLimit(boardLimit);
+			
+			Product p = new ProductService().selectProductInfo(prNo);
+			ArrayList<Product> imgList = new ProductService().selectProductImgList(prNo, pi);
+					
+			request.setAttribute("p", p);
+			request.setAttribute("pi", pi);
+			request.setAttribute("imgList", imgList);
+			
 			request.getRequestDispatcher("views/product/noDataListView.jsp").forward(request, response);
 		} else {
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
+			
 			request.getRequestDispatcher("views/product/saleListView.jsp").forward(request, response);
 			
 		}

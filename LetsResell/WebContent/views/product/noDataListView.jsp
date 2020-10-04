@@ -1,12 +1,19 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.LetsResell.common.member.vo.PageInfo"%>
+<%@page import="com.LetsResell.product.model.vo.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Product p = (Product)request.getAttribute("p");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Product> imgList = (ArrayList<Product>)request.getAttribute("imgList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>레츠리셀-상품이름</title>
 <link rel="stylesheet" href="/LetsResell/resources/css/product/noDataListView.css">
-<script src="/LetsResell/resources/js/product/noDataListView.js" rel="javascript"></script>
 </head>
 <body>
 <!-- header 추가 -->
@@ -22,7 +29,7 @@
 
         <div class="product_outer">
 
-                <h1><b>컨버스 런스타 하이크 블랙</b></h1>
+                <h1><b><%= p.getPrName() %></b></h1>
                 <br>
 
                 <div id="btn_box" align="center">
@@ -57,32 +64,26 @@
                 <div id="sale_imgList" align="center">
 
                     <div id="sale_img">
-
+						
+						<% for(Product img : imgList) {%>
                         <div id="sale_img1">
-                            <img src="/LetsResell/resources/images/product/sample1.jpg" alt="img1" width="100%" height="100%" onclick="imgPop(this.src);">
+                            <img src="<%= contextPath %>/<%= img.getTitleImg() %>" width="100%" height="100%" onclick="imgPop(this.src);">
                         </div>
-                        <div id="sale_img2">
-                            <img src="/LetsResell/resources/images/product/sample2.jpg" alt="img2" width="100%" height="100%" onclick="imgPop(this.src);">
-                        </div>
-                        <div id="sale_img3">
-                            <img src="/LetsResell/resources/images/product/sample3.jpg" alt="img3" width="100%" height="100%" onclick="imgPop(this.src);">
-                        </div>
-
+						<% } %>
                     </div>
 
                     <div id="sale_btn">
-
-                        <button id="sale_btn1"></button>
-                        <button id="sale_btn2"></button>
-                        <button id="sale_btn3"></button>
-                        <button id="sale_btn4"></button>
+						
+						<% for(int i=pi.getStartPage(); i<= pi.getEndPage(); i++) { %>
+                        <button onclick="location.href='<%= contextPath %>/saleList.sa?prNo=<%=p.getPrNo()%>&currentPage=<%=i%>';"></button>
+                        <% } %>
 
                     </div>
 
                 </div>
 
                 <div id="sale_youtube">
-                    <iframe src="https://www.youtube.com/embed/Nl199fznWzM" frameborder="0"></iframe>
+                    <iframe src="<%= p.getPrReviewYoutube() %>" frameborder="0"></iframe>
                 </div>
 
                 <br><br><br>
@@ -93,42 +94,30 @@
 
                     <tr align="left">
                         <th width="200" height="50">제품 번호</th>
-                        <td width="150">166800c</td>
+                        <td width="150"><%= p.getPrModel() %></td>
                     </tr>
                     <tr align="left">
                         <th width="200" height="50">발매일</th>
-                        <td>2020-08-25</td>
+                        <td><%= p.getPrReleaseDate() %></td>
                     </tr>
                     <tr align="left">
                         <th width="200" height="50">발매가</th>
-                        <td>166,800</td>
+                        <td><%= p.getPrReleasePrice() %></td>
                     </tr>
                     <tr align="left">
                         <th width="200" height="50">색상</th>
-                        <td>블랙</td>
+                        <td><%= p.getPrColor() %></td>
                     </tr>
                     <tr align="left">
                         <th width="200" height="50">치수</th>
-                        <td>220-280</td>
+                        <td><%= p.getPrSize() %></td>
                     </tr>
 
                 </table>
 
                 <div id="sale_detail">
                     <p>
-			                        러닝화와 척의 만남. 
-			
-			                        투톤 컬러의 러버솔이 매력적인 청키한 스타일의 플랫폼 스니커즈입니다. 
-			
-			                        아이코닉한 척테일러 올스타의 오리지널리티를 그대로 유지하면서도 혁신적이고 새로운 스타일을 제시합니다.
-
-                       * 캔버스 어퍼의 하이탑 스니커즈
-
-                       * 편안한 착화감을 제공하는 오솔라이트 인솔
-
-                       * 투톤 컬러의 러버 러기드 아웃솔
-
-                       * 아이코닉한 척테일러 패치
+						<%= p.getPrReviewDetail() %>
                     </p>
                 </div>
         </div>
@@ -140,4 +129,5 @@
 <!-- footer 추가 -->
 <%@ include file="../common/footer.jsp" %>
 </body>
+<script src="/LetsResell/resources/js/product/noDataListView.js" rel="javascript"></script>
 </html>

@@ -320,6 +320,7 @@ public class ProductDao {
 				s.setSalePrice(rset.getInt("SALE_PRICE"));
 				s.setSaleName(rset.getString("SALE_NAME"));
 				s.setSaleSize(rset.getInt("SALE_SIZE"));
+				s.setSaleCondition(rset.getString("SALE_CONDITION"));
 				s.setTitleImg(rset.getString("TITLEIMG"));
 				
 				list.add(s);
@@ -333,5 +334,80 @@ public class ProductDao {
 		}
 		
 		return list;
+	}
+	
+	public Product selectProductInfo(Connection conn, int prNo) {
+		Product p = null;
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, prNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product();
+				
+				p.setPrNo(prNo);
+				p.setPrModel(rset.getString("PR_MODEL"));
+				p.setPrName(rset.getString("PR_NAME"));
+				p.setPrColor(rset.getString("PR_COLOR"));
+				p.setPrReviewYoutube(rset.getString("PR_REVIEW_YOUTUBE"));
+				p.setPrReviewDetail(rset.getString("PR_REVIEW_DETAIL"));
+				p.setPrReleaseDate(rset.getDate("PR_RELEASE_DATE"));
+				p.setPrReleasePrice(rset.getInt("PR_RELEASE_PRICE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
+	
+	public ArrayList<Product> selectProductImgList(Connection conn, int prNo, PageInfo pi) {
+		ArrayList<Product> imgList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductImgList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setInt(1, prNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				
+				p.setTitleImg(rset.getString(1));
+				
+				imgList.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return imgList;
 	}
 }

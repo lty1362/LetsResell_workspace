@@ -152,6 +152,7 @@
 		                  , MEM_USER_NO
 		                  , SALE_PRICE
 		                  , SALE_NAME
+		                  , SALE_CONDITION
 		                  , SALE_SIZE
 		                  , SALE_IMG_URL || SALE_CHANGE_NAME "TITLEIMG"
 		               FROM SALE
@@ -162,6 +163,39 @@
 		              ORDER BY SALE_NO DESC
 		             ) A
 		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectProductInfo">
+		SELECT 
+		       PR_MODEL
+		     , PR_NAME
+		     , PR_COLOR
+		     , PR_REVIEW_YOUTUBE
+		     , PR_REVIEW_DETAIL
+		     , PR_RELEASE_DATE
+		     , PR_RELEASE_PRICE
+		  FROM P_REG
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectProductImgList">
+		SELECT *
+			   FROM (
+			        SELECT 
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			               SELECT
+			                      PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+			                 FROM P_IMG
+			                 JOIN P_REG USING(PR_NO)
+			                WHERE PR_STATUS = 'Y'
+			                  AND PR_NO = ?
+			                ORDER BY PR_IMG_NO DESC
+			               ) A
+			         )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 </properties>
