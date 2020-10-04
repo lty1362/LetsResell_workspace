@@ -146,6 +146,13 @@
         	text-decoration:underline;
         	font-weight:bold;
         }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:545px;
+        }
 </style>
 </head>
 <body>
@@ -157,6 +164,9 @@
 	            </div>
             	<div id="body_right">
 	            	<div id="title">부정 판매자 신고</div>
+	            	<div id="enrollDate">
+                		작성일 : <%=list.getReportEnrollDate() %>
+                	</div>
                 <form action="update.report" method="post">
                 <input type="hidden" name="rno" value="<%=list.getReportNo()%>">
                 <input type="hidden" name="userNo" value="<%=login.getUserNo()%>">

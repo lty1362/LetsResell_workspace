@@ -89,16 +89,21 @@ public class ProductService {
 		return product;
 	}
 	
-	public int updateProduct(Admin_Product p) {
+	public int updateProduct(Admin_Product p, ArrayList<Admin_Image> list, int imageNumber, String[] sArr) {
 		Connection conn = getConnection();
-		int result = new ProductDao().updateProduct(conn, p);
-		if(result > 0) {
+		int result1 = new ProductDao().updateProduct(conn, p);
+		int result2 = 1;
+		if(imageNumber-1 == list.size() && sArr != null) {
+			result2 = new ProductDao().updateProductImage(conn, list, sArr);
+		}
+		
+		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		close(conn);
-		return result;
+		return result1 * result2;
 	}
 	
 	public ArrayList<Admin_Image> selectImage(int pno) {

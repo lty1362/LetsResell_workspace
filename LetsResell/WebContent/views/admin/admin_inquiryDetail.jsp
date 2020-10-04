@@ -137,6 +137,13 @@
         	height:100%;
         	padding:10px;
         }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:596px;
+        }
 </style>
 <body>
 	<div id="wrap" style="height:1600px;">
@@ -152,6 +159,9 @@
 	            	<input type="hidden" name="currentPage" value="<%= currentPage%>">
 	            	<div id="title">
                     	1:1 문의
+                	</div>
+                	<div id="enrollDate">
+                		작성일 : <%=inquiry.getInquiryEnrollDate() %>
                 	</div>
 	                <div id="content">
 	                    <div id="content_title">

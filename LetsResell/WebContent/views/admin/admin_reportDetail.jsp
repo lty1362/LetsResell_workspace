@@ -139,6 +139,13 @@
         #footer{
         	margin-top:50px;
         }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:596px;
+        }
 </style>
 <body>
 	<div id="wrap" style="height:1600px;">
@@ -147,13 +154,15 @@
 	            <div id="body_left">
                 	<%@ include file="admin_sideMenu.jsp" %>
 	            </div>
-	
 	            <div id="body_right">
 	            	<form action="updateReport.admin" method="post">
 	            		<input type="hidden" name="rno" value="<%=report.getReportNo()%>">
 	            		<input type="hidden" name="currentPage" value="<%=currentPage%>">
 		            	<div id="title">
 	                    	부정 판매자 신고
+	                	</div>
+	                	<div id="enrollDate">
+	                		작성일 : <%=report.getReportEnrollDate() %>
 	                	</div>
 		                <div id="content">
 		                    <div id="content_title">

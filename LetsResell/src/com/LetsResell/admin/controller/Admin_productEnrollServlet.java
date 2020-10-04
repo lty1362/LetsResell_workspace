@@ -26,20 +26,20 @@ public class Admin_productEnrollServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		if(ServletFileUpload.isMultipartContent(request)) {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/product/");
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
-			
 			ArrayList<Admin_Image> list = new ArrayList<>();
 			for(int i = 1 ; i <= 5 ; i++) {
 				String key = "image" + i;
 				if(mr.getOriginalFileName(key) != null) {
 					Admin_Image img = new Admin_Image();
-					img.setProductImageOriginName(mr.getOriginalFileName(key));
-					img.setProductImageChangeName(mr.getFilesystemName(key));
+					String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
+					String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+					img.setProductImageOriginName(ofn);
+					img.setProductImageChangeName(cfn);
 					img.setProductImgUrl("resources/images/product/");
 					if(i == 1) {
 						img.setFileLevel(1);
@@ -52,7 +52,9 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			}
 
 			String productCode = mr.getParameter("productCode");
+			productCode = new String(productCode.getBytes("8859_1"),"utf-8");
 			String productName = mr.getParameter("productName");
+			productName = new String(productName.getBytes("8859_1"),"utf-8");
 			String category = mr.getParameter("category");
 			String brand = mr.getParameter("brand");
 			String size1 = mr.getParameter("size1");
@@ -72,7 +74,9 @@ public class Admin_productEnrollServlet extends HttpServlet {
 				}
 			}
 			String reviewYoutube = mr.getParameter("reviewYoutube");
+			reviewYoutube = new String(reviewYoutube.getBytes("8859_1"),"utf-8");
 			String reviewDetail = mr.getParameter("reviewDetail");
+			reviewDetail = new String(reviewDetail.getBytes("8859_1"),"utf-8");
 			String releaseDate = mr.getParameter("releaseDate");
 			Date d = Date.valueOf(releaseDate);
 			int releasePrice = Integer.parseInt(mr.getParameter("releasePrice"));

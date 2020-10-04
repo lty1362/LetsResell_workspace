@@ -280,7 +280,20 @@
 	        </div>
             <div id="body_right">
 	        <form action="productUpdate.admin" method="post" enctype="multipart/form-data">
+	        	<input type="hidden" name="imageNumber" value="<%=images.size()%>">
 	        	<input type="hidden" name="pno" value="<%=product.getPRno()%>">
+	        	<%	
+	        		String imgNo = "";
+	        		for(int i = 0 ; i < images.size() ; i++){
+	        			if(images.get(i).getFileLevel()==2){
+		        			imgNo += images.get(i).getProductImgNo();
+		        			if(i != images.size()-1){
+		        				imgNo += ",";
+		        			}
+	        			}
+	        		}
+	        	%>
+	        	<input type="hidden" name="imagePKno" value="<%=imgNo%>">
                 <div id="title">제품 수정</div>
                 <div id="registerWrap">
                     <div id="registerImage">
@@ -359,11 +372,11 @@
                             <tr>
                                 <th>분류</th>
                                 <td id="category">
-                                    <input type="button" value="tops">
-                                    <input type="button" value="bottoms">
-                                    <input type="button" value="outers">
-                                    <input type="button" value="footwear">
-                                    <input type="button" value="accessories">
+                                    <input type="button" value="Tops">
+                                    <input type="button" value="Bottoms">
+                                    <input type="button" value="Outers">
+                                    <input type="button" value="Footwear">
+                                    <input type="button" value="Accessories">
                                 </td>
                             </tr>
                             <tr id="brandChoose">
@@ -495,27 +508,27 @@
             });
 	   		
 	   		// 분류에 대한 브랜드 선택
-	   		$("input[value=tops]").click(function(){
+	   		$("input[value=Tops]").click(function(){
 	   			$(".topsBrand").css("display","");
 	   			$(".brand").not(".topsBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=bottoms]").click(function(){
+	   		$("input[value=Bottoms]").click(function(){
 	   			$(".bottomsBrand").css("display","");
 	   			$(".brand").not(".bottomsBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=outers]").click(function(){
+	   		$("input[value=Outers]").click(function(){
 	   			$(".outersBrand").css("display","");
 	   			$(".brand").not(".outersBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=footwear]").click(function(){
+	   		$("input[value=Footwear]").click(function(){
 	   			$(".footwearBrand").css("display","");
 	   			$(".brand").not(".footwearBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=accessories]").click(function(){
+	   		$("input[value=Accessories]").click(function(){
 	   			$(".accessoriesBrand").css("display","");
 	   			$(".brand").not(".accessoriesBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
@@ -587,8 +600,8 @@
 	   		
 	   		// 로딩 시 버튼 클릭
 	   		// category
-	   		<%if(product.getPRcategory().equals("tops")){%>
-	   			$("input[value=tops]").click();
+	   		<%if(product.getPRcategory().equals("Tops")){%>
+	   			$("input[value=Tops]").click();
 	   			<%if(product.getPRbrand().equals("Supreme")){%>
 	   				$("input[value=Supreme]").click();
 	   				$("input[value=Supreme]").css({background:"white",color:"black"});
@@ -602,8 +615,8 @@
 		   			$("input[value=Stussy]").click();
 		   			$("input[value=Stussy]").css({background:"white",color:"black"});
 		   		<%}%>
-	   		<%}else if(product.getPRcategory().equals("bottoms")){%>
-	   			$("input[value=bottoms]").click();
+	   		<%}else if(product.getPRcategory().equals("Bottoms")){%>
+	   			$("input[value=Bottoms]").click();
 	   			<%if(product.getPRbrand().equals("CalvinKlein")){%>
 		   			$("input[value=CalvinKlein]").click();
 		   			$("input[value=CalvinKlein]").css({background:"white",color:"black"});
@@ -617,8 +630,8 @@
 		   			$("input[value=Nike]").click();
 		   			$("input[value=Nike]").css({background:"white",color:"black"});
 		   		<%}%>
-	   		<%}else if(product.getPRcategory().equals("outers")){%>
-	   			$("input[value=outers]").click();
+	   		<%}else if(product.getPRcategory().equals("Outers")){%>
+	   			$("input[value=Outers]").click();
 	   			<%if(product.getPRbrand().equals("Gucci")){%>
 		   			$("input[value=Gucci]").click();
 		   			$("input[value=Gucci]").css({background:"white",color:"black"});
@@ -632,8 +645,8 @@
 		   			$("input[value=RalphLauren]").click();
 		   			$("input[value=RalphLauren]").css({background:"white",color:"black"});
 		   		<%}%>
-	   		<%}else if(product.getPRcategory().equals("footwear")){%>
-	   			$("input[value=footwear]").click();
+	   		<%}else if(product.getPRcategory().equals("Footwear")){%>
+	   			$("input[value=Footwear]").click();
 	   			<%if(product.getPRbrand().equals("Adidas")){%>
 		   			$("input[value=Adidas]").click();
 		   			$("input[value=Adidas]").css({background:"white",color:"black"});
@@ -648,7 +661,7 @@
 		   			$("input[value=Jordan]").css({background:"white",color:"black"});
 		   		<%}%>
 	   		<%}else{%>
-	   			$("input[value=accessories]").click();
+	   			$("input[value=Accessories]").click();
 	   			<%if(product.getPRbrand().equals("LouisVuitton")){%>
 		   			$("input[value=LouisVuitton]").click();
 		   			$("input[value=LouisVuitton]").css({background:"white",color:"black"});

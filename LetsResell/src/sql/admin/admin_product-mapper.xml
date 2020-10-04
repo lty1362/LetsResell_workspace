@@ -198,14 +198,13 @@
 		 WHERE PR_NO = ?
 		   AND PR_STATUS = 'Y'
 	</entry>
-	<!-- <entry key="updateImage">
+	<entry key="updateProductImage">
 		UPDATE P_IMG
 		   SET 
-		       PR_ORIGIN_NAME = ?
+		       PR_ORIGIN_NAME = ?,
 			   PR_CHANGE_NAME = ?
-		 WHERE PR_NO = ?
-		   AND PR_STATUS = 'Y'
-	</entry> -->
+		 WHERE PR_IMG_NO = ?
+	</entry>
 	<entry key="selectImage">
 		SELECT 
 		         PR_IMG_NO
