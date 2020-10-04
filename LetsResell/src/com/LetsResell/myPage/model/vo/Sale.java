@@ -16,6 +16,11 @@ public class Sale {
 	private String boxStatus;		//박스상태
 	private String titleImg;			// 대표 이미지
 	private String prColor;
+	private int tradePrice;			//거래가격
+	private String tradeStatus; 	//배송상태
+	private int tradeNo;			//거래번호
+	private String tradeService;	//택배사
+	private int tradeNum;			//운송장번호
 	
 	public Sale() {
 		
@@ -35,12 +40,11 @@ public class Sale {
 		this.salePeriod = salePeriod;
 		this.boxStatus = boxStatus;
 	}
-
-	
 	
 	public Sale(int saleNo, int salePrice, String saleName, Date saleEnrollDate, String saleCondition,
 			String saleStatus, String saleSize, String saleCategory, String salePeriod, String boxStatus,
-			String titleImg, String prColor) {
+			String titleImg, String prColor, int tradePrice, String tradeStatus, int tradeNo, String tradeService,
+			int tradeNum) {
 		super();
 		this.saleNo = saleNo;
 		this.salePrice = salePrice;
@@ -54,9 +58,52 @@ public class Sale {
 		this.boxStatus = boxStatus;
 		this.titleImg = titleImg;
 		this.prColor = prColor;
+		this.tradePrice = tradePrice;
+		this.tradeStatus = tradeStatus;
+		this.tradeNo = tradeNo;
+		this.tradeService = tradeService;
+		this.tradeNum = tradeNum;
 	}
-	
-	
+
+	public String getTradeService() {
+		return tradeService;
+	}
+
+	public void setTradeService(String tradeService) {
+		this.tradeService = tradeService;
+	}
+
+	public int getTradeNum() {
+		return tradeNum;
+	}
+
+	public void setTradeNum(int tradeNum) {
+		this.tradeNum = tradeNum;
+	}
+
+	public int getTradeNo() {
+		return tradeNo;
+	}
+
+	public void setTradeNo(int tradeNo) {
+		this.tradeNo = tradeNo;
+	}
+
+	public int getTradePrice() {
+		return tradePrice;
+	}
+
+	public void setTradePrice(int tradePrice) {
+		this.tradePrice = tradePrice;
+	}
+
+	public String getTradeStatus() {
+		return tradeStatus;
+	}
+
+	public void setTradeStatus(String tradeStatus) {
+		this.tradeStatus = tradeStatus;
+	}
 
 	public String getPrColor() {
 		return prColor;

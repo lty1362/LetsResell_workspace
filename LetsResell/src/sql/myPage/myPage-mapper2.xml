@@ -15,6 +15,7 @@
 		  JOIN SALE USING(SALE_NO)
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE B.MEM_USER_NO = ?
+		   AND BID_STATUS = '경매중'
 	</entry>
 	<entry key="purchaseCount">
 		SELECT COUNT(*) LISTCOUNT

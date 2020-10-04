@@ -16,6 +16,7 @@
 		  FROM SALE S
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE S.MEM_USER_NO = ?
+		   AND SALE_STATUS = '거래전'
 	</entry>
 	<entry key="selectDetailInfo">
 		SELECT 
@@ -42,5 +43,43 @@
 		  FROM BID
 		  JOIN MEMBER USING(MEM_USER_NO)
 		  WHERE SALE_NO = ?
+	</entry>
+	<entry key="selectTradeList">
+		SELECT 
+		       SALE_NO 
+		     , SALE_PRICE
+		     , SALE_NAME
+		     , SALE_ENROLL_DATE
+		     , SALE_CONDITION
+		     , SALE_STATUS
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , SALE_PERIOD
+		     , TRADE_PRICE
+		     , TRADE_STATUS
+		     , TRADE_NO
+		     , TRADE_SERVICE
+             , TRADE_NUMBER
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM SALE S
+		  JOIN P_IMG USING(PR_NO)
+		  JOIN TRADE USING(SALE_NO)
+		 WHERE S.MEM_USER_NO = ?
+		   AND SALE_STATUS = '거래중'
+	</entry>
+	<entry key="selectPAddress">
+		SELECT
+		       ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		  FROM ADDRESS
+		  JOIN TRADE USING(ADDRESS_NO)
+		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="updateDelivery">
+		UPDATE
+		       TRADE
+		   SET TRADE_SERVICE = ?
+		     , TRADE_NUMBER = ?
+		 WHERE TRADE_NO = ?
 	</entry>
 </properties>

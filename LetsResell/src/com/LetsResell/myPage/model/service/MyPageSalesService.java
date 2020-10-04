@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.LetsResell.myPage.model.dao.MyPageSalesDao;
 import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Sale;
+import com.LetsResell.myPage.model.vo.Trade;
 
 public class MyPageSalesService {
 	
@@ -58,5 +59,38 @@ public class MyPageSalesService {
 		
 		return blist;
 	}
+	
+	/**
+	 * 4.판매내역 판매진행
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Sale> selectTradeList(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Sale> slist = new MyPageSalesDao().selectTradeList(conn, userNo);
+		
+		close(conn);
+		
+		return slist;
+		
+	}
+
+	public int updateDelivery(Sale s) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPageSalesDao().updateDelivery(conn, s);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
 
 }
