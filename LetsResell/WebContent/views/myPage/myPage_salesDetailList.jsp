@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
+	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 %>
 <!DOCTYPE html>
 <html>
@@ -262,7 +263,29 @@
                             <li class="2">
                                 <a>
                                   	  판매진행 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(slist.isEmpty()) {%>
+                                	
+                                		0
+                                	
+                                	<%}else { %>
+                                	
+                                		<%int result = 0; %>
+                                	
+                                		<%for(int i = 0; i < slist.size(); i++){ %>
+                                		
+                                			<%result = i+1; %>
+                                		
+                                		<%} %>
+                                		
+                                		<%=result %>
+                                	
+                                	<%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                             <li class="3">
@@ -373,14 +396,13 @@
                                                   <!-- Modal body -->
                                                   <div class="modal-body">
                                                     <strong>입찰을 취소하시겠습니까?</strong>
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteList.mp';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </div>
-                                                  
+
                                                 </div>
                                               </div>
                                             </div>

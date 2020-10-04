@@ -36,4 +36,45 @@
 		  FROM BID
 		 WHERE SALE_NO = ?
 	</entry>
+	<entry key="deletePurchase">
+		DELETE 
+		  FROM BID
+		 WHERE BID_NO = ?
+	</entry>
+	<entry key="selectPurchaseStatus">
+		SELECT 
+		       TRADE_NO
+		     , TRADE_STATUS
+		     , TRADE_SERVICE
+		     , TRADE_NUMBER
+		     , TRADE_CONCLUDE
+		     , TRADE_PRICE
+		     , SALE_NAME
+		     , SALE_CONDITION
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM TRADE T
+		  LEFT JOIN SALE USING(SALE_NO)
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE T.MEM_USER_NO = ?
+	</entry>
+	<entry key="selectStatusInfo">
+		SELECT 
+		       TRADE_NO
+		     , TRADE_STATUS
+		     , TRADE_SERVICE
+		     , TRADE_NUMBER
+		     , TRADE_CONCLUDE
+		     , TRADE_PRICE
+		     , SALE_NAME
+		     , SALE_CONDITION
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM TRADE T
+		  LEFT JOIN SALE USING(SALE_NO)
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE TRADE_NO = ?
+	</entry>
 </properties>

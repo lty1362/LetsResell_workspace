@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.LetsResell.myPage.model.vo.Bid;
+import com.LetsResell.myPage.model.vo.Trade;
 
 public class MyPage_purchaseDao {
 	
@@ -128,6 +129,120 @@ public class MyPage_purchaseDao {
 		}
 		
 		return result;
+	}
+
+	public int deletePurchase(Connection conn, int bno) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deletePurchase");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Trade> selectPurchaseStatus(Connection conn, int userNo) {
+		
+		ArrayList<Trade> tlist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPurchaseStatus");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Trade t = new Trade();
+				t.setTradeNo(rset.getInt("TRADE_NO"));
+				t.setTradeStatus(rset.getString("TRADE_STATUS"));
+				t.setTradeService(rset.getString("TRADE_NUMBER"));
+				t.setTradeCon(rset.getDate("TRADE_CONCLUDE"));
+				t.setTradePrice(rset.getInt("TRADE_PRICE"));
+				t.setSaleName(rset.getString("SALE_NAME"));
+				t.setSaleCondition(rset.getString("SALE_CONDITION"));
+				t.setSaleSize(rset.getString("SALE_SIZE"));
+				t.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				t.setTitleImg(rset.getString("TITLEIMG"));
+				
+				tlist.add(t);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return tlist;
+	}
+
+	public ArrayList<Trade> selectStatusInfo(Connection conn, int tno) {
+		
+		ArrayList<Trade> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectStatusInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Trade t = new Trade();
+				t.setTradeNo(rset.getInt("TRADE_NO"));
+				t.setTradeStatus(rset.getString("TRADE_STATUS"));
+				t.setTradeService(rset.getString("TRADE_NUMBER"));
+				t.setTradeCon(rset.getDate("TRADE_CONCLUDE"));
+				t.setTradePrice(rset.getInt("TRADE_PRICE"));
+				t.setSaleName(rset.getString("SALE_NAME"));
+				t.setSaleCondition(rset.getString("SALE_CONDITION"));
+				t.setSaleSize(rset.getString("SALE_SIZE"));
+				t.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				t.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(t);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
 	}
 
 }

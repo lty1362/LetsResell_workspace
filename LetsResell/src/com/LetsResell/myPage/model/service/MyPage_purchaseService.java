@@ -63,6 +63,63 @@ public class MyPage_purchaseService {
 		
 		return result;
 	}
+	
+	/**
+	 * 4. 입찰취소
+	 * @param bno
+	 * @return
+	 */
+	public int deletePurchase(int bno) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_purchaseDao().deletePurchase(conn, bno);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	/**
+	 * 5.입찰진행
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Trade> selectPurchaseStatus(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Trade> tlist = new MyPage_purchaseDao().selectPurchaseStatus(conn, userNo);
+		
+		close(conn);
+		
+		return tlist;
+		
+	}
+	
+	/**
+	 * 6.진행상세
+	 * @param tno
+	 * @return
+	 */
+	public ArrayList<Trade> selectStatusInfo(int tno) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Trade> list = new MyPage_purchaseDao().selectStatusInfo(conn, tno);
+		
+		close(conn);
+		
+		return list;
+		
+	}
 
 
 }

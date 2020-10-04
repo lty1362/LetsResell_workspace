@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
 	Bid b = (Bid)session.getAttribute("bid");
 %>
 <!DOCTYPE html>
@@ -233,7 +234,27 @@
                             </div>
                             <a>
                                	 진행중인 구매 <br>
-                                <span>0건</span>
+                                <span>
+                                
+                                	<%if(tlist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < tlist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -283,7 +304,29 @@
                             <li class="2">
                                 <a>
                                    	 구매진행 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(tlist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < tlist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                             <li class="3">
@@ -308,7 +351,7 @@
 							$(".2").click(function(){
 	                    		
 								$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseStatus.mp"
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 							
@@ -437,7 +480,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath %>/deletePurchase.mp?bno=<%=list.get(i).getBidNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </form>   
                                                   </div>

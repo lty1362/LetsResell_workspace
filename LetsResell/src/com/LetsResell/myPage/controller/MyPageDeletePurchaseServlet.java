@@ -1,9 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPage_purchaseService;
-import com.LetsResell.myPage.model.vo.*;
 
 /**
- * Servlet implementation class MyPage_purchaseDetailServlet
+ * Servlet implementation class MyPageDeletePurchaseServlet
  */
-@WebServlet("/purchaseDetail.mp")
-public class MyPage_purchaseDetailListServlet extends HttpServlet {
+@WebServlet("/deletePurchase.mp")
+public class MyPageDeletePurchaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_purchaseDetailListServlet() {
+    public MyPageDeletePurchaseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +30,9 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		int bno = Integer.parseInt(request.getParameter("bno")); 
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		
-		ArrayList<Bid> list = new MyPage_purchaseService().purchaseListView(userNo);
-		request.setAttribute("list", list);
-		
-		ArrayList<Trade> tlist = new MyPage_purchaseService().selectPurchaseStatus(userNo);
-		request.setAttribute("tlist", tlist);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseDetailList.jsp");
-		view.forward(request, response);
+		int result = new MyPage_purchaseService().deletePurchase(bno);
 		
 	}
 
