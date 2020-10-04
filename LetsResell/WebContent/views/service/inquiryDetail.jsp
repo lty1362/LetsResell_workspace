@@ -157,6 +157,13 @@
         	text-decoration:underline;
         	font-weight:bold;
         }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:545px;
+        }
 </style>
 </head>
 <body>
@@ -170,6 +177,9 @@
 	            <div id="body_right">
 	            	<div id="title">
                     	1:1 문의
+                	</div>
+                	<div id="enrollDate">
+                		작성일 : <%=list.getInquiryEnrollDate() %>
                 	</div>
                 <form action="update.inquiry" method="post">
                 <input type="hidden" name="inquiryNo" value="<%=list.getInquiryNo()%>">

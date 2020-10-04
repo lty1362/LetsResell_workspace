@@ -26,7 +26,6 @@ public class Admin_productDetailServlet extends HttpServlet {
 		int pno= Integer.parseInt(request.getParameter("productCode"));
 		Admin_Product product = new ProductService().selectDetail(pno);
 		ArrayList<Admin_Image> image = new ProductService().selectImage(pno);
-		System.out.println(product);
 		request.setAttribute("product", product);
 		request.setAttribute("image", image);
 		request.getRequestDispatcher("views/admin/admin_productDetail.jsp").forward(request, response);

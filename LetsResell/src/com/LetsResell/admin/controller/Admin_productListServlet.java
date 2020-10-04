@@ -22,6 +22,7 @@ public class Admin_productListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int listCount; 		
 		int currentPage; 	
 		int pageLimit; 		

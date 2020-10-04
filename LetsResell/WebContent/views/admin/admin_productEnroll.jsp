@@ -321,11 +321,11 @@
                             <tr>
                                 <th>분류</th>
                                 <td id="category">
-                                    <input type="button" value="tops">
-                                    <input type="button" value="bottoms">
-                                    <input type="button" value="outers">
-                                    <input type="button" value="footwear">
-                                    <input type="button" value="accessories">
+                                    <input type="button" value="Tops">
+                                    <input type="button" value="Bottoms">
+                                    <input type="button" value="Outers">
+                                    <input type="button" value="Footwear">
+                                    <input type="button" value="Accessories">
                                 </td>
                             </tr>
                             <tr id="brandChoose">
@@ -464,27 +464,27 @@
 	   		$("#footer").css("margin-top","155px");
 	   		
 	   		// 분류에 대한 브랜드 선택
-	   		$("input[value=tops]").click(function(){
+	   		$("input[value=Tops]").click(function(){
 	   			$(".topsBrand").css("display","");
 	   			$(".brand").not(".topsBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=bottoms]").click(function(){
+	   		$("input[value=Bottoms]").click(function(){
 	   			$(".bottomsBrand").css("display","");
 	   			$(".brand").not(".bottomsBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=outers]").click(function(){
+	   		$("input[value=Outers]").click(function(){
 	   			$(".outersBrand").css("display","");
 	   			$(".brand").not(".outersBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=footwear]").click(function(){
+	   		$("input[value=Footwear]").click(function(){
 	   			$(".footwearBrand").css("display","");
 	   			$(".brand").not(".footwearBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});
 	   		});
-	   		$("input[value=accessories]").click(function(){
+	   		$("input[value=Accessories]").click(function(){
 	   			$(".accessoriesBrand").css("display","");
 	   			$(".brand").not(".accessoriesBrand").css("display","none");
 	   			$(".brand input").css({"background":"black","color":"white"});

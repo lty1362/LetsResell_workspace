@@ -296,6 +296,34 @@ private Properties prop = new Properties();
 		return result;
 	}
 	
+	public int updateProductImage(Connection conn, ArrayList<Admin_Image> list, String[] sArr) {
+		int[] iArr = new int[sArr.length];
+		for(int i = 0 ; i < sArr.length ; i++) {
+			iArr[i] = Integer.parseInt(sArr[i]);
+		}
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProductImage");
+		try {
+			for(int i = 0 ; i < iArr.length ; i++) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, list.get(i).getProductImageOriginName());
+				pstmt.setString(2, list.get(i).getProductImageChangeName());
+				pstmt.setInt(3, iArr[i]);
+				result = pstmt.executeUpdate();
+				if(result == 0) {
+					return 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public Admin_Product selectDetail(Connection conn, int pno) {
 		Admin_Product product = null;
 		PreparedStatement pstmt = null;
@@ -356,33 +384,6 @@ private Properties prop = new Properties();
 			}
 		return result;
 	}
-	
-//	public int updateImage(Connection conn, ArrayList<Admin_Image> list) {
-//		int result = 0;
-//		PreparedStatement pstmt = null;
-//		String sql = prop.getProperty("updateImage");
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, p.getPRmodel());
-//			pstmt.setString(2, p.getPRname());
-//			pstmt.setString(3, p.getPRcategory());
-//			pstmt.setString(4, p.getPRbrand());
-//			pstmt.setString(5, p.getPRsize());
-//			pstmt.setString(6, p.getPRcolor());
-//			pstmt.setString(7, p.getPRreviewYoutube());
-//			pstmt.setString(8, p.getPRreviewDetail());
-//			pstmt.setDate(9, p.getPRreleaseDate());
-//			pstmt.setInt(10, p.getPRreleasePrice());
-//			pstmt.setInt(11, p.getPRno());
-//			
-//			result = pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//		}
-//		return result;
-//	}
 	
 	public ArrayList<Admin_Image> selectImage(Connection conn, int pno) {
 		ArrayList<Admin_Image> image = new ArrayList<>();
