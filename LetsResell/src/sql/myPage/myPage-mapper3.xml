@@ -27,9 +27,11 @@
 		     , SALE_SIZE
 		     , SALE_CATEGORY
 		     , SALE_PERIOD
+		     , PR_COLOR
 		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
 		  FROM SALE
 		  JOIN P_IMG USING(PR_NO)
+		  JOIN P_REG USING(PR_NO)
 		 WHERE SALE_NO = ?
 	</entry>
 	<entry key="selectPurchaseInfo">
@@ -39,6 +41,6 @@
 		      , BID_DATE
 		  FROM BID
 		  JOIN MEMBER USING(MEM_USER_NO)
-		  WHERE SALE_NO = 1
+		  WHERE SALE_NO = ?
 	</entry>
 </properties>

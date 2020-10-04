@@ -15,6 +15,7 @@ public class Sale {
 	private String salePeriod;		//입찰기간
 	private String boxStatus;		//박스상태
 	private String titleImg;			// 대표 이미지
+	private String prColor;
 	
 	public Sale() {
 		
@@ -35,9 +36,11 @@ public class Sale {
 		this.boxStatus = boxStatus;
 	}
 
+	
+	
 	public Sale(int saleNo, int salePrice, String saleName, Date saleEnrollDate, String saleCondition,
 			String saleStatus, String saleSize, String saleCategory, String salePeriod, String boxStatus,
-			String titleImg) {
+			String titleImg, String prColor) {
 		super();
 		this.saleNo = saleNo;
 		this.salePrice = salePrice;
@@ -50,8 +53,19 @@ public class Sale {
 		this.salePeriod = salePeriod;
 		this.boxStatus = boxStatus;
 		this.titleImg = titleImg;
+		this.prColor = prColor;
 	}
 	
+	
+
+	public String getPrColor() {
+		return prColor;
+	}
+
+	public void setPrColor(String prColor) {
+		this.prColor = prColor;
+	}
+
 	public String getTitleImg() {
 		return titleImg;
 	}

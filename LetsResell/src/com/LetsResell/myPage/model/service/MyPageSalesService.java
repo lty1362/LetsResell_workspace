@@ -32,9 +32,15 @@ public class MyPageSalesService {
 	 * @param saleNo
 	 * @return
 	 */
-	public ArrayList<Sale> selectDetailInfo(int saleNo) {
+	public ArrayList<Sale> selectDetailInfo(int sno) {
 		
-		return null;
+		Connection conn = getConnection();
+		
+		ArrayList<Sale> slist = new MyPageSalesDao().selectDetailInfo(conn, sno);
+		
+		close(conn);
+		
+		return slist;
 	}
 	
 	/**
@@ -42,9 +48,15 @@ public class MyPageSalesService {
 	 * @param saleNo
 	 * @return
 	 */
-	public ArrayList<Bid> selectPurchaseInfo(int saleNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Bid> selectPurchaseInfo(int sno) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Bid> blist = new MyPageSalesDao().selectPurchaseInfo(conn, sno);
+		
+		close(conn);
+		
+		return blist;
 	}
 
 }

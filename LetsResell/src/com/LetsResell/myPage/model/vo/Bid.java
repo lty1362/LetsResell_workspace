@@ -16,6 +16,7 @@ public class Bid {
 	private String saleSize;		//사이즈
 	private String saleCategory;	//제품분류
 	private String titleImg;			// 대표 이미지
+	private String memUserId;
 	
 	public Bid() {
 		
@@ -31,11 +32,10 @@ public class Bid {
 		this.addressNo = addressNo;
 		this.bidStatus = bidStatus;
 	}
-	
-	
 
 	public Bid(int bidNo, int saleNo, int memUserNo, int bidPrice, Date bidDate, int addressNo, String bidStatus,
-			String saleName, String saleCondition, String saleSize, String saleCategory, String titleImg) {
+			String saleName, String saleCondition, String saleSize, String saleCategory, String titleImg,
+			String memUserId) {
 		super();
 		this.bidNo = bidNo;
 		this.saleNo = saleNo;
@@ -49,6 +49,15 @@ public class Bid {
 		this.saleSize = saleSize;
 		this.saleCategory = saleCategory;
 		this.titleImg = titleImg;
+		this.memUserId = memUserId;
+	}
+
+	public String getMemUserId() {
+		return memUserId;
+	}
+
+	public void setMemUserId(String memUserId) {
+		this.memUserId = memUserId;
 	}
 
 	public String getTitleImg() {

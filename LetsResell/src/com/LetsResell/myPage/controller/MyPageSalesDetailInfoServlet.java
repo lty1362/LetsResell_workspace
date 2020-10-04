@@ -34,12 +34,12 @@ public class MyPageSalesDetailInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int saleNo = Integer.parseInt(request.getParameter("saleNo"));
+		int sno = Integer.parseInt(request.getParameter("sno"));
 		
-		ArrayList<Sale> slist = new MyPageSalesService().selectDetailInfo(saleNo);
+		ArrayList<Sale> slist = new MyPageSalesService().selectDetailInfo(sno);
 		request.setAttribute("slist", slist);
 		
-		ArrayList<Bid> blist = new MyPageSalesService().selectPurchaseInfo(saleNo);
+		ArrayList<Bid> blist = new MyPageSalesService().selectPurchaseInfo(sno);
 		request.setAttribute("blist", blist);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesDetailInfo.jsp");

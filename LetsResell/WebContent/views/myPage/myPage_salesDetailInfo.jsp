@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("list");
-	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("list");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
+	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 %>
 <!DOCTYPE html>
 <html>
@@ -151,9 +151,9 @@
                     <div class="bid_date">
                         <ul>
                             <li style="font-weight: bold;">입찰날짜</li>
-                            <li style="color: red;">2020.08.25</li>
-                            <li style="font-weight: bold; margin-left: 50px;">입찰만료날짜</li>
-                            <li style="color: red;">2020.09.10</li>
+                            <li style="color: red;"><%=slist.get(0).getSaleEnrollDate()%></li>
+                            <li style="font-weight: bold; margin-left: 50px;">입찰기간</li>
+                            <li style="color: red;"><%=slist.get(0).getSalePeriod() %></li>
                             <div class="container">
                                 <!-- Button to Open the Modal -->
                                 <button type="button" id="btn" data-toggle="modal" data-target="#myModal">
@@ -216,22 +216,22 @@
                                 <tr>
                                     <td width="150px">
                                         <div class="product_img">
-                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
+                                            <a href=""><img src="<%=slist.get(0).getTitleImg()%>"></a>
                                         </div>
                                     </td>
                                     <td class="product_info">
                                         <dl>
                                             <dt>
-                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
+                                                <%=slist.get(0).getSaleName() %>
                                             </dt>
                                             <dd>
-                                                	샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br>
-                                                	사이즈 : L / 색상 : 블랙
+                                                	<%=slist.get(0).getSaleCondition() %> / <%=slist.get(0).getSaleCategory() %> <br>
+                                                	사이즈 : <%=slist.get(0).getSaleSize() %> / 색상 : <%=slist.get(0).getPrColor() %>
                                             </dd>
                                         </dl>
                                     </td>
                                     <td style="background-color: rgb(194, 193, 193);">
-                                        <span>입찰진행중</span>
+                                        <span><%=slist.get(0).getSaleStatus() %></span>
                                     </td>
                                 </tr>
                                 
@@ -250,59 +250,24 @@
                                     <th>입찰자 아이디</th>
                                     <th>구매입찰</th>
                                     <th>날짜</th>
-                                    <th>시간</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>user01</td>
-                                    <td>880,000</td>
-                                    <td>2020-08-25</td>
-                                    <td>13:50</td>
-                                </tr>
+                            
+                            <%if(blist.isEmpty()) {%>
+                            
+                            	<th colspan="4">등록된 입찰이 없습니다.</th>
+                            
+                            <%}else { %>
+                            	<%for(int i = 0; i < blist.size(); i++) {%>
+	                                <tr>
+	                                    <td><%=i+1%></td>
+	                                    <td><%=blist.get(i).getMemUserId() %></td>
+	                                    <td><%=blist.get(i).getBidPrice() %></td>
+	                                    <td><%=blist.get(i).getBidDate() %></td>
+	                                </tr>
+                                <%} %>
+                          	<%} %>
                             </tbody>
                         </table>
                     </div>

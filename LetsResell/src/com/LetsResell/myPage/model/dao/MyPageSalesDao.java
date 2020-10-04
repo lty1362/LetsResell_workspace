@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Sale;
 
 public class MyPageSalesDao {
@@ -71,6 +72,90 @@ public class MyPageSalesDao {
 		}
 		
 		return list;
+	}
+
+	public ArrayList<Sale> selectDetailInfo(Connection conn, int sno) {
+		
+		ArrayList<Sale> slist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectDetailInfo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Sale s = new Sale();
+				s.setSalePrice(rset.getInt("SALE_PRICE"));
+				s.setSaleName(rset.getString("SALE_NAME"));
+				s.setSaleEnrollDate(rset.getDate("SALE_ENROLL_DATE"));
+				s.setSaleCondition(rset.getString("SALE_CONDITION"));
+				s.setSaleStatus(rset.getString("SALE_STATUS"));
+				s.setSaleSize(rset.getString("SALE_SIZE"));
+				s.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				s.setSalePeriod(rset.getString("SALE_PERIOD"));
+				s.setPrColor(rset.getString("PR_COLOR"));
+				s.setTitleImg(rset.getString("TITLEIMG"));
+				
+				slist.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		
+		return slist;
+	}
+
+	public ArrayList<Bid> selectPurchaseInfo(Connection conn, int sno) {
+		
+		ArrayList<Bid> blist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPurchaseInfo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Bid b = new Bid();
+				b.setMemUserId(rset.getString("MEM_USER_ID"));
+				b.setBidPrice(rset.getInt("BID_PRICE"));
+				b.setBidDate(rset.getDate("BID_DATE"));
+				
+				blist.add(b);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return blist;
 	}
 
 }

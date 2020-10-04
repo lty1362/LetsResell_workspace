@@ -191,7 +191,7 @@
                     	$(".1").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesDetail.mp"
+                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>"
                     		
                     	});
                     	
