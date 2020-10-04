@@ -13,6 +13,8 @@ import java.util.Properties;
 import com.LetsResell.common.member.vo.Filter;
 import com.LetsResell.common.member.vo.PageInfo;
 import com.LetsResell.product.model.vo.Product;
+import com.LetsResell.product.model.vo.Sale;
+
 import static com.LetsResell.template.JDBCTemplate.*;
 
 public class ProductDao {
@@ -251,6 +253,78 @@ public class ProductDao {
 				
 				list.add(p);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public int selectSaleListCount(Connection conn, int prNo) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSaleListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, prNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public ArrayList<Sale> selectSaleList(Connection conn, int prNo, PageInfo pi) {
+		ArrayList<Sale> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSaleList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setInt(1, prNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Sale s = new Sale();
+				
+				s.setSaleNo(rset.getInt("SALE_NO"));
+				s.setPrNo(rset.getInt("PR_NO"));
+				s.setMemUserNo(rset.getInt("MEM_USER_NO"));
+				s.setSalePrice(rset.getInt("SALE_PRICE"));
+				s.setSaleName(rset.getString("SALE_NAME"));
+				s.setSaleSize(rset.getInt("SALE_SIZE"));
+				s.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(s);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

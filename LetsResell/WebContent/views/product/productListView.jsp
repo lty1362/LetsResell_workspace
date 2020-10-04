@@ -27,7 +27,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/LetsResell/resources/css/product/productListView.css">
-<script src="/LetsResell/resources/js/product/productListView.js" rel="javascript"></script>
 <title>레츠리셀-제품이름</title>
 </head>
 <body>
@@ -61,9 +60,9 @@
 	
 			<% for(Product p : list) {%>
 	        <div id="product">
-				<input type="hidden" value="<%= p.getPrNo() %>">
+				<input id="prNo" type="hidden" value="<%= p.getPrNo() %>">
 	            <div id="product_img">
-	                <img src="<%= p.getTitleImg() %>" alt="<%= p.getPrModel() %>" width="100%" height="100%">
+	                <img src="<%=contextPath %>/<%= p.getTitleImg() %>" alt="<%= p.getPrModel() %>" width="100%" height="100%">
 	            </div>
 	
 	            <div id="product_detail">
@@ -140,4 +139,5 @@
 <!-- foot 추가 -->
 <%@ include file="../common/footer.jsp" %>
 </body>
+<script src="/LetsResell/resources/js/product/productListView.js" rel="javascript"></script>
 </html>

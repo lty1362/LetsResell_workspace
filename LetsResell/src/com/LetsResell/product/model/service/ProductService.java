@@ -9,6 +9,7 @@ import com.LetsResell.common.member.vo.Filter;
 import com.LetsResell.common.member.vo.PageInfo;
 import com.LetsResell.product.model.dao.ProductDao;
 import com.LetsResell.product.model.vo.Product;
+import com.LetsResell.product.model.vo.Sale;
 
 public class ProductService {
 
@@ -76,6 +77,26 @@ public class ProductService {
 		} else {
 			list = new ProductDao().filterSearchProduct(conn, filter, pi);
 		}
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int selectSaleListCount(int prNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().selectSaleListCount(conn, prNo);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	public ArrayList<Sale> selectSaleList(int prNo, PageInfo pi) {
+		Connection conn = getConnection();
+		
+		ArrayList<Sale> list = new ProductDao().selectSaleList(conn, prNo, pi);
 		
 		close(conn);
 		

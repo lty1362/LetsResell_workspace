@@ -129,4 +129,39 @@
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<entry key="selectSaleListCount">
+		SELECT COUNT(*)
+		  FROM SALE
+		  JOIN SALE_IMG USING(SALE_NO)
+		 WHERE SALE_STATUS = '거래 전'
+		   AND PR_NO = ?
+		   AND SALE_FILE_LEVEL = '1'
+	</entry>
+	
+	<entry key="selectSaleList">
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_PRICE
+		                  , SALE_NAME
+		                  , SALE_SIZE
+		                  , SALE_IMG_URL || SALE_CHANGE_NAME "TITLEIMG"
+		               FROM SALE
+		               JOIN SALE_IMG USING(SALE_NO)
+		              WHERE SALE_STATUS = '거래 전'
+		                AND SALE_FILE_LEVEL = '1'
+		                AND PR_NO = ?
+		              ORDER BY SALE_NO DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

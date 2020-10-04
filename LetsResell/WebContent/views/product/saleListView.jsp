@@ -1,5 +1,18 @@
+<%@page import="com.LetsResell.common.member.vo.PageInfo"%>
+<%@page import="com.LetsResell.product.model.vo.Sale"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +34,7 @@
 
         <div class="product_outer">
 
-            <h1><b>나이키 X 오프화이트</b></h1>
+            <h1><b><%= list.get(0).getSaleName() %></b></h1>
             <br>
 
             <div id="btn_box">
@@ -29,7 +42,7 @@
                 <div id="wish_btn">
 
                     <div id="wish_btn_img" align="center">
-                        <img src="/LetsResell/resources/images/product/heart.png" alt="" width="90%" height="90%">
+                        <img src="/LetsResell/resources/images/product/heart.png" width="90%" height="90%">
                     </div>
 
                     <div id="wish_btn_name" align="center">
@@ -40,7 +53,7 @@
                 <div id="sell_btn">
 
                     <div id="sell_btn_img">
-                        <img src="/LetsResell/resources/images/product/pen.png" alt="" width="90%" height="90%">
+                        <img src="/LetsResell/resources/images/product/pen.png" width="90%" height="90%">
                     </div>
 
                     <div id="sell_btn_name" align="center">
@@ -51,43 +64,48 @@
 
             </div>
 
+			<% for(Sale s : list) { %>
             <div id="product">
-
+            
+				<input id="saleNo" type="hidden" value="<%= s.getSaleNo() %>">
                 <div id="product_img">
-                    <img src="imgs/product_sample.jpg" alt="제품이미지" width="100%" height="100%">
+                    <img src="<%= contextPath %>/<%= s.getTitleImg() %>" alt="<%= s.getSaleName() %>" width="100%" height="100%">
                 </div>
 
                 <div id="product_detail">
-                    <p>size: 260</p>
-                    <b id="product_condition">New</b>
-                    <b id="product_price">￦ 470,000</b>
+                    <p>size: <%= s.getSaleSize() %></p>
+                    <b id="product_condition"><%= s.getSaleCondition() %></b>
+                    <b id="product_price">￦ <%= s.getSalePrice() %></b>
                 </div>
 
             </div>
-
+			<% } %>
 
             <div class="pagingArea" align="center">
-
-                <!-- 맨 처음으로 (<<) -->
-                <button>&lt;&lt;</button>
-    
-                <!-- 이전 페이지로 (<) -->
-                <button>&lt;</button>
-    
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-
-                
-                <!-- 다음 페이지로 (>) -->
-                <button>&gt;</button>
-    
-                <!-- 맨 끝으로 (>>) -->
-                <button>&gt;&gt;</button>
-    
-            </div>
+				<% if(currentPage != 1) { %>
+	            <!-- 맨 처음으로 (<<) -->
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=1&prNo=<%=list.get(0).getPrNo()%>';">&lt;&lt;</button>
+	
+	            <!-- 이전 페이지로 (<) -->
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=currentPage-1%>&prNo=<%=list.get(0).getPrNo()%>';">&lt;</button>
+	            <% } %>
+	            
+	            <% for(int i=startPage; i<=endPage; i++) { %>
+	            	<% if(i != currentPage) { %>
+	            	<button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=i%>&prNo=<%=list.get(0).getPrNo()%>';"><%= i%></button>
+	            	<% } else { %>
+	            	<button disabled><%= i %></button>
+	            	<% } %>
+	            <% } %>
+	            
+	            <% if(currentPage != maxPage) { %>
+	            <!-- 다음 페이지로 (>) -->
+	            <button onclick="location.href='<%=contextPath%>/searchProduct.do?currentPage=<%=currentPage+1%>&prNo=<%=list.get(0).getPrNo()%>';">&gt;</button>
+	
+	            <!-- 맨 끝으로 (>>) -->
+	            <button onclick="location.href='<%= contextPath%>/searchProduct.do?currentPage=<%=maxPage%>&prNo=<%=list.get(0).getPrNo()%>';">&gt;&gt;</button>
+				<% } %>
+	        </div>
 
         </div>
 
@@ -100,4 +118,5 @@
 <!-- footer 추가 -->
 <%@ include file="../common/footer.jsp" %>
 </body>
+<script src="/LetsResell/resources/js/product/saleListView.js" rel="javascript"></script>
 </html>
