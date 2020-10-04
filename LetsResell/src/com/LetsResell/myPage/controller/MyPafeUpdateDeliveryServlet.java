@@ -1,9 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPageSalesService;
-import com.LetsResell.myPage.model.vo.Sale;
+import com.LetsResell.myPage.model.vo.*;
 
 /**
- * Servlet implementation class MyPage_salesStatusListServlet
+ * Servlet implementation class MyPafeUpdateDeliveryServlet
  */
-@WebServlet("/salesStatus.mp")
-public class MyPage_salesStatusListServlet extends HttpServlet {
+@WebServlet("/updateDelivery.mp")
+public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_salesStatusListServlet() {
+    public MyPafeUpdateDeliveryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +31,16 @@ public class MyPage_salesStatusListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		int tno = Integer.parseInt(request.getParameter("tno"));
+		String deliveryName = request.getParameter("deliveryName");
+		int deliveryNo = Integer.parseInt(request.getParameter("deliveryNo"));
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		Sale s = new Sale();
+		s.setTradeNo(tno);
+		s.setTradeService(deliveryName);
+		s.setTradeNum(deliveryNo);
 		
-		ArrayList<Sale> list = new MyPageSalesService().salesListView(userNo);
-		request.setAttribute("list", list);
-		
-		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
-		request.setAttribute("slist", slist);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesStatusList.jsp");
-		view.forward(request, response);
+		int result = new MyPageSalesService().updateDelivery(s);
 		
 	}
 
