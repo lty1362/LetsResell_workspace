@@ -15,6 +15,11 @@ public class Trade {
 	private Date tradeEnd;			//거래완료일
 	private int tradePrice;			//거래가격
 	private int bidNo;				//경매번호
+	private String saleName;		//상품명
+	private String saleSize;		//사이즈
+	private String saleCategory;	//제품분류
+	private String saleCondition;	//상품상태
+	private String titleImg;			// 대표 이미지
 	
 	public Trade() {
 		
@@ -34,6 +39,68 @@ public class Trade {
 		this.tradeEnd = tradeEnd;
 		this.tradePrice = tradePrice;
 		this.bidNo = bidNo;
+	}
+
+	public Trade(int tradeNo, int saleNo, int memUserNo, int addressNo, String tradeStatus, String tradeService,
+			int tradeNum, Date tradeCon, Date tradeEnd, int tradePrice, int bidNo, String saleName, String saleSize,
+			String saleCategory, String saleCondition, String titleImg) {
+		super();
+		this.tradeNo = tradeNo;
+		this.saleNo = saleNo;
+		this.memUserNo = memUserNo;
+		this.addressNo = addressNo;
+		this.tradeStatus = tradeStatus;
+		this.tradeService = tradeService;
+		this.tradeNum = tradeNum;
+		this.tradeCon = tradeCon;
+		this.tradeEnd = tradeEnd;
+		this.tradePrice = tradePrice;
+		this.bidNo = bidNo;
+		this.saleName = saleName;
+		this.saleSize = saleSize;
+		this.saleCategory = saleCategory;
+		this.saleCondition = saleCondition;
+		this.titleImg = titleImg;
+	}
+
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
+	}
+
+	public String getSaleName() {
+		return saleName;
+	}
+
+	public void setSaleName(String saleName) {
+		this.saleName = saleName;
+	}
+
+	public String getSaleSize() {
+		return saleSize;
+	}
+
+	public void setSaleSize(String saleSize) {
+		this.saleSize = saleSize;
+	}
+
+	public String getSaleCategory() {
+		return saleCategory;
+	}
+
+	public void setSaleCategory(String saleCategory) {
+		this.saleCategory = saleCategory;
+	}
+
+	public String getSaleCondition() {
+		return saleCondition;
+	}
+
+	public void setSaleCondition(String saleCondition) {
+		this.saleCondition = saleCondition;
 	}
 
 	public int getTradeNo() {

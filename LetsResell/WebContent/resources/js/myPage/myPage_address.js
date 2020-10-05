@@ -1,6 +1,3 @@
-/* 선경_20200925_v1.4 */
-/* script 분리 */
-
 /* 배송지 정보 관련  내용*/
 
 $(document).ready(function(){

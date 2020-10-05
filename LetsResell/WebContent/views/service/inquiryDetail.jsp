@@ -37,7 +37,7 @@
         }
         #content{
             width: 100%;
-            height: 80%;
+            height: 610px;
             border: 1px solid lightgray;
             margin-bottom: 20px;
         }
@@ -105,7 +105,7 @@
         }
         #content_inquiry{
             width: 94%;
-            height: 65%;
+            height: 400px;
             border: 1px solid lightgray;
             margin-top:8%;
             margin-left:3%;
@@ -119,12 +119,21 @@
             margin-left:3%;
             padding:10px;
         }
+        #content_answer{
+            width: 94%;
+            height: 200px;
+            border: 1px solid lightgray;
+            font-size: 15px;
+            margin-top:3%;
+            margin-left:3%;
+            padding:10px;
+        }
         #content_inquiry>textarea{
         	width:100%;
         	height:100%;
             font-size: 15px;
             border:0px;
-            padding-left:10px;
+            padding:10px;
         }
         #update>input{
             background: rgb(74, 74, 74);
@@ -144,6 +153,17 @@
             padding:10px;
             margin-left:3%;
         }
+        #serviceInquiryLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:545px;
+        }
 </style>
 </head>
 <body>
@@ -158,8 +178,12 @@
 	            	<div id="title">
                     	1:1 문의
                 	</div>
+                	<div id="enrollDate">
+                		작성일 : <%=list.getInquiryEnrollDate() %>
+                	</div>
                 <form action="update.inquiry" method="post">
                 <input type="hidden" name="inquiryNo" value="<%=list.getInquiryNo()%>">
+                <input type="hidden" name="userNo" value="<%=login.getUserNo()%>">
                 <div id="content">
                 	<%if(list.getInquiryStatus().equals("Y")){ %>
 	                    <div id="content_title">
@@ -234,7 +258,7 @@
 	                    <div id="content_inquiry">
 	                    	<textarea name="content" readonly rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getInquiryContent() %></textarea>
 	                    </div>
-	                    <div id="content_answer">(답변 내용)</div>
+	                    <div id="content_answer"><%=list.getInquiryAnswer() %></div>
 	                <% }else{ %>
 	                    <div id="content_inquiry">
 	                    	<textarea name="content" required rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"><%=list.getInquiryContent() %></textarea>
@@ -242,6 +266,9 @@
 	                <% } %>
                 </div>
                 <%if(list.getInquiryStatus().equals("Y")){ %>
+	                <div id="update" align="right">
+	                    <input type="button" onclick="history.back();" value="확인">
+	                </div>
                 <% }else{ %>
 	                <div id="update" align="right">
 	                    <input type="submit" onclick="return filter();" value="수정">
@@ -295,17 +322,20 @@
 				$(".cate").css("font-size","25px");
 				$("#wrap").css("height","1700px");
 				$("#footer").css("margin-top","85px");
+				$("#content").css("height","800px");
 				$("#body_right").css("height","1300px");
 				$("#content_answer").addClass("hi");
-				$("#content_inquiry").css({"margin-top":"3%", "height":"46%"});
+				$("#content_inquiry").css({"margin-top":"5%", "height":"46%"});
             <% } %>
         });
+        
         filter = function(){
         	if($("select[name=bigCategory]").val()=="대분류"){
         		alert("대분류를 선택하세요.");
         		return false;
         	};
         }
+        
 	</script>
 </body>
 </html>

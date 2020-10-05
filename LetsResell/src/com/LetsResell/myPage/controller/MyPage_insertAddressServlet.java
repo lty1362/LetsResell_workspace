@@ -1,6 +1,3 @@
-// 선경_20200925_v1.4
-// 배송지 등록 기능 수정(미완성)
-
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -13,25 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.myPage.model.service.MyPage_service;
 
 /**
- * Servlet implementation class MyPage_insertAddressServlet
  * 배송지 정보 등록하는 Servlet
  */
 @WebServlet("/insertAddress.my")
 public class MyPage_insertAddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public MyPage_insertAddressServlet() {
         super();
     }
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));				// 로그인된 회원의 번호

@@ -3,6 +3,7 @@ package com.LetsResell.service.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.LetsResell.admin.model.dao.ProductDao;
 import com.LetsResell.service.model.dao.NoticeDao;
 import com.LetsResell.service.model.vo.Notice;
 import com.LetsResell.service.model.vo.PageInfo;
@@ -46,9 +47,41 @@ public class NoticeService {
 		return detail;
 	}
 	
+	public int noticeDelete(String[] check) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().noticeDelete(conn, check);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	public int insertNotice(String title, String content) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().insertNotice(conn, title, content);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
-	
+	public int updateNotice(int nno, String title, String content) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().updateNotice(conn, nno, title, content);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 }

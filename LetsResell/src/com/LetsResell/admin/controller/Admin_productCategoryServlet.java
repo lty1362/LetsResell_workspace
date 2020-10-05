@@ -22,6 +22,7 @@ public class Admin_productCategoryServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("category");
 		int listCount; 		
 		int currentPage; 	

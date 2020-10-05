@@ -4,7 +4,8 @@
 <%
 	ArrayList<Report> list = (ArrayList<Report>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
+	int writer = (int)request.getAttribute("writer");
+
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int pageLimit = pi.getPageLimit();
@@ -88,7 +89,7 @@
             width: 10%;
             border-right: 0px;
         }
-        #write a{
+        #write input{
         	background: rgb(74, 74, 74);
             color: white;
             border-radius: 3px;
@@ -98,24 +99,11 @@
             display:block;
             text-align:center;
             padding-top:5px;
-        }
-        #write a:hover{
-        	text-decoration:none;
-        }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
             border:0px;
+        }
+        #serviceReportLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
         }
 </style>
 </head>
@@ -160,30 +148,37 @@
 			                <% } %>
 	            		<% } %>
                     </table>
-                 <div id="write" align="right">
-                	<a href="<%=contextPath%>/enrollForm.report">글쓰기</a>
-                </div>
-                	<div class="pagingArea" align="center">
-			            <%if(currentPage == 1){ %>
-			            	<button>&lt;</button>
-			            <% } else { %>
-			           		<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
-			            <% } %>
-			            
-				            <% for(int p = startPage; p <= endPage ; p++){ %>
-				            	<% if(p != currentPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
-				            	<% } else { %>
-				            	<button disabled><%= p %></button>
-				            	<% } %>
+                 <%if(writer!=0){ %>
+	                 <div id="write" align="right">
+	                 	<form action="enrollForm.report" method="post">
+	                		<input type="hidden" name="userNo" value="<%=writer%>">
+	                		<input type="submit" value="글쓰기">
+	                	</form>
+	                </div>
+                 <% } %>
+	                <div id="bigPageArea">
+	                	<div class="pagingArea" align="center">
+				            <%if(currentPage == 1){ %>
+				            	<button>&lt;</button>
+				            <% } else { %>
+				           		<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage-1%>#title_FAQ';">&lt;</button>
 				            <% } %>
-		            
-			            <%if(currentPage == maxPage){ %>
-			            	<button>&gt;</button>
-			            <% } else {%>
-			            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
-			            <% } %>
-			        </div>
+				            
+					            <% for(int p = startPage; p <= endPage ; p++){ %>
+					            	<% if(p != currentPage){ %>
+					            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=p%>#title_FAQ';"><%= p %></button>
+					            	<% } else { %>
+					            	<button disabled><%= p %></button>
+					            	<% } %>
+					            <% } %>
+			            
+				            <%if(currentPage == maxPage){ %>
+				            	<button>&gt;</button>
+				            <% } else {%>
+				            	<button onclick="location.href='<%=contextPath%>/reportForm.service?currentPage=<%=currentPage+1%>#title_FAQ';">&gt;</button>
+				            <% } %>
+				        </div>
+				    </div>
            		</div>
         	</div>
 	    <%@ include file= "../common/footer.jsp"%>
@@ -193,7 +188,7 @@
 	    	    $("#report tr").not("#report tr:first").hover().css("cursor","pointer");
 		        $("#report tr").not("#report tr:first").click(function(){
 		          var rno = $(this).children().eq(0).text();
-		          location.href = "<%=contextPath%>/detail.report?writer=<%=list.get(0).getReportWriter()%>&rno="+rno; // 쿼리스트링
+		          location.href = "<%=contextPath%>/detail.report?writer=<%=writer%>&rno="+rno; // 쿼리스트링
 		        });
 	    	});
 	   </script>

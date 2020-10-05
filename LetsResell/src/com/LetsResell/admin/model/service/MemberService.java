@@ -1,6 +1,5 @@
 package com.LetsResell.admin.model.service;
-import static com.LetsResell.template.JDBCTemplate.close;
-import static com.LetsResell.template.JDBCTemplate.getConnection;
+import static com.LetsResell.template.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -45,6 +44,22 @@ public class MemberService {
 		return mem;
 	}
 	
+	public void blackMember(String black, int userNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().blackMember(conn, black, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+	}
 	
+	public String blackYN(int userNo) {
+		Connection conn = getConnection();
+		String blackYN = new MemberDao().blackYN(conn, userNo);
+		close(conn);
+		return blackYN;
+	}
 	
 }

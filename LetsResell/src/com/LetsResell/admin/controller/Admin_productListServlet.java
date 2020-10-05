@@ -22,6 +22,7 @@ public class Admin_productListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int listCount; 		
 		int currentPage; 	
 		int pageLimit; 		
@@ -44,7 +45,6 @@ public class Admin_productListServlet extends HttpServlet {
 		
 		Admin_PageInfo pi = new Admin_PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Admin_Product> list = new ProductService().selectList(pi);
-		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		

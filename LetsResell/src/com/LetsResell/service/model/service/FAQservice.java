@@ -1,7 +1,6 @@
 package com.LetsResell.service.model.service;
 
-import static com.LetsResell.template.JDBCTemplate.close;
-import static com.LetsResell.template.JDBCTemplate.getConnection;
+import static com.LetsResell.template.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -39,6 +38,50 @@ public class FAQservice {
 		close(conn);
 		return list;
 	}
+	
+	public int deleteFAQ(String[] check) {
+		Connection conn = getConnection();
+		int result = new FAQdao().deleteFAQ(conn, check);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int updateFAQ(int fno, String title, String content) {
+		Connection conn = getConnection();
+		int result = new FAQdao().updateFAQ(conn, fno, title, content);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public FAQ detailFAQ(int fno) {
+		Connection conn = getConnection();
+		FAQ faq = new FAQdao().detailFAQ(conn, fno);
+		close(conn);
+		return faq;
+	}
+	
+	public int insertFAQ(String title, String content, String category) {
+		Connection conn = getConnection();
+		int result = new FAQdao().insertFAQ(conn, title, content, category);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 	
 }

@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_PageInfo;
 import com.LetsResell.admin.model.vo.Admin_Product;
 
@@ -70,12 +71,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -131,12 +131,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -210,12 +209,11 @@ private Properties prop = new Properties();
 						,rset.getString(8)
 						,rset.getString(9)
 						,rset.getString(10)
-						,rset.getString(11)
+						,rset.getDate(11)
 						,rset.getDate(12)
-						,rset.getDate(13)
+						,rset.getInt(13)
 						,rset.getInt(14)
-						,rset.getInt(15)
-						,rset.getString(16))
+						,rset.getString(15))
 						);
 			}
 		} catch (SQLException e) {
@@ -226,4 +224,191 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+	
+	public int deleteProduct(Connection conn, String[] check) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteProduct");
+		try {
+			for(int i = 0 ; i < check.length ; i++) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(check[i]));
+				result = pstmt.executeUpdate();
+				if(i != check.length-1 && result == 1) {
+					result = 0;
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertProduct(Connection conn, Admin_Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProduct");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getPRmodel());
+			pstmt.setString(2, p.getPRname());
+			pstmt.setString(3, p.getPRcategory());
+			pstmt.setString(4, p.getPRbrand());
+			pstmt.setString(5, p.getPRsize());
+			pstmt.setString(6, p.getPRcolor());
+			pstmt.setString(7, p.getPRreviewYoutube());
+			pstmt.setString(8, p.getPRreviewDetail());
+			pstmt.setDate(9, p.getPRreleaseDate());
+			pstmt.setInt(10, p.getPRreleasePrice());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertProductImage(Connection conn, ArrayList<Admin_Image> list) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProductImage");
+		try {
+			for(Admin_Image at : list) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, at.getProductImgUrl());
+				pstmt.setString(2, at.getProductImageOriginName());
+				pstmt.setString(3, at.getProductImageChangeName());
+				pstmt.setInt(4, at.getFileLevel());
+				result = pstmt.executeUpdate();
+				if(result == 0) {
+					return 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateProductImage(Connection conn, ArrayList<Admin_Image> list, String[] sArr) {
+		int[] iArr = new int[sArr.length];
+		for(int i = 0 ; i < sArr.length ; i++) {
+			iArr[i] = Integer.parseInt(sArr[i]);
+		}
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProductImage");
+		try {
+			for(int i = 0 ; i < iArr.length ; i++) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, list.get(i).getProductImageOriginName());
+				pstmt.setString(2, list.get(i).getProductImageChangeName());
+				pstmt.setInt(3, iArr[i]);
+				result = pstmt.executeUpdate();
+				if(result == 0) {
+					return 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public Admin_Product selectDetail(Connection conn, int pno) {
+		Admin_Product product = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetail");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				product = new Admin_Product(rset.getInt(1)
+						,rset.getString(2)
+						,rset.getString(3)
+						,rset.getString(4)
+						,rset.getString(5)
+						,rset.getString(6)
+						,rset.getString(7)
+						,rset.getString(8)
+						,rset.getString(9)
+						,rset.getDate(10)
+						,rset.getDate(11)
+						,rset.getInt(12)
+						,rset.getInt(13)
+						,rset.getString(14));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return product;
+	}
+	
+	public int updateProduct(Connection conn, Admin_Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProduct");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, p.getPRmodel());
+				pstmt.setString(2, p.getPRname());
+				pstmt.setString(3, p.getPRcategory());
+				pstmt.setString(4, p.getPRbrand());
+				pstmt.setString(5, p.getPRsize());
+				pstmt.setString(6, p.getPRcolor());
+				pstmt.setString(7, p.getPRreviewYoutube());
+				pstmt.setString(8, p.getPRreviewDetail());
+				pstmt.setDate(9, p.getPRreleaseDate());
+				pstmt.setInt(10, p.getPRreleasePrice());
+				pstmt.setInt(11, p.getPRno());
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		return result;
+	}
+	
+	public ArrayList<Admin_Image> selectImage(Connection conn, int pno) {
+		ArrayList<Admin_Image> image = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectImage");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Admin_Image img = new Admin_Image(rset.getInt(1),
+						rset.getInt(2),
+						rset.getString(3),
+						rset.getString(4),
+						rset.getString(5),
+						rset.getInt(6));
+				image.add(img);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return image;
+	}
+	
 }

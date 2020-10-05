@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.LetsResell.member.model.vo.Member" %>    
 <%
+	String contextPath = request.getContextPath();
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,10 +37,10 @@
 
 <!-- header_search 영역 -->
 <div id="header_search">
-    <form action="" id="header_search_form">
-
+    <form action="<%= request.getContextPath() %>/searchProduct.do" id="header_search_form" method="GET">
+		<input type="hidden" name="currentPage" value="1">
         <div id="header_search_form_text">
-            <input type="search" name="search" placeholder="   Search">
+            <input type="search" name="search" placeholder="   Only Product Name o.o">
         </div>
 
         <div id="header_search_form_btn">
@@ -60,7 +60,7 @@
                  <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
              </div>
              <div style="padding-left:280px;">
-             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin';">관리자</button>
+             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin?currentPage=1';">관리자</button>
              </div>
              
          </div>
@@ -70,7 +70,7 @@
 <div id="header_menu">
 	<div id="header_menu_div">
         <button onclick="location.href='<%=request.getContextPath()%>/logout.me';">로그아웃</button>
-        <button onclick="location.href='<%=request.getContextPath()%>/myPage.info';">마이페이지</button>
+        <button onclick="location.href='<%=request.getContextPath()%>/myPage.info?userNo=<%= loginUser.getUserNo() %>';">마이페이지</button>
         <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
     </div>
 </div>

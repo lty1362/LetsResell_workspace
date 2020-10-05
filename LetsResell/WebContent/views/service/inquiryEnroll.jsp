@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int userNo = (int)request.getAttribute("userNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,6 +127,10 @@
             height: 40px;
             border:0px;
         }
+        #serviceInquiryLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
 </style>
 </head>
 <body>
@@ -139,6 +146,7 @@
                     	1:1 문의
                 	</div>
                 <form action="enroll.inquiry" method="post">
+                <input type="hidden" name="userNo" value="<%=userNo%>">
                 <div id="content">
                     <div id="content_title">
                     	<input name="title" required type="text" placeholder="제목을 입력하세요">

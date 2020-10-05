@@ -6,7 +6,6 @@ public class Admin_Product {
 	
 	// field
 	private int PRno;
-	private String PRimage;
 	private String PRmodel;
 	private String PRname;
 	private String PRcategory;
@@ -26,12 +25,43 @@ public class Admin_Product {
 	public Admin_Product() {
 		
 	}
-	public Admin_Product(int pRno, String pRimage, String pRmodel, String pRname, String pRcategory, String pRbrand,
+	
+	public Admin_Product(String pRmodel, String pRname, String pRcategory, String pRbrand,
+			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail) {
+		super();
+		PRmodel = pRmodel;
+		PRname = pRname;
+		PRcategory = pRcategory;
+		PRbrand = pRbrand;
+		PRsize = pRsize;
+		PRcolor = pRcolor;
+		PRreviewYoutube = pRreviewYoutube;
+		PRreviewDetail = pRreviewDetail;
+	}
+	
+	
+
+	public Admin_Product(String pRmodel, String pRname, String pRcategory, String pRbrand,
+			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail, Date pRreleaseDate,
+			int pRreleasePrice) {
+		super();
+		PRmodel = pRmodel;
+		PRname = pRname;
+		PRcategory = pRcategory;
+		PRbrand = pRbrand;
+		PRsize = pRsize;
+		PRcolor = pRcolor;
+		PRreviewYoutube = pRreviewYoutube;
+		PRreviewDetail = pRreviewDetail;
+		PRreleaseDate = pRreleaseDate;
+		PRreleasePrice = pRreleasePrice;
+	}
+
+	public Admin_Product(int pRno, String pRmodel, String pRname, String pRcategory, String pRbrand,
 			String pRsize, String pRcolor, String pRreviewYoutube, String pRreviewDetail, Date pRenrollDate,
 			Date pRreleaseDate, int pRreleasePrice, int pRhits, String pRstatus) {
 		super();
 		PRno = pRno;
-		PRimage = pRimage;
 		PRmodel = pRmodel;
 		PRname = pRname;
 		PRcategory = pRcategory;
@@ -53,12 +83,6 @@ public class Admin_Product {
 	}
 	public void setPRno(int pRno) {
 		PRno = pRno;
-	}
-	public String getPRimage() {
-		return PRimage;
-	}
-	public void setPRimage(String pRimage) {
-		PRimage = pRimage;
 	}
 	public String getPRmodel() {
 		return PRmodel;
@@ -140,7 +164,7 @@ public class Admin_Product {
 	}
 	@Override
 	public String toString() {
-		return "Admin_Product [PRno=" + PRno + ", PRimage=" + PRimage + ", PRmodel=" + PRmodel + ", PRname=" + PRname
+		return "Admin_Product [PRno=" + PRno + ", PRimage=" + ", PRmodel=" + PRmodel + ", PRname=" + PRname
 				+ ", PRcategory=" + PRcategory + ", PRbrand=" + PRbrand + ", PRsize=" + PRsize + ", PRcolor=" + PRcolor
 				+ ", PRreviewYoutube=" + PRreviewYoutube + ", PRreviewDetail=" + PRreviewDetail + ", PRenrollDate="
 				+ PRenrollDate + ", PRreleaseDate=" + PRreleaseDate + ", PRreleasePrice=" + PRreleasePrice + ", PRhits="

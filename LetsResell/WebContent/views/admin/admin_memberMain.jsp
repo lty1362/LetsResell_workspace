@@ -76,11 +76,11 @@
         }
         #users>table tr td:nth-child(3){
             font-size:18px;
-            width: 35%;
+            width: 40%;
         }
         #users>table tr td:nth-child(4){
             font-size:18px;
-            width: 20%;
+            width: 25%;
         }
         #users>table tr td:nth-child(5){
             font-size:18px;
@@ -91,53 +91,6 @@
             text-align: center;
             font-size: 33px;
             padding: 5px;
-        }
-        #search{
-        	margin-top: 50px;
-        	margin-bottom:10px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
-        }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
         }
 </style>
 </head>
@@ -161,17 +114,17 @@
 			                    <tr>
 	                                <th>코드</th>
 	                                <th>이름</th>
-	                                <th>주소</th>
+	                                <th>이메일</th>
 	                                <th>전화번호</th>
-	                                <th style="border-right: 1px solid lightgray;">이메일</th>
+	                                <th style="border-right: 1px solid lightgray;">가입일</th>
 	                            </tr>
 			            		<% for(int i = 0 ; i < list.size() ; i++){ %>
 					                <tr>
 					                    <td><%=list.get(i).getUserNo()%></td>
 		                                <td><%=list.get(i).getUserName() %></td>
-		                                <td>-</td> <!-- 나중에 address table join -->
+		                                <td><%=list.get(i).getUserId() %></td>
 		                                <td><%=list.get(i).getPhone() %></td>
-		                                <td><%=list.get(i).getUserId() %>@naver.com</td>
+		                                <td><%=list.get(i).getEnrollDate() %></td>
 					                </tr>
 				                <% } %>
 		            		<% } %>
@@ -181,17 +134,17 @@
                     	<input type="hidden" name="currentPage" value="1">
 		                <div id="search"  align="center">
 		                    <select name="filter" id="filter">
-	                            <option value="userCode" selected>회원코드</option>
+	                           <option value="userCode" selected>회원코드</option>
 	                            <option value="userName">이름</option>
-	                            <option value="address">주소</option>
-	                            <option value="phone">전화번호</option>
 	                            <option value="email">이메일</option>
+	                            <option value="phone">전화번호</option>
 	                        </select>
 	 	                    <div id="search_in">
 		                        <input type="search" name=search><input type="submit" value="검색">
 		                    </div>
 		                </div>
                     </form>
+                <div id="bigPageArea">
                     <div class="pagingArea" align="center">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
@@ -213,6 +166,7 @@
 			            	<button onclick="location.href='<%=contextPath%>/memberMain.admin?currentPage=<%=currentPage+1%>#userTitle';">&gt;</button>
 			            <% } %>
 			        </div>
+			    </div>
                 </div>
             </div>
         </div>

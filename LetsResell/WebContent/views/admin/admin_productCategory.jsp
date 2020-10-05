@@ -20,6 +20,10 @@
 <meta charset="UTF-8">
 <title>관리자페이지</title>
 <style>
+		[type="checkbox"]{
+            width: 23px;
+            height: 23px;
+        }
         #menu2>*:nth-child(3){
         	font-size:20px;
         	text-decoration:underline;
@@ -41,10 +45,6 @@
             border: 1px solid lightgray;
             text-align-last: center;
             font-size: 13px;
-        }
-        [type="checkbox"]{
-            width: 15px;
-            height: 15px;
         }
         #category{
             margin-bottom: 10px;
@@ -102,6 +102,7 @@
         }
         #productList>table td:nth-child(6){
         	width:60px;
+        	padding-top:10px;
         }
         #productList td{
             border: 1px solid lightgray;
@@ -122,68 +123,6 @@
         #productUpdate{
             text-align:right;
         }
-        #search{
-            margin-top: 20px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-            outline-offset:-2px;
-           	padding-top:4px;
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
-        }
-        .pagingArea{
-        	margin-top:5px;
-        	padding-left:300px;
-        }
-        .pagingArea *{
-        	float:left;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-            display:block;
-        }
-        .modal-header{
-        	margin-top:40px;
-        	font-size:50px;
-        }
-        .modal-body button{
-        	width:100px;
-        	height:50px;
-        	font-size:23px;
-        	margin:20px;
-        	margin-bottom:40px;
-        }
 </style>
 </head>
 <body>
@@ -197,11 +136,11 @@
             <div id="body_right">
                 <div id="category">
                     <input type="button" value="전체" onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=1#body_right';">
-                    <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=tops#body_right';">
-                    <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=bottoms#body_right';">
-                    <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=outers#body_right';">
-                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=accessories#body_right';">
-                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=shoes#body_right';">
+                    <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Tops#body_right';">
+                    <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Bottoms#body_right';">
+                    <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Outers#body_right';">
+                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Accessories#body_right';">
+                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Footwear#body_right';">
                 </div>
                 <div id="productList">
                     <table>
@@ -210,7 +149,7 @@
 			            		<td colspan="6">조회된 리스트가 없습니다.</td>
 			            	</tr>
 	            		<% } else {%>
-		                    <tr>
+		                    <tr class="ut">
 	                            <th>코드</th>
 	                            <th>제품명</th>
 	                            <th>브랜드</th>
@@ -229,7 +168,7 @@
 		                            <% } else {%>
 		                            	<td><%= list.get(i).getPRsize()%></td>
 		                            <% } %>
-		                            <td><input type="checkbox"></td>
+		                            <td class="ut"><input type="checkbox"></td>
 		                        </tr>
 			                <% } %>
 	            		<% } %>
@@ -237,7 +176,7 @@
                 </div>
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 <div id="search"  align="center">
                     <select name="filter" id="filter">
@@ -250,7 +189,8 @@
                         <input type="search"><input type="submit" value="검색">
                     </div>
                 </div>
-                <div class="pagingArea" align="center">
+            <div id="bigPageArea">
+                <div class="pagingArea">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
@@ -283,6 +223,7 @@
 			           		</form>
 			            <% } %>
 			        </div>
+			    </div>
             </div>
         </div>
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->
@@ -290,33 +231,46 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title">정말 삭제하시겠습니까?</h4>
-                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <div class="modal-header" style="padding-left:100px;">
+                    	<div class="modal-title">Are you sure to delete?</div>
                     </div>
                     
-                    <!-- Modal body -->
                     <div class="modal-body" align="center">
-
-                        <form action="" method="POST">
+                        <form action="productCategoryDelete.admin" method="POST">
+	                        	<input type="hidden" name="category" value="<%=category%>">
+	                        	<input type="hidden" name="checked" id="checked">
                             <br>
-                            <button type="submit" class="btn btn-secondary">예</button>
-                            <button type="submit" class="btn btn-secondary">아니오</button>
+                            <button type="submit" class="btn btn-secondary" onclick="check();">Yes</button>
+                            <button type="submit" class="btn btn-danger">No</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
-    	$(function(){
-   			$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).hover().css("cursor","pointer");
-     		$("#productList>table").not($("tr:[class=untouchable]"),$("td:[class=untouchable]")).click(function(){
-     			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
-    		});
-    	});
+	 	// modify
+		$(function(){
+				$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
+	 		$("#productList>table tr td").not($(".ut")).click(function(){
+	 			var code = $(this).siblings().eq(0).html();
+	   			location.href = "<%=contextPath%>/productDetail.admin?productCode="+code;
+			});
+		});
+ 	
+		// delete
+	    var arr = [];
+		check = function(){
+	    	$('#productList input').each(function(index){
+	    	    if($(this).is(":checked")==true){
+	    	    	arr.push($(this).closest("td").siblings().eq(0).html());
+	    	    }
+	    	});
+	    	var checked = arr.join();
+	    	$("#checked").val(checked);
+		}
     </script>
 </body>
 </html>

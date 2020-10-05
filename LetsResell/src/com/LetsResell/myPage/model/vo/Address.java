@@ -13,6 +13,18 @@ public class Address {
 	private String addressMessage;	// 배송 메세지
 	
 	public Address() {}
+	
+	// selectAddress
+	public Address(int addressCode, String addressMain, String addressDetail, String addressPhone, String addressName,
+			String addressMessage) {
+		super();
+		this.addressCode = addressCode;
+		this.addressMain = addressMain;
+		this.addressDetail = addressDetail;
+		this.addressPhone = addressPhone;
+		this.addressName = addressName;
+		this.addressMessage = addressMessage;
+	}
 
 	public Address(int addressNo, int memUserNo, int addressCode, String addressMain, String addressDetail,
 			String addressPhone, String addressName, String addressBasic, String addressMessage) {

@@ -1,5 +1,3 @@
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
 package com.LetsResell.myPage.model.vo;
 
 public class Card {
@@ -14,6 +12,13 @@ public class Card {
 	private int cardinfoNo;			// 카드 정보 코드
 	
 	public Card() {}
+	
+	// selectCard
+	public Card(String cardName, String cardNumber) {
+		super();
+		this.cardName = cardName;
+		this.cardNumber = cardNumber;
+	}
 
 	public Card(int cardNo, int memUserNo, String cardName, String cardNumber, String cardValidate, String cardMemBirth,
 			int cardPwd, int cardinfoNo) {

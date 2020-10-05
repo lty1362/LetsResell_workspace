@@ -11,13 +11,53 @@ public class Report {
 	private String reportCategory;
 	private String reportTitle;
 	private String reportContent;
+	private String reportPastDeal;
 	private Date reportEnrollDate;
 	private String reportStatus;
+	private String userId;
 	
 	// constructor
 	public Report() {
 		
 	}
+	
+	
+	
+	public Report(int reportNo, int saleNo, String userId, String reportCategory, String reportTitle, String reportContent,
+			String reportPastDeal, Date reportEnrollDate, String reportStatus) {
+		super();
+		this.reportNo = reportNo;
+		this.saleNo = saleNo;
+		this.reportCategory = reportCategory;
+		this.reportTitle = reportTitle;
+		this.reportContent = reportContent;
+		this.reportPastDeal = reportPastDeal;
+		this.reportEnrollDate = reportEnrollDate;
+		this.reportStatus = reportStatus;
+		this.userId = userId;
+	}
+
+
+
+	public Report(int saleNo, String reportTitle, String reportCategory, String reportPastDeal, String reportContent) {
+		super();
+		this.saleNo = saleNo;
+		this.reportTitle = reportTitle;
+		this.reportCategory = reportCategory;
+		this.reportPastDeal = reportPastDeal;
+		this.reportContent = reportContent;
+	}
+	
+	public Report(String reportTitle, String reportCategory, String reportPastDeal, String reportContent,
+			int reportNo) {
+		super();
+		this.reportTitle = reportTitle;
+		this.reportCategory = reportCategory;
+		this.reportPastDeal = reportPastDeal;
+		this.reportContent = reportContent;
+		this.reportNo = reportNo;
+	}
+
 	public Report(String reportTitle, String reportCategory, int saleNo, String reportContent) {
 		super();
 		this.reportTitle = reportTitle;
@@ -35,7 +75,7 @@ public class Report {
 		this.reportContent = reportContent;
 	}
 	public Report(int reportNo, int saleNo, int reportWriter, String reportCategory, String reportTitle,
-			String reportContent, Date reportEnrollDate, String reportStatus) {
+			String reportContent, String reportPastDeal, Date reportEnrollDate, String reportStatus) {
 		super();
 		this.reportNo = reportNo;
 		this.saleNo = saleNo;
@@ -43,13 +83,20 @@ public class Report {
 		this.reportCategory = reportCategory;
 		this.reportTitle = reportTitle;
 		this.reportContent = reportContent;
+		this.reportPastDeal = reportPastDeal;
 		this.reportEnrollDate = reportEnrollDate;
 		this.reportStatus = reportStatus;
 	}
-	
 	// method
+	
 	public int getReportNo() {
 		return reportNo;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
@@ -96,13 +143,18 @@ public class Report {
 	public void setReportStatus(String reportStatus) {
 		this.reportStatus = reportStatus;
 	}
+	public String getReportPastDeal() {
+		return reportPastDeal;
+	}
+	public void setReportPastDeal(String reportPastDeal) {
+		this.reportPastDeal = reportPastDeal;
+	}
 	@Override
 	public String toString() {
 		return "Report [reportNo=" + reportNo + ", saleNo=" + saleNo + ", reportWriter=" + reportWriter
 				+ ", reportCategory=" + reportCategory + ", reportTitle=" + reportTitle + ", reportContent="
-				+ reportContent + ", reportEnrollDate=" + reportEnrollDate + ", reportStatus=" + reportStatus + "]";
-	} 
-	
-	
+				+ reportContent + ", reportPastDeal=" + reportPastDeal + ", reportEnrollDate=" + reportEnrollDate
+				+ ", reportStatus=" + reportStatus + ", userId=" + userId + "]";
+	}
 	
 }

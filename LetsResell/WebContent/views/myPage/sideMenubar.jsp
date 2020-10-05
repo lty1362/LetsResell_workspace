@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.LetsResell.member.model.vo.Member, com.LetsResell.myPage.model.vo.*" %>
+<%
+	Member login = (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,16 +74,16 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="/LetsResell/myPage.info">회원정보</a>
+                        <a href="/LetsResell/myPage.info?userNo=<%=login.getUserNo()%>">회원정보</a>
                     </li>
                     <li>
-                        <a href="">관심상품</a>
+                        <a href="/LetsResell/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=1">관심상품</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/salesDetail.mp">판매내역</a>
+                        <a href="/LetsResell/salesDetail.mp?userNo=<%=login.getUserNo()%>">판매내역</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/purchaseDetail.mp">구매내역</a>
+                        <a href="/LetsResell/purchaseDetail.mp?userNo=<%=login.getUserNo()%>">구매내역</a>
                     </li>
                 </ul>
             </div>

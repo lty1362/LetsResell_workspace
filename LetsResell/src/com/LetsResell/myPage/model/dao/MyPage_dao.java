@@ -1,27 +1,21 @@
-// 선경_20200920_v1.1
-// 계좌 등록 기능 추가 (미완성)
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
-// 프로필 수정 기능 추가 (미완성)
-// 선경_20200921_v1.3
-// 계좌 등록 method (완성)
-// 선경_20200925_v1.4
-// 배송지, 카드, 프로필 수정 기능 수정(미완성)
-// 선경_20200925_v1.5
-// 비밀번호 수정 기능 수정, 회원 탈퇴 기능 추가
-
 package com.LetsResell.myPage.model.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.LetsResell.template.JDBCTemplate.*;
 import com.LetsResell.myPage.model.vo.Account;
+import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Card;
+import com.LetsResell.myPage.model.vo.Wishlist;
+import com.LetsResell.myPage.model.vo.WishlistPageInfo;
 
 public class MyPage_dao {
 	
@@ -36,6 +30,83 @@ public class MyPage_dao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	/**
+	 * 등록된 카드 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Card> selectCard(Connection conn, int userNo) {
+		
+		ArrayList<Card> cardList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				cardList.add(new Card(rset.getString("CARD_NAME"),
+									  rset.getString("CARD_NUMBER")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cardList;
+	}
+	
+	
+	/**
+	 * 등록된 주소 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public ArrayList<Address> selectAddress(Connection conn, int userNo) {
+		
+		ArrayList<Address> addressList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAddress");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				addressList.add(new Address(rset.getInt("ADDRESS_CODE"),
+											rset.getString("ADDRESS_MAIN"),
+											rset.getString("ADDRESS_DETAIL"),
+											rset.getString("ADDRESS_PHONE"),
+											rset.getString("ADDRESS_NAME"),
+											rset.getString("ADDRESS_MESSAGE")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return addressList;
 	}
 
 	/**
@@ -176,6 +247,50 @@ public class MyPage_dao {
 	}
 	
 	/**
+	 * 배송지 등록
+	 * @param conn
+	 * @param userNo			로그인된 회원의 번호
+	 * @param addressName		주소 별칭
+	 * @param addressCode		우편 번호
+	 * @param addressMain		도로명 주소
+	 * @param addressDetail		상세 주소
+	 * @param addressPhone		핸드폰 번호
+	 * @param addressMessage	배송 메세지
+	 * @param addressBasic		기본 배송지 등록 여부 ("Y"/"N")
+	 * @return
+	 */
+	public int insertAddress(Connection conn, int userNo, String addressName, int addressCode, String addressMain,
+							 String addressDetail, String addressPhone, String addressMessage,
+							 String addressBasic) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAddress");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, addressCode);
+			pstmt.setString(3, addressMain);
+			pstmt.setString(4, addressDetail);
+			pstmt.setString(5, addressPhone);
+			pstmt.setString(6, addressName);
+			pstmt.setString(7, addressBasic);
+			pstmt.setString(8, addressMessage);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	/**
 	 * 계좌 정보 등록
 	 * @param conn
 	 * @param userId			로그인된 아이디
@@ -209,38 +324,13 @@ public class MyPage_dao {
 		}		
 		return result;
 	}
-	
-	public int insertAddress(Connection conn, int userNo, String addressName, int addressCode, String addressMain,
-							 String addressDetail, String addressPhone, String addressMessage,
-							 String addressBasic) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("insertAddress");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, addressCode);
-			pstmt.setString(3, addressMain);
-			pstmt.setString(4, addressDetail);
-			pstmt.setString(5, addressPhone);
-			pstmt.setString(6, addressName);
-			pstmt.setString(7, addressBasic);
-			pstmt.setString(8, addressMessage);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-		
-	}
-	
+
+	/**
+	 * 회원 정보 수정일 업데이트
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
 	public int updateModifyDate(Connection conn, int userNo) {
 		int result = 0;
 		
@@ -262,5 +352,116 @@ public class MyPage_dao {
 		return result;
 	}
 	
-
+	/**
+	 * 현재 총 찜 제품 갯수 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public int selectWishlistCount(Connection conn, int userNo) {
+		
+		int wishlistCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishlistCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				wishlistCount = rset.getInt("WISHLISTCOUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return wishlistCount;
+		
+	}
+	
+	/**
+	 * 위시리스트 조회
+	 * @param conn
+	 * @param userNo		로그인된 회원의 번호
+	 * @param wishlistPage	페이지 정보
+	 * @return
+	 */
+	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo, WishlistPageInfo wishlistPage) {
+		
+		ArrayList<Wishlist> wishlist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectWishlist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (wishlistPage.getCurrentPage() - 1) * wishlistPage.getWishlistLimit() + 1;
+			int endRow = startRow + wishlistPage.getWishlistLimit() - 1;
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				wishlist.add(new Wishlist(rset.getDate("WISHLIST_ADD_DATE"),
+										  rset.getString("PR_NAME")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return wishlist;
+	}
+	
+	/**
+	 * 위시리스트 삭제
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param name		삭제하고자 하는 제품
+	 * @return
+	 */
+	public int deleteWishlist(Connection conn, int userNo, String name) {
+		
+		int result = 0;
+			
+		PreparedStatement pstmt = null;
+			
+		String sql = prop.getProperty("deleteWishlist");
+			
+		try {
+				
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, name);
+				
+			result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		return result;
+	}
+	
 }

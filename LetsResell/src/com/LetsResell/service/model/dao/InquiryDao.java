@@ -156,8 +156,105 @@ public class InquiryDao {
 		return result;
 	}
 	
+	public int selectInquiryAllCount(Connection conn) {
+		int result = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInquiryAllCount");
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			if(rset.next()) {
+				result = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return result;
+	}
 	
+	public ArrayList<Inquiry> selectInquiryAll(Connection conn, PageInfo pi){
+		ArrayList<Inquiry> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInquiryAll");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1 ;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Inquiry(rset.getInt(2),
+						   rset.getString(3),
+						   rset.getString(4),
+						   rset.getString(5),
+						   rset.getString(6),
+						   rset.getString(7),
+						   rset.getDate(8),
+						   rset.getString(9),
+						   rset.getString(10),
+						   rset.getDate(11)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+	public Inquiry selectDetailUpdate(Connection conn, int ino) {
+		Inquiry inquiry = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetailUpdate");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ino);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				inquiry = new Inquiry(rset.getInt(2),
+						   rset.getInt(3),
+						   rset.getString(4),
+						   rset.getString(5),
+						   rset.getString(6),
+						   rset.getString(7),
+						   rset.getDate(8),
+						   rset.getString(9),
+						   rset.getString(10),
+						   rset.getDate(11));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return inquiry;
+	}
+	
+	public int updateInquiryAnswer(Connection conn, String answer, int ino) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateInquiryAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer);
+			pstmt.setInt(2, ino);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 }

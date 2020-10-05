@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectTrade">
+		 SELECT *
+		   FROM TRADE
+		  WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="selectSaleNo">
+		 SELECT SALE_NO
+		   FROM TRADE
+		  WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="selectSaleName">
+		SELECT SALE_NAME
+		  FROM SALE
+		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="selectTradeDay">
+		 SELECT TRADE_END
+		   FROM TRADE
+		  WHERE MEM_USER_NO = ?
+		    AND SALE_NO = ?
+	</entry>
+	<entry key="selectMemberDetail">
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		            SELECT S.SALE_NO, S.SALE_NAME, T.TRADE_PRICE, T.TRADE_END
+					  FROM TRADE T
+					  JOIN SALE S ON (S.SALE_NO = T.SALE_NO)
+					 WHERE T.MEM_USER_NO = ?
+		            ) A
+		        )
+	</entry>
+</properties>

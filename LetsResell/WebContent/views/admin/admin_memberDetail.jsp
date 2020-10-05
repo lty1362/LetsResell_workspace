@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.LetsResell.admin.model.vo.*" %>
+<%@ page import="java.util.ArrayList, com.LetsResell.admin.model.vo.*, com.LetsResell.service.model.vo.*" %>
 <%
-	ArrayList<Admin_Sale> saleList = (ArrayList<Admin_Sale>)request.getAttribute("list");
+	ArrayList<Admin_Sale> saleList = (ArrayList<Admin_Sale>)request.getAttribute("saleList");
+	ArrayList<Trade> tradeList = (ArrayList<Trade>)request.getAttribute("tradeList");
 	Admin_Member mem = (Admin_Member)request.getAttribute("mem");
 %>
 <!DOCTYPE html>
@@ -69,19 +70,10 @@
             width: 60%;
             height: 100%;
             background: lightgray;
-            padding-top: 10px;
+            padding-top: 17px;
             padding-left: 10px;
-            line-height: 25px;
-            font-size:18px;
-        }
-        #userInfo_closer p{
-        	margin:0px;
-        }
-        #userInfo_closer textarea{
-        	background:lightgray;
-        	resize:none;
-        	border:0px;
-        	padding:0px;
+            line-height: 20px;
+            font-size:23px;
         }
         #body_right table{
         	text-align: center;
@@ -184,6 +176,12 @@
         	position:absolute;
         	top:1800px;
         }
+        .memberHistory{
+        	width:80px; 
+        	background:rgb(74,74,74); 
+        	color:white;
+        	text-align:center;
+        }
 </style>
 </head>
 <body>
@@ -203,32 +201,33 @@
                         </div>
                         <div id="userInfo_closer">
                             <p>회원코드 : <%= mem.getUserNo()%></p>
-                            <p>아이디 : <%= mem.getUserId()%>@naver.com</p>
+                            <p>아이디 : <%= mem.getUserId()%></p>
                             <p>이름 : <%= mem.getUserName()%></p>
                             <p>전화번호 : <%= mem.getPhone()%></p>
                             <% if(mem.getUserSsn() != null){ %>
                             	<p>생년월일 : <%= mem.getUserSsn()%></p>
                             <% } %>
-                            <textarea rows="2" cols="4" readonly>주소 :&nbsp;</textarea><textarea rows="2" cols="30" readonly>서울특별시 동대문구 이문동 천장산로 302호 </textarea>
+                            <p>가입일 : <%=mem.getEnrollDate() %>
                         </div>
                     </div>
                     <div id="userInfo_mid"></div>
                     <div id="userInfo_bottom">
+                    	<div class="memberHistory">구매 내역</div>
                             <table id="userBuy" class="tableCss dealed">
                                 <tr>
                                     <th>No</th>
-                                    <th>제품코드</th>
+                                    <th>판매코드</th>
                                     <th>제품명</th>
                                     <th>거래가격</th>
                                     <th>거래체결일</th>
                                 </tr>
-                                <% for(int i = 0 ; i < saleList.size() ; i++){ %>
+                                <% for(int i = 0 ; i < tradeList.size() ; i++){ %>
 	                                <tr>
-	                                    <td><%= saleList.get(i).getrNum() %></td>
-	                                    <td><%= saleList.get(i).getPRnum() %></td>
-	                                    <td><%= saleList.get(i).getSaleName() %></td>
+	                                    <td><%= tradeList.get(i).getrNum() %></td>
+	                                    <td><%= tradeList.get(i).getSaleNo()%></td>
+	                                    <td><%= tradeList.get(i).getSaleName()%></td>
 	                                    <% 
-		                                    String comma = String.valueOf(saleList.get(i).getSalePrice());
+		                                    String comma = String.valueOf(tradeList.get(i).getTradePrice());
 											if(comma.length()>=4 && comma.length()<=6) {
 												comma = "₩" + comma.substring(0,comma.length()-3) + "," + comma.substring(comma.length()-3);
 											} else if(comma.length()==7 ) {
@@ -236,14 +235,15 @@
 											}
 										%>
 	                                    <td><%= comma %></td>
-	                                    <td><%= saleList.get(i).getSaleDate() %></td>
+	                                    <td><%= tradeList.get(i).getTradeEnd() %></td>
 	                                </tr>
                                 <% } %>
                             </table>
+                            <div class="memberHistory">판매 내역</div>
                             <table id="userSell" class="tableCss dealed">
                                 <tr>
                                     <th>No</th>
-                                    <th>제품코드</th>
+                                    <th>판매코드</th>
                                     <th>제품명</th>
                                     <th>거래가격</th>
                                     <th>거래체결일</th>
@@ -251,10 +251,10 @@
                                 <% for(int i = 0 ; i < saleList.size() ; i++){ %>
 	                                <tr>
 	                                    <td><%= saleList.get(i).getrNum() %></td>
-	                                    <td><%= saleList.get(i).getPRnum() %></td>
+	                                    <td><%= saleList.get(i).getSaleNum() %></td>
 	                                    <td><%= saleList.get(i).getSaleName() %></td>
 	                                    <% 
-		                                    String comma = String.valueOf(saleList.get(i).getSalePrice());
+		                                    String comma = String.valueOf(saleList.get(i).getTradePrice());
 											if(comma.length()>=4 && comma.length()<=6) {
 												comma = "₩" + comma.substring(0,comma.length()-3) + "," + comma.substring(comma.length()-3);
 											} else if(comma.length()==7 ) {
@@ -262,10 +262,11 @@
 											}
 										%>
 	                                    <td><%= comma %></td>
-	                                    <td><%= saleList.get(i).getSaleDate() %></td>
+	                                    <td><%= saleList.get(i).getTradeEnd() %></td>
 	                                </tr>
                                 <% } %>
                             </table>
+                            <div class="memberHistory">신고 내역</div>
                             <table id="userReport" class="tableCss">
                                 <tr>
                                     <th>No</th>
@@ -273,24 +274,18 @@
                                     <th>신고 날짜</th>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
-                                    <td>허위 매물 등록</td>
-                                    <td>2020-05-21</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>미배송 처리</td>
-                                    <td>2020-07-21</td>
-                                </tr>
-                                <tr>
                                     <td>누적</td>
-                                    <td colspan="2">2회</td>
+                                    <td colspan="2"><%=mem.getReportCount() %>회</td>
                                 </tr>
                             </table>
                         <div id="userStop">
-                            <div id="activation">활성 상태</div>
+                        	<%if(mem.getBlacklistStatus().equals("Y")){ %>
+                            	<div id="activation">비활성 상태</div>
+                        	<% }else{ %>
+                            	<div id="activation">활성 상태</div>
+                        	<% } %>
                             <div>
-                            	<input id="activationButton" type="button" value="비활성화" onclick="activation();">
+                            	<input id="activationButton" type="button" value="변경" onclick="black();">
                             </div>
                         </div>
                     </div>
@@ -303,14 +298,54 @@
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
-    	activation = function(){
-    		if($("#activation").html() == "활성 상태"){
-    			$("#activation").html("비활성 상태");
-    			$("#activationButton").val("활성화");
-    		}else{
-    			$("#activation").html("활성 상태");
-    			$("#activationButton").val("비활성화");
-    		}
+    	function black(){
+    		
+	    	$.ajax({
+	    		url:"blackYesNo.admin",
+                data:{userNo:<%=mem.getUserNo()%>, black:"<%=mem.getBlacklistStatus()%>"},
+                type:"get",
+                success:function(blackYN){
+                	if(blackYN =="Y"){
+                		
+                		$.ajax({
+            	    		url:"blackMember.admin",
+                            data:{userNo:<%=mem.getUserNo()%>, black:"Y"},
+                            type:"get",
+                            success:function(){
+                            	alert("변경 성공!!");
+                            },
+                            error:function(){
+                            	console.log("실패");
+                            }
+            	    	});
+                		
+                	}else{
+                		
+                		$.ajax({
+            	    		url:"blackMember.admin",
+                            data:{userNo:<%=mem.getUserNo()%>, black:"N"},
+                            type:"get",
+                            success:function(){
+                            	alert("변경 성공!!");
+                            },
+                            error:function(){
+                            	console.log("실패");
+                            }
+            	    	});
+                		
+                	}
+                },
+                error:function(){
+                	console.log("실패");
+                }
+	    	});
+	    	
+	    	if($("#activation").html()=="비활성 상태"){
+		    	$("#activation").html("활성 상태");
+	    	}else{
+		    	$("#activation").html("비활성 상태");
+	    	}
+	    	
     	}
     </script>
 </body>

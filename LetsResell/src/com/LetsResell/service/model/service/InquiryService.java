@@ -56,4 +56,38 @@ public class InquiryService {
 		return result;
 	}
 	
+	public int selectInquiryAllCount() {
+		Connection conn = getConnection();
+		int listCount = new InquiryDao().selectInquiryAllCount(conn);
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Inquiry> selectInquiryAll(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Inquiry> list = new InquiryDao().selectInquiryAll(conn, pi);
+		close(conn);
+		return list;
+	}
+	
+	public Inquiry selectDetailUpdate(int ino) {
+		Connection conn = getConnection();
+		Inquiry inquiry = new InquiryDao().selectDetailUpdate(conn, ino);
+		close(conn);
+		return inquiry;
+	}
+	
+	public int updateInquiryAnswer(String answer, int ino) {
+		Connection conn = getConnection();
+		int result = new InquiryDao().updateInquiryAnswer(conn, answer, ino);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
 }

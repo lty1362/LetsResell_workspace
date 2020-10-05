@@ -137,4 +137,84 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="deleteProduct">
+	    UPDATE P_REG
+		   SET PR_STATUS = 'N'
+		 WHERE PR_NO = ?
+	</entry>
+	<entry key="insertProduct">
+		INSERT 
+		  INTO P_REG
+		VALUES
+		     (
+		        SEQ_P_REG.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , DEFAULT
+		      , ?
+		      , ?
+		      , DEFAULT
+		      , DEFAULT
+		     )
+	</entry>
+	<entry key="insertProductImage">
+		INSERT 
+		  INTO P_IMG
+		VALUES 
+		     (
+		       SEQ_P_IMG.NEXTVAL
+		     , SEQ_P_REG.CURRVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	<entry key="selectDetail">
+		SELECT *
+		  FROM P_REG
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="updateProduct">
+		UPDATE P_REG 
+		   SET 
+		       PR_MODEL = ?
+		     , PR_NAME = ?
+		     , PR_CATEGORY = ?
+		     , PR_BRAND = ?
+		     , PR_SIZE = ?
+		     , PR_COLOR = ?
+		     , PR_REVIEW_YOUTUBE = ?
+		     , PR_REVIEW_DETAIL = ?
+		     , PR_RELEASE_DATE = ?
+		     , PR_RELEASE_PRICE = ?
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	<entry key="updateProductImage">
+		UPDATE P_IMG
+		   SET 
+		       PR_ORIGIN_NAME = ?,
+			   PR_CHANGE_NAME = ?
+		 WHERE PR_IMG_NO = ?
+	</entry>
+	<entry key="selectImage">
+		SELECT 
+		         PR_IMG_NO
+		       , PR_NO
+		       , PR_IMG_URL
+		       , PR_ORIGIN_NAME
+		       , PR_CHANGE_NAME
+		       , PR_FILE_LEVEL
+		    FROM P_IMG
+		   WHERE PR_NO = ?
+		   ORDER BY PR_FILE_LEVEL
+	</entry>
 </properties>

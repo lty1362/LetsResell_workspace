@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.LetsResell.service.model.vo.*" %>
+<% 
+	Inquiry inquiry = (Inquiry)request.getAttribute("inquiry");
+	int currentPage = (int)(request.getAttribute("currentPage"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +25,6 @@
 	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
 	    	display:none;
 	    }
-	    #footer{
-	    	margin-top:85px;
-	    }
 	    #title{
             width: 100%;
             height: 50px;
@@ -35,7 +37,7 @@
         }
         #content{
             width: 100%;
-            height:100%;
+            height:840px;
             border: 1px solid lightgray;
             margin-bottom: 20px;
         }
@@ -102,20 +104,21 @@
             font-size: 1.2em;
             padding-top:15px;
         }
-
         #content_inquiry{
             width: 94%;
-            height: 47%;
+            height: 400px;
             border: 1px solid lightgray;
-            margin-top:3%;
+            margin-top:5%;
+            margin-left:3%;
             padding:10px;
         }
          #content_answer{
             width: 94%;
-            height: 28%;
+            height: 200px;
             border: 1px solid lightgray;
             font-size: 15px;
             margin-top:3%;
+            margin-left:3%;
             padding:10px;
         }
         #update>input{
@@ -127,9 +130,23 @@
             height: 40px;
             border:0px;
         }
+        #content_answer>textarea{
+        	border:none;
+        	resize:none;
+        	width:100%;
+        	height:100%;
+        	padding:10px;
+        }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:596px;
+        }
 </style>
 <body>
-	<div id="wrap" style="height:1700px;">
+	<div id="wrap" style="height:1600px;">
 		<%@ include file= "../common/header.jsp"%>
 		<div id="body">
 	            <div id="body_left">
@@ -137,34 +154,52 @@
 	            </div>
 	
 	            <div id="body_right">
+	            <form action="updateInquiry.admin" method="post">
+	            	<input type="hidden" name="ino" value="<%= inquiry.getInquiryNo()%>">
+	            	<input type="hidden" name="currentPage" value="<%= currentPage%>">
 	            	<div id="title">
                     	1:1 문의
                 	</div>
-                <div id="content">
-                    <div id="content_title">
-                    	<div>(제목)</div>
-                    </div>
-                    <div id="content_category">
-                        <div id="category_big">
-                            <div>대분류</div>
-                            <div>결제</div>
-                        </div>
-                        <div id="category_small">
-                            <div>소분류</div>
-                            <div>결제이용</div>
-                        </div>
-                    </div>
-                    <div id="content_inquiry">
-                    	(문의 내용)
-                    </div>
-                    <div id="content_answer">(답변 내용)</div>
-                </div>
-                <div id="update" align="right">
-                    <input type="submit" value="답변 완료">
-                </div>
-	        	</div>
+                	<div id="enrollDate">
+                		작성일 : <%=inquiry.getInquiryEnrollDate() %>
+                	</div>
+	                <div id="content">
+	                    <div id="content_title">
+	                    	<div><%=inquiry.getInquiryContent() %></div>
+	                    </div>
+	                    <div id="content_category">
+	                        <div id="category_big">
+	                            <div>대분류</div>
+	                            <div><%=inquiry.getInquiryCategoryBig() %></div>
+	                        </div>
+	                        <div id="category_small">
+	                            <div>소분류</div>
+	                            <div><%=inquiry.getInquiryCategorySmall() %></div>
+	                        </div>
+	                    </div>
+	                    <div id="content_inquiry">
+	                    	<%=inquiry.getInquiryContent() %>
+	                    </div>
+	                    <%if(inquiry.getInquiryStatus().equals("Y")){ %>
+		                    <div id="content_answer">
+		                    	<textarea name="answer" required><%=inquiry.getInquiryAnswer() %></textarea>
+		                    </div>
+	                    <% }else{%>
+		                    <div id="content_answer">
+		                    	<textarea name="answer" required></textarea>
+		                    </div>
+	                    <% }%>
+	                </div>
+                	<div id="update" align="right">
+	                    <input type="submit" value="답변 완료">
+	                </div>
+                </form>
+        	</div>
 		</div>
 	    <%@ include file= "../common/footer.jsp"%>
 	</div>
+	<script>
+		$("#footer").css("margin-top","100px");
+	</script>
 </body>
 </html>

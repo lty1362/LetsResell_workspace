@@ -1,6 +1,3 @@
-// 선경_20200925_v1.5
-// 회원 탈퇴 기능 추가
-
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;

@@ -4,7 +4,7 @@
 <%	
 	ArrayList<Admin_Product> list = (ArrayList<Admin_Product>)request.getAttribute("list");
 	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
-
+	
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int pageLimit = pi.getPageLimit();
@@ -42,8 +42,8 @@
             font-size: 13px;
         }
         [type="checkbox"]{
-            width: 15px;
-            height: 15px;
+            width: 23px;
+            height: 23px;
         }
         #category{
             margin-bottom: 10px;
@@ -100,6 +100,7 @@
         	width: 120px;
         }
         #productList>table td:nth-child(6){
+        	padding-top:10px;
         	width:60px;
         }
         #productList td{
@@ -121,64 +122,6 @@
         #productUpdate{
             text-align:right;
         }
-        #search{
-            margin-top: 50px;
-        }
-        #search>select{
-            height:40px;
-            width:100px;
-            border: 1px solid lightgray;
-            text-align-last: center;
-            font-size: 20px;
-        }
-        #search_in{
-            display:inline-block;
-            height: 40px;
-            width: 400px;
-            border: 1px solid lightgray;
-        }
-        #search_in>[type="search"]{
-            border:0px;
-            height: 95%;
-            width: 85%;
-            outline-offset:-2px;
-           	padding-top:4px;
-
-        }
-        #search_in>[type="submit"]{
-            background: lightgray;
-            border: 0px;
-            height: 100%;
-            width: 15%;
-            font-weight: bold;
-            font-size:20px;
-        }
-        .pagingArea{
-        	margin-top:5px;
-        }
-        .pagingArea button{
-            background: rgb(236, 236, 236);
-            width: 30px;
-            height: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
-            font-size:20px;
-            font-weight: 400;
-            margin-top:30px;
-            text-align:center;
-            border:0px;
-        }
-        .modal-header{
-        	margin-top:40px;
-        	font-size:50px;
-        }
-        .modal-body button{
-        	width:100px;
-        	height:50px;
-        	font-size:23px;
-        	margin:20px;
-        	margin-bottom:40px;
-        }
 </style>
 </head>
 <body>
@@ -192,11 +135,11 @@
             <div id="body_right">
                 <div id="category">
                     <input type="button" value="전체" onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=1#body_right';">
-                    <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=tops#body_right';">
-                    <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=bottoms#body_right';">
-                    <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=outers#body_right';">
-                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=accessories#body_right';">
-                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=shoes#body_right';">
+                    <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Tops#body_right';">
+                    <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Bottoms#body_right';">
+                    <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Outers#body_right';">
+                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Accessories#body_right';">
+                    <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Footwear#body_right';">
                 </div>
                 <div id="productList">
                 	<table>
@@ -205,7 +148,7 @@
 			            		<td colspan="6">조회된 리스트가 없습니다.</td>
 			            	</tr>
 	            		<% } else {%>
-		                    <tr>
+		                    <tr class="ut">
 	                            <th>코드</th>
 	                            <th>제품명</th>
 	                            <th>브랜드</th>
@@ -224,7 +167,7 @@
 		                            <% } else {%>
 		                            	<td><%= list.get(i).getPRsize()%></td>
 		                            <% } %>
-		                            <td><input type="checkbox"></td>
+		                            <td class="ut"><input type="checkbox"></td>
 		                        </tr>
 			                <% } %>
 	            		<% } %>
@@ -233,10 +176,10 @@
                 
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
-                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/views/admin/admin_productDetail.jsp';">
+                    <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
                 
-                <form action="productSearch.admin" method="get">
+                <form action="productSearch.admin" method="post">
                 	<input type="hidden" name="currentPage" value="1">
 	                <div id="search"  align="center">
 	                    <select name="filter" id="filter">
@@ -250,17 +193,17 @@
 	                    </div>
 	                </div>
                 </form>
-                
+            <div id="bigPageArea">
                 <div class="pagingArea" align="center">
 		            <%if(currentPage == 1){ %>
 		            	<button>&lt;</button>
 		            <% } else { %>
-		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right;">&lt;</button>
+		           		<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage-1%>#body_right';">&lt;</button>
 		            <% } %>
 		            
 			            <% for(int p = startPage; p <= endPage ; p++){ %>
 			            	<% if(p != currentPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%= p %></button>
+			            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=p%>#body_right';"><%=p%></button>
 			            	<% } else { %>
 			            	<button disabled><%= p %></button>
 			            	<% } %>
@@ -272,41 +215,54 @@
 		            	<button onclick="location.href='<%=contextPath%>/productMain.admin?currentPage=<%=currentPage+1%>#body_right';">&gt;</button>
 		            <% } %>
 		        </div>
-		        
+		    </div>
             </div>
         </div>
+        
+        
         <!-- 삭제 버튼 클릭 시 보여질 Modal -->
         <div class="modal" id="deleteForm">
             <div class="modal-dialog">
                 <div class="modal-content">
                 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title">정말 삭제하시겠습니까?</h4>
-                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                    <div class="modal-header" style="padding-left:100px;">
+                    	<div class="modal-title">Are you sure to delete?</div>
                     </div>
                     
-                    <!-- Modal body -->
                     <div class="modal-body" align="center">
-
                         <form action="" method="POST">
                             <br>
-                            <button type="submit" class="btn btn-secondary">예</button>
-                            <button type="submit" class="btn btn-secondary">아니오</button>
+                            <button type="submit" class="btn btn-secondary" onclick="check();">Yes</button>
+                            <button type="submit" class="btn btn-danger">No</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
+    	// modify
     	$(function(){
-   			$("#productList>table tr").not($(".untouchable")).hover().css("cursor","pointer");
-     		$("#productList>table tr").not($(".untouchable")).click(function(){
-     			location.href = "<%=contextPath%>/views/admin/admin_productModify.jsp";
+   			$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
+     		$("#productList>table tr td").not($(".ut")).click(function(){
+     			var code = $(this).siblings().eq(0).html();
+	   			location.href = "<%=contextPath%>/productDetail.admin?productCode="+code;
     		});
     	});
+    	
+    	// delete
+	    var arr = [];
+    	check = function(){
+	    	$('#productList input').each(function(index){
+	    	    if($(this).is(":checked")==true){
+	    	    	arr.push($(this).closest("td").siblings().eq(0).html());
+	    	    }
+	    	});
+	    	var checked = arr.join();
+	    	location.href="<%=contextPath%>/productMainDelete.admin?checked="+checked;
+    	}
     </script>
 </body>
 </html>

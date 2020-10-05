@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<!-- 선경_20200920_v1.1 -->
-<!-- 계좌 등록 기능 추가 (미완성) -->
-<!-- 선경_20200921_v1.2 -->
-<!-- 카드 등록 기능 추가 (미완성) -->
-<!-- 프로필 수정 기능 추가 (미완성) -->
-<!-- 선경_20200921_v1.3 -->
-<!-- 계좌 등록 sql문 (완성) -->
-<!-- 선경_20200925_v1.4 -->
-<!-- 배송지, 카드, 프로필 sql문 수정(미완성) -->
-<!-- 선경_20200925_v1.5 -->
-<!-- 비밀번호 수정 기능 수정(미완성) -->
 <properties>
-
+	
+		<entry key="selectCard">
+		SELECT CARD_NAME
+		     , CARD_NUMBER
+		  FROM CARD
+		  WHERE MEM_USER_NO = ?
+	</entry>
+	
+	<entry key="selectAddress">
+		SELECT ADDRESS_CODE
+		     , ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		     , ADDRESS_PHONE
+		     , ADDRESS_NAME
+		     , ADDRESS_MESSAGE
+		  FROM ADDRESS
+		  WHERE MEM_USER_NO = ?
+	</entry>
+	
 	<entry key="updateMember">
-		UPDATE /* com.LetsResell.myPage.model.dao.MyPage_dao#updateMember() */
+		UPDATE
 		       MEMBER
 		   SET MEM_USER_NAME = ?
 		     , MEM_USER_SSN = ?
@@ -23,7 +30,7 @@
 	</entry>
 	
 	<entry key="updatePwd">
-		UPDATE /* com.LetsResell.myPage.model.dao.MyPage_dao#updatePwd() */
+		UPDATE
 		       MEMBER
 		   SET MEM_USER_PWD = ?
 		     , MEM_MODIFY_DATE = SYSDATE
@@ -41,7 +48,7 @@
 	</entry>
 	
 	<entry key="insertCard">
-		INSERT /* com.LetsResell.myPage.model.dao.MyPage_dao#insertCard() */
+		INSERT
 		  INTO CARD
 		  (
 		     CARD_NO
@@ -67,7 +74,7 @@
 	</entry>
 	
 	<entry key="insertAddress">
-		INSERT /* com.LetsResell.myPage.model.dao.MyPage_dao#insertAddress() */
+		INSERT
 		  INTO ADDRESS
 		  (
 		     ADDRESS_NO
@@ -105,10 +112,49 @@
 	</entry>
 	
 	<entry key="updateModifyDate">
-		UPDATE /* com.LetsResell.myPage.model.dao.MyPage_dao#updateModifyDate() */
+		UPDATE
 		       MEMBER
 		   SET MEM_MODIFY_DATE = SYSDATE
 		 WHERE MEM_USER_NO = ?
 	</entry>
 	
+	<!-- 위시리스트 sql문 -->
+	<entry key="selectWishlistCount">
+		SELECT
+		       COUNT(*) WISHLISTCOUNT
+		  FROM WISHLIST
+		 WHERE WISHLIST_MCODE = ?
+	</entry>
+	
+	<entry key="selectWishlist">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       WISHLIST_ADD_DATE
+		                     , PR_NAME
+		                  FROM WISHLIST WISH
+		                  JOIN P_REG ON (WISHLIST_PCODE=PR_NO)
+		                 WHERE WISHLIST_MCODE = ?
+		                 ORDER
+		                    BY WISHLIST_ADD_DATE DESC
+		              ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="deleteWishlist">
+		DELETE
+		  FROM (
+		         SELECT
+		                PR_NAME
+		           FROM WISHLIST
+		           JOIN P_REG ON (WISHLIST_PCODE=PR_NO)
+		          WHERE WISHLIST_MCODE = ?
+		       )
+		 WHERE PR_NAME = ?
+	</entry>
 </properties>

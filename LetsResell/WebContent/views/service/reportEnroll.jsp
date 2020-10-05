@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.LetsResell.service.model.vo.*, java.util.*" %>
+<%
+	ArrayList<String> tradelist = (ArrayList<String>)request.getAttribute("tradelist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +69,9 @@
         	height:40px;
         	width:110px;
         }
+        #pastDeal select{
+        	width:300px;
+        }
         #content_category>div{
             float: left;
             text-align: center;
@@ -123,6 +130,10 @@
             height: 40px;
             border:0px;
         }
+        #serviceReportLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
 </style>
 </head>
 <body>
@@ -137,16 +148,17 @@
 	            	<div id="title">
                     	부정 판매자 신고
                 	</div>
-                <form action="enroll.report" method="get">
+                <form action="enroll.report" method="post">
+                <input type="hidden" name="userNo" value="<%=login.getUserNo() %>">
                 <div id="content">
                     <div id="content_title">
-                    	<input name="title" required type="text" placeholder="제목을 입력하세요">
+                    	<input name="title" required type="text" placeholder="제목을 입력하세요" required>
                     </div>
                     <div id="content_category">
                         <div id="category">
                             <div>분류</div>
                             <div>
-                            	<select name="bigCategory">
+                            	<select name="bigCategory" required>
                             		<option value="분류" selected>분류</option>
                                     <option value="결제">결제</option>
                                     <option value="물품">물품</option>
@@ -157,17 +169,21 @@
                         <div id="pastDeal">
                         	<div>거래내역</div>
                             <div>
-                            	<select name="pastDeal">
-                            		<option value="거래내역" selected>거래내역</option>
-                                    <option value="2">2020-05-01,에어조던1</option>
-                                    <option value="2">2020-05-18,에어조던2</option>
-                                    <option value="2">2020-05-30,에어조던3</option>
+                            	<select name="pastDeal" required>
+                            		<%if(tradelist.isEmpty()){ %>
+	                            			<option value="거래내역" selected>거래내역</option>
+	                            		<% }else{ %>
+	                            			<option value="거래내역" selected>거래내역</option>
+	                            			<%for(int i = 0 ; i < tradelist.size(); i++){ %>
+	                            				<option value="<%=tradelist.get(i)%>"><%= tradelist.get(i)%>
+	                            			<% } %>
+	                            		<% } %>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div id="content_report">
-                    	<textarea name="content" required rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요"></textarea>
+                    	<textarea name="content" required rows="100" cols="100" style="resize:none;" placeholder="내용을 써주세요" required></textarea>
                     </div>
                 </div>
                 <div id="update" align="right">

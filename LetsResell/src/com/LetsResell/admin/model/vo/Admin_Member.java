@@ -17,9 +17,6 @@ public class Admin_Member {
 	private Date outDate;
 	private int reportCount;
 	private String blacklistStatus;
-	private String bankName;
-	private String accountNum;
-	private String accountHolder;
 	private int rnum;
 	
 	//constructor
@@ -35,10 +32,10 @@ public class Admin_Member {
 		this.phone = phone;
 		this.userSsn = userSsn;
 	}
-
+	
+	
 	public Admin_Member(int userNo, String userId, String userPwd, String userName, String phone, Date enrollDate,
-			Date modifyDate, String status, String userSsn, Date outDate, int reportCount, String blacklistStatus,
-			String bankName, String accountNum, String accountHolder) {
+			Date modifyDate, String status, String userSsn, Date outDate, int reportCount, String blacklistStatus) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -52,10 +49,8 @@ public class Admin_Member {
 		this.outDate = outDate;
 		this.reportCount = reportCount;
 		this.blacklistStatus = blacklistStatus;
-		this.bankName = bankName;
-		this.accountNum = accountNum;
-		this.accountHolder = accountHolder;
 	}
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -128,37 +123,19 @@ public class Admin_Member {
 	public void setBlacklistStatus(String blacklistStatus) {
 		this.blacklistStatus = blacklistStatus;
 	}
-	public String getBankName() {
-		return bankName;
-	}
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-	public String getAccountNum() {
-		return accountNum;
-	}
-	public void setAccountNum(String accountNum) {
-		this.accountNum = accountNum;
-	}
-	public String getAccountHolder() {
-		return accountHolder;
-	}
-	public void setAccountHolder(String accountHolder) {
-		this.accountHolder = accountHolder;
-	}
 	public int getRnum() {
 		return rnum;
 	}
 	public void setRnum(int rnum) {
 		this.rnum = rnum;
 	}
+
 	@Override
 	public String toString() {
-		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", phone=" + phone + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status="
-				+ status + ", userSsn=" + userSsn + ", outDate=" + outDate + ", reportCount=" + reportCount
-				+ ", blacklistStatus=" + blacklistStatus + ", bankName=" + bankName + ", accountNum=" + accountNum
-				+ ", accountHolder=" + accountHolder + "]";
+		return "Admin_Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName="
+				+ userName + ", phone=" + phone + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
+				+ ", status=" + status + ", userSsn=" + userSsn + ", outDate=" + outDate + ", reportCount="
+				+ reportCount + ", blacklistStatus=" + blacklistStatus + ", rnum=" + rnum + "]";
 	}
 	
 }

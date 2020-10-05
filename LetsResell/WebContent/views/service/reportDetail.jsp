@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.LetsResell.service.model.vo.*" %>
+<%@ page import="com.LetsResell.service.model.vo.*, java.util.*" %>
 <%
 	Report list = (Report)request.getAttribute("list");
+	ArrayList<Trade> trade = (ArrayList<Trade>)request.getAttribute("trade");
+	ArrayList<String> tradelist = (ArrayList<String>)request.getAttribute("tradelist");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,6 +86,9 @@
             height: 100px;
             border: 1px solid lightgray;
         }
+        #pastDeal select{
+        	width:300px;
+        }
         #category>div:nth-child(1){
             background: lightgray;
             height: 40%;
@@ -137,6 +142,17 @@
             height: 40px;
             border:0px;
         }
+        #serviceReportLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
+        #enrollDate{
+        	background:lightgray;
+        	text-align:center;
+        	width:200px;
+        	font-size:20px;
+        	margin-left:545px;
+        }
 </style>
 </head>
 <body>
@@ -148,8 +164,12 @@
 	            </div>
             	<div id="body_right">
 	            	<div id="title">부정 판매자 신고</div>
+	            	<div id="enrollDate">
+                		작성일 : <%=list.getReportEnrollDate() %>
+                	</div>
                 <form action="update.report" method="post">
                 <input type="hidden" name="rno" value="<%=list.getReportNo()%>">
+                <input type="hidden" name="userNo" value="<%=login.getUserNo()%>">
                 <div id="content">
                     <div id="content_title">
                     	<%if(list.getReportStatus().equals("Y")){ %>
@@ -166,7 +186,7 @@
 	                        </div>
 	                        <div id="pastDeal">
 	                        	<div>거래내역</div>
-	                            <div class="cate"><%=list.getSaleNo() %></div>
+	                            <div class="cate"><%=list.getReportPastDeal() %></div>
 	                        </div>
 	                    </div>
                    	<% }else{ %>
@@ -174,7 +194,7 @@
 	                        <div id="category">
 	                            <div>분류</div>
 	                            <div>
-	                            	<select name="bigCategory">
+	                            	<select name="bigCategory" required>
 	                            		<option value="분류" selected>분류</option>
 	                                    <option value="결제">결제</option>
 	                                    <option value="물품">물품</option>
@@ -185,11 +205,15 @@
 	                        <div id="pastDeal">
 	                        	<div>거래내역</div>
 	                            <div>
-	                            	<select name="pastDeal">
-	                            		<option value="거래내역" selected>거래내역</option>
-	                                    <option value="1">2020-05-01,에어조던1</option>
-	                                    <option value="1">2020-05-18,에어조던2</option>
-	                                    <option value="1">2020-05-30,에어조던3</option>
+	                            	<select name="pastDeal" required>
+	                            		<%if(tradelist.isEmpty()){ %>
+		                            			<option value="거래내역" selected>거래내역</option>
+		                            		<% }else{ %>
+		                            				<option value="거래내역" selected>거래내역</option>
+		                            			<%for(int i = 0 ; i < tradelist.size(); i++){ %>
+		                            				<option value="<%=tradelist.get(i)%>"><%= tradelist.get(i)%>
+		                            			<% } %>
+		                            		<% } %>
 	                                </select>
 	                            </div>
 	                        </div>

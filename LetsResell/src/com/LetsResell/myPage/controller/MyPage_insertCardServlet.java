@@ -1,7 +1,3 @@
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
-// 선경_20200925_v1.4
-// 카드 등록 기능 수정(미완성)
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -14,26 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.myPage.model.service.MyPage_service;
 
 /**
- * Servlet implementation class MyPage_insertCardServlet
  * 카드 정보 등록하는 Servlet
  */
 @WebServlet("/insertCard.my")
 public class MyPage_insertCardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public MyPage_insertCardServlet() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// insert문
-		System.out.println("insertCard.my 실행됨");
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -60,9 +47,6 @@ public class MyPage_insertCardServlet extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.LetsResell.service.model.vo.*" %>
+<%
+	Notice notice = (Notice)request.getAttribute("notice");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,19 +33,30 @@
         	height:700px;
         }
         #title{
-            background: lightgray;
             height: 50px;
-            padding-top:5px;
             font-size: 25px;
+        }
+        #title input{
+        	width:100%;
+        	height:100%;
+        	border:0px;
+            background: lightgray;
+        	
         }
         #content{
             height: 90%;
         }
         #content>div{
             border: 1px solid lightgray;
-            font-size: 40px;
+            font-size: 20px;
             height: 100%;
-            padding-top: 4em;
+        }
+        #content textarea{
+        	padding:10px;
+        	border:none;
+        	width:100%;
+        	height:100%;
+        	resize:none;
         }
         #update>input{
             border:1px solid rgb(74, 74, 74);
@@ -64,19 +79,22 @@
 				<%@ include file="admin_sideMenu.jsp" %>
 		    </div>
 		    <div id="body_right">
-		    	<div id="title_content" align="center">
-                    <div id="title">(제목)</div>
-                    <div id="content">
-                        <div>
-                            (공지 사항)
-                        </div>
-                    </div>
-                </div>
-                <div id="update" align="right">
-                	<input type="button" onclick="history.back();" value="뒤로가기">
-                    <input type="button" value="수정">
-                    <input type="button" value="작성">
-                </div>
+		    	<form action="updateNotice.admin" method="post">
+		    		<input type="hidden" name="nno" value="<%=notice.getNoticeNo()%>">
+			    	<div id="title_content" align="center">
+	                    <div id="title">
+	                    	<input type="text" name="title" value="<%=notice.getNoticeTitle()%>">
+	                    </div>
+	                    <div id="content">
+	                        <div>
+	                            <textarea name="content"><%=notice.getNoticeContent()%></textarea>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div id="update" align="right">
+	                    <input type="submit" value="수정">
+	                </div>
+                </form>
 		    </div>
 		</div>
 		<%@ include file= "../common/footer.jsp"%>

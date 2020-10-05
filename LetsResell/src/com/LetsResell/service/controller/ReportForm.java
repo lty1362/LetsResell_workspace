@@ -22,7 +22,11 @@ public class ReportForm extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int writer = 2;
+		
+		int writer = 0;
+		if(request.getParameter("un") != null) {
+			writer = Integer.parseInt(request.getParameter("un"));
+		}
 		
 		int listCount; 		
 		int currentPage; 	
@@ -49,6 +53,7 @@ public class ReportForm extends HttpServlet {
 		ArrayList<Report> list = new ReportService().selectList(writer, pi);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("writer", writer);
 		request.getRequestDispatcher("views/service/reportMain.jsp").forward(request, response);
 	}
 

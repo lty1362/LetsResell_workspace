@@ -31,7 +31,8 @@
 		SELECT COUNT(*) LISTCOUNT
 		  FROM (SELECT *
 		          FROM FAQ
-		         WHERE FAQ_CATEGORY = ?)
+		         WHERE FAQ_CATEGORY = ?
+		           AND FAQ_STATUS = 'Y')
 	</entry>
 	<entry key="searchList">
 		SELECT *
@@ -48,9 +49,39 @@
 				     , FAQ_STATUS
 				 FROM FAQ
 				WHERE FAQ_CATEGORY = ?
+				  AND FAQ_STATUS = 'Y'
 				ORDER BY FAQ_NO DESC
 		            ) A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="deleteFAQ">
+		UPDATE FAQ
+		   SET FAQ_STATUS = 'N'
+		 WHERE FAQ_NO = ?
+	</entry>
+	<entry key="updateFAQ">
+		UPDATE FAQ
+		   SET 
+		       FAQ_TITLE = ?
+		     , FAQ_CONTENT = ?
+		 WHERE FAQ_NO = ?
+	</entry>
+	<entry key="detailFAQ">
+		SELECT *
+		  FROM FAQ
+		 WHERE FAQ_NO = ?
+	</entry>
+	<entry key="insertFAQ">
+		INSERT
+		  INTO FAQ
+		VALUES
+		     (
+		        SEQ_FAQ.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , DEFAULT
+		     )
 	</entry>
 </properties>

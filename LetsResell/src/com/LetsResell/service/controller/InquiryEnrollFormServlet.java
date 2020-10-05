@@ -16,6 +16,8 @@ public class InquiryEnrollFormServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		request.setAttribute("userNo", userNo);
 		request.getRequestDispatcher("views/service/inquiryEnroll.jsp").forward(request, response);
 	}
 

@@ -22,6 +22,7 @@ public class InquiryUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
+		int un = Integer.parseInt(request.getParameter("userNo"));
 		String title = request.getParameter("title");
 		String bigCategory = request.getParameter("bigCategory");
 		String smallCategory = request.getParameter("smallCategory");
@@ -29,7 +30,7 @@ public class InquiryUpdateServlet extends HttpServlet {
 		Inquiry update = new Inquiry(inquiryNo, title, bigCategory, smallCategory, content);
 		int result = new InquiryService().updateInquiry(update);
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1");
+			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1&un="+un);
 		}
 	}
 
