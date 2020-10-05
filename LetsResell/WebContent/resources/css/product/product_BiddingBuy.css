@@ -1,10 +1,9 @@
 @charset "UTF-8";
-        .buy-container{width: 1200px; margin: 0 auto;}
+ .buy-container{width: 1200px; margin: 0 auto;}
         .buy-info{height:500px;}
 		.f-container {
 		    width: 1200px;
-		    margin-left: auto;
-		    margin-right: auto;
+		    float: left;
 		    margin-bottom: 30px;
 		}
         .buy-h-image{
@@ -13,7 +12,7 @@
             width:50%;
             float: left;
         }
-        .buy-h-detail{
+        .buy-detail{
             margin-top: 30px;
             height: 500px;
             width:49%;
