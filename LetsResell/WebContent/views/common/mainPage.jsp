@@ -6,14 +6,17 @@
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="/LetsResell/resources/css/common/mainPage.css">
+<script src="resources/js/common/mainPage.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 </head>
 <body>
 <div class="main_outer">
         
     <div id="event_box">
         <div id="event_box_img">
-            <div id="left" align="center">&lt;</div>
-
+         
             <div id="event">
                 <div id="event1">
                     <div id="event1_img">
@@ -46,15 +49,8 @@
                 </div>
             </div>
 
-            <div id="right" align="center">&gt;</div>
         </div>
 
-        <div id="event_box_btn" align="center">
-            <button id="event_btn1"></button>
-            <button id="event_btn2"></button>
-            <button id="event_btn3"></button>
-            <button id="event_btn4"></button>
-        </div>
     </div>
 
     <h4 align="right"><b>인기상품순</b></h4>
@@ -63,7 +59,7 @@
 
     <div id="product_box">
     
-        <div id="product_img">
+        <div id="product_img_1">
         
             <div id="product1">
                 <div id="product_thumb" align="center">
@@ -96,13 +92,6 @@
             </div>
             
         </div>
-
-        <div id="product_btn" align="center">
-            <button id="product_btn1"></button>
-            <button id="product_btn2"></button>
-            <button id="product_btn3"></button>
-            <button id="product_btn4"></button>
-        </div>
         
     </div>
 
@@ -110,7 +99,7 @@
     <br>
 
     <div id="product_box">
-        <div id="product_img">
+        <div id="product_img_2">
         
             <div id="product1">
                 <div id="product_thumb" align="center">
@@ -143,12 +132,6 @@
             </div>
         </div>
 
-        <div id="product_btn" align="center">
-            <button id="product_btn1"></button>
-            <button id="product_btn2"></button>
-            <button id="product_btn3"></button>
-            <button id="product_btn4"></button>
-        </div>
     </div>
 
     <h4 align="right"><b>신규 구매 입찰 제품</b></h4>
@@ -156,7 +139,7 @@
 
     <div id="product_box">
     
-        <div id="product_img">
+        <div id="product_img_3">
         
             <div id="product1">
                 <div id="product_thumb" align="center">
@@ -189,14 +172,7 @@
             </div>
             
         </div>
-
-        <div id="product_btn" align="center">
-            <button id="product_btn1"></button>
-            <button id="product_btn2"></button>
-            <button id="product_btn3"></button>
-            <button id="product_btn4"></button>
-        </div>
-        
+      
     </div>
 
     <h4 align="right"><b>중고 제품</b></h4>
@@ -204,7 +180,7 @@
 
     <div id="product_box">
     
-        <div id="product_img">
+        <div id="product_img_4">
         
             <div id="product1">
                 <div id="product_thumb" align="center">
@@ -237,14 +213,7 @@
             </div>
             
         </div>
-
-        <div id="product_btn" align="center">
-            <button id="product_btn1"></button>
-            <button id="product_btn2"></button>
-            <button id="product_btn3"></button>
-            <button id="product_btn4"></button>
-        </div>
-        
+      
     </div>
     
 </div>
