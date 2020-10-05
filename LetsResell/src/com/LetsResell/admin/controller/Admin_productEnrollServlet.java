@@ -31,6 +31,7 @@ public class Admin_productEnrollServlet extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/product/");
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
+			
 			ArrayList<Admin_Image> list = new ArrayList<>();
 			for(int i = 1 ; i <= 5 ; i++) {
 				String key = "image" + i;
@@ -38,15 +39,15 @@ public class Admin_productEnrollServlet extends HttpServlet {
 					Admin_Image img = new Admin_Image();
 					String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
 					String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+					img.setProductImgUrl("resources/images/product/");
 					img.setProductImageOriginName(ofn);
 					img.setProductImageChangeName(cfn);
-					img.setProductImgUrl("resources/images/product/");
+					img.setProductDetailNo("file" + i);
 					if(i == 1) {
 						img.setFileLevel(1);
 					}else {
 						img.setFileLevel(2);
 					}
-					
 					list.add(img);
 				}
 			}

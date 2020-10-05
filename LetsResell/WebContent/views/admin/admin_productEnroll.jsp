@@ -9,6 +9,9 @@
 		form{
 			height:100%;
 		}
+		#registerWrap input[type=text]{
+         	padding-left:10px;
+         }
 		#menu2>*:nth-child(3){
         	font-size:20px;
         	text-decoration:underline;

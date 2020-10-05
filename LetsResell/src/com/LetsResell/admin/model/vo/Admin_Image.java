@@ -8,12 +8,35 @@ public class Admin_Image {
 	private String productImgUrl;
 	private String productImageOriginName;
 	private String productImageChangeName;
+	private String productDetailNo;
 	private int fileLevel;
 	
 	// constructor
 	public Admin_Image() {
 		
 	}
+	
+	public Admin_Image(int productImgNo, int productNo, String productImgUrl, String productImageOriginName,
+			String productImageChangeName, String productDetailNo, int fileLevel) {
+		super();
+		this.productImgNo = productImgNo;
+		this.productNo = productNo;
+		this.productImgUrl = productImgUrl;
+		this.productImageOriginName = productImageOriginName;
+		this.productImageChangeName = productImageChangeName;
+		this.productDetailNo = productDetailNo;
+		this.fileLevel = fileLevel;
+	}
+
+	public Admin_Image(String productImageOriginName, String productImageChangeName, String productImgUrl, 
+			int fileLevel) {
+		super();
+		this.productImgUrl = productImgUrl;
+		this.productImageOriginName = productImageOriginName;
+		this.productImageChangeName = productImageChangeName;
+		this.fileLevel = fileLevel;
+	}
+
 	public Admin_Image(int productImgNo, int productNo, String productImgUrl, String productImageOriginName,
 			String productImageChangeName, int fileLevel) {
 		super();
@@ -26,9 +49,18 @@ public class Admin_Image {
 	}
 	
 	// method
+	
 	public int getProductImgNo() {
 		return productImgNo;
 	}
+	public String getProductDetailNo() {
+		return productDetailNo;
+	}
+
+	public void setProductDetailNo(String productDetailNo) {
+		this.productDetailNo = productDetailNo;
+	}
+
 	public void setProductImgNo(int productImgNo) {
 		this.productImgNo = productImgNo;
 	}
@@ -62,11 +94,12 @@ public class Admin_Image {
 	public void setFileLevel(int fileLevel) {
 		this.fileLevel = fileLevel;
 	}
+
 	@Override
 	public String toString() {
 		return "Admin_Image [productImgNo=" + productImgNo + ", productNo=" + productNo + ", productImgUrl="
 				+ productImgUrl + ", productImageOriginName=" + productImageOriginName + ", productImageChangeName="
-				+ productImageChangeName + ", fileLevel=" + fileLevel + "]";
+				+ productImageChangeName + ", productDetailNo=" + productDetailNo + ", fileLevel=" + fileLevel + "]";
 	}
 	
 }

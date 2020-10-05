@@ -269,6 +269,9 @@
 	         clip:rect(0,0,0,0);
 	         border: 0;
          }
+         #registerWrap input[type=text]{
+         	padding-left:10px;
+         }
 </style>
 </head>
 <body>
@@ -280,20 +283,7 @@
 	        </div>
             <div id="body_right">
 	        <form action="productUpdate.admin" method="post" enctype="multipart/form-data">
-	        	<input type="hidden" name="imageNumber" value="<%=images.size()%>">
 	        	<input type="hidden" name="pno" value="<%=product.getPRno()%>">
-	        	<%	
-	        		String imgNo = "";
-	        		for(int i = 0 ; i < images.size() ; i++){
-	        			if(images.get(i).getFileLevel()==2){
-		        			imgNo += images.get(i).getProductImgNo();
-		        			if(i != images.size()-1){
-		        				imgNo += ",";
-		        			}
-	        			}
-	        		}
-	        	%>
-	        	<input type="hidden" name="imagePKno" value="<%=imgNo%>">
                 <div id="title">제품 수정</div>
                 <div id="registerWrap">
                     <div id="registerImage">
@@ -304,54 +294,62 @@
                         </div>
                         <div id="registerImageDetail">
 	                        <div id="registerImageDetail1" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 1){ %>
-		                        	<%for(int i = 1 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg1" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%	
+	                        		int test1 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file2")){ 
+    		        					test1 = 1;
+                        		%>
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
+		                        	<% }else if(i == images.size()-1 && test1 == 0){ %>
+		                        		<img src="" id="detailImg1" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage1" id="detail1">상세 이미지 등록</label>
 		                     	<input type="file" name="image2" id="registerDetailImage1" onchange="loadImg(this,2);">
 	                        </div>
 	                        <div id="registerImageDetail2" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 2){ %>
-		                        	<%for(int i = 2 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg2" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%
+	                        		int test2 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file3")){ 
+    		        					test2 = 1;
+                        		%>
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
+	                        		<% }else if(i == images.size()-1 && test2 == 0){  %>
+		                        		<img src="" id="detailImg2" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage2" id="detail2">상세 이미지 등록</label>
 		                     	<input type="file" name="image3" id="registerDetailImage2" onchange="loadImg(this,3);">
 	                        </div>
 	                        <div id="registerImageDetail3" class="filebox" style="padding:0px;">
-		                        <%if(images.size() > 3){ %>
-		                        	<%for(int i = 3 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
-		                        		<% break;}%>
+		                        <%
+                        			int test3 = 0;
+		                        	for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file4")){ 
+    		        					test3 = 1;
+                        		%>
+	                        			<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
+		                        	<% }else if(i == images.size()-1 && test3 == 0){ %>
+		                        		<img src="" id="detailImg3" width="100%" height="100%">
 		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg3" width="100%" height="100%">
 	                        	<% } %>
 		                        <label for="registerDetailImage3" id="detail3">상세 이미지 등록</label>
 		                     	<input type="file" name="image4" id="registerDetailImage3" onchange="loadImg(this,4);">
 	                        </div>
 	                        <div id="registerImageDetail4" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 4){ %>
-		                        	<%for(int i = 4 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg4" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%	
+	                        		int test4 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file5")){ 
+    		        					test4 = 1;
+                        		%>
+                        				<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
+	                        		<% }else if(i == images.size()-1 && test4 == 0){ %>
+	                        			<img src="" id="detailImg4" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage4" id="detail4">상세 이미지 등록</label>
 		                     	<input type="file" name="image5" id="registerDetailImage4" onchange="loadImg(this,5);">
 	                        </div>
@@ -467,6 +465,11 @@
     <script>
 	   	$(function(){
 	   		
+	   		console.log($("#detailImg1").attr("src"));
+	   		console.log($("#detailImg2").attr("src"));
+	   		console.log($("#detailImg3").attr("src"));
+	   		console.log($("#detailImg4").attr("src"));
+	   		
 	   		$("#category>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$("#category>input").not($(this)).css({background:"black", color:"white"});
@@ -545,12 +548,14 @@
 	   			$("#detail1").css("display","none");
 	   		}else{
 	   			$("#detail1").css("display","");
+
 	   		}
 	   		
 	   		if($("#detailImg2").attr("src")!=""){
 	   			$("#detail2").css("display","none");
 	   		}else{
 	   			$("#detail2").css("display","");
+
 	   		}
 	   		
 	   		if($("#detailImg3").attr("src")!=""){

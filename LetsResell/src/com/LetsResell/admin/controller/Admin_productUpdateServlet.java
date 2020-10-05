@@ -34,14 +34,8 @@ public class Admin_productUpdateServlet extends HttpServlet {
 			int maxSize = 100 * 1024 * 1024;
 			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
 			
-			int imageNumber = Integer.parseInt(mr.getParameter("imageNumber"));
-			String iArr = mr.getParameter("imagePKno");
-			String[] sArr = null;
-			if(!iArr.equals("")) {
-				sArr = iArr.split(",");
-			}
-			ArrayList<Admin_Image> list = new ArrayList<>();
-			for(int i = 1 ; i <= 5 ; i++) {
+			ArrayList<Admin_Image> list1 = new ArrayList<>();
+			for(int i = 1 ; i <= 1 ; i++) {
 				String key = "image" + i;
 				if(mr.getOriginalFileName(key) != null) {
 					Admin_Image img = new Admin_Image();
@@ -50,13 +44,55 @@ public class Admin_productUpdateServlet extends HttpServlet {
 					img.setProductImageOriginName(ofn);
 					img.setProductImageChangeName(cfn);
 					img.setProductImgUrl("resources/images/product/");
-					if(i == 1) {
-						img.setFileLevel(1);
-					}else {
-						img.setFileLevel(2);
-					}
-					list.add(img);
+					img.setFileLevel(1);
+					list1.add(img);
 				}
+			}
+			
+			Admin_Image file2 = null;
+			Admin_Image file3 = null;
+			Admin_Image file4 = null;
+			Admin_Image file5 = null;
+			
+			String key = "image" + 2;
+			if(mr.getOriginalFileName(key) != null) {
+				file2 = new Admin_Image();
+				String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
+				String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+				file2.setProductImgUrl("resources/images/product/");
+				file2.setProductImageOriginName(ofn);
+				file2.setProductImageChangeName(cfn);
+				file2.setProductDetailNo("file2");
+			}
+			key = "image" + 3;
+			if(mr.getOriginalFileName(key) != null) {
+				file3 = new Admin_Image();
+				String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
+				String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+				file3.setProductImgUrl("resources/images/product/");
+				file3.setProductImageOriginName(ofn);
+				file3.setProductImageChangeName(cfn);
+				file3.setProductDetailNo("file3");
+			}
+			key = "image" + 4;
+			if(mr.getOriginalFileName(key) != null) {
+				file4 = new Admin_Image();
+				String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
+				String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+				file4.setProductImgUrl("resources/images/product/");
+				file4.setProductImageOriginName(ofn);
+				file4.setProductImageChangeName(cfn);
+				file4.setProductDetailNo("file4");
+			}
+			key = "image" + 5;
+			if(mr.getOriginalFileName(key) != null) {
+				file5 = new Admin_Image();
+				String ofn = new String(mr.getOriginalFileName(key).getBytes("8859_1"),"utf-8");
+				String cfn = new String(mr.getFilesystemName(key).getBytes("8859_1"),"utf-8");
+				file5.setProductImgUrl("resources/images/product/");
+				file5.setProductImageOriginName(ofn);
+				file5.setProductImageChangeName(cfn);
+				file5.setProductDetailNo("file5");
 			}
 			
 			String productCode = mr.getParameter("productCode");
@@ -102,7 +138,8 @@ public class Admin_productUpdateServlet extends HttpServlet {
 			p.setPRreleaseDate(d);
 			p.setPRreleasePrice(releasePrice);
 			p.setPRno(pno);
-			int result = new ProductService().updateProduct(p, list, imageNumber, sArr);
+			
+			int result = new ProductService().updateProduct(p, list1, file2, file3, file4, file5);
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "제품 수정 성공!!");
 				response.sendRedirect(request.getContextPath() + "/productMain.admin?currentPage=1");

@@ -282,7 +282,8 @@ private Properties prop = new Properties();
 				pstmt.setString(1, at.getProductImgUrl());
 				pstmt.setString(2, at.getProductImageOriginName());
 				pstmt.setString(3, at.getProductImageChangeName());
-				pstmt.setInt(4, at.getFileLevel());
+				pstmt.setString(4, at.getProductDetailNo());
+				pstmt.setInt(5, at.getFileLevel());
 				result = pstmt.executeUpdate();
 				if(result == 0) {
 					return 0;
@@ -295,27 +296,61 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
-	
-	public int updateProductImage(Connection conn, ArrayList<Admin_Image> list, String[] sArr) {
-		int[] iArr = new int[sArr.length];
-		for(int i = 0 ; i < sArr.length ; i++) {
-			iArr[i] = Integer.parseInt(sArr[i]);
+	public int updateProductMainImage(Connection conn, ArrayList<Admin_Image> list, int pno) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProductMainImage");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(!list.isEmpty()) {
+				pstmt.setString(1, list.get(0).getProductImageOriginName());
+				pstmt.setString(2, list.get(0).getProductImageChangeName());
+				pstmt.setInt(3, pno);
+				result = pstmt.executeUpdate();
+			} else {
+				result = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	public int insertProductDetailImage(Connection conn, Admin_Image file, int pno) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateProductImage");
+		String sql = prop.getProperty("insertProductDetailImage");
 		try {
-			for(int i = 0 ; i < iArr.length ; i++) {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, list.get(i).getProductImageOriginName());
-				pstmt.setString(2, list.get(i).getProductImageChangeName());
-				pstmt.setInt(3, iArr[i]);
-				result = pstmt.executeUpdate();
-				if(result == 0) {
-					return 0;
-				}
-			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			pstmt.setString(2, file.getProductImgUrl());
+			pstmt.setString(3, file.getProductImageOriginName());
+			pstmt.setString(4, file.getProductImageChangeName());
+			pstmt.setString(5, file.getProductDetailNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateProductDetailImage(Connection conn, Admin_Image file2, int pno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProductDetailImage");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, file2.getProductImageOriginName());
+			pstmt.setString(2, file2.getProductImageChangeName());
+			pstmt.setInt(3, pno);
+			pstmt.setString(4, file2.getProductDetailNo());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -400,7 +435,8 @@ private Properties prop = new Properties();
 						rset.getString(3),
 						rset.getString(4),
 						rset.getString(5),
-						rset.getInt(6));
+						rset.getString(6),
+						rset.getInt(7));
 				image.add(img);
 			}
 		} catch (SQLException e) {
@@ -410,5 +446,29 @@ private Properties prop = new Properties();
 		}
 		return image;
 	}
+	
+	public int test(Connection conn, Admin_Image file, int pno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("test");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, file.getProductDetailNo());
+			pstmt.setInt(2, pno);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
 	
 }
