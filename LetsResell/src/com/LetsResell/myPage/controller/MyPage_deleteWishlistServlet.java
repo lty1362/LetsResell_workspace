@@ -1,6 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,18 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.LetsResell.myPage.model.service.MyPage_service;
+import com.LetsResell.myPage.model.vo.Wishlist;
 
 /**
- * 회원 탈퇴하는 Servlet
+ * 위시리스트 삭제 Servlet
  */
-@WebServlet("/updateMemStatus.my")
-public class MyPage_updateMemStatusServlet extends HttpServlet {
+@WebServlet("/deleteWish.my")
+public class MyPage_deleteWishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public MyPage_updateMemStatusServlet() {
+       
+    public MyPage_deleteWishlistServlet() {
         super();
     }
 
@@ -28,18 +29,13 @@ public class MyPage_updateMemStatusServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));	// 로그인된 회원의 번호
-		String pwd = request.getParameter("pwd");						// 기존 비밀번호
+		String[] checkArr = request.getParameterValues("checkArr[]");	// 삭제할 제품들의 제품명
 		
-		int result = new MyPage_service().updateMemStatus(userNo, pwd);
+		int resultNumber = new MyPage_service().deleteWishlist(userNo, checkArr);
 		
-		if(result > 0) {
-			// 성공
-			response.sendRedirect(request.getContextPath() + "/logout.me");
-		}else {
-			//실패
-			response.sendRedirect(request.getContextPath() + "/fail.my");
-		}
-		
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(resultNumber);
+
 	}
-	
+
 }

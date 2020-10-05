@@ -1,5 +1,3 @@
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
 package com.LetsResell.myPage.model.vo;
 
 public class Card {

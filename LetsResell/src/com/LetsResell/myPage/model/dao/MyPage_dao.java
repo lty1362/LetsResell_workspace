@@ -1,15 +1,3 @@
-// 선경_20200920_v1.1
-// 계좌 등록 기능 추가 (미완성)
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
-// 프로필 수정 기능 추가 (미완성)
-// 선경_20200921_v1.3
-// 계좌 등록 method (완성)
-// 선경_20200925_v1.4
-// 배송지, 카드, 프로필 수정 기능 수정(미완성)
-// 선경_20200925_v1.5
-// 비밀번호 수정 기능 수정, 회원 탈퇴 기능 추가
-
 package com.LetsResell.myPage.model.dao;
 
 import java.io.FileInputStream;
@@ -401,6 +389,13 @@ public class MyPage_dao {
 		
 	}
 	
+	/**
+	 * 위시리스트 조회
+	 * @param conn
+	 * @param userNo		로그인된 회원의 번호
+	 * @param wishlistPage	페이지 정보
+	 * @return
+	 */
 	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo, WishlistPageInfo wishlistPage) {
 		
 		ArrayList<Wishlist> wishlist = new ArrayList<>();
@@ -433,9 +428,40 @@ public class MyPage_dao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(wishlist);
 		return wishlist;
 	}
 	
-
+	/**
+	 * 위시리스트 삭제
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param name		삭제하고자 하는 제품
+	 * @return
+	 */
+	public int deleteWishlist(Connection conn, int userNo, String name) {
+		
+		int result = 0;
+			
+		PreparedStatement pstmt = null;
+			
+		String sql = prop.getProperty("deleteWishlist");
+			
+		try {
+				
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, name);
+				
+			result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		return result;
+	}
+	
 }

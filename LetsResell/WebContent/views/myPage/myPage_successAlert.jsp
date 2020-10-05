@@ -1,5 +1,3 @@
-<%-- 선경_20200921_v1.3 --%>
-<%-- 저장 성공 팝업 추가 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

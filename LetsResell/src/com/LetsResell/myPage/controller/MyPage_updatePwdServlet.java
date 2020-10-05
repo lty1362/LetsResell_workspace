@@ -1,7 +1,3 @@
-// 선경_20200925_v1.4
-// 비밀번호 수정 기능 추가(미완성)\
-// 선경_20200925_v1.5
-// 비밀번호 수정 기능 수정(미완성)
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
@@ -41,6 +37,7 @@ public class MyPage_updatePwdServlet extends HttpServlet {
 			//실패
 			response.sendRedirect(request.getContextPath() + "/fail.my");
 		}
+		
 	}
-
+	
 }

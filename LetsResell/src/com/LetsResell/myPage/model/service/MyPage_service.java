@@ -1,14 +1,3 @@
-// 선경_20200920_v1.1
-// 계좌 등록 기능 추가 (미완성)
-// 선경_20200921_v1.2
-// 카드 등록 기능 추가 (미완성)
-// 프로필 수정 기능 추가 (미완성)
-// 선경_20200921_v1.3
-// 계좌 등록 method (완성)
-// 선경_20200925_v1.4
-// 배송지, 카드, 프로필 수정 기능 수정(미완성)
-// 선경_20200925_v1.5
-// 비밀번호 수정 기능 수정, 회원 탈퇴 기능 추가
 package com.LetsResell.myPage.model.service;
 
 import java.sql.Connection;
@@ -268,6 +257,37 @@ public class MyPage_service {
 		
 		return wishlist;
 		
+	}
+	
+	/**
+	 * 위시리스트 삭제
+	 * @param userNo	로그인된 회원의 번호
+	 * @param checkArr	삭제하고자 하는 제품들
+	 * @return
+	 */
+	public int deleteWishlist(int userNo, String[] checkArr) {
+		
+		int resultNumber = 0;				// 총 delete 처리된 제품의 수
+		Connection conn = getConnection();
+		
+		for(int i=0; i<checkArr.length; i++) {
+			
+			String name = checkArr[i];
+			
+			int result = new MyPage_dao().deleteWishlist(conn, userNo, name);
+			
+			if(result > 0) {
+				resultNumber++;
+			}
+		}
+		
+		if(resultNumber == checkArr.length) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return resultNumber;	
 	}
 
 }

@@ -1,5 +1,3 @@
-// 선경_20200920_v1.1
-// 계좌 등록 기능 추가 (미완성)
 package com.LetsResell.myPage.model.vo;
 
 public class Account {

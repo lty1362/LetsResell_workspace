@@ -16,23 +16,16 @@ import com.LetsResell.myPage.model.vo.Wishlist;
 import com.LetsResell.myPage.model.vo.WishlistPageInfo;
 
 /**
- * Servlet implementation class myPageWishListServlet
+ * 관심상품 페이지 진입 Servlet
  */
 @WebServlet("/myPage.wishlist")
 public class myPageWishListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public myPageWishListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
@@ -73,11 +66,7 @@ public class myPageWishListServlet extends HttpServlet {
 		view.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
