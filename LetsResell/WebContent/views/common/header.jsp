@@ -59,10 +59,6 @@
                  <button onclick="location.href='<%=request.getContextPath()%>/loginAgree.me';">회원가입</button>
                  <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
              </div>
-             <div style="padding-left:280px;">
-             	<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin?currentPage=1';">관리자</button>
-             </div>
-             
          </div>
         
         <% } else{ %>
@@ -72,9 +68,15 @@
         <button onclick="location.href='<%=request.getContextPath()%>/logout.me';">로그아웃</button>
         <button onclick="location.href='<%=request.getContextPath()%>/myPage.info?userNo=<%= loginUser.getUserNo() %>';">마이페이지</button>
         <button onclick="location.href='<%=request.getContextPath()%>/noticeForm.service?currentPage=1';">고객센터</button>
+		<% if(loginUser.getUserNo() == 1){ %>
+			<div style="padding-left:280px;">
+				<button style="background:#8bfcc9; border:0px; color:black; width:80px; height:40px; font-weight:bold; border-radius:5px;" onclick="location.href='<%=request.getContextPath()%>/noticeMain.admin?currentPage=1';">관리자</button>
+			</div>
+		<% } %>
     </div>
 </div>
 <% } %>
 </div>
+
 </body>
 </html>

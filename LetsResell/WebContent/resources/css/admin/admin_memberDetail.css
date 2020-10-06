@@ -1,0 +1,171 @@
+@charset "UTF-8";
+#menu1>*:nth-child(3){
+        	font-size:20px;
+        	text-decoration:underline;
+        	font-weight:bold;
+        	padding-left:40px;
+        }
+		#menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu3>*:nth-child(2), #menu3>*:nth-child(3){
+        	display:none;
+        }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+		#userInfo{
+            height: auto;
+            border: 1px solid lightgray;
+            padding:20px;
+            width:80%;
+            margin:auto;
+        }
+        #userInfo_header1{
+            height: 50px;
+            background: lightgray;
+            font-weight: bold;
+            text-align: center;
+            font-size: 30px;
+            padding: 3px;
+        }
+        #userInfo_header2{
+            height:30px;
+        }
+        #userInfo_top{
+            height: 200px;
+            border: 1px solid lightgray;
+        }
+        #userInfo_mid{
+            height: 30px;
+        }
+        #userInfo_bottom{
+            height: auto;
+        }
+        #userInfo_top>div{
+            float:left;
+        }
+        #userPicture{
+            width: 40%;
+            height: 100%;
+        }
+        #userPicture>img{
+            width: 100%;
+            height: 100%;
+        }
+        #userInfo_closer{
+            width: 60%;
+            height: 100%;
+            background: lightgray;
+            padding-top: 17px;
+            padding-left: 10px;
+            line-height: 20px;
+            font-size:23px;
+        }
+        #body_right table{
+        	text-align: center;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        #body_right table th{
+        	background:lightgray;
+        	font-size:17px;
+        	padding:3px;
+        }
+        #body_right table td{
+        	border:1px solid lightgray;
+        	font-size:15px;
+        	padding:3px;
+        }
+        .tableCss tr:nth-child(1) th{
+        	border-right:1px solid white;
+        }
+        .tableCss tr:nth-child(1) th:nth-last-child(1){
+        	border-right:1px solid lightgray;
+        }
+        .dealed td:nth-child(1){
+        	width:40px;
+        }
+        .dealed td:nth-child(2){
+        	width:100px;
+        }
+        .dealed td:nth-child(4){
+        	width:120px;
+        }
+        .dealed td:nth-child(5){
+        	width:140px;
+        }
+        #userBuy{
+            width: 100%;
+            margin-bottom:20px;
+        }
+        #userSell{
+            width: 100%;
+            margin-bottom:20px;
+        }
+        #userReport{
+            width: 100%;
+            margin-bottom:30px;
+        }
+        #userReport td:nth-child(1){
+			width:40px;        
+        }
+        #userReport td:nth-child(3){
+			width:140px;        
+        }
+        #userStop{
+            width: 100%;
+            height: 50px;
+        }
+        #userStop>div{
+            float: left;
+        }
+        #userStop>div:nth-child(1){
+            width: 300px;
+            height: 90%;
+            border: 1px solid lightgray;
+            text-align: center;
+            font-weight:bold;
+            font-size:20px;
+            padding-top:5px;
+        }
+        #userStop>div:nth-child(2){
+            width: 80px;
+            height: 90%;
+        }
+        #userStop>div:nth-child(2)>input{
+            background: rgb(74,74,74);
+            color:white;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-weight: bold;
+            border:0px;
+            font-size:17px;
+            
+        }
+        #body_bottom{
+        	padding-right:82px;
+        	margin-top:30px;
+        }
+        #body_bottom>input{
+            border:0px;
+            background: rgb(74, 74, 74);
+            color: white;
+            border-radius: 3px;
+            font-size:20px;
+            width: 80px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        #footer{
+        	position:absolute;
+        	top:1800px;
+        }
+        .memberHistory{
+        	width:80px; 
+        	background:rgb(74,74,74); 
+        	color:white;
+        	text-align:center;
+        }

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+#menu3List>:nth-child(4){
+	        text-decoration-line: underline;
+	        font-weight: bold;
+	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
+	    }
+        #title{
+            background: lightgray;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 5px;
+        }
+        #report{
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #report th{
+            background: lightgray;
+            height: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size:21px;
+        }
+        #report td{
+            border: 1px solid lightgray;
+            font-size:18px;
+        }
+        #report tr>th:nth-child(1){
+            border-right: 1px solid white;
+            
+        }
+        #report tr>th:nth-child(2){
+            border-right: 1px solid white;
+        }
+        #report tr>th:nth-child(3){
+            border-right: 1px solid white;
+        }
+        #report tr>th:nth-child(4){
+            border-right: 1px solid white;
+        }
+        #report tr>th:nth-child(5){
+            border-right: 1px solid white;
+        }
+        #report tr td:nth-child(1){
+            border-left: 0px;
+            width: 5%;
+            font-size:21px;
+        }
+        #report tr td:nth-child(2){
+            width: 8%;
+        }
+        #report tr td:nth-child(3){
+            border-right: 0px;
+            padding: 7px;
+            padding-left: 10px;
+            width: 30%;
+        }
+        #report tr td:nth-child(4){
+            width: 26%;
+        }
+        #report tr td:nth-child(5){
+            width: 18%;
+        }
+        #report tr td:nth-child(6){
+            width: 13%;
+            border-right: 0px;
+        }
+        #report a{
+        	color:black;
+        	text-decoration:none;
+        }
+        #report a:hover{
+        	text-decoration:underline;
+        }

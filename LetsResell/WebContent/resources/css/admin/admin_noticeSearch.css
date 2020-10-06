@@ -1,0 +1,85 @@
+@charset "UTF-8";
+#menu3List>:nth-child(1){
+	        text-decoration-line: underline;
+	        font-weight: bold;
+	    }
+	    #menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
+	    	display:none;
+	    }
+        #notice{
+            border-collapse: collapse;
+            width: 100%;
+            font-size:20px;
+        }
+        #notice th{
+           background: lightgray;
+           height: 25px;
+           font-size:25px;
+           padding:5px;
+           text-align:center;
+        }
+        #notice td{
+            border: 1px solid lightgray;
+            
+        }
+        #notice tr>th:nth-child(1){
+            background: white;
+        }
+        #notice tr>th:nth-child(2){
+            border-right: 1px solid white;
+        }
+        #notice tr>th:nth-child(3){
+            border-right: 1px solid white;
+        }
+        #notice tr td:nth-child(2){
+            border: 0px;
+            width: 10px;
+        }
+        #notice tr td:nth-child(3){
+            border-left: 0px;
+            text-align: center;
+            width: 30px;
+        }
+        #notice tr td:nth-child(4){
+            border-right: 0px;
+            padding: 7px;
+            padding-left: 10px;
+            font-size: 0.9em;
+            cursor:pointer;
+        }
+        #notice tr td:nth-child(5){
+            border-right: 0px;
+            padding: 7px;
+            padding-left: 10px;
+            font-size: 0.9em;
+            width: 17%;
+            text-align: center;
+        }
+        #notice a{
+        	color:black;
+        }
+        #notice [type=checkbox]{
+        	width:20px;
+        	height:20px;
+        }
+        #noticeUpdate>input{
+            border:1px solid rgb(74, 74, 74);
+            background: rgb(74, 74, 74);
+            color: white;
+            border-radius: 3px;
+            font-size:20px;
+            width: 80px;
+            height: 40px;
+            margin-left: 10px;
+            margin-bottom:10px;
+            margin-top:20px;
+        }
+        #noticeUpdate{
+            text-align:right;
+        }

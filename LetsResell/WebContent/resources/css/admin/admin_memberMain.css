@@ -1,0 +1,74 @@
+@charset "UTF-8";
+#menu1>*:nth-child(3){
+        	font-size:20px;
+        	text-decoration:underline;
+        	font-weight:bold;
+        	padding-left:40px;
+        }
+		#menu4>*:nth-child(2), #menu4>*:nth-child(3){
+	    	display:none;
+	    }
+	    #menu3>*:nth-child(2), #menu3>*:nth-child(3){
+        	display:none;
+        }
+	    #menu2>*:nth-child(2), #menu2>*:nth-child(3){
+	    	display:none;
+	    }
+		#userList>div{
+            margin-bottom: 20px;
+        }
+        #userList{
+        	height:100%;
+        }
+        #users>table{
+            border-collapse: collapse;
+            width: 100%;
+            text-align:center;
+        }
+        #users>table th{
+            background: lightgray;
+            height: 15px;
+            font-size:20px;
+            padding:5px;
+        }
+        #users>table td{
+            border: 1px solid lightgray;
+        }
+        #users>table tr>th:nth-child(1){
+            border-right: 1px solid white;
+        }
+        #users>table tr>th:nth-child(2){
+            border-right: 1px solid white;
+        }
+        #users>table tr>th:nth-child(3){
+            border-right: 1px solid white;
+        }
+        #users>table tr>th:nth-child(4){
+            border-right: 1px solid white;
+        }
+        #users>table tr td:nth-child(1){
+            font-size:18px;
+            width:7%;
+        }
+        #users>table tr td:nth-child(2){
+            font-size:18px;
+            width:10%;
+        }
+        #users>table tr td:nth-child(3){
+            font-size:18px;
+            width: 40%;
+        }
+        #users>table tr td:nth-child(4){
+            font-size:18px;
+            width: 25%;
+        }
+        #users>table tr td:nth-child(5){
+            font-size:18px;
+        }
+        #userTitle{
+            background: lightgray;
+            font-weight: bold;
+            text-align: center;
+            font-size: 33px;
+            padding: 5px;
+        }

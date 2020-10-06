@@ -1,0 +1,89 @@
+@charset "UTF-8";
+#serviceInquiry>a{
+			text-decoration-line: underline;
+	        font-weight: bold;
+		}
+		#body_right{
+            width: 75%;
+            height: 90%;
+            padding: 20px;
+            position:relative;
+        }
+		#title{
+            background: lightgray;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 5px;
+        }
+        #inquiry{
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #inquiry th{
+            background: lightgray;
+            height: 25px;
+            padding-top: 3px;
+            font-size:20px;
+        }
+        #inquiry td{
+            border: 1px solid lightgray;
+           	font-size:18px;
+        }
+        #inquiry tr>th:nth-child(1){
+            border-right: 1px solid white;
+        }
+        #inquiry tr>th:nth-child(2){
+            border-right: 1px solid white;
+        }
+        #inquiry tr>th:nth-child(3){
+            border-right: 1px solid white;
+        }
+        #inquiry tr>th:nth-child(4){
+            border-right: 1px solid white;
+        }
+        #inquiry tr>th:nth-child(5){
+            border-right: 1px solid white;
+        }
+        #inquiry tr>th:nth-child(6){
+            border-right: 1px solid white;
+        }
+        #inquiry tr td:nth-child(2){
+            border-left: 0px;
+            width: 3%;
+        }
+        #inquiry tr td:nth-child(3){
+            width: 8%;
+        }
+        #inquiry tr td:nth-child(4){
+            border-right: 0px;
+            padding: 7px;
+            padding-left: 10px;
+            width: 42%;
+        }
+        #inquiry tr td:nth-child(5){
+            width: 12%;
+        }
+        #inquiry tr td:nth-child(6){
+            width: 10%;
+            border-right: 0px;
+        }
+        #write input{
+        	background: rgb(74, 74, 74);
+            color: white;
+            border-radius: 3px;
+            font-size:20px;
+            width: 80px;
+            height: 40px;
+            display:block;
+            text-align:center;
+            padding-top:5px;
+            border:0px;
+        }
+        #serviceInquiryLogin input{
+        	text-decoration:underline;
+        	font-weight:bold;
+        }
