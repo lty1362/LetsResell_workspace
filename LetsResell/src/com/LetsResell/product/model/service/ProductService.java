@@ -124,4 +124,18 @@ public class ProductService {
 		
 		return imgList;
 	}
+	
+	public int wishListAdd(int prNo, int userNo) {
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().wishListAdd(conn, prNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 }

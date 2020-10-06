@@ -38,7 +38,9 @@
             <br>
 
             <div id="btn_box">
-
+            	
+            	<input type="hidden" value="<%= list.get(0).getPrNo() %>">
+            	
                 <div id="wish_btn">
 
                     <div id="wish_btn_img" align="center">
