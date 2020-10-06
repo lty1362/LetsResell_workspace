@@ -1,9 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPageSalesService;
-import com.LetsResell.myPage.model.vo.Sale;
 
 /**
- * Servlet implementation class MyPage_salesCompleteListServlet
+ * Servlet implementation class MyPageDeleteSalesDetailListServlet
  */
-@WebServlet("/salesCom.mp")
-public class MyPage_salesCompleteListServlet extends HttpServlet {
+@WebServlet("/deleteList.mp")
+public class MyPageDeleteSalesDetailListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPage_salesCompleteListServlet() {
+    public MyPageDeleteSalesDetailListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +30,12 @@ public class MyPage_salesCompleteListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
+		int sno = Integer.parseInt(request.getParameter("sno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		ArrayList<Sale> list = new MyPageSalesService().salesListView(userNo);
-		request.setAttribute("list", list);
+		int result = new MyPageSalesService().deleteList(sno);
 		
-		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
-		request.setAttribute("slist", slist);
-		
-		ArrayList<Sale> sclist = new MyPageSalesService().selectSalesCom(userNo);
-		request.setAttribute("sclist", sclist);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesCompleteList.jsp");
-		view.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/salesDetail.mp?userNo=" + userNo);
 		
 	}
 

@@ -179,5 +179,21 @@ public class MyPage_purchaseService {
 		
 	}
 
+	public int updateSalesStatus(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int sResult = new MyPage_purchaseDao().updateSalesStatus(conn,sno);
+		
+		if(sResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return sResult;
+		
+	}
+
 
 }

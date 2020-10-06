@@ -31,8 +31,14 @@ public class MyPageUpdatePusrchaseStatusServlet extends HttpServlet {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int sno = Integer.parseInt(request.getParameter("sno"));
+		
+		System.out.println(sno);
 		
 		int result = new MyPage_purchaseService().updateStatus(tno);
+		int sResult = new MyPage_purchaseService().updateSalesStatus(sno);
+		
+		System.out.println(sResult);
 		
 		response.sendRedirect(request.getContextPath() + "/purchaseStatus.mp?userNo=" + userNo); 
 		

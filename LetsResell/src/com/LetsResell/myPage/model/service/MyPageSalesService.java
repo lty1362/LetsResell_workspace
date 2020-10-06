@@ -76,7 +76,12 @@ public class MyPageSalesService {
 		return slist;
 		
 	}
-
+	
+	/**
+	 * 5. 운송장 입력
+	 * @param s
+	 * @return
+	 */
 	public int updateDelivery(Sale s) {
 		
 		Connection conn = getConnection();
@@ -90,6 +95,44 @@ public class MyPageSalesService {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * 6.판매등록 삭제
+	 * @param sno
+	 * @return
+	 */
+	public int deleteList(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPageSalesDao().deleteList(conn, sno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+		
+	}
+	
+	/**
+	 * 7.판매완료
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Sale> selectSalesCom(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Sale> sclist = new MyPageSalesDao().selectSalesCom(conn, userNo);
+		
+		close(conn);
+		
+		return sclist;
+		
 	}
 	
 

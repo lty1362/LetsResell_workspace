@@ -178,6 +178,7 @@ public class MyPage_purchaseDao {
 				t.setTradeService(rset.getString("TRADE_NUMBER"));
 				t.setTradeCon(rset.getDate("TRADE_CONCLUDE"));
 				t.setTradePrice(rset.getInt("TRADE_PRICE"));
+				t.setSaleNo(rset.getInt("SALE_NO"));
 				t.setSaleName(rset.getString("SALE_NAME"));
 				t.setSaleCondition(rset.getString("SALE_CONDITION"));
 				t.setSaleSize(rset.getString("SALE_SIZE"));
@@ -250,7 +251,6 @@ public class MyPage_purchaseDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		
 		String sql = prop.getProperty("updateStatus");
 		
@@ -259,7 +259,7 @@ public class MyPage_purchaseDao {
 			
 			pstmt.setInt(1, tno);
 			
-			rset = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -274,7 +274,6 @@ public class MyPage_purchaseDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		
 		String sql = prop.getProperty("deletePurchase");
 		
@@ -283,7 +282,7 @@ public class MyPage_purchaseDao {
 			
 			pstmt.setInt(1, tno);
 			
-			rset = pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -337,6 +336,30 @@ public class MyPage_purchaseDao {
 		}
 		
 		return list;
+		
+	}
+
+	public int updateSalesStatus(Connection conn, int sno) {
+		
+		int sResult = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateSalesStatus");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			sResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sResult;
 		
 	}
 
