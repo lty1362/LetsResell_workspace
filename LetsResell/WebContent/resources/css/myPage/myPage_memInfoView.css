@@ -29,14 +29,19 @@
 	.div2 {
 		margin: 10px;
 	}
-	
 	.div_info{
 		margin: 10px;
-		font-size: 12px;
+		font-size: 13px;
+		font-weight: 600;
+	}
+	.div_detailArea {
+		margin-top: 20px;
 	}
 	
 	/* 프로필 영역 css */
 	#div1 {
+		border: 2px solid rgb(220, 220, 220);
+		padding: 20px;
 		border-radius: 3px;
 		width: 700px;
 		height: 200px;
@@ -71,5 +76,11 @@
 	}
 	#cardInfo-edit-tb td, #addressInfo-edit-tb td {
 		padding: 10px;
+	}
+	
+	/* 버튼 */
+	.btn_submit, .btn_delete {
+		margin-left: 10px;
+		margin-top: -5px;
 	}
 </style>

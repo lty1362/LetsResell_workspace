@@ -23,13 +23,13 @@ pageEncoding="UTF-8"%>
 <!-- CSS -->
 <%@ include file="../../resources/css/myPage/myPage_memInfoView.css"%>
 <!-- js -->
-<!-- 프로필 수정 > 저장버튼 click 이벤트, 비밀번호 변경 > 저장버튼 click 이벤트, 회원 탈퇴 > 탈퇴버튼 click 이벤트 -->
+<!-- 프로필 -->
 <script type="text/javascript" src="resources/js/myPage/myPage_member.js" ></script> 
-<!-- 카드 등록 > 저장버튼 click 이벤트 -->
+<!-- 카드 -->
 <script type="text/javascript" src="resources/js/myPage/myPage_card.js" ></script> 
-<!-- 배송지 등록 > 검색버튼 click이벤트, 배송지 등록 > 저장버튼 click이벤트 -->
+<!-- 배송지 -->
 <script type="text/javascript" src="resources/js/myPage/myPage_address.js" ></script> 
-<!-- 계좌 정보 등록 > 저장버튼 click이벤트 -->	 	
+<!-- 계좌 -->	 	
 <script type="text/javascript" src="resources/js/myPage/myPage_account.js" ></script> 
 		 
 </head>
@@ -66,9 +66,9 @@ pageEncoding="UTF-8"%>
 							<span id="informationTable">
 								<table id="table_info">
 									<tr>
-										<td width="250">계정</td>
-										<td width="130">이름</td>
-										<td width="200">핸드폰 번호</td>
+										<th width="250">계정</th>
+										<th width="130">이름</th>
+										<th width="200">핸드폰 번호</th>
 									</tr>
 									<tr>
 										<td><%= userId %></td>
@@ -82,13 +82,13 @@ pageEncoding="UTF-8"%>
 				
 				<!-- 카드 등록 정보 영역 -->
 				
-				<div class="div">
+				<div class="div div_detailArea">
 					<div class="div2">
-						<span class="div2_titleFont">카드 등록 정보</span>
-						&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#cardInfo-edit">등록</button>
-						&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteCard">삭제</button>
+						<span class="meminfo_title">카드 등록 정보</span>
+						<button type="button" class="btn btn-dark btn btn-primary btn-sm btn_submit" data-toggle="modal" data-target="#cardInfo-edit">등록</button>
+						<button type="button" class="btn btn-dark btn btn-primary btn-sm btn_delete" data-toggle="modal" data-target="#deleteCard">삭제</button>
 					</div>
-					<div class="div_info">
+					<div class="text-secondary div_info">
 						<%if(cardList.isEmpty()) { %>
 							등록된 카드가 없습니다.
 						<% }else {%>
@@ -97,19 +97,20 @@ pageEncoding="UTF-8"%>
 				                <tr><td><%= card.getCardName() %></td></tr>
 				                <tr><td><%= card.getCardNumber() %></td></tr>
 			                </table>
+			                <br>
 			            	<% } %>
 						<% } %>
 					</div>
 				</div>
 				
 				<!-- 배송지 등록 정보 영역 -->
-				<div class="div">
+				<div class="div div_detailArea">
 					<div class="div2">
-						<span class="div2_titleFont">배송지 등록 정보</span>
-						&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#addressInfo-edit">등록</button>
-						&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAddress">삭제</button>
+						<span class="meminfo_title">배송지 등록 정보</span>
+						<button type="button" class="btn btn-dark btn btn-primary btn-sm btn_submit" data-toggle="modal" data-target="#addressInfo-edit">등록</button>
+						<button type="button" class="btn btn-dark btn btn-primary btn-sm btn_delete" data-toggle="modal" data-target="#deleteAddress">삭제</button>
 					</div>
-					<div class="div_info">
+					<div class="text-secondary div_info">
 						<%if(addressList.isEmpty()) { %>
 							등록된 배송지가 없습니다.
 						<% }else {%>
@@ -121,16 +122,17 @@ pageEncoding="UTF-8"%>
 				                <tr><td><%= address.getAddressDetail() %></td></tr>
 				                <tr><td><%= address.getAddressPhone() %></td></tr>
 			                </table>
+			                <br>
 			            	<% } %>
 						<% } %>
 					</div>
 				</div>
 				
 				<!-- 계좌 정보 표시 영역 -->
-				<div class="div">
+				<div class="div div_detailArea">
 					<div class="div2">
-						<span class="div2_titleFont">계좌 정보</span>
-						&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-dark btn btn-primary btn-sm" data-toggle="modal" data-target="#accountInfo-edit">등록</button>
+						<span class="meminfo_title">계좌 정보</span>
+						<button type="button" class="btn btn-dark btn btn-primary btn-sm btn_submit" data-toggle="modal" data-target="#accountInfo-edit">등록</button>
 					</div>
 					<div class="div_info">
 						<%-- <%if(loginUser.getBankName() == null) { %>
@@ -325,7 +327,7 @@ pageEncoding="UTF-8"%>
 				</form>
 				
 				<!-- 카드 정보 삭제 -->
-				<form action="<%= contextPath %>/insertAddress.my" id="deleteAddressForm" method="POST">
+				<form action="<%= contextPath %>/deleteCard.my" id="deleteCardForm" method="POST">
 					<div class="modal" id="deleteCard">
 						<div class="modal-dialog">
 							<div class="modal-content" style="font-weight: bold;">
@@ -336,18 +338,22 @@ pageEncoding="UTF-8"%>
 								<!-- Modal body -->
 								<div class="modal-body">
 									<%if(cardList.isEmpty()) { %>
-										등록된 배송지가 없습니다.
+										등록된 카드가 없습니다.
 									<% }else {%>
 										<% for(Card card : cardList) { %>
-											<div style="width: 350px; font-weight: normal;">
-										    <div><%= card.getCardName() %></div>
-										    <div><%= card.getCardNumber() %></div>
-										    <button class="btn btn-dark btn btn-primary btn-sm">삭제</button>
-										    </div>
+											<table class="text-secondary div_info" style="margin-top:10px;">
+												<tr>
+													<td height="20px" width="400px"><%= card.getCardName() %></td>
+													<td rowspan="2"><input type="button" value="삭제" class="btn-dark btn-primary btn-sm btn_deleteCard" style="height:25px; font-size:10px;" name="<%= card.getCardName() %>"></td>
+												</tr>
+												<tr>
+													<td height="20px" width="400px"><%= card.getCardNumber() %></td>
+												</tr>
+											</table>
 						            	<% } %>
 									<% } %>
 									<div style="float: right; margin-top: 30px;">
-										<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+										<button type="submit" id="btn_deleteCardSave" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
 										<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
 									</div>                     
 								</div>
@@ -419,7 +425,7 @@ pageEncoding="UTF-8"%>
 				</form>
 				
 				<!-- 배송 정보 삭제 -->
-				<form action="<%= contextPath %>/insertAddress.my" id="deleteAddressForm" method="POST">
+				<form action="<%= contextPath %>/deleteAddress.my" id="deleteAddressForm" method="POST">
 					<div class="modal" id="deleteAddress">
 						<div class="modal-dialog">
 							<div class="modal-content" style="font-weight: bold;">
@@ -431,7 +437,7 @@ pageEncoding="UTF-8"%>
 								<div class="modal-body">
 									<%if(addressList.isEmpty()) { %>
 										등록된 배송지가 없습니다.
-									<% }else {%>
+									<% }else { %>
 										<% for(Address address : addressList) { %>
 											<div style="width: 350px; font-weight: normal;">
 										    <div><%= address.getAddressName() %></div>
@@ -445,7 +451,7 @@ pageEncoding="UTF-8"%>
 						            	<% } %>
 									<% } %>
 									<div style="float: right; margin-top: 30px;">
-										<button type="submit" id="btn_insertAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+										<button type="submit" id="btn_deleteAddress" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
 										<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
 									</div>                     
 								</div>

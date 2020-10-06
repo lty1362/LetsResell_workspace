@@ -55,12 +55,11 @@ public class myPageWishListServlet extends HttpServlet {
 		}
 		
 		WishlistPageInfo wishlistPage = new WishlistPageInfo(wishlistCount, currentPage, pageLimit, wishlistLimit, maxPage, startPage, endPage);
+		request.setAttribute("wishlistPage", wishlistPage);
 		
 		// 위시리스트 조회
 		ArrayList<Wishlist> wishlist = new MyPage_service().selectWishlist(userNo, wishlistPage);
-		
-		request.setAttribute("wishlistPage", wishlistPage);
-		request.setAttribute("wishlist", wishlist);
+		request.setAttribute("wishlist", wishlist);	
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_wishListView.jsp");
 		view.forward(request, response);
