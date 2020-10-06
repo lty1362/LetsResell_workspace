@@ -39,7 +39,7 @@
                     	<input type="hidden" value="<%= p.getPrNo() %>">
 
                         <div id="wish_btn_img">
-                            <img src="/LetsResell/resources/images/product/heart.png" alt="" width="90%" height="90%">
+                            <img src="/LetsResell/resources/images/product/heart.png" alt="" width="90%" height="90%" class="wishImg">
                         </div>
 
                         <div id="wish_btn_name">

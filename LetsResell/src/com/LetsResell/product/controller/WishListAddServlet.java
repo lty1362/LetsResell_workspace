@@ -45,7 +45,7 @@ public class WishListAddServlet extends HttpServlet {
 			request.getSession().setAttribute("alertMsg", "찜 실패");
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/saleList.sa?prNo=" + prNo + "currentPage=1");
+		response.sendRedirect(request.getContextPath() + "/saleList.sa?prNo=" + prNo + "&currentPage=1");
 	}
 
 	/**
