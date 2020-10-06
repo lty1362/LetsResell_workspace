@@ -134,7 +134,7 @@
         
         <!-- footer -->
          <%@ include file="../common/footer.jsp" %>
-        <script>
+         <script>
         	
         
         
@@ -152,6 +152,8 @@
   
         	
         	email.addEventListener("change", checkId, false);
+        	pw1.addEventListener("change", checkPwd, false);
+        	pw2.addEventListener("change", checkPwd2, false);
             sendPhone.addEventListener("click", sendTerms,false);
 				
             
@@ -159,38 +161,76 @@
             
             function checkId(){
             	
-           	 $.ajax({
-	                  type: "post",
-	                  url: "<%=request.getContextPath() %>/insertCheckId.me",
-	                  data: {userId: email.value},
-	                  dataType:"json",	
-	                  success:function(data) {
-	                	  console.log(data);
-	                	
-	                		
-	                       if(data.loginUser != email.value){
-	                    	   alert("멋진 아이디네요!");
-	                       }else{
-	                    	   alert("중복된 계정입니다.");
-	                    	   email.value="";
-	                    	   email.focus();
-	                    	   
-	                       }
-	                	
-	                  }
-	              })
+            	emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;	
+            	
+	           	 $.ajax({
+		                  type: "post",
+		                  url: "<%=request.getContextPath() %>/insertCheckId.me",
+		                  data: {userId: email.value},
+		                  dataType:"json",	
+		                  success:function(data) {
+		                	  console.log(data);
+		                	
+		                		
+		                       if(!emailPattern.test(email.value)){
+		                    	   alert("유효하지 않는 메일형식입니다.");
+		                    	   email.value="";
+		                    	   email.focus();
+		                    	  	
+		                       }else if(data.loginUserId != email.value){
+		                    	   alert("멋진 아이디네요!");
+		                       }else{
+		                    	   alert("중복된 계정입니다.");
+		                    	   email.value="";
+		                    	   email.focus();
+		                    	   
+		                       }
+		                	
+		                  }
+		              })
            	
                 	
            }
+            
+            function checkPwd(){
+            	
+            	pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
+              	
+            	
+              	 
+   	                       if(!pwPattern.test(pw1.value)){
+   	                    		alert("형식에 맞지 않는 비밀번호입니다..");
+	                    	   pw1.value="";
+	                    	   pw1.focus();
+   	                    	 
+   	                       }else{
+   	                    		alert("사용해도 되는 비밀번호입니다.!");
+   	                    	   
+   	                       }
+   	                	
+   	                 	
+              }
+            
+            function checkPwd2(){
+            	
+       		
+  	                       if(pw1.value != pw2.value){
+  	                    	  	alert("동일한 비밀번호를 입력하세요");
+  	                    	 	pw2.value="";
+	                    	  	pw2.focus();
+  	                    	   
+  	                       }
+  	                	
+                  	
+             }
+            
             
         
             
         	function sendTerms(){
         		
         		
-        		
-
-	           		
+        		     		
 			        	  if(mobile.value != "" ){
 				              alert("발송 완료");
 				              $.ajax({

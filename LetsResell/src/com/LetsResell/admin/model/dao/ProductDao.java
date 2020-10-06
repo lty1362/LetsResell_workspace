@@ -177,6 +177,37 @@ private Properties prop = new Properties();
 		return result;
 	}
 	
+	public int searchListCount(Connection conn, String filter, String search, String category) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		if(filter.equals("code")) {
+			sql = prop.getProperty("searchListCount_codeCategory");
+		}else if(filter.equals("name")){
+			sql = prop.getProperty("searchListCount_nameCategory");
+		}else if(filter.equals("brand")){
+			sql = prop.getProperty("searchListCount_brandCategory");
+		}else if(filter.equals("color")){
+			sql = prop.getProperty("searchListCount_colorCategory");
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + search + "%");
+			pstmt.setString(2, category);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public ArrayList<Admin_Product> searchList(Connection conn, String filter, String search, Admin_PageInfo pi){
 		ArrayList<Admin_Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -198,6 +229,56 @@ private Properties prop = new Properties();
 			pstmt.setString(1, "%" + search + "%");
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Admin_Product(rset.getInt(2)
+						,rset.getString(3)
+						,rset.getString(4)
+						,rset.getString(5)
+						,rset.getString(6)
+						,rset.getString(7)
+						,rset.getString(8)
+						,rset.getString(9)
+						,rset.getString(10)
+						,rset.getDate(11)
+						,rset.getDate(12)
+						,rset.getInt(13)
+						,rset.getInt(14)
+						,rset.getString(15))
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Admin_Product> searchList(Connection conn, String filter, String search, String category, 
+			Admin_PageInfo pi){
+		ArrayList<Admin_Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		if(filter.equals("code")) {
+			sql = prop.getProperty("searchList_codeCategory");
+		}else if(filter.equals("name")){
+			sql = prop.getProperty("searchList_nameCategory");
+		}else if(filter.equals("brand")){
+			sql = prop.getProperty("searchList_brandCategory");
+		}else if(filter.equals("color")){
+			sql = prop.getProperty("searchList_colorCategory");
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1 ;
+			pstmt.setString(1, "%" + search + "%");
+			pstmt.setString(2, category);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Admin_Product(rset.getInt(2)

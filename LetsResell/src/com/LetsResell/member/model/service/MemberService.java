@@ -67,10 +67,10 @@ public class MemberService {
 		return m;
 	}
 	
-	public int changePwdMember(String userPwd, String changePwd, String userName) {
+	public int changePwdMember(String changePwd, String userName) {
 		Connection conn = getConnection();
 		
-		int result = new MemberDao().changePwdMember(conn,  userPwd, changePwd, userName);
+		int result = new MemberDao().changePwdMember(conn,changePwd, userName);
 		
 		
 		if(result > 0) {

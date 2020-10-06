@@ -68,6 +68,31 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="searchListCount_codeCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NO LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_codeCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NO LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	<entry key="searchListCount_color">
 		 SELECT 
 		        COUNT(*) LISTCOUNT
@@ -86,6 +111,31 @@
 					   FROM P_REG
 					  WHERE PR_COLOR LIKE ?
 					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_colorCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_COLOR LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_colorCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_COLOR LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -114,6 +164,31 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="searchListCount_nameCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NAME LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_nameCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NAME LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	<entry key="searchListCount_brand">
 		 SELECT 
 		        COUNT(*) LISTCOUNT
@@ -132,6 +207,31 @@
 					   FROM P_REG
 					  WHERE PR_BRAND LIKE ?
 					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_brandCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_BRAND LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_brandCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_BRAND LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )

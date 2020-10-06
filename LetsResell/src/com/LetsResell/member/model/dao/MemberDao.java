@@ -201,7 +201,7 @@ public class MemberDao {
 		return m;
 	} 
 	
-	public int changePwdMember(Connection conn,  String userPwd, String changePwd, String userName) {
+	public int changePwdMember(Connection conn,String changePwd, String userName) {
 		
 		int result = 0;
 		
@@ -213,8 +213,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, changePwd);
-			pstmt.setString(2, userPwd);
-			pstmt.setString(3, userName);
+			pstmt.setString(2, userName);
 			
 			result = pstmt.executeUpdate();
 			
