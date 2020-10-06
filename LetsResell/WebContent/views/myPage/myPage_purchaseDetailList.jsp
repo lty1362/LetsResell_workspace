@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
-	Bid b = (Bid)session.getAttribute("bid");
+	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -205,7 +205,7 @@
                                 	구매입찰현황 <br>
                                 <span>
                                 
-                                	<%if(list.isEmpty()) {%>
+                                	<%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -213,7 +213,7 @@
                                     	
                                     	<% int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     	
                                     		<%result = i+1; %>
                                     		
@@ -263,16 +263,27 @@
                             </div>
                             <a>
                                 	구매완료 <br>
-                                <span>0건</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div>
-                                <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_paycard.png">
-                            </div>
-                            <a>
-                                	구매총액 <br>
-                                <span>0원</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                     </ul>
@@ -282,7 +293,7 @@
                                     	입찰현황 <br>
                                     <span>(
                                     
-                                    <%if(list.isEmpty()) {%>
+                                    <%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -290,7 +301,7 @@
                                     
                                     	<%int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     		<% result = i+1; %>
                                     	<%} %>
                                     	
@@ -332,7 +343,29 @@
                             <li class="3">
                                 <a>
                                    	 구매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
@@ -358,7 +391,7 @@
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 	            	   		
@@ -387,34 +420,34 @@
                             </thead>
                             <tbody>
                             	
-                            	<%if(list.isEmpty()) {%>
+                            	<%if(blist.isEmpty()) {%>
 	                                <tr>
 	                                    <td colspan="4">
 	                                       	등록된 리스트가 없습니다.
 	                                    </td>
 	                                </tr>
                                 <%}else{ %>
-                                	<%for(int i = 0 ; i < list.size() ; i++) { %>
+                                	<%for(int i = 0 ; i < blist.size() ; i++) { %>
                                 	<tr>
 	                                	<td width="50"><%=i+1 %></td>
 	                                    <td width="200">
 	                                        <div class="product_img">
-	                                            <a href=""><img src=<%=list.get(i).getTitleImg()%>></a>
+	                                            <a href=""><img src="<%=blist.get(i).getTitleImg()%>"></a>
 	                                        </div>
 	                                    </td>
 	                                    <td class="product_info">
 	                                        <dl>
 	                                            <dt>
-	                                                <%=list.get(i).getSaleName() %>
+	                                                <%=blist.get(i).getSaleName() %>
 	                                            </dt>
 	                                            <dd>
-	                                                	<%=list.get(i).getSaleCategory()%>/<%=list.get(i).getSaleSize()%> <br><br>
-	                                                <span><%=list.get(i).getBidPrice()%></span>
+	                                                	<%=blist.get(i).getSaleCategory()%>/<%=blist.get(i).getSaleSize()%> <br><br>
+	                                                <span><%=blist.get(i).getBidPrice()%></span>
 	                                            </dd>
 	                                        </dl>
 	                                    </td>
 	                                    <td>
-                                        <span><%=list.get(i).getBidStatus() %></span> <br>
+                                        <span><%=blist.get(i).getBidStatus() %></span> <br>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
 	                                            <button type="button" id="btn" data-toggle="modal" data-target="#enrollModal<%=i%>">
@@ -434,13 +467,13 @@
                                                   
                                                   <!-- Modal body -->
                                                   <div class="modal-body" style="text-align: center;">
-                                                   <form action="enrollPrice.mp" method="get" id="enroll">
-                                                   <input type="hidden" name="bidNo" id="bidNo" value="<%=list.get(i).getBidNo()%>">
+                                                   <form action="<%= contextPath %>/enrollPrice.mp" method="get" id="enroll">
+                                                   <input type="hidden" name="bidNo" id="bidNo" value="<%=blist.get(i).getBidNo()%>">
 	                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
-	                                                    <input type="number" name="enrollPrice" id="enrollPrice" value="<%=list.get(i).getBidPrice()%>">
+	                                                    <input type="number" name="enrollPrice" id="enrollPrice" value="<%=blist.get(i).getBidPrice()%>">
 	                                                    <br>
 	                                                    <span style="color: red;">
-	                                                        * 현재입찰가격 : <%=list.get(i).getBidPrice()%> <br>
+	                                                        * 현재입찰가격 : <%=blist.get(i).getBidPrice()%> <br>
 	                                                        * 현재최고입찰가격 : 
 	                                                    </span>
 	                                                    
@@ -480,7 +513,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteDetail.mp?bno=<%=list.get(i).getBidNo() %>&userNo=<%=loginUser.getUserNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteDetail.mp?bno=<%=blist.get(i).getBidNo() %>&userNo=<%=loginUser.getUserNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </form>   
                                                   </div>
