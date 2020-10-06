@@ -30,7 +30,7 @@ public class MyPage_updateMemberServlet extends HttpServlet {
 					     request.getParameter("userSsn2") + 
 					     request.getParameter("userSsn3");					// 생년월일
 		
-		int result = new MyPage_service().updateMember(userNo, name, userSsn);
+		int result = new MyPage_service().updateMember(userNo, name, userSsn);	
 		
 		if(result > 0) {
 			// 성공
