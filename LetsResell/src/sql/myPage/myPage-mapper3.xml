@@ -65,7 +65,7 @@
 		  JOIN P_IMG USING(PR_NO)
 		  JOIN TRADE USING(SALE_NO)
 		 WHERE S.MEM_USER_NO = ?
-		   AND SALE_STATUS = '거래중'
+		   AND SALE_STATUS = '거래중' 
 	</entry>
 	<entry key="selectPAddress">
 		SELECT

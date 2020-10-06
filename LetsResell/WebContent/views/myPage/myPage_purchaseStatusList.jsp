@@ -436,11 +436,10 @@
                                                   <div class="modal-body">
                                                     <strong style="color: red; font-size: 18px;">구매확정하시겠습니까?</strong> <br>
                                                     *구매확정시 구매완료로 넘어갑니다.
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/updateStatus.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </div>
                                                   
@@ -453,7 +452,7 @@
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#bidModal<%=i%>">
-                                              	입찰취소
+                                              	구매취소
                                             </button>
                                           
                                             <!-- The Modal -->
@@ -463,20 +462,21 @@
                                                 
                                                   <!-- Modal Header -->
                                                   <div class="modal-header">
-                                                    <h6 class="modal-title">입찰취소</h6>
+                                                    <h6 class="modal-title">구매취소</h6>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                   </div>
                                                   
                                                   <!-- Modal body -->
                                                   <div class="modal-body">
-                                                    <strong>입찰을 취소하시겠습니까?</strong>
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <strong>구매를 취소하시겠습니까?</strong>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                                                    
                                                   </div>
+ 
                                                   
                                                 </div>
                                               </div>

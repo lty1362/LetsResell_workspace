@@ -16,6 +16,8 @@
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE B.MEM_USER_NO = ?
 		   AND BID_STATUS = '경매중'
+		   ORDER 
+    		  BY BID_NO DESC
 	</entry>
 	<entry key="purchaseCount">
 		SELECT COUNT(*) LISTCOUNT
@@ -36,9 +38,10 @@
 		  FROM BID
 		 WHERE SALE_NO = ?
 	</entry>
-	<entry key="deletePurchase">
-		DELETE 
-		  FROM BID
+	<entry key="deleteDetail">
+		UPDATE 
+		       BID
+		   SET BID_STATUS = '입찰취소'
 		 WHERE BID_NO = ?
 	</entry>
 	<entry key="selectPurchaseStatus">
@@ -58,6 +61,7 @@
 		  LEFT JOIN SALE USING(SALE_NO)
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE T.MEM_USER_NO = ?
+		   AND TRADE_STATUS != '배송완료'
 	</entry>
 	<entry key="selectStatusInfo">
 		SELECT 
@@ -77,4 +81,17 @@
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE TRADE_NO = ?
 	</entry>
+	<entry key="updateStatus">
+		UPDATE
+		       TRADE
+		   SET TRADE_STATUS = '배송완료'
+		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="deletePurchase">
+		UPDATE 
+		       TRADE
+		   SET TRADE_STATUS = '구매취소'
+		 WHERE TRADE_NO = ?
+	</entry>
+	
 </properties>

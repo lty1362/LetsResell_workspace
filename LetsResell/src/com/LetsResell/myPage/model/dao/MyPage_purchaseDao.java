@@ -131,13 +131,13 @@ public class MyPage_purchaseDao {
 		return result;
 	}
 
-	public int deletePurchase(Connection conn, int bno) {
+	public int deleteDetail(Connection conn, int bno) {
 		
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("deletePurchase");
+		String sql = prop.getProperty("deleteDetail");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -243,6 +243,30 @@ public class MyPage_purchaseDao {
 		
 		return list;
 		
+	}
+
+	public int updateStatus(Connection conn, int tno) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("updateStatus");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tno);
+			
+			rset = pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }
