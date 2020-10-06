@@ -36,10 +36,9 @@ public class ChangePwdServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String userName= request.getParameter("userName");
-		String userPwd = request.getParameter("userPwd"); 
 		String newPwd = request.getParameter("newPwd");
 		
-		int result = new MemberService().changePwdMember(userPwd, newPwd, userName);
+		int result = new MemberService().changePwdMember(newPwd, userName);
 		
 		HttpSession session = request.getSession();
 		

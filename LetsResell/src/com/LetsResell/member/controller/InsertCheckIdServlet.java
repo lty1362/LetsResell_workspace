@@ -38,8 +38,11 @@ public class InsertCheckIdServlet extends HttpServlet {
 		
 		
 		String userId = request.getParameter("userId"); 
+			
 		
 		Member m =new MemberService().selectByUserId(userId);
+		
+	
 		
 		HttpSession session = request.getSession();
 		 JSONObject obj = new JSONObject();
@@ -48,7 +51,7 @@ public class InsertCheckIdServlet extends HttpServlet {
 	        
 	    
 	        if(m != null ) {
-	        	obj.put("loginUser", m.getUserId());
+	        	obj.put("loginUserId", m.getUserId());
 	        	response.getWriter().print(obj);
 	        }else {
 	        	obj.put("loginUser", "사용해도 됩니다.");

@@ -33,7 +33,7 @@
                        </fieldset>
                 </div>
                <div id="btn_area">
-                   <button type="submit" id="checkBtn" onclick="location.href='<%=request.getContextPath() %>/loginAgree.me'" >다음</button>
+                   <button type="submit" id="checkBtn" onclick="location.href='<%=request.getContextPath() %>/authCheckId.me'" >다음</button>
                </div>
               </form>
           </div>
