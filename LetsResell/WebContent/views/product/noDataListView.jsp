@@ -33,6 +33,8 @@
                 <br>
 
                 <div id="btn_box" align="center">
+                
+                	<input type="hidden" value="<%= p.getPrNo() %>">
 
                     <div id="wish_btn">
 
