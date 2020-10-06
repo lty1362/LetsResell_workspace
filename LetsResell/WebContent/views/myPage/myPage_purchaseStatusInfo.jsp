@@ -3,168 +3,15 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+	ArrayList<Address> addressList = (ArrayList<Address>)request.getAttribute("addressList");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        div{
-            box-sizing: border-box;
-        }
-        .content{
-            width: 1200px;
-            height: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 80px;
-        }
-
-        .bid_list span{
-            color: red;
-            font-size: 15px;
-        }
-
-        /*입찰날짜*/
-
-        .bid_date {
-            overflow: hidden;
-            border: 5px solid rgb(194, 193, 193);
-            padding: 10px;
-        }
-
-        .bid_date ul{
-            list-style: none;
-            width: 100%;
-            margin-bottom: 0;
-        }
-
-        .bid_date ul li{
-            float: left;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        /*입찰진행 바디*/
-        .bid_body{
-            width: 920px;
-            margin-left: 280px;
-            box-sizing: border-box;
-        }
-
-        .bid_title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333333;
-            margin-top: 0px;
-            margin-bottom: 30px;
-        }
-
-        /*상품 정보 테이블*/
-        .bid_list table{
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .bid_list table thead th{
-            color: #333;
-            height: 40px;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .bid_list table tbody td{
-            height: 150px;
-        }
-
-        .bid_list table tbody td dl{
-            text-align: left;
-            font-size: 13px;
-            margin: 0px;
-        }
-
-        .bid_list table #btn{
-            font-size: 12px; 
-            padding: 4px;
-            margin: 5px;
-            background-color: #333;
-            border: 1px solid #333;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .product_info dd{
-            margin: 0px;
-        }
-
-        .product_info span{
-            color: black;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /*결제정보*/
-        .payment{
-            margin-top: 50px;
-        }
-
-        .payment p {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .payment table{
-            width: 100%;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .payment table td{
-            padding: 10px;
-            padding-right: 30px;
-            padding-left: 30px;
-        }
-
-        /*배송지정보*/
-        .deliveryInfo{
-            margin-top: 50px;
-        }
-
-        .deliveryInfo table{
-            width: 100%;
-            height: 130px;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .deliveryInfo table th{
-            text-align: center;
-            width: 200px;
-        }
-
-        .deliveryInfo table td{
-            padding-left: 20px;
-        }
-
-        .deliveryInfo p{
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .deliveryInfo #btn{
-            font-size: 12px;
-            font-weight: bold; 
-            padding: 4px;
-            margin: 5px;
-            background-color: lightgray;
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            color: #333;
-        }
-
-    </style>
+<%@ include file="../../resources/css/myPage/myPage_purchaseStatusInfo.css"%>
 </head>
 <body>
 
@@ -285,8 +132,8 @@
                                 <td style="background-color: #333; color: white; text-align: right;"><%=list.get(0).getTradePrice() %></td>
                             </tr>
                             <tr>
-                                <td>배송비</td>
-                                <td>3,000</td>
+                                <td></td>
+                                <td></td>
                                 <td rowspan="2" style="background-color: #333;"></td>
                                 <td rowspan="2" style="background-color: #333;"></td>
                             </tr>
@@ -309,25 +156,31 @@
 
                     <div class="deliveryInfo">
                         <p>배송지 정보</p>
+                        <%
+							int userNo = loginUser.getUserNo();
+							String userId = loginUser.getUserId();
+							String userName = loginUser.getName();
+							String userPhone = loginUser.getPhone();
+							String userPwd = loginUser.getUserPwd();
+						%>
 
                         <table>
                             <tr>
                                 <th>수령인</th>
-                                <td>홍길동</td>
+                                <td><%=userName %></td>
                                 <td rowspan="3" width="300px">
                                     
                                     	주문자 정보 
                                     <button id="btn">회원정보변경</button> <br>
-                                    	홍길동 <br>
-                                    010-3256-1533 <br>
-                                    email@gmail.com
+                                    	<%=userName %> <br>
+                                    <%=userPhone %> <br>
 
                                 </td>
                             </tr>
 
                             <tr>
                                 <th>연락처</th>
-                                <td>010-3256-1533</td>
+                                <td><%=userPhone %></td>
                             </tr>
 
                             <tr>

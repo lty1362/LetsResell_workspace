@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPage_purchaseService;
+import com.LetsResell.myPage.model.service.MyPage_service;
+import com.LetsResell.myPage.model.vo.Card;
 import com.LetsResell.myPage.model.vo.Trade;
 
 /**
@@ -34,9 +36,13 @@ public class MyPagePurchaseStatusInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		ArrayList<Trade> list = new MyPage_purchaseService().selectStatusInfo(tno);
 		request.setAttribute("list", list);
+		
+		ArrayList<Card> cardList = new MyPage_service().selectCard(userNo);
+		request.setAttribute("cardList", cardList);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseStatusInfo.jsp");
 		view.forward(request, response);

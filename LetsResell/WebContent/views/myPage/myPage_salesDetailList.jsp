@@ -10,166 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        div{
-            box-sizing: border-box;
-        }
-        .outer{
-            width: 1200px;
-            height: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 80px;
-        }
-        
-        #btn{
-            font-size: 12px;
-            padding: 4px;
-            margin: 4px;
-            background-color: #333;
-            border: 1px solid #333;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .sales_list span{
-            color: red;
-            font-size: 15px;
-        }
-
-        /*판매내역 바디*/
-
-        .mypage_body{
-            width: 920px;
-            margin-left: 280px;
-            box-sizing: border-box;
-        }
-
-        .sales_title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333333;
-            margin-top: 0px;
-            margin-bottom: 30px;
-        }
-
-        /*header*/
-        
-        ul.sales_header {
-            background-color: #F7F7F7;
-            margin: 0;
-            padding: 20px 0;
-            list-style: none;
-            display: flex;
-        }
-
-        ul.sales_header li {
-            flex: 1;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-left: 25px;
-            padding-right: 15px;
-            border-right: 1px solid #e6e6e6;
-        }
-
-        ul.sales_header li div {
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        ul.sales_header li a {
-            color: #333;
-            font-size: 16px;
-            text-align: right;
-        }
-
-        ul.sales_header li a span {
-            display: block;
-            line-height: 1.8;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /*tab*/
-        ul.sales_tabs {
-            display: flex;
-            margin: 0;
-            margin-top: 20px;
-            padding: 0;
-        }
-
-        ul.sales_tabs li {
-            flex: 1;
-            border: 1px solid #dfdfdf;
-            box-sizing: border-box;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        ul.sales_tabs li span {
-            display: block;
-            font-size: 14px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .sales_list table{
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .sales_list table thead th{
-            background-color: #333;
-            color: white;
-            height: 40px;
-        }
-
-        .sales_list table tbody td{
-            height: 100px;
-        }
-        
-        /*상품 정보 테이블*/
-        .sales_list table{
-            width: 100%;
-            text-align: center;
-        }
-
-        .sales_list table thead th{
-            background-color: #333;
-            color: white;
-            height: 40px;
-        }
-
-        .sales_list table tbody td{
-            height: 150px;
-        }
-
-        .sales_list table tbody tr{
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .product_info dl{
-            text-align: left;
-            font-size: 13px;
-            margin: 0px;
-        }
-
-        .product_info dd{
-            margin: 0px;
-        }
-                
-</style>
+<%@ include file="../../resources/css/myPage/myPage_salesDetailList.css"%>
+<script type="text/javascript" src="resources/js/myPage/myPage_sales.js" ></script> 
 </head>
 <body>   
 
@@ -296,35 +138,6 @@
                             </li>
                     </ul>
                     
-                    <script>
-                    
-	                    $(function(){
-	                    	
-	                    	$(".1").click(function(){
-	                    		
-	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>"
-	                    		
-	                    	});
-	                    	
-							$(".2").click(function(){
-	                    		
-								$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
-	                    		
-	                    	});
-							
-							$(".3").click(function(){
-	                    		
-	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/salesCom.mp"
-	                    		
-	                    	});
-	            	   		
-	            	   	});
-
-                    </script>
-                    
                     <div class="myrow" style="margin-top: 20px;">
                         <div class="select_list">
                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
@@ -399,7 +212,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteList.mp';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteList.mp?sno=<%=list.get(i).getSaleNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </div>
 

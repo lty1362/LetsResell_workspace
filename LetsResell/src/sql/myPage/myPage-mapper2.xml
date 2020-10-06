@@ -52,6 +52,7 @@
 		     , TRADE_NUMBER
 		     , TRADE_CONCLUDE
 		     , TRADE_PRICE
+		     , SALE_NO
 		     , SALE_NAME
 		     , SALE_CONDITION
 		     , SALE_SIZE
@@ -82,11 +83,27 @@
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE TRADE_NO = ?
 	</entry>
+	<entry key="selectAddress">
+		SELECT ADDRESS_CODE
+		     , ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		     , ADDRESS_PHONE
+		     , ADDRESS_NAME
+		     , ADDRESS_MESSAGE
+		  FROM ADDRESS
+		  WHERE MEM_USER_NO = ?
+	</entry>
 	<entry key="updateStatus">
 		UPDATE
 		       TRADE
 		   SET TRADE_STATUS = '배송완료'
 		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="updateSalesStatus">
+		UPDATE 
+		       SALE
+		   SET SALE_STATUS = '거래완료'
+		 WHERE SALE_NO = ?
 	</entry>
 	<entry key="deletePurchase">
 		UPDATE 

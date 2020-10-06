@@ -235,6 +235,82 @@ public class MyPageSalesDao {
 		return result;
 	}
 
+	public int deleteList(Connection conn, int sno) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public ArrayList<Sale> selectSalesCom(Connection conn, int userNo) {
+		
+		ArrayList<Sale> sclist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSalesCom");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Sale s = new Sale();
+				s.setSaleNo(rset.getInt("SALE_NO"));
+				s.setSalePrice(rset.getInt("SALE_PRICE"));
+				s.setSaleName(rset.getString("SALE_NAME"));
+				s.setSaleEnrollDate(rset.getDate("SALE_ENROLL_DATE"));
+				s.setSaleCondition(rset.getString("SALE_CONDITION"));
+				s.setSaleStatus(rset.getString("SALE_STATUS"));
+				s.setSaleSize(rset.getString("SALE_SIZE"));
+				s.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				s.setSalePeriod(rset.getString("SALE_PERIOD"));
+				s.setTradePrice(rset.getInt("TRADE_PRICE"));
+				s.setTradeStatus(rset.getString("TRADE_STATUS"));
+				s.setTradeNo(rset.getInt("TRADE_NO"));
+				s.setTradeService(rset.getString("TRADE_SERVICE"));
+				s.setTradeNum(rset.getInt("TRADE_NUMBER"));
+				s.setTitleImg(rset.getString("TITLEIMG"));
+				
+				sclist.add(s);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return sclist;
+		
+	}
+
 
 
 }

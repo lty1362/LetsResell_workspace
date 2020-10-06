@@ -82,4 +82,33 @@
 		     , TRADE_NUMBER = ?
 		 WHERE TRADE_NO = ?
 	</entry>
+	<entry key="deleteList">
+		UPDATE 
+		       SALE
+		   SET SALE_STATUS = '거래취소'
+		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="selectSalesCom">
+		SELECT 
+		       SALE_NO
+		     , SALE_PRICE
+		     , SALE_NAME
+		     , SALE_ENROLL_DATE
+		     , SALE_CONDITION
+		     , SALE_STATUS
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , SALE_PERIOD
+		     , TRADE_PRICE
+		     , TRADE_STATUS
+		     , TRADE_NO
+		     , TRADE_SERVICE
+		     , TRADE_NUMBER
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM SALE S
+		  JOIN P_IMG USING(PR_NO)
+		  JOIN TRADE USING(SALE_NO)
+		 WHERE S.MEM_USER_NO = ?
+		   AND SALE_STATUS = '거래완료'
+	</entry>
 </properties>
