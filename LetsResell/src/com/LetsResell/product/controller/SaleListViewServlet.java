@@ -64,11 +64,19 @@ public class SaleListViewServlet extends HttpServlet {
 		
 		
 		if(list.isEmpty()) {
+			listCount = new ProductService().selectProductImgListCount(prNo);
 			pageLimit = 4;
-			boardLimit = 4;
+			boardLimit = 3;
 			
-			pi.setPageLimit(pageLimit);
-			pi.setBoardLimit(boardLimit);
+			maxPage = (int)Math.ceil((double)listCount / boardLimit);
+			startPage = (currentPage -1) / pageLimit * pageLimit +1;
+			endPage = startPage + pageLimit -1;
+			
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 			
 			Product p = new ProductService().selectProductInfo(prNo);
 			ArrayList<Product> imgList = new ProductService().selectProductImgList(prNo, pi);

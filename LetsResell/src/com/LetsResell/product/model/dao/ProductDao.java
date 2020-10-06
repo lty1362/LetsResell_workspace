@@ -388,6 +388,7 @@ public class ProductDao {
 			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() +1;
 			int endRow = startRow + pi.getBoardLimit() -1;
 			
+			
 			pstmt.setInt(1, prNo);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
@@ -397,7 +398,7 @@ public class ProductDao {
 			while(rset.next()) {
 				Product p = new Product();
 				
-				p.setTitleImg(rset.getString(1));
+				p.setTitleImg(rset.getString("TITLEIMG"));
 				
 				imgList.add(p);
 			}
@@ -430,5 +431,33 @@ public class ProductDao {
 		}
 		
 		return result;
+	}
+	
+	public int selectProductImgListCount(Connection conn, int prNo) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductImgListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, prNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
 	}
 }

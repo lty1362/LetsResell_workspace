@@ -136,6 +136,18 @@ public class ProductService {
 			rollback(conn);
 		}
 		
+		close(conn);
+		
 		return result;
+	}
+	
+	public int selectProductImgListCount(int prNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().selectProductImgListCount(conn, prNo);
+		
+		close(conn);
+		
+		return listCount;
 	}
 }

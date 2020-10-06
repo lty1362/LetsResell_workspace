@@ -180,6 +180,15 @@
 		   AND PR_STATUS = 'Y'
 	</entry>
 	
+	<entry key="selectProductImgListCount">
+		SELECT
+		       COUNT(*)
+		  FROM P_IMG
+		  JOIN P_REG USING(PR_NO)
+		 WHERE PR_STATUS = 'Y'
+		   AND PR_NO = ?
+	</entry>
+	
 	<entry key="selectProductImgList">
 		SELECT *
 			   FROM (
@@ -193,7 +202,7 @@
 			                 JOIN P_REG USING(PR_NO)
 			                WHERE PR_STATUS = 'Y'
 			                  AND PR_NO = ?
-			                ORDER BY PR_IMG_NO DESC
+			                ORDER BY PR_IMG_NO ASC
 			               ) A
 			         )
 		 WHERE RNUM BETWEEN ? AND ?

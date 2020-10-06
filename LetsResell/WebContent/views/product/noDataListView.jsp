@@ -76,9 +76,9 @@
 
                     <div id="sale_btn">
 						
-						<% for(int i=pi.getStartPage(); i<= pi.getEndPage(); i++) { %>
+					<% for(int i=pi.getStartPage(); i<= pi.getEndPage(); i++) { %>
                         <button onclick="location.href='<%= contextPath %>/saleList.sa?prNo=<%=p.getPrNo()%>&currentPage=<%=i%>';"></button>
-                        <% } %>
+                    <% } %>
 
                     </div>
 
