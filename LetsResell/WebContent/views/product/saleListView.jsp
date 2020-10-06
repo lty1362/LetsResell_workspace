@@ -69,7 +69,7 @@
 			<% for(Sale s : list) { %>
             <div id="product">
 				<input type="hidden" value="<%= s.getSaleNo() %>">
-                <div id="product_img">
+                <div id="product_img" class="product_img">
                     <img src="<%= contextPath %>/<%= s.getTitleImg() %>" alt="<%= s.getSaleName() %>" width="100%" height="100%">
                 </div>
 
