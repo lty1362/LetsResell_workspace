@@ -1,8 +1,6 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.myPage.model.service.MyPage_purchaseService;
 
 /**
- * Servlet implementation class MyPageDeletePurchaseServlet
+ * Servlet implementation class MyPageUpdatePusrchaseStatusServlet
  */
-@WebServlet("/deleteDetail.mp")
-public class MyPageDeletePurchaseServlet extends HttpServlet {
+@WebServlet("/updateStatus.mp")
+public class MyPageUpdatePusrchaseStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageDeletePurchaseServlet() {
+    public MyPageUpdatePusrchaseStatusServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +29,12 @@ public class MyPageDeletePurchaseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int bno = Integer.parseInt(request.getParameter("bno")); 
+		int tno = Integer.parseInt(request.getParameter("tno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		int result = new MyPage_purchaseService().deleteDetail(bno);
+		int result = new MyPage_purchaseService().updateStatus(tno);
 		
-		response.sendRedirect(request.getContextPath() + "/purchaseDetail.mp?userNo=" + userNo);				
+		response.sendRedirect(request.getContextPath() + "/purchaseStatus.mp?userNo=" + userNo); 
 		
 	}
 

@@ -69,11 +69,11 @@ public class MyPage_purchaseService {
 	 * @param bno
 	 * @return
 	 */
-	public int deletePurchase(int bno) {
+	public int deleteDetail(int bno) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MyPage_purchaseDao().deletePurchase(conn, bno);
+		int result = new MyPage_purchaseDao().deleteDetail(conn, bno);
 		
 		if(result>0) {
 			commit(conn);
@@ -119,6 +119,26 @@ public class MyPage_purchaseService {
 		
 		return list;
 		
+	}
+	
+	/**
+	 * 7.구매진행
+	 * @param tno
+	 * @return
+	 */
+	public int updateStatus(int tno) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_purchaseDao().updateStatus(conn,tno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
 	}
 
 

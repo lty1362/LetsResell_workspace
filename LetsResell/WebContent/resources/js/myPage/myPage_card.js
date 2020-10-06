@@ -5,4 +5,10 @@ $(document).ready(function(){
 	$("#btn_insertCard").on("click", function(){
 		$("#insertCardForm").submit();
 	});
+	
+	// 등록된 카드 삭제 처리
+	$(".btn_deleteCard").on("click", function(){
+		$(".div_info").hide(3000);
+	});
+	
 });

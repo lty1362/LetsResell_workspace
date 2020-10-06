@@ -43,9 +43,9 @@ public class ProductService {
 		return list;
 	}
 	
-	public int searchListCount(String filter, String search) {
+	public int searchListCount(String filter, String search, String category) {
 		Connection conn = getConnection();
-		int listCount = new ProductDao().searchListCount(conn, filter, search);
+		int listCount = new ProductDao().searchListCount(conn, filter, search, category);
 		close(conn);
 		return listCount;
 	}
@@ -53,6 +53,13 @@ public class ProductService {
 	public ArrayList<Admin_Product> searchList(String filter, String search, Admin_PageInfo pi) {
 		Connection conn = getConnection();
 		ArrayList<Admin_Product> list = new ProductDao().searchList(conn, filter, search, pi);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Admin_Product> searchList(String filter, String search, String category, Admin_PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Admin_Product> list = new ProductDao().searchList(conn, filter, search, category, pi);
 		close(conn);
 		return list;
 	}

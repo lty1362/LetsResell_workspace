@@ -35,8 +35,8 @@
                     <input type="button" value="상의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Tops#body_right';">
                     <input type="button" value="하의" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Bottoms#body_right';">
                     <input type="button" value="아우터" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Outers#body_right';">
-                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Accessories#body_right';">
                     <input type="button" value="신발" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Footwear#body_right';">
+                    <input type="button" value="악세사리" onclick="location.href='<%=contextPath%>/productCategory.admin?currentPage=1&category=Accessories#body_right';">
                 </div>
                 <div id="productList">
                     <table>
@@ -74,17 +74,21 @@
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
                     <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
-                <div id="search"  align="center">
-                    <select name="filter" id="filter">
-                        <option value="code" selected>제품코드</option>
-                        <option value="name">제품명</option>
-                        <option value="brand">브랜드</option>
-                        <option value="color">컬러</option>
-                    </select>
-                    <div id="search_in">
-                        <input type="search"><input type="submit" value="검색">
-                    </div>
-                </div>
+                <form action="productCategorySearch.admin" method="post">
+                	<input type="hidden" name="currentPage" value="1">
+                	<input type="hidden" name="category" value="<%=category%>">
+	                <div id="search"  align="center">
+	                    <select name="filter" id="filter">
+	                        <option value="code" selected>제품코드</option>
+	                        <option value="name">제품명</option>
+	                        <option value="brand">브랜드</option>
+	                        <option value="color">컬러</option>
+	                    </select>
+	                    <div id="search_in">
+	                        <input name="search" type="search"><input type="submit" value="검색">
+	                    </div>
+	                </div>
+               	</form>
             <div id="bigPageArea">
                 <div class="pagingArea">
 			            <%if(currentPage == 1){ %>

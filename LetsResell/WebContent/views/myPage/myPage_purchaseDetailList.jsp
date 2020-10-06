@@ -480,7 +480,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath %>/deletePurchase.mp?bno=<%=list.get(i).getBidNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteDetail.mp?bno=<%=list.get(i).getBidNo() %>&userNo=<%=loginUser.getUserNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </form>   
                                                   </div>

@@ -4,6 +4,7 @@
 <%
 	ArrayList<Admin_Product> list = (ArrayList<Admin_Product>)request.getAttribute("list");
 	Admin_PageInfo pi = (Admin_PageInfo)request.getAttribute("pi");
+	String category = (String)request.getAttribute("category");
 	String filter = (String)request.getAttribute("filter");
 	String search = (String)request.getAttribute("search");
 	
@@ -20,7 +21,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지</title>
-<link rel="stylesheet" href="/LetsResell/resources/css/admin/admin_productSearch.css">
+<link rel="stylesheet" href="/LetsResell/resources/css/admin/admin_productCategory.css">
 </head>
 <body>
 	<div id="wrap">
@@ -71,14 +72,13 @@
 	            		<% } %>
             		</table>
                 </div>
-                
                 <div id="productUpdate">
                     <input type="button" value="삭제" data-toggle="modal" data-target="#deleteForm">
                     <input type="button" value="등록" onclick="location.href='<%=contextPath%>/productEnrollForm.admin';">
                 </div>
-                
-                <form action="productSearch.admin" method="post">
+                <form action="productCategorySearch.admin#body" method="post">
                 	<input type="hidden" name="currentPage" value="1">
+                	<input type="hidden" name="category" value="<%=category%>">
 	                <div id="search"  align="center">
 	                    <select name="filter" id="filter">
 	                        <option value="code" selected>제품코드</option>
@@ -90,26 +90,28 @@
 	                        <input name="search" type="search"><input type="submit" value="검색">
 	                    </div>
 	                </div>
-                </form>
+               	</form>
             <div id="bigPageArea">
-                <div class="pagingArea" align="center">
+                <div class="pagingArea">
 			            <%if(currentPage == 1){ %>
 			            	<button>&lt;</button>
 			            <% } else { %>
-			            	<form action="productSearch.admin#body_right" method="post">
+			            	<form action="productCategorySearch.admin#body" method="post">
+			            		<input type="hidden" name="category" value="<%=category%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
 			            		<input type="hidden" name="filter" value="<%=filter%>">
 			            		<input type="hidden" name="search" value="<%=search%>">
-			            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
 			           			<button type="submit">&lt;</button>
 			           		</form>
 			            <% } %>
 			            
 				            <% for(int p = startPage; p <= endPage ; p++){ %>
 				            	<% if(p != currentPage){ %>
-				            	<form action="productSearch.admin#body_right" method="post">
-				            		<input type="hidden" name="filter" value="<%=filter%>">
-				            		<input type="hidden" name="search" value="<%=search%>">
+				            	<form action="productCategorySearch.admin#body" method="post">
+				            		<input type="hidden" name="category" value="<%=category%>">
 				            		<input type="hidden" name="currentPage" value="<%=p%>">
+				            		<input type="hidden" name="filter" value="<%=filter%>">
+			            			<input type="hidden" name="search" value="<%=search%>">
 				           			<button type="submit"><%= p %></button>
 			           			</form>
 				            	<% } else { %>
@@ -120,10 +122,11 @@
 			            <%if(currentPage == maxPage){ %>
 			            	<button>&gt;</button>
 			            <% } else {%>
-			            	<form action="productSearch.admin#body_right" method="post">
+			            	<form action="productCategorySearch.admin#body" method="post">
+			            		<input type="hidden" name="category" value="<%=category%>">
+			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
 			            		<input type="hidden" name="filter" value="<%=filter%>">
 			            		<input type="hidden" name="search" value="<%=search%>">
-			            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
 			           			<button type="submit">&gt;</button>
 			           		</form>
 			            <% } %>
@@ -141,9 +144,8 @@
                     </div>
                     
                     <div class="modal-body" align="center">
-                        <form action="productSearchDelete.admin" method="POST">
-	                        	<input type="hidden" name="filter" value="<%=filter%>">
-	                        	<input type="hidden" name="search" value="<%=search%>">
+                        <form action="productCategoryDelete.admin" method="POST">
+	                        	<input type="hidden" name="category" value="<%=category%>">
 	                        	<input type="hidden" name="checked" id="checked">
                             <br>
                             <button type="submit" class="btn btn-secondary" onclick="check();">Yes</button>
@@ -159,16 +161,16 @@
     <script>
 	 	// modify
 		$(function(){
-				$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
+			$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
 	 		$("#productList>table tr td").not($(".ut")).click(function(){
 	 			var code = $(this).siblings().eq(0).html();
 	   			location.href = "<%=contextPath%>/productDetail.admin?productCode="+code;
 			});
 		});
-	 	
-    	// delete
+ 	
+		// delete
 	    var arr = [];
-    	check = function(){
+		check = function(){
 	    	$('#productList input').each(function(index){
 	    	    if($(this).is(":checked")==true){
 	    	    	arr.push($(this).closest("td").siblings().eq(0).html());
@@ -176,7 +178,7 @@
 	    	});
 	    	var checked = arr.join();
 	    	$("#checked").val(checked);
-    	}
+		}
     </script>
 </body>
 </html>
