@@ -64,7 +64,7 @@
             moveSlides:1,
             slideWidth: 360,
             slideMargin: 10,
-            controls:true,
+            controls:false,
 
    	 	});
     
