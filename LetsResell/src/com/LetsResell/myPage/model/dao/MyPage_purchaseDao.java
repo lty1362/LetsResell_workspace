@@ -269,4 +269,75 @@ public class MyPage_purchaseDao {
 		return result;
 	}
 
+	public int deletePurchase(Connection conn, int tno) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("deletePurchase");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tno);
+			
+			rset = pstmt.executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+
+	public ArrayList<Trade> selectPurchaseCom(Connection conn, int userNo) {
+		
+		ArrayList<Trade> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPurchaseCom");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Trade t = new Trade();
+				t.setTradeNo(rset.getInt("TRADE_NO"));
+				t.setTradeStatus(rset.getString("TRADE_STATUS"));
+				t.setTradeService(rset.getString("TRADE_NUMBER"));
+				t.setTradeCon(rset.getDate("TRADE_CONCLUDE"));
+				t.setTradePrice(rset.getInt("TRADE_PRICE"));
+				t.setSaleName(rset.getString("SALE_NAME"));
+				t.setSaleCondition(rset.getString("SALE_CONDITION"));
+				t.setSaleSize(rset.getString("SALE_SIZE"));
+				t.setSaleCategory(rset.getString("SALE_CATEGORY"));
+				t.setTitleImg(rset.getString("TITLEIMG"));
+				
+				list.add(t);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
 }

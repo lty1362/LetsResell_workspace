@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
+	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -202,7 +203,7 @@
                                 	구매입찰현황 <br>
                                 <span>
                                 
-                                	<%if(list.isEmpty()) {%>
+                                	<%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -210,7 +211,7 @@
                                     	
                                     	<% int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     	
                                     		<%result = i+1; %>
                                     		
@@ -258,16 +259,27 @@
                             </div>
                             <a>
                                 	구매완료 <br>
-                                <span>0건</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div>
-                                <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_paycard.png">
-                            </div>
-                            <a>
-                                	구매총액 <br>
-                                <span>0원</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                     </ul>
@@ -278,7 +290,7 @@
                                     <span>
                                     
                                     	(
-                                    		<%if(list.isEmpty()) {%>
+                                    		<%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -286,7 +298,7 @@
                                     	
                                     	<% int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     	
                                     		<%result = i+1; %>
                                     		
@@ -331,7 +343,29 @@
                             <li class="3">
                                 <a>
                                    	 구매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
@@ -357,7 +391,7 @@
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 	            	   		
@@ -439,7 +473,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath%>/updateStatus.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/updateStatus.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </div>
                                                   
@@ -472,7 +506,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                     
                                                   </div>
