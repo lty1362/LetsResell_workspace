@@ -11,8 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="../../resources/css/myPage/myPage_purchaseStatusList.css"%>
-<script type="text/javascript" src="resources/js/myPage/myPage_purchase.js" ></script> 
+<%@ include file="../../resources/css/myPage/myPage_purchaseStatusList.css"%> 
 </head>
 <body>
 
@@ -202,6 +201,34 @@
                                 </a>
                             </li>
                     </ul>
+                    <script>
+                    
+	                    $(function(){
+	                    	
+	                    	$(".1").click(function(){
+	                    		
+	                    		$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>"
+	                    		
+	                    	});
+	                    	
+							$(".2").click(function(){
+	                    		
+								$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>"
+	                    		
+	                    	});
+							
+							$(".3").click(function(){
+	                    		
+	                    		$(this).css({color:"orange"});
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
+	                    		
+	                    	});
+	            	   		
+	            	   	});
+
+                    </script>
                     <div class="myrow" style="margin-top: 20px;">
                         <div class="select_list">
                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
