@@ -306,7 +306,7 @@
 	                                                    <br>
 	                                                    <span style="color: red;">
 	                                                        * 현재입찰가격 : <%=blist.get(i).getBidPrice()%> <br>
-	                                                        * 현재최고입찰가격 : 
+	                                                        <!-- * 현재최고입찰가격 : -->
 	                                                    </span>
 	                                                    
 	                                                    <hr>
