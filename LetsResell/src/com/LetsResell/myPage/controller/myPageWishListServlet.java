@@ -57,12 +57,19 @@ public class myPageWishListServlet extends HttpServlet {
 		WishlistPageInfo wishlistPage = new WishlistPageInfo(wishlistCount, currentPage, pageLimit, wishlistLimit, maxPage, startPage, endPage);
 		request.setAttribute("wishlistPage", wishlistPage);
 		
+		
 		// 위시리스트 조회
-		ArrayList<Wishlist> wishlist = new MyPage_service().selectWishlist(userNo, wishlistPage);
-		request.setAttribute("wishlist", wishlist);	
+		String order = request.getParameter("order");
+		
+		ArrayList<Wishlist> wishlist = new MyPage_service().selectWishlist(userNo, wishlistPage, order);
+		request.setAttribute("wishlist", wishlist);
+		request.setAttribute("order", order);
+		
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_wishListView.jsp");
 		view.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
