@@ -78,7 +78,7 @@
                         <a href="/LetsResell/myPage.info?userNo=<%=login.getUserNo()%>">회원정보</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=1">관심상품</a>
+                        <a href="/LetsResell/myPage.wishlist?userNo=<%=login.getUserNo()%>&currentPage=1&order=new">관심상품</a>
                     </li>
                     <li>
                         <a href="/LetsResell/salesDetail.mp?userNo=<%=login.getUserNo()%>">판매내역</a>
