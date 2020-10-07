@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.LetsResell.myPage.model.dao.MyPageSalesDao;
+import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Sale;
 import com.LetsResell.myPage.model.vo.Trade;
@@ -169,6 +170,23 @@ public class MyPageSalesService {
 		}
 		
 		return tResult;
+		
+	}
+	
+	/**
+	 * 구매자 배송지
+	 * @param tno
+	 * @return
+	 */
+	public ArrayList<Address> selectPAddress(int tno) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Address> alist = new MyPageSalesDao().selectPAddress(conn, tno);
+		
+		close(conn);
+		
+		return alist;
 		
 	}
 	

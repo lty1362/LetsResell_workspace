@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPageSalesService;
 import com.LetsResell.myPage.model.vo.*;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 /**
  * Servlet implementation class MyPafeUpdateDeliveryServlet
@@ -49,6 +50,11 @@ public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 		s.setTradeNum(deliveryNo);
 		
 		int result = new MyPageSalesService().updateDelivery(s);
+		
+		ArrayList<Address> alist = new MyPageSalesService().selectPAddress(tno);
+		request.setAttribute("alist", alist);
+		
+		System.out.println(alist);
 		
 		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
 		request.setAttribute("slist", slist);

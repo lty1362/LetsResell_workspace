@@ -5,6 +5,7 @@
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
+	ArrayList<Address> alist = (ArrayList<Address>)request.getAttribute("alist");
 	Trade t = (Trade)session.getAttribute("t");
 %>
 <!DOCTYPE html>
@@ -181,7 +182,7 @@
 						$(".2").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>&tno=<%=slist.get(0).getTradeNo()%>"
                     		
                     	});
 						
