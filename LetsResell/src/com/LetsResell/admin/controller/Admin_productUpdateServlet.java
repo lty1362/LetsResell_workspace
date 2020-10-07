@@ -17,6 +17,7 @@ import com.LetsResell.admin.model.service.ProductService;
 import com.LetsResell.admin.model.vo.Admin_Image;
 import com.LetsResell.admin.model.vo.Admin_Product;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @WebServlet("/productUpdate.admin")
 public class Admin_productUpdateServlet extends HttpServlet {
@@ -32,7 +33,7 @@ public class Admin_productUpdateServlet extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/images/product/");
 			int maxSize = 100 * 1024 * 1024;
-			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new Admin_RenamePolicy());
+			MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, new DefaultFileRenamePolicy());
 			
 			ArrayList<Admin_Image> list1 = new ArrayList<>();
 			for(int i = 1 ; i <= 1 ; i++) {

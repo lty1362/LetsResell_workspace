@@ -33,7 +33,7 @@ public class Admin_productListServlet extends HttpServlet {
 		
 		listCount = new ProductService().selectListCount();
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		pageLimit = 10;
+		pageLimit = 5;
 		boardLimit = 10;
 		
 		maxPage = (int)Math.ceil((double)listCount/boardLimit);

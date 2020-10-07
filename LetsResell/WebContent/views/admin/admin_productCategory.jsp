@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/LetsResell/resources/css/admin/admin_productCategory.css">
 </head>
 <body>
-	<div id="wrap">
+	<div id="wrap" style="height:1600px">
         <%@ include file= "../common/header.jsp"%>
 
         <div id="body">
@@ -151,6 +151,7 @@
         <%@ include file= "../common/footer.jsp"%>
     </div>
     <script>
+    	$("#footer").css("margin-top","50px");
 	 	// modify
 		$(function(){
 				$("#productList>table tr td").not($(".ut")).hover().css("cursor","pointer");
