@@ -13,7 +13,7 @@
 		                     , PR_MODEL
 		                     , PR_NAME
 		                     , PR_RELEASE_PRICE
-		                     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		                     , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
 		                  FROM P_REG
 		                  JOIN P_IMG USING(PR_NO)
 		                 WHERE PR_NAME LIKE ?
@@ -59,7 +59,7 @@
 		                  , PR_BRAND
 		                  , PR_NAME
 		                  , PR_RELEASE_PRICE
-		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
 		               FROM P_REG
 		               JOIN P_IMG USING(PR_NO)
 		              WHERE PR_CATEGORY = ?
@@ -87,7 +87,7 @@
 		                  , PR_BRAND
 		                  , PR_NAME
 		                  , PR_RELEASE_PRICE
-		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
 		               FROM P_REG
 		               JOIN P_IMG USING(PR_NO)
 		              WHERE PR_CATEGORY = ?
@@ -115,7 +115,7 @@
 		                  , PR_BRAND
 		                  , PR_NAME
 		                  , PR_RELEASE_PRICE
-		                  , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
 		               FROM P_REG
 		               JOIN P_IMG USING(PR_NO)
 		              WHERE PR_CATEGORY = ?
@@ -154,7 +154,7 @@
 		                  , SALE_NAME
 		                  , SALE_CONDITION
 		                  , SALE_SIZE
-		                  , SALE_IMG_URL || SALE_CHANGE_NAME "TITLEIMG"
+		                  , SALE_IMG_URL || SALE_ORIGIN_NAME "TITLEIMG"
 		               FROM SALE
 		               JOIN SALE_IMG USING(SALE_NO)
 		              WHERE SALE_STATUS = '거래 전'
@@ -197,7 +197,7 @@
 			             , A.*
 			          FROM (
 			               SELECT
-			                      PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+			                      PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
 			                 FROM P_IMG
 			                 JOIN P_REG USING(PR_NO)
 			                WHERE PR_STATUS = 'Y'

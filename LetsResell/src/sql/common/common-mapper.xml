@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectEventList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+		                       EVENT_NO
+		                     , EVENT_IMAGE
+		                     , EVENT_DETAIL
+		                     , EVENT_STATUS
+		                  FROM EVENT
+		                 WHERE EVENT_STATUS = 'Y'
+		                 ORDER BY EVENT_NO DESC
+	               ) A
+	               )
+	 WHERE RNUM BETWEEN 1 AND 3
+	</entry>
+	
+	<entry key="selectPopularList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+		                       PR_NO
+		                     , PR_NAME
+		                     , PR_IMG_URL || PR_ORIGIN_NAME TITLEIMG
+		                  FROM P_REG
+		                  JOIN P_IMG USING(PR_NO)
+		                 WHERE PR_STATUS = 'Y'
+		                   AND PR_FILE_LEVEL = 1
+		                 ORDER BY PR_HITS DESC
+		               ) A
+		               )
+		 WHERE RNUM BETWEEN 1 AND 3
+	</entry>
+	
+	<entry key="selectProductList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+		                       PR_NO
+		                     , PR_NAME
+		                     , PR_IMG_URL || PR_ORIGIN_NAME TITLEIMG
+		                  FROM P_REG
+		                  JOIN P_IMG USING(PR_NO)
+		                 WHERE PR_STATUS = 'Y'
+		                   AND PR_FILE_LEVEL = 1
+		                 ORDER BY PR_NO DESC
+		               ) A
+		               )
+		 WHERE RNUM BETWEEN 1 AND 3
+	</entry>
+	
+	<entry key="selectSaleList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+		                       SALE_NO
+		                     , SALE_NAME
+		                     , SALE_IMG_URL || SALE_ORIGIN_NAME TITLEIMG
+		                  FROM SALE
+		                  JOIN SALE_IMG USING(SALE_NO)
+		                 WHERE SALE_STATUS = 'Y'
+		                   AND SALE_FILE_LEVEL = 1
+		                 ORDER BY SALE_NO DESC
+		               ) A
+		               )
+		 WHERE RNUM BETWEEN 1 AND 3
+	</entry>
+	
+	<entry key="selectOldList">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+		                       SALE_NO
+		                     , SALE_NAME
+		                     , SALE_IMG_URL || SALE_ORIGIN_NAME TITLEIMG
+		                  FROM SALE
+		                  JOIN SALE_IMG USING(SALE_NO)
+		                 WHERE SALE_STATUS = 'Y'
+		                   AND SALE_FILE_LEVEL = 1
+		                   AND SALE_CONDITION = 'Used'
+		                 ORDER BY SALE_NO DESC
+		               ) A
+		               )
+		 WHERE RNUM BETWEEN 1 AND 3
+	</entry>
+</properties>
