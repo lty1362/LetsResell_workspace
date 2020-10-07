@@ -1,7 +1,6 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.LetsResell.myPage.model.service.MyPageSalesService;
 
 /**
- * Servlet implementation class MyPageDeleteSalesDetailListServlet
+ * Servlet implementation class MyPageDeleteSalesStatusListServlet
  */
-@WebServlet("/deleteList.mp")
-public class MyPageDeleteSalesDetailListServlet extends HttpServlet {
+@WebServlet("/deleteTrade.mp")
+public class MyPageDeleteSalesStatusListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageDeleteSalesDetailListServlet() {
+    public MyPageDeleteSalesStatusListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +29,16 @@ public class MyPageDeleteSalesDetailListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int tno = Integer.parseInt(request.getParameter("tno"));
 		int sno = Integer.parseInt(request.getParameter("sno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		int result = new MyPageSalesService().deleteList(sno);
-		int pResult = new MyPageSalesService().deletePList(sno);
+		System.out.println(tno);
 		
-		response.sendRedirect(request.getContextPath() + "/salesDetail.mp?userNo=" + userNo);
+		int tResult = new MyPageSalesService().deleteTrade(tno);
+		int result = new MyPageSalesService().deleteList(sno);
+		
+		response.sendRedirect(request.getContextPath() + "/salesStatus.mp?userNo=" + userNo);
 		
 	}
 

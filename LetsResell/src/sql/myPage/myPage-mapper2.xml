@@ -111,6 +111,12 @@
 		   SET TRADE_STATUS = '구매취소'
 		 WHERE TRADE_NO = ?
 	</entry>
+	<entry key="deleteSales">
+		UPDATE 
+		       SALE
+		   SET SALE_STATUS = '거래취소'
+		 WHERE SALE_NO = ?
+	</entry>
 	<entry key="selectPurchaseCom">
 		 SELECT 
 		       TRADE_NO

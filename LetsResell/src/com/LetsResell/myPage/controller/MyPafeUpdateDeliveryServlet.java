@@ -1,6 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +32,16 @@ public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		String deliveryName = request.getParameter("deliveryName");
 		int deliveryNo = Integer.parseInt(request.getParameter("deliveryNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		System.out.println(tno);
+		System.out.println(deliveryName);
+		System.out.println(deliveryNo);
 		
 		Sale s = new Sale();
 		s.setTradeNo(tno);
@@ -41,6 +49,11 @@ public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 		s.setTradeNum(deliveryNo);
 		
 		int result = new MyPageSalesService().updateDelivery(s);
+		
+		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
+		request.setAttribute("slist", slist);
+		
+		response.sendRedirect(request.getContextPath() + "/salesStatus.mp?userNo=" + userNo);
 		
 	}
 

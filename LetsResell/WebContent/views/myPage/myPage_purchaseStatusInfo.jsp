@@ -32,7 +32,7 @@
                             <li style="font-weight: bold; margin-left: 50px;">배송상태</li>
                             <li style="color: red;"><%=list.get(0).getTradeStatus() %></li>
                             <li style="font-weight: bold; margin-left: 50px;">운송장 번호</li>
-                            <li style="font-weight: bold; color: green;"><%=list.get(0).getTradeService() %>/<%=list.get(0).getTradeNum() %></li>
+                            <li style="font-weight: bold; color: green;"><%=list.get(0).getTradeService()%>/<%=list.get(0).getTradeNum()%></li>
                         </ul>
                     </div>
                     
@@ -95,12 +95,12 @@
                                                     <br><br>
                                                     
                                                     	택배사
-                                                    <span style="margin: 10px; font-weight: bold; color: green;">로젠</span>
+                                                    <span style="margin: 10px; font-weight: bold; color: green;"><%=list.get(0).getTradeService()%></span>
 
                                                     <br><br>
 
                                                     	운송장번호
-                                                    <span style="margin: 10px; font-weight: bold; color: green;">152365-52-64589</span>
+                                                    <span style="margin: 10px; font-weight: bold; color: green;"><%=list.get(0).getTradeNum()%></span>
 
                                                   </div>
 

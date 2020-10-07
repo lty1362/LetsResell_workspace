@@ -195,5 +195,21 @@ public class MyPage_purchaseService {
 		
 	}
 
+	public int deleteSales(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int sResult = new MyPage_purchaseDao().deleteSales(conn,sno);
+		
+		if(sResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return sResult;
+		
+	}
+
 
 }

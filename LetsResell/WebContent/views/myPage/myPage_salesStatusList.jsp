@@ -4,6 +4,7 @@
 <%
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
+	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
 	Trade t = (Trade)session.getAttribute("t");
 %>
 <!DOCTYPE html>
@@ -62,7 +63,15 @@
                             </div>
                             <a>
                                	 판매금액 <br>
-                                <span>0원</span>
+                                <span>
+                                <%if(sclist.isEmpty()) {%>
+                                	0원
+                                <%}else { %>
+	                                <%for(int i = 0; i < sclist.size(); i++) {%>
+	                                	<%=sclist.get(i).getTradePrice() %>원
+                                	<%} %>
+                                <%} %>
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -131,7 +140,29 @@
                             <li class="3">
                                 <a>
                                     	판매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(sclist.isEmpty()) {%>
+                                	
+                                		0
+                                	
+                                	<%}else { %>
+                                	
+                                		<%int result = 0; %>
+                                	
+                                		<%for(int i = 0; i < sclist.size(); i++){ %>
+                                		
+                                			<%result = i+1; %>
+                                		
+                                		<%} %>
+                                		
+                                		<%=result %>
+                                	
+                                	<%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
@@ -185,8 +216,8 @@
                             	
                             	<%if(slist.isEmpty()) { %>
                                 <tr>
-                                    <td colspan="3">
-                                        	진행중인 리스트가 없습니다.
+                                    <td colspan="4">
+                                        	거레중인 제품이 없습니다.
                                     </td>
                                 </tr>
                                 <%}else { %>
@@ -238,20 +269,22 @@
 		
 		                                                    <br><br>
 		                                                    
-		                                                    <form action="updateDelivery.mp" method="post">
-		                                                    <input type="hidden" name="tno" id="tno" value="<%=slist.get(i).getTradeNo()%>">
-		                                                   	 택배사
-		                                                    <input type="text" name="deliveryName" value="<%=slist.get(i).getTradeService()%>">
-		
-		                                                    <br><br>
-		
-		                                                   	 운송장번호
-		                                                    <input type="number" name="deliveryNo" value="<%=slist.get(i).getTradeNum() %>">
-		                                                    
-		                                                    <hr>
-		                                                    
-		                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">확인</button>
-		                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		                                                    <form action="<%=contextPath %>/updateDelivery.mp" method="get" id="update">
+			                                                    
+			                                                    <input type="hidden" name="tno" id="tno" value="<%=slist.get(i).getTradeNo()%>">
+			                                                    <input type="hidden" name="userNo" value="<%=loginUser.getUserNo() %>" >
+			                                                   	 택배사
+			                                                    <input type="text" name="deliveryName" value="<%=slist.get(i).getTradeService()%>">
+			
+			                                                    <br><br>
+			
+			                                                   	 운송장번호
+			                                                    <input type="number" name="deliveryNo" value="<%=slist.get(i).getTradeNum() %>">
+			                                                    
+			                                                    <hr>
+			                                                    
+			                                                    <button type="submit" class="btn btn-primary" id="update">확인</button>
+			                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		                                                    
 		                                                    </form>
 		
@@ -286,7 +319,7 @@
 		                                                    
 		                                                    <hr>
 		                                                    
-		                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteSales.mp'" class="btn btn-danger" data-dismiss="modal">예</button>
+		                                                    <button type="button" onclick="location.href='<%=contextPath %>/deleteTrade.mp?tno=<%=slist.get(i).getTradeNo()%>&sno=<%=slist.get(i).getSaleNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
 		                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
 		                                                    
 		                                                  </div>

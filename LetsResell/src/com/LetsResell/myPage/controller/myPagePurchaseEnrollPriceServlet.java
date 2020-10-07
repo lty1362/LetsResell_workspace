@@ -1,6 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,12 +35,15 @@ public class myPagePurchaseEnrollPriceServlet extends HttpServlet {
 		
 		int bidNo = Integer.parseInt(request.getParameter("bidNo"));
 		int enrollPrice = Integer.parseInt(request.getParameter("enrollPrice"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		Bid b = new Bid();
 		b.setBidNo(bidNo);
 		b.setBidPrice(enrollPrice);
 		
 		int result = new MyPage_purchaseService().enrollPrice(b);
+		
+		response.sendRedirect(request.getContextPath() + "/purchaseDetail.mp?userNo=" + userNo);	
 		
 	}
 

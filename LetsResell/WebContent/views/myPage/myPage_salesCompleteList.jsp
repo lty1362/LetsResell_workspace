@@ -61,7 +61,15 @@
                             </div>
                             <a>
                                 	판매금액 <br>
-                                <span>0원</span>
+                                <span>
+                                <%if(sclist.isEmpty()) {%>
+                                	0원
+                                <%}else { %>
+	                                <%for(int i = 0; i < sclist.size(); i++) {%>
+	                                	<%=sclist.get(i).getTradePrice() %>원
+                                	<%} %>
+                                <%} %>
+                                </span>
                             </a>
                         </li>
                         <li>

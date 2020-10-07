@@ -118,6 +118,22 @@ public class MyPageSalesService {
 		
 	}
 	
+	public int deletePList(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int pResult = new MyPageSalesDao().deletePList(conn, sno);
+		
+		if(pResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return pResult;
+		
+	}
+	
 	/**
 	 * 7.판매완료
 	 * @param userNo
@@ -132,6 +148,27 @@ public class MyPageSalesService {
 		close(conn);
 		
 		return sclist;
+		
+	}
+	
+	/**
+	 * 거래진행 삭제
+	 * @param tno
+	 * @return
+	 */
+	public int deleteTrade(int tno) {
+		
+		Connection conn = getConnection();
+		
+		int tResult = new MyPageSalesDao().deleteTrade(conn, tno);
+		
+		if(tResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return tResult;
 		
 	}
 	

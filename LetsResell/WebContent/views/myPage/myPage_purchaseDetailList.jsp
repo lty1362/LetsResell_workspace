@@ -299,6 +299,8 @@
                                                   <div class="modal-body" style="text-align: center;">
                                                    <form action="<%= contextPath %>/enrollPrice.mp" method="get" id="enroll">
                                                    <input type="hidden" name="bidNo" id="bidNo" value="<%=blist.get(i).getBidNo()%>">
+                                                   <input type="hidden" name="userNo" value="<%=loginUser.getUserNo() %>" >
+                                                   <input type="hidden" name="saleNo" id="saleNo" value="<%=blist.get(i).getSaleNo()%>">
 	                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
 	                                                    <input type="number" name="enrollPrice" id="enrollPrice" value="<%=blist.get(i).getBidPrice()%>">
 	                                                    <br>

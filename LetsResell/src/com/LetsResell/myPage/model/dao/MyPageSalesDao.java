@@ -311,6 +311,58 @@ public class MyPageSalesDao {
 		
 	}
 
+	public int deletePList(Connection conn, int sno) {
+		
+		int pResult = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deletePList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			pResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return pResult;
+		
+	}
+
+	public int deleteTrade(Connection conn, int tno) {
+		
+		int tResult = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteTrade");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tno);
+			
+			tResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return tResult;
+		
+	}
+
 
 
 }

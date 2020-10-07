@@ -31,8 +31,10 @@ public class MyPageDeletePurchaseStatusServlet extends HttpServlet {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int sno = Integer.parseInt(request.getParameter("sno"));
 		
 		int result = new MyPage_purchaseService().deletePurchase(tno);
+		int sResult = new MyPage_purchaseService().deleteSales(sno);
 		
 		response.sendRedirect(request.getContextPath() + "/purchaseStatus.mp?userNo=" + userNo);
 		

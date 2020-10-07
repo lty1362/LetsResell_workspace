@@ -33,8 +33,6 @@ public class MyPage_salesStatusListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		ArrayList<Sale> list = new MyPageSalesService().salesListView(userNo);
@@ -42,6 +40,9 @@ public class MyPage_salesStatusListServlet extends HttpServlet {
 		
 		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
 		request.setAttribute("slist", slist);
+		
+		ArrayList<Sale> sclist = new MyPageSalesService().selectSalesCom(userNo);
+		request.setAttribute("sclist", sclist);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesStatusList.jsp");
 		view.forward(request, response);

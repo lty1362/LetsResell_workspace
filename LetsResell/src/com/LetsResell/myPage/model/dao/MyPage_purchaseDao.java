@@ -363,4 +363,28 @@ public class MyPage_purchaseDao {
 		
 	}
 
+	public int deleteSales(Connection conn, int sno) {
+		
+		int sResult = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteSales");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sno);
+			
+			sResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sResult;
+		
+	}
+
 }
