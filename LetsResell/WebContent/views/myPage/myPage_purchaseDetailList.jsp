@@ -4,7 +4,7 @@
 <%
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
-	Bid bid = (Bid)request.getAttribute("bid");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 %>
 <!DOCTYPE html>
 <html>
@@ -306,7 +306,7 @@
 	                                                    <br>
 	                                                    <span style="color: red;">
 	                                                        * 현재입찰가격 : <%=blist.get(i).getBidPrice()%> <br>
-	                                                        * 현재최고입찰가격 : <%=bid.getBidPrice() %>
+	                                                        * 현재최고입찰가격 : 
 	                                                    </span>
 	                                                    
 	                                                    <hr>

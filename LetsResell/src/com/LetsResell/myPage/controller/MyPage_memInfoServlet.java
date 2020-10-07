@@ -42,9 +42,6 @@ public class MyPage_memInfoServlet extends HttpServlet {
 		ArrayList<Address> addressList = new MyPage_service().selectAddress(userNo);
 		request.setAttribute("addressList", addressList);	
 		
-		ArrayList<Bid> blist = new MyPage_purchaseService().purchaseListView(userNo);
-		request.setAttribute("blist", blist);
-		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_memInfoView.jsp");
 		view.forward(request, response);
 		

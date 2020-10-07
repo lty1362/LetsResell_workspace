@@ -37,7 +37,6 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int sno = Integer.parseInt(request.getParameter("sno"));
 		
 		ArrayList<Trade> tlist = new MyPage_purchaseService().selectPurchaseStatus(userNo);
 		request.setAttribute("tlist", tlist);
@@ -45,8 +44,8 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 		ArrayList<Trade> list = new MyPage_purchaseService().selectPurchaseCom(userNo);
 		request.setAttribute("list", list);
 		
-		Bid bid = new MyPage_purchaseService().highestPrice(sno);
-		request.setAttribute("bid", bid);
+		ArrayList<Bid> blist = new MyPage_purchaseService().purchaseListView(userNo);
+		request.setAttribute("blist", blist);
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseDetailList.jsp");
