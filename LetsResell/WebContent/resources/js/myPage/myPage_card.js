@@ -7,8 +7,23 @@ $(document).ready(function(){
 	});
 	
 	// 등록된 카드 삭제 처리
+//	$(".btn_deleteCard").on("click", function(){
+//
+//		//var cardNameArr = new Array();
+//		//cardNameArr.push($(this).attr('name'));
+//	});
+	
+	var cardNameArr = new Array();
 	$(".btn_deleteCard").on("click", function(){
-		$(".div_info").hide(3000);
+		cardNameArr.push($(this).attr('name'));
+		
+		
+		
+//		var cardName = $(this).attr('name');	// 선택한 카드 별칭
+//		var table = $(".div_info").attr('name');
+//		
+//		console.log("cardName : " + cardName + "table : " + table);
+		
 	});
 	
 });

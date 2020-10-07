@@ -93,7 +93,7 @@ pageEncoding="UTF-8"%>
 							등록된 카드가 없습니다.
 						<% }else {%>
 							<% for(Card card : cardList) { %>
-							<table>
+							<table id="<%= card.getCardName() %>" name="<%= card.getCardName() %>">
 				                <tr><td><%= card.getCardName() %></td></tr>
 				                <tr><td><%= card.getCardNumber() %></td></tr>
 			                </table>
@@ -352,6 +352,11 @@ pageEncoding="UTF-8"%>
 											</table>
 						            	<% } %>
 									<% } %>
+									<script>
+										$(".div_info input").click(function(){
+											$(this).closest("tr").closest("table").css("display","none");
+										});
+									</script>
 									<div style="float: right; margin-top: 30px;">
 										<button type="submit" id="btn_deleteCardSave" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
 										<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>

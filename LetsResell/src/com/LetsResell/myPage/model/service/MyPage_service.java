@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static com.LetsResell.template.JDBCTemplate.*;
 
+import com.LetsResell.member.model.vo.Member;
 import com.LetsResell.myPage.model.dao.MyPage_dao;
 import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
@@ -13,6 +14,18 @@ import com.LetsResell.myPage.model.vo.Wishlist;
 import com.LetsResell.myPage.model.vo.WishlistPageInfo;
 
 public class MyPage_service {
+	
+	
+	public Member selectMember(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		Member member = new MyPage_dao().selectMember(conn, userNo);
+		
+		close(conn);
+		
+		return member;
+	}
 	
 	/**
 	 * 등록된 카드 조회
@@ -247,11 +260,11 @@ public class MyPage_service {
 	 * @param userNo	로그인된 회원의 번호
 	 * @return
 	 */
-	public ArrayList<Wishlist> selectWishlist(int userNo, WishlistPageInfo wishlistPage) {
+	public ArrayList<Wishlist> selectWishlist(int userNo, WishlistPageInfo wishlistPage, String order) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Wishlist> wishlist = new MyPage_dao().selectWishlist(conn, userNo, wishlistPage);
+		ArrayList<Wishlist> wishlist = new MyPage_dao().selectWishlist(conn, userNo, wishlistPage, order);
 		
 		close(conn);
 		
