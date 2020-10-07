@@ -100,7 +100,7 @@
                     <div class="pro-h-grid">
                        <div>
                            <div class="buy-box">
-                                <a href="">입찰구매</a><br>
+                                <a href="/LetsResell/biddingBuy.pro">입찰구매</a><br>
                                 <span align="center" style="color:white">BUY</span>
                            </div>
                           <!-- 입찰현황 버튼 클릭시 보여질 Modal -->
@@ -117,7 +117,7 @@
 
                                    <!-- Modal body -->
                                    <div class="modal-body" align="center">
-                                        <from action="" method="post">
+                                        <form action="" method="post">
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -144,14 +144,14 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </from>
+                                        </form>
                                    </div>
                                </div>
                            </div>
                        </div>
                        <div>
                             <div class="buy-box">
-                                <a href="">즉시구매</a><br>
+                                <a href="/LetsResell/buyNow.pro">즉시구매</a><br>
                                 <span align="center" style="color:white">BUY</span>
                             </div>
                               <!-- 즉시구매 버튼 클릭시 보여질 Modal -->
@@ -202,10 +202,10 @@
                        </div>
                     </div>      
                     <div>
-                        <div class="buy-box-menu">
-                            <a href="<%=request.getContextPath()%>">다른상품 보러가기 GoGo</a>
-                        </div>
-                        <img class="oos-using-guide" src="" width="100%" height="117" style=" margin-top:30px;">
+	                    <div class="buy-box-menu">
+	                        <a href="<%=request.getContextPath()%>">다른상품 보러가기 GoGo</a>
+	                    </div>
+                        <img class="oos-using-guide" src="<%=request.getContextPath()%>/resources/images/product/sale.png" width="100%" height="117" style=" margin-top:30px;">
                      </div>
                 </div>
             </div>
