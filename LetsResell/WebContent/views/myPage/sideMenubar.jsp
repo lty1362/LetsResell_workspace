@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.LetsResell.member.model.vo.Member, com.LetsResell.myPage.model.vo.*" %>
+<%@ page import = "com.LetsResell.member.model.vo.Member, com.LetsResell.myPage.model.vo.*, java.util.ArrayList" %>
 <%
 	Member login = (Member)session.getAttribute("loginUser");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 %>
 <!DOCTYPE html>
 <html>
@@ -83,7 +84,7 @@
                         <a href="/LetsResell/salesDetail.mp?userNo=<%=login.getUserNo()%>">판매내역</a>
                     </li>
                     <li>
-                        <a href="/LetsResell/purchaseDetail.mp?userNo=<%=login.getUserNo()%>">구매내역</a>
+                        <a href="/LetsResell/purchaseDetail.mp?userNo=<%=login.getUserNo()%>&sno=<%=blist.get(0).getSaleNo()%>">구매내역</a>
                     </li>
                 </ul>
             </div>

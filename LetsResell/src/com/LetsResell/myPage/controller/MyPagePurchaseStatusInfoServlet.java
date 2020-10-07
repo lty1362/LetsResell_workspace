@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPage_purchaseService;
 import com.LetsResell.myPage.model.service.MyPage_service;
-import com.LetsResell.myPage.model.vo.Card;
+import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Sale;
 import com.LetsResell.myPage.model.vo.Trade;
 
 /**
@@ -37,12 +38,16 @@ public class MyPagePurchaseStatusInfoServlet extends HttpServlet {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int sno = Integer.parseInt(request.getParameter("sno"));
 		
 		ArrayList<Trade> list = new MyPage_purchaseService().selectStatusInfo(tno);
 		request.setAttribute("list", list);
 		
-		ArrayList<Card> cardList = new MyPage_service().selectCard(userNo);
-		request.setAttribute("cardList", cardList);
+		ArrayList<Sale> slist = new MyPage_purchaseService().saleInfo(sno);
+		request.setAttribute("slist", slist);
+		
+		ArrayList<Address> addressList = new MyPage_service().selectAddress(userNo);
+		request.setAttribute("addressList", addressList);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseStatusInfo.jsp");
 		view.forward(request, response);

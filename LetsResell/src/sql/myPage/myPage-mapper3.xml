@@ -95,6 +95,14 @@
 		   SET BID_STATUS = '입찰취소'
 		 WHERE SALE_NO = ?
 	</entry>
+	<entry key="purchaseAdd">
+		SELECT 
+		       ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		  FROM TRADE
+		  JOIN ADDRESS USING(ADDRESS_NO)
+		 WHERE TRADE_NO = ?
+	</entry>
 	<entry key="selectSalesCom">
 		SELECT 
 		       SALE_NO

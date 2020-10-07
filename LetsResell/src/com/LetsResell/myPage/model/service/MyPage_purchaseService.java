@@ -35,11 +35,11 @@ public class MyPage_purchaseService {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Bid> list = new MyPage_purchaseDao().purchaseListView(conn, userNo);
+		ArrayList<Bid> blist = new MyPage_purchaseDao().purchaseListView(conn, userNo);
 		
 		close(conn);
 		
-		return list;
+		return blist;
 	}
 	
 	/**
@@ -208,6 +208,36 @@ public class MyPage_purchaseService {
 		}
 		
 		return sResult;
+		
+	}
+
+	public ArrayList<Sale> saleInfo(int sno) {
+			
+		Connection conn = getConnection();
+		
+		ArrayList<Sale> slist = new MyPage_purchaseDao().saleInfo(conn, sno);
+		
+		close(conn);
+		
+		return slist;
+		
+	}
+	
+	
+	/**
+	 * 최고입찰가격
+	 * @param sno
+	 * @return
+	 */
+	public Bid highestPrice(int sno) {
+		
+		Connection conn = getConnection();
+		
+		Bid b = new MyPage_purchaseDao().highestPrice(conn, sno);
+		
+		close(conn);
+		
+		return b;
 		
 	}
 

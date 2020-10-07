@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.LetsResell.myPage.model.service.MyPage_purchaseService;
 import com.LetsResell.myPage.model.service.MyPage_service;
 import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Card;
 
 /**
@@ -39,6 +41,9 @@ public class MyPage_memInfoServlet extends HttpServlet {
 		// 등록된 주소 조회
 		ArrayList<Address> addressList = new MyPage_service().selectAddress(userNo);
 		request.setAttribute("addressList", addressList);	
+		
+		ArrayList<Bid> blist = new MyPage_purchaseService().purchaseListView(userNo);
+		request.setAttribute("blist", blist);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_memInfoView.jsp");
 		view.forward(request, response);

@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 	ArrayList<Address> addressList = (ArrayList<Address>)request.getAttribute("addressList");
 
 %>
@@ -90,7 +91,7 @@
                                                   <div class="modal-body" style="text-align: center;">
                                                    
                                                     	전화번호
-                                                    <span style="margin: 10px; font-weight: bold; color: green;">010-5236-4852</span>
+                                                    <span style="margin: 10px; font-weight: bold; color: green;"><%=slist.get(0).getPhone() %></span>
 
                                                     <br><br>
                                                     
@@ -171,7 +172,7 @@
                                 <td rowspan="3" width="300px">
                                     
                                     	주문자 정보 
-                                    <button id="btn">회원정보변경</button> <br>
+                                    <button id="btn" onclick="location.href='<%=contextPath%>/myPage.info?userNo=<%=loginUser.getUserNo()%>'">회원정보변경</button> <br>
                                     	<%=userName %> <br>
                                     <%=userPhone %> <br>
 
@@ -185,7 +186,7 @@
 
                             <tr>
                                 <th>배송지</th>
-                                <td>00시 00구 00동</td>
+                                <td><%=addressList.get(0).getAddressMain()%><%=addressList.get(0).getAddressDetail()%></td>
                             </tr>
                         </table>
                     </div>

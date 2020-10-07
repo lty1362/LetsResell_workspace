@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+	Bid bid = (Bid)request.getAttribute("bid");
 %>
 <!DOCTYPE html>
 <html>
@@ -208,21 +208,21 @@
 	                    	$(".1").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 	                    	
 							$(".2").click(function(){
 	                    		
 								$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 							
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 	            	   		
@@ -306,7 +306,7 @@
 	                                                    <br>
 	                                                    <span style="color: red;">
 	                                                        * 현재입찰가격 : <%=blist.get(i).getBidPrice()%> <br>
-	                                                        * 현재최고입찰가격 : 
+	                                                        * 현재최고입찰가격 : <%=bid.getBidPrice() %>
 	                                                    </span>
 	                                                    
 	                                                    <hr>
