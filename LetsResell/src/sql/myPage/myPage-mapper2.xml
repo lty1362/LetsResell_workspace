@@ -6,6 +6,7 @@
 		       BID_NO
 		     , BID_PRICE
 		     , BID_STATUS
+		     , SALE_NO
 		     , SALE_NAME
 		     , SALE_CONDITION
 		     , SALE_SIZE
@@ -73,6 +74,7 @@
 		     , TRADE_NUMBER
 		     , TRADE_CONCLUDE
 		     , TRADE_PRICE
+		     , SALE_NO
 		     , SALE_NAME
 		     , SALE_CONDITION
 		     , SALE_SIZE
@@ -82,6 +84,13 @@
 		  LEFT JOIN SALE USING(SALE_NO)
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="saleInfo">
+		SELECT 
+		       MEM_PHONE
+		  FROM SALE
+		  JOIN MEMBER USING(MEM_USER_NO)
+		 WHERE SALE_NO=?
 	</entry>
 	<entry key="selectAddress">
 		SELECT ADDRESS_CODE
@@ -110,6 +119,12 @@
 		       TRADE
 		   SET TRADE_STATUS = '구매취소'
 		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="deleteSales">
+		UPDATE 
+		       SALE
+		   SET SALE_STATUS = '거래취소'
+		 WHERE SALE_NO = ?
 	</entry>
 	<entry key="selectPurchaseCom">
 		 SELECT 

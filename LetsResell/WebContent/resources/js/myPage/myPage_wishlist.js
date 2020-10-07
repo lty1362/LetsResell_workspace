@@ -40,12 +40,21 @@ $(document).ready(function(){
 				type : "post",
 				success:function(resultNumber) {
 					alert(resultNumber + "개의 관심상품이 삭제되었습니다.");
-					location.href = "/LetsResell/myPage.wishlist?userNo=" + userNo +"&currentPage=1";
+					location.href = "/LetsResell/myPage.wishlist?userNo=" + userNo +"&currentPage=1&order=new";
 				},
 				error:function(){
 					alert("삭제 실패하였습니다.");
 				}
 			});
 		}
+	});
+	
+	// 최신등록순/과거등록순 정렬 처리
+	$("#order").change(function(){
+		
+		var order = $("option:selected").val();	// 선택된 option의 value (new/old)
+		var userNo = $(this).attr('name');		// 로그인된 회원의 번호
+		
+		location.href = "/LetsResell/myPage.wishlist?userNo=" + userNo +"&currentPage=1&order=" + order;
 	});
 });

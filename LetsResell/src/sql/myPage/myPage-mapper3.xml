@@ -80,6 +80,7 @@
 		       TRADE
 		   SET TRADE_SERVICE = ?
 		     , TRADE_NUMBER = ?
+		     , TRADE_STATUS = '배송중'
 		 WHERE TRADE_NO = ?
 	</entry>
 	<entry key="deleteList">
@@ -87,6 +88,20 @@
 		       SALE
 		   SET SALE_STATUS = '거래취소'
 		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="deletePList">
+		UPDATE 
+		       BID
+		   SET BID_STATUS = '입찰취소'
+		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="purchaseAdd">
+		SELECT 
+		       ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		  FROM TRADE
+		  JOIN ADDRESS USING(ADDRESS_NO)
+		 WHERE TRADE_NO = ?
 	</entry>
 	<entry key="selectSalesCom">
 		SELECT 
@@ -110,5 +125,11 @@
 		  JOIN TRADE USING(SALE_NO)
 		 WHERE S.MEM_USER_NO = ?
 		   AND SALE_STATUS = '거래완료'
+	</entry>
+	<entry key="deleteTrade">
+		UPDATE 
+		       TRADE
+		   SET TRADE_STATUS = '판매취소'
+		 WHERE TRADE_NO = ?
 	</entry>
 </properties>

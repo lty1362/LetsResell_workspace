@@ -43,6 +43,13 @@ public class ProductService {
 		return list;
 	}
 	
+	public int searchListCount(String filter, String search) {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().searchListCount(conn, filter, search);
+		close(conn);
+		return listCount;
+	}
+	
 	public int searchListCount(String filter, String search, String category) {
 		Connection conn = getConnection();
 		int listCount = new ProductDao().searchListCount(conn, filter, search, category);

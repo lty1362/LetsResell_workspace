@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.LetsResell.template.JDBCTemplate.*;
+
+import com.LetsResell.member.model.vo.Member;
 import com.LetsResell.myPage.model.vo.Account;
 import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Card;
@@ -30,6 +32,54 @@ public class MyPage_dao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	/**
+	 * 회원 정보 조회
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @return
+	 */
+	public Member selectMember(Connection conn, int userNo) {
+		
+		Member member = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				member = new Member(rset.getInt("MEM_USER_NO"),
+									rset.getString("MEM_USER_ID"),
+									rset.getString("MEM_USER_PWD"),
+									rset.getString("MEM_USER_NAME"),
+									rset.getString("MEM_PHONE"),
+									rset.getDate("MEM_ENROLL_DATE"),
+									rset.getDate("MEM_MODIFY_DATE"),
+									rset.getString("MEM_STATUS"),
+									rset.getString("MEM_USER_SSN"),
+									rset.getDate("MEM_OUT_DATE"),
+									rset.getInt("MEM_REPORT_COUNT"),
+									rset.getString("MEM_BLACKLIST_STATUS")
+									);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return member;
 	}
 	
 	/**
@@ -324,6 +374,40 @@ public class MyPage_dao {
 		}		
 		return result;
 	}
+	
+	/**
+	 * 
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param name		삭제하고자 하는 카드들
+	 * @return
+	 */
+	public int deleteCard(Connection conn, int userNo, String name) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+			
+		String sql = prop.getProperty("deleteCard");
+			
+		try {
+				
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, name);
+				
+			result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		return result;
+	}
+	
 
 	/**
 	 * 회원 정보 수정일 업데이트
@@ -396,14 +480,21 @@ public class MyPage_dao {
 	 * @param wishlistPage	페이지 정보
 	 * @return
 	 */
-	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo, WishlistPageInfo wishlistPage) {
+	public ArrayList<Wishlist> selectWishlist(Connection conn, int userNo, WishlistPageInfo wishlistPage, String order) {
 		
 		ArrayList<Wishlist> wishlist = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectWishlist");
+		// String sql = prop.getProperty("selectWishlist");
+		
+		String sql = "";
+		if(order.equals("new")) {
+			sql = prop.getProperty("selectWishlist");
+		}else {
+			sql = prop.getProperty("selectWishlist2");
+		}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

@@ -42,6 +42,9 @@ public class MyPage_salesDetailServlet extends HttpServlet {
 		
 		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
 		request.setAttribute("slist", slist);
+		
+		ArrayList<Sale> sclist = new MyPageSalesService().selectSalesCom(userNo);
+		request.setAttribute("sclist", sclist);
 		 
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_salesDetailList.jsp");
 		view.forward(request, response);

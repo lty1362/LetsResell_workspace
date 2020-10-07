@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.LetsResell.member.model.vo.Member;
 import com.LetsResell.myPage.model.service.MyPage_service;
 
 /**
@@ -32,7 +34,12 @@ public class MyPage_updatePwdServlet extends HttpServlet {
 		
 		if(result > 0) {
 			// 성공
-			response.sendRedirect(request.getContextPath() + "/success.my");
+			Member member = new MyPage_service().selectMember(userNo);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", member);
+			
+			response.sendRedirect(request.getContextPath() + "/myPage.info?userNo=" + userNo);
 		}else {
 			//실패
 			response.sendRedirect(request.getContextPath() + "/fail.my");

@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.LetsResell.member.model.vo.Member;
 import com.LetsResell.myPage.model.service.MyPage_service;
 
 /**
@@ -32,10 +34,15 @@ public class MyPage_updateMemberServlet extends HttpServlet {
 					     request.getParameter("userSsn2") + 
 					     request.getParameter("userSsn3");					// 생년월일
 		
-		int result = new MyPage_service().updateMember(userNo, name, userSsn);	
+		int result = new MyPage_service().updateMember(userNo, name, userSsn);
 		
 		if(result > 0) {
 			// 성공
+			Member member = new MyPage_service().selectMember(userNo);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", member);
+			
 			response.sendRedirect(request.getContextPath() + "/myPage.info?userNo=" + userNo);
 		}else {
 			//실패

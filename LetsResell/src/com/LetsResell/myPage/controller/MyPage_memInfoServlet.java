@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.LetsResell.myPage.model.service.MyPage_purchaseService;
 import com.LetsResell.myPage.model.service.MyPage_service;
 import com.LetsResell.myPage.model.vo.Address;
+import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Card;
 
 /**

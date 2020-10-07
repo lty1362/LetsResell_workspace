@@ -21,6 +21,7 @@ public class Sale {
 	private int tradeNo;			//거래번호
 	private String tradeService;	//택배사
 	private int tradeNum;			//운송장번호
+	private String phone;			//전화번호
 	
 	public Sale() {
 		
@@ -41,10 +42,15 @@ public class Sale {
 		this.boxStatus = boxStatus;
 	}
 	
+
+	public String getTradeService() {
+		return tradeService;
+	}
+
 	public Sale(int saleNo, int salePrice, String saleName, Date saleEnrollDate, String saleCondition,
 			String saleStatus, String saleSize, String saleCategory, String salePeriod, String boxStatus,
 			String titleImg, String prColor, int tradePrice, String tradeStatus, int tradeNo, String tradeService,
-			int tradeNum) {
+			int tradeNum, String phone) {
 		super();
 		this.saleNo = saleNo;
 		this.salePrice = salePrice;
@@ -63,10 +69,15 @@ public class Sale {
 		this.tradeNo = tradeNo;
 		this.tradeService = tradeService;
 		this.tradeNum = tradeNum;
+		this.phone = phone;
 	}
 
-	public String getTradeService() {
-		return tradeService;
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setTradeService(String tradeService) {

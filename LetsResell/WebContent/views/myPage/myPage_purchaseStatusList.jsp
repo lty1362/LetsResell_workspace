@@ -5,6 +5,7 @@
 	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+	Bid b = (Bid)request.getAttribute("b");
 %>
 <!DOCTYPE html>
 <html>
@@ -208,7 +209,7 @@
 	                    	$(".1").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 	                    	
@@ -277,7 +278,7 @@
                                         </dl>
                                     </td>
                                     <td>
-                                        <button id="btn" onclick="location.href='<%=contextPath%>/statusInfo.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';">주문상세</button> <br>
+                                        <button id="btn" onclick="location.href='<%=contextPath%>/statusInfo.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>&sno=<%=tlist.get(i).getSaleNo()%>';">주문상세</button> <br>
 
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
@@ -336,7 +337,7 @@
                                                     
                                                     <hr>
                                                     
-                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>&sno=<%=tlist.get(i).getSaleNo() %>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                     
                                                   </div>

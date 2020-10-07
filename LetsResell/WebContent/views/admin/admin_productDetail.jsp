@@ -17,7 +17,7 @@
          <%@ include file= "../common/header.jsp"%>
         <div id="body">
 			<div id="body_left">
-                	<%@ include file="admin_sideMenu.jsp" %>
+                <%@ include file="admin_sideMenu.jsp" %>
 	        </div>
             <div id="body_right">
 	        <form action="productUpdate.admin" method="post" enctype="multipart/form-data">

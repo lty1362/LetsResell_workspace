@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.LetsResell.myPage.model.dao.MyPage_purchaseDao;
 import com.LetsResell.myPage.model.service.MyPage_purchaseService;
 import com.LetsResell.myPage.model.vo.*;
 
@@ -32,19 +33,20 @@ public class MyPage_purchaseDetailListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		request.setCharacterEncoding("UTF-8");
 		
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		
-		ArrayList<Bid> blist = new MyPage_purchaseService().purchaseListView(userNo);
-		request.setAttribute("blist", blist);
 		
 		ArrayList<Trade> tlist = new MyPage_purchaseService().selectPurchaseStatus(userNo);
 		request.setAttribute("tlist", tlist);
 		
 		ArrayList<Trade> list = new MyPage_purchaseService().selectPurchaseCom(userNo);
 		request.setAttribute("list", list);
+		
+		ArrayList<Bid> blist = new MyPage_purchaseService().purchaseListView(userNo);
+		request.setAttribute("blist", blist);
+		
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseDetailList.jsp");
 		view.forward(request, response);

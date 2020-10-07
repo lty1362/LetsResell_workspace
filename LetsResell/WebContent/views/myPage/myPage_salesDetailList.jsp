@@ -4,6 +4,8 @@
 <%
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
+	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
+	ArrayList<Address> alist = (ArrayList<Address>)request.getAttribute("alist");
 %>
 <!DOCTYPE html>
 <html>
@@ -63,7 +65,15 @@
                             </div>
                             <a>
                                	 판매금액 <br>
-                                <span>0원</span>
+                                <span>
+                                <%if(sclist.isEmpty()) {%>
+                                	0원
+                                <%}else { %>
+	                                <%for(int i = 0; i < sclist.size(); i++) {%>
+	                                	<%=sclist.get(i).getTradePrice() %>원
+                                	<%} %>
+                                <%} %>
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -132,7 +142,29 @@
                             <li class="3">
                                 <a>
                                     	판매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(sclist.isEmpty()) {%>
+                                	
+                                		0
+                                	
+                                	<%}else { %>
+                                	
+                                		<%int result = 0; %>
+                                	
+                                		<%for(int i = 0; i < sclist.size(); i++){ %>
+                                		
+                                			<%result = i+1; %>
+                                		
+                                		<%} %>
+                                		
+                                		<%=result %>
+                                	
+                                	<%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
@@ -142,21 +174,21 @@
                     	$(".1").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>";
                     		
                     	});
                     	
 						$(".2").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>&tno=<%=slist.get(0).getTradeNo()%>";
                     		
                     	});
 						
 						$(".3").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesCom.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesCom.mp?userNo=<%=login.getUserNo()%>";
                     		
                     	});
             	   		

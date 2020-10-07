@@ -1,32 +1,25 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.LetsResell.myPage.model.service.MyPage_purchaseService;
-import com.LetsResell.myPage.model.service.MyPage_service;
-import com.LetsResell.myPage.model.vo.Address;
-import com.LetsResell.myPage.model.vo.Sale;
-import com.LetsResell.myPage.model.vo.Trade;
+import com.LetsResell.myPage.model.service.MyPageSalesService;
 
 /**
- * Servlet implementation class MyPagePurchaseStatusInfoServlet
+ * Servlet implementation class MyPageDeleteSalesStatusListServlet
  */
-@WebServlet("/statusInfo.mp")
-public class MyPagePurchaseStatusInfoServlet extends HttpServlet {
+@WebServlet("/deleteTrade.mp")
+public class MyPageDeleteSalesStatusListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPagePurchaseStatusInfoServlet() {
+    public MyPageDeleteSalesStatusListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,20 +30,15 @@ public class MyPagePurchaseStatusInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		int sno = Integer.parseInt(request.getParameter("sno"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		ArrayList<Trade> list = new MyPage_purchaseService().selectStatusInfo(tno);
-		request.setAttribute("list", list);
+		System.out.println(tno);
 		
-		ArrayList<Sale> slist = new MyPage_purchaseService().saleInfo(sno);
-		request.setAttribute("slist", slist);
+		int tResult = new MyPageSalesService().deleteTrade(tno);
+		int result = new MyPageSalesService().deleteList(sno);
 		
-		ArrayList<Address> addressList = new MyPage_service().selectAddress(userNo);
-		request.setAttribute("addressList", addressList);
-		
-		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_purchaseStatusInfo.jsp");
-		view.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/salesStatus.mp?userNo=" + userNo);
 		
 	}
 

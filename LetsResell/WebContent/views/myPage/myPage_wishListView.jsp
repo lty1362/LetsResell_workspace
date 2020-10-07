@@ -6,6 +6,7 @@
 <%
 	ArrayList<Wishlist> wishlist = (ArrayList<Wishlist>)request.getAttribute("wishlist");
 	WishlistPageInfo wishlistPage = (WishlistPageInfo)request.getAttribute("wishlistPage");
+	String order = (String)request.getAttribute("order");
 	
 	int wishlistCount = wishlistPage.getWishlistCount();
 	int currentPage = wishlistPage.getCurrentPage();
@@ -37,9 +38,9 @@
                 <p id="wish_title">관심상품</p>
                   <div class="btnList">
                     <button type="button" id="btn_deleteWish" class="btn btn-dark btn btn-primary btn-sm" name="<%=loginUser.getUserNo()%>">선택상품 삭제</button>
-                    <select class="custom-select custom-select-sm mb-3" style="width: 150px;">
-                      <option selected value="new">최신등록순</option>
-                      <option value="old">과거등록순</option>
+                    <select id="order" name="<%=loginUser.getUserNo()%>" class="custom-select custom-select-sm mb-3" style="width: 150px;">
+                      <option id="newOrder" value="new">최신등록순</option>
+                      <option id="oldOrder" value="old">과거등록순</option>
                     </select>
                   </div>
                 <div class="container">       
@@ -101,5 +102,14 @@
         </div>
     </div>
     <%@ include file="../common/footer.jsp" %>
+                        <script>
+				    	<% if(order.equals("old")){%>
+				    		$("#oldOrder").attr("selected",true);
+				    		$("#newOrder").attr("selected",false);
+				    	<% }else{ %>
+				    		$("#newOrder").attr("selected",true);
+				    		$("#newOrder").attr("selected",false);
+				    	<% } %>
+				    </script>
 </body>
 </html>

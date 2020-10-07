@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
 	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 %>
 <!DOCTYPE html>
 <html>
@@ -208,21 +208,21 @@
 	                    	$(".1").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseDetail.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 	                    	
 							$(".2").click(function(){
 	                    		
 								$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 							
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>";
 	                    		
 	                    	});
 	            	   		
@@ -253,7 +253,7 @@
                             	<%if(blist.isEmpty()) {%>
 	                                <tr>
 	                                    <td colspan="4">
-	                                       	등록된 리스트가 없습니다.
+	                                       	입찰진행중인 제품이 없습니다.
 	                                    </td>
 	                                </tr>
                                 <%}else{ %>
@@ -299,6 +299,8 @@
                                                   <div class="modal-body" style="text-align: center;">
                                                    <form action="<%= contextPath %>/enrollPrice.mp" method="get" id="enroll">
                                                    <input type="hidden" name="bidNo" id="bidNo" value="<%=blist.get(i).getBidNo()%>">
+                                                   <input type="hidden" name="userNo" value="<%=loginUser.getUserNo() %>" >
+                                                   <input type="hidden" name="saleNo" id="saleNo" value="<%=blist.get(i).getSaleNo()%>">
 	                                                    <span style="margin-right: 10px;">입찰갱신가격</span>
 	                                                    <input type="number" name="enrollPrice" id="enrollPrice" value="<%=blist.get(i).getBidPrice()%>">
 	                                                    <br>

@@ -1,6 +1,7 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPageSalesService;
 import com.LetsResell.myPage.model.vo.*;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 /**
  * Servlet implementation class MyPafeUpdateDeliveryServlet
@@ -31,9 +33,16 @@ public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		int tno = Integer.parseInt(request.getParameter("tno"));
 		String deliveryName = request.getParameter("deliveryName");
 		int deliveryNo = Integer.parseInt(request.getParameter("deliveryNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		System.out.println(tno);
+		System.out.println(deliveryName);
+		System.out.println(deliveryNo);
 		
 		Sale s = new Sale();
 		s.setTradeNo(tno);
@@ -41,6 +50,16 @@ public class MyPafeUpdateDeliveryServlet extends HttpServlet {
 		s.setTradeNum(deliveryNo);
 		
 		int result = new MyPageSalesService().updateDelivery(s);
+		
+		ArrayList<Address> alist = new MyPageSalesService().selectPAddress(tno);
+		request.setAttribute("alist", alist);
+		
+		System.out.println(alist);
+		
+		ArrayList<Sale> slist = new MyPageSalesService().selectTradeList(userNo);
+		request.setAttribute("slist", slist);
+		
+		response.sendRedirect(request.getContextPath() + "/salesStatus.mp?userNo=" + userNo);
 		
 	}
 

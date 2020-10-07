@@ -34,6 +34,7 @@ public class MyPageDeleteSalesDetailListServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		int result = new MyPageSalesService().deleteList(sno);
+		int pResult = new MyPageSalesService().deletePList(sno);
 		
 		response.sendRedirect(request.getContextPath() + "/salesDetail.mp?userNo=" + userNo);
 		

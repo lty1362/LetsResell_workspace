@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.LetsResell.myPage.model.dao.MyPageSalesDao;
+import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Sale;
 import com.LetsResell.myPage.model.vo.Trade;
@@ -118,6 +119,22 @@ public class MyPageSalesService {
 		
 	}
 	
+	public int deletePList(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int pResult = new MyPageSalesDao().deletePList(conn, sno);
+		
+		if(pResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return pResult;
+		
+	}
+	
 	/**
 	 * 7.판매완료
 	 * @param userNo
@@ -132,6 +149,44 @@ public class MyPageSalesService {
 		close(conn);
 		
 		return sclist;
+		
+	}
+	
+	/**
+	 * 거래진행 삭제
+	 * @param tno
+	 * @return
+	 */
+	public int deleteTrade(int tno) {
+		
+		Connection conn = getConnection();
+		
+		int tResult = new MyPageSalesDao().deleteTrade(conn, tno);
+		
+		if(tResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return tResult;
+		
+	}
+	
+	/**
+	 * 구매자 배송지
+	 * @param tno
+	 * @return
+	 */
+	public ArrayList<Address> selectPAddress(int tno) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Address> alist = new MyPageSalesDao().selectPAddress(conn, tno);
+		
+		close(conn);
+		
+		return alist;
 		
 	}
 	
