@@ -6,24 +6,29 @@ $(document).ready(function(){
 		$("#insertCardForm").submit();
 	});
 	
-	// 등록된 카드 삭제 처리
-//	$(".btn_deleteCard").on("click", function(){
-//
-//		//var cardNameArr = new Array();
-//		//cardNameArr.push($(this).attr('name'));
-//	});
-	
+	// 등록된 카드 삭제 처리	
 	var cardNameArr = new Array();
 	$(".btn_deleteCard").on("click", function(){
-		cardNameArr.push($(this).attr('name'));
+		cardNameArr.push($(this).attr('name'));	
+	});
+	
+	$("#btn_deleteCardSave").on("click", function(){
+		var userNo = $(this).attr('name');
 		
-		
-		
-//		var cardName = $(this).attr('name');	// 선택한 카드 별칭
-//		var table = $(".div_info").attr('name');
-//		
-//		console.log("cardName : " + cardName + "table : " + table);
-		
+		$.ajax({
+			url : "deleteCard.my",
+			data : {
+				'cardNameArr':cardNameArr,
+				'userNo':userNo
+			},
+			type : "post",
+			success:function(resultNumber) {
+				location.href = "/LetsResell/myPage.info?userNo=" + userNo;
+			},
+			error:function(){
+				alert("삭제 실패하였습니다.");
+			}
+		});
 	});
 	
 });

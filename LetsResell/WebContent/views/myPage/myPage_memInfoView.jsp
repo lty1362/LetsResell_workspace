@@ -358,7 +358,7 @@ pageEncoding="UTF-8"%>
 										});
 									</script>
 									<div style="float: right; margin-top: 30px;">
-										<button type="submit" id="btn_deleteCardSave" class="btn text-info" data-dismiss="modal" style="font-weight: bold;">저장</button>
+										<button type="submit" id="btn_deleteCardSave" class="btn text-info" name="<%=userNo%>" data-dismiss="modal" style="font-weight: bold;">저장</button>
 										<button type="button" class="btn text-secondary" data-dismiss="modal" style="font-weight: bold;">취소</button>
 									</div>                     
 								</div>

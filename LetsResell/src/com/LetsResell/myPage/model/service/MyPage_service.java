@@ -217,6 +217,40 @@ public class MyPage_service {
 	}
 	
 	/**
+	 * 
+	 * @param userNo		로그인된 회원의 번호
+	 * @param cardNameArr	삭제하고자 하는 카드들
+	 * @return
+	 */
+	public int deleteCard(int userNo, String[] cardNameArr) {
+		
+		int resultNumber = 0;				// 총 delete 처리된  수
+		Connection conn = getConnection();
+		
+		for(int i=0; i<cardNameArr.length; i++) {
+			
+			String name = cardNameArr[i];
+			
+			int result = new MyPage_dao().deleteCard(conn, userNo, name);
+			
+			if(result > 0) {
+				resultNumber++;
+			}
+		}
+		
+		if(resultNumber == cardNameArr.length) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return resultNumber;	
+	}
+
+	
+	
+	
+	/**
 	 * 회원 정보 수정일 업데이트
 	 * @param userNo	로그인된 회원의 번호
 	 * @return
