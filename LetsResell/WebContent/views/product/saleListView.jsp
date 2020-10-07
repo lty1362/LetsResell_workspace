@@ -48,7 +48,7 @@
                     </div>
 
                     <div id="wish_btn_name" align="center">
-                        Dibs
+                       
                     </div>
                 </div>
 

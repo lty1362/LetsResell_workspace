@@ -182,7 +182,7 @@
 						$(".2").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>&tno=<%=slist.get(0).getTradeNo()%>"
+                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
                     		
                     	});
 						
@@ -218,7 +218,7 @@
                             <%if(sclist.isEmpty()) {%>
                                 <tr>
                                     <td colspan="4">
-                                       	판매완료
+                                       	거래완료된 제품이 없습니다.
                                     </td>
                                 </tr>
                             <%}else { %>

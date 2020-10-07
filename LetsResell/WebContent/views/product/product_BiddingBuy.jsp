@@ -93,7 +93,7 @@
                   </script>
 
                 <div class="buy-h-detail">
-                    <div class="pdt-name">이지부스트 350 V2 자이온</div>
+                    <div class="pdt-name"></div>
                     <div class="pdt-step-3" id="step-3">
                         <div class="pdt-buy">
                             <span class="pdt-title">입찰 구매</span> 
@@ -210,6 +210,7 @@
                             </div>
                         </div>
                     </div>
+                    <form id="buyTerms_form" action="<%= request.getContextPath() %>/buyTerms.pro" method="post" >
                     <!-- 약관동의 -->
                      <div class="terms_p">
                            
@@ -229,7 +230,8 @@
                     <div class="btn_area double">
                         <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
                         <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
-                    </div>    
+                    </div> 
+                    </form>   
                 </div>
             </div>
         </div>
@@ -318,7 +320,7 @@
                 return false;
             }
     
-            $("#join_form").submit();
+            $("#buyTerms_form").submit();
             return true;
         }
     

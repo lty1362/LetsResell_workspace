@@ -132,6 +132,7 @@
                             <label>결제 카드</label>
                         </div>
                     </div>
+                    <form id="buyTerms_form" action="<%= request.getContextPath() %>/buyTerms.pro" method="post" >
                     <!-- 약관동의 -->
                      <div class="terms_p">
                            
@@ -151,7 +152,8 @@
                     <div class="btn_area double">
                         <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
                         <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
-                    </div>  
+                    </div> 
+                    </form> 
                 </div>
             </div>
         </div>
@@ -205,7 +207,7 @@
                 return false;
             }
     
-            $("#join_form").submit();
+            $("#buyTerms_form").submit();
             return true;
         }
     

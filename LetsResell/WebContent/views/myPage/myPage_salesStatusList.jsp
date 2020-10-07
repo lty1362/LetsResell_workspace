@@ -181,7 +181,7 @@
 						$(".2").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>&tno=<%=slist.get(0).getTradeNo()%>"
+                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
                     		
                     	});
 						
@@ -218,7 +218,7 @@
                             	<%if(slist.isEmpty()) { %>
                                 <tr>
                                     <td colspan="4">
-                                        	거레중인 제품이 없습니다.
+                                        	거래중인 제품이 없습니다.
                                     </td>
                                 </tr>
                                 <%}else { %>
@@ -265,10 +265,9 @@
 		                                                  <!-- Modal body -->
 		                                                  <div class="modal-body" style="text-align: center;">
 		                                                   
-		                                                    	구매자배송지
-		                                                    <span style="margin: 10px; font-weight: bold; color: green;"><%=alist.get(i).getAddressMain()%><%=alist.get(i).getAddressDetail()%></span>
-		
-		                                                    <br><br>
+		                                                    	<!--구매자배송지-->
+		                                                    <span style="margin: 10px; font-weight: bold; color: green;"></span>
+															
 		                                                    
 		                                                    <form action="<%=contextPath %>/updateDelivery.mp" method="get" id="update">
 			                                                    
