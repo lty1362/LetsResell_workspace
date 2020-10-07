@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구매total</title>
 <link href="/LetsResell/resources/css/product/product_TotalBuy.css" rel="stylesheet"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="/LetsResell/resources/css/product/product_BiddingBuy.css" rel="stylesheet"> 
 </head>
 <body>
 	<header>
@@ -25,11 +28,71 @@
                 </div>
             </div>
             <div class="buy-info">
-                <div class="buy-h-image"></div>
+                <div class="buy-h-image">
+                 <div class="slideshow-container">
+				    <div class="mySlides fade">
+				      <div class="numbertext">1 / 3</div>
+				      <img src="http://placehold.it/300x300" style="width:100%">
+				      <div class="text">Caption Text</div>
+				    </div>
+				    
+				    <div class="mySlides fade">
+				      <div class="numbertext">2 / 3</div>
+				      <img src="http://placehold.it/300x300" style="width:100%">
+				      <div class="text">Caption Two</div>
+				    </div>
+				    
+				    <div class="mySlides fade">
+				      <div class="numbertext">3 / 3</div>
+				      <img src="http://placehold.it/300x300" style="width:100%">
+				      <div class="text">Caption Three</div>
+				    </div>
+				    
+				    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+				    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+				    
+				    </div>
+				    <br>
+				    
+				    <div style="text-align:center">
+				      <span class="dot" onclick="currentSlide(1)"></span> 
+				      <span class="dot" onclick="currentSlide(2)"></span> 
+				      <span class="dot" onclick="currentSlide(3)"></span>
+				      <span class="dot" onclick="currentSlide(4)"></span>
+				      <span class="dot" onclick="currentSlide(5)"></span> 
+				    </div>
+                </div>
+                   <script>
+		      			var slideIndex = 1;
+						showSlides(slideIndex);
+						
+						function plusSlides(n) {
+						  showSlides(slideIndex += n);
+						}
+						
+						function currentSlide(n) {
+						  showSlides(slideIndex = n);
+						}
+						
+						function showSlides(n) {
+						  var i;
+						  var slides = document.getElementsByClassName("mySlides");
+						  var dots = document.getElementsByClassName("dot");
+						  if (n > slides.length) {slideIndex = 1}    
+						  if (n < 1) {slideIndex = slides.length}
+						  for (i = 0; i < slides.length; i++) {
+						      slides[i].style.display = "none";  
+						  }
+						  for (i = 0; i < dots.length; i++) {
+						      dots[i].className = dots[i].className.replace(" active", "");
+						  }
+						  slides[slideIndex-1].style.display = "block";  
+						  dots[slideIndex-1].className += " active";
+						}
+				    </script>
                 <div class="buy-h-detail">
                     <div class="pdt-name">이지부스트 350 V2 자이온</div>
-                    <div class="pdt-name-en">adidas Yeezy Boost 350 V2 Zyon></div>
-                    <div calss="pdt-step-3" id="step-3">
+                    <div class="pdt-step-3" id="step-3">
                         <div class="final-price">
                             최종 금액 안내
                         </div>
@@ -218,5 +281,10 @@
                     </div>
                   
     </section>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="footer">					
+		<%@ include file= "../common/footer.jsp"%>			
+	</div>    
 </body>
 </html>

@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>즉시구매</title>
 <link href="/LetsResell/resources/css/product/product_BuyNow.css" rel="stylesheet"> 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="/LetsResell/resources/css/product/product_BiddingBuy.css" rel="stylesheet">
 </head>
 <body>
 	<header>
@@ -26,10 +28,67 @@
                 </div>
             </div>
             <div class="buy-info">
-                <div class="buy-h-image">
-                	
-                
+               <div class="buy-h-image">
+                    <div class="slideshow-container">
+                        <div class="mySlides fade" >
+                          <div class="numbertext">1 / 5</div>
+                          <img src="http://placehold.it/500x500" style="width:100%">
+                        </div>
+                        
+                        <div class="mySlides fade">
+                          <div class="numbertext">2 / 5</div>
+                          <img src="http://placehold.it/500x500" style="width:100%">
+                        </div>
+                        
+                        <div class="mySlides fade">
+                          <div class="numbertext">3 / 5</div>
+                          <img src="http://placehold.it/500x500" style="width:100%">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <div class="numbertext">4 / 5</div>
+                            <img src="http://placehold.it/500x500" style="width:100%">
+                          </div>
+
+                          <div class="mySlides fade">
+                            <div class="numbertext">5 / 5</div>
+                            <img src="http://placehold.it/500x500" style="width:100%">
+                          </div>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        
+                        </div>
+
                 </div>
+                <script>
+                            var slideIndex = 1;
+                    showSlides(slideIndex);
+                    
+                    function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                    }
+                    
+                    function currentSlide(n) {
+                        showSlides(slideIndex = n);
+                    }
+                    
+                    function showSlides(n) {
+                        var i;
+                        var slides = document.getElementsByClassName("mySlides");
+                        var dots = document.getElementsByClassName("dot");
+                        if (n > slides.length) {slideIndex = 1}    
+                        if (n < 1) {slideIndex = slides.length}
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";  
+                        }
+                        for (i = 0; i < dots.length; i++) {
+                            dots[i].className = dots[i].className.replace(" active", "");
+                        }
+                        slides[slideIndex-1].style.display = "block";  
+                        dots[slideIndex-1].className += " active";
+                    }
+                  </script>
                 <div class="buy-h-detail">
                     <div class="pdt-name">이지부스트 350 V2 자이온</div>
                     <div class="pdt-step-3" id="step-3">
@@ -93,17 +152,16 @@
                         <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
                         <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
                     </div>  
-                    <br><br><br><br><br>  
-                    <footer>
-						<div class="f-container">
-							<%@ include file= "../common/footer.jsp"%>
-						</div>
-					</footer>    
                 </div>
             </div>
         </div>
     </section>
-    
+       <br><br><br>
+       <div class="footer">
+						
+			<%@ include file= "../common/footer.jsp"%>
+					
+	   </div>    
 	    
 	    <script>
         $(document).ready(function() {
