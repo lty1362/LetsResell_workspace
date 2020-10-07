@@ -129,6 +129,13 @@
 		 WHERE MEM_USER_ID = ?
 	</entry>
 	
+	<entry key="deleteCard">
+		DELETE
+		  FROM CARD
+		 WHERE MEM_USER_NO = ?
+		   AND CARD_NAME = ?
+	</entry>
+	
 	<entry key="updateModifyDate">
 		UPDATE
 		       MEMBER

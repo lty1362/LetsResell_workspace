@@ -56,26 +56,5 @@ $(document).ready(function(){
 		var userNo = $(this).attr('name');		// 로그인된 회원의 번호
 		
 		location.href = "/LetsResell/myPage.wishlist?userNo=" + userNo +"&currentPage=1&order=" + order;
-
-//		$.ajax({
-//			url : "myPage.wishlist",
-//			data : {
-//				'order':order,
-//				'userNo':userNo,
-//				'currentPage':1
-//			},
-//			type : "post",
-//			success:function() {
-//				location.href = "/LetsResell/myPage.wishlist?userNo=" + userNo +"&currentPage=1&order=" + order;
-//				//$(this).attr("selected", $(this));
-//				$("option:selected").attr("selected", "selected");
-//				
-//				console.log("성공");
-//			},
-//			error:function(){
-//				alert("실패");
-//			}
-//		});
-
 	});
 });

@@ -374,6 +374,40 @@ public class MyPage_dao {
 		}		
 		return result;
 	}
+	
+	/**
+	 * 
+	 * @param conn
+	 * @param userNo	로그인된 회원의 번호
+	 * @param name		삭제하고자 하는 카드들
+	 * @return
+	 */
+	public int deleteCard(Connection conn, int userNo, String name) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+			
+		String sql = prop.getProperty("deleteCard");
+			
+		try {
+				
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setInt(1, userNo);
+			pstmt.setString(2, name);
+				
+			result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+		
+		return result;
+	}
+	
 
 	/**
 	 * 회원 정보 수정일 업데이트

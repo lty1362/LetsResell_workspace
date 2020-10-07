@@ -76,9 +76,6 @@
                         </tr>
                       </tfoot>
                     </table>
-                    <script>
-                    	$("#order").change(function(){
-                    </script>
                   </div>
                   <%if(!wishlist.isEmpty()) { %>
 	                  <div class="page">
@@ -105,5 +102,14 @@
         </div>
     </div>
     <%@ include file="../common/footer.jsp" %>
+                        <script>
+				    	<% if(order.equals("old")){%>
+				    		$("#oldOrder").attr("selected",true);
+				    		$("#newOrder").attr("selected",false);
+				    	<% }else{ %>
+				    		$("#newOrder").attr("selected",true);
+				    		$("#newOrder").attr("selected",false);
+				    	<% } %>
+				    </script>
 </body>
 </html>
