@@ -16,6 +16,8 @@
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE B.MEM_USER_NO = ?
 		   AND BID_STATUS = '경매중'
+		   ORDER 
+    		  BY BID_NO DESC
 	</entry>
 	<entry key="purchaseCount">
 		SELECT COUNT(*) LISTCOUNT
@@ -36,9 +38,10 @@
 		  FROM BID
 		 WHERE SALE_NO = ?
 	</entry>
-	<entry key="deletePurchase">
-		DELETE 
-		  FROM BID
+	<entry key="deleteDetail">
+		UPDATE 
+		       BID
+		   SET BID_STATUS = '입찰취소'
 		 WHERE BID_NO = ?
 	</entry>
 	<entry key="selectPurchaseStatus">
@@ -49,6 +52,7 @@
 		     , TRADE_NUMBER
 		     , TRADE_CONCLUDE
 		     , TRADE_PRICE
+		     , SALE_NO
 		     , SALE_NAME
 		     , SALE_CONDITION
 		     , SALE_SIZE
@@ -58,6 +62,8 @@
 		  LEFT JOIN SALE USING(SALE_NO)
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE T.MEM_USER_NO = ?
+		   AND TRADE_STATUS = '배송전'
+            OR TRADE_STATUS = '배송중'
 	</entry>
 	<entry key="selectStatusInfo">
 		SELECT 
@@ -76,5 +82,52 @@
 		  LEFT JOIN SALE USING(SALE_NO)
 		  JOIN P_IMG USING(PR_NO)
 		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="selectAddress">
+		SELECT ADDRESS_CODE
+		     , ADDRESS_MAIN
+		     , ADDRESS_DETAIL
+		     , ADDRESS_PHONE
+		     , ADDRESS_NAME
+		     , ADDRESS_MESSAGE
+		  FROM ADDRESS
+		  WHERE MEM_USER_NO = ?
+	</entry>
+	<entry key="updateStatus">
+		UPDATE
+		       TRADE
+		   SET TRADE_STATUS = '배송완료'
+		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="updateSalesStatus">
+		UPDATE 
+		       SALE
+		   SET SALE_STATUS = '거래완료'
+		 WHERE SALE_NO = ?
+	</entry>
+	<entry key="deletePurchase">
+		UPDATE 
+		       TRADE
+		   SET TRADE_STATUS = '구매취소'
+		 WHERE TRADE_NO = ?
+	</entry>
+	<entry key="selectPurchaseCom">
+		 SELECT 
+		       TRADE_NO
+		     , TRADE_STATUS
+		     , TRADE_SERVICE
+		     , TRADE_NUMBER
+		     , TRADE_CONCLUDE
+		     , TRADE_PRICE
+		     , SALE_NAME
+		     , SALE_CONDITION
+		     , SALE_SIZE
+		     , SALE_CATEGORY
+		     , PR_IMG_URL || PR_CHANGE_NAME "TITLEIMG"
+		  FROM TRADE T
+		  LEFT JOIN SALE USING(SALE_NO)
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE T.MEM_USER_NO = ?
+		   AND TRADE_STATUS = '배송완료'
 	</entry>
 </properties>

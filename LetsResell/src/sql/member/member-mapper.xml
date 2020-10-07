@@ -85,8 +85,7 @@
 				MEM_USER_PWD = ?
 			
 			WHERE
-				MEM_USER_PWD = ?
-			and MEM_USER_NAME = ?
+			 	MEM_USER_NAME = ?
 		
 
 	</entry>

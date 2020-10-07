@@ -30,6 +30,10 @@ public class InquiryUpdateServlet extends HttpServlet {
 		Inquiry update = new Inquiry(inquiryNo, title, bigCategory, smallCategory, content);
 		int result = new InquiryService().updateInquiry(update);
 		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "1:1문의 수정 성공!!");
+			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1&un="+un);
+		}else {
+			request.getSession().setAttribute("alertMsg", "1:1문의 수정 실패..");
 			response.sendRedirect(request.getContextPath() + "/inquiryForm.service?currentPage=1&un="+un);
 		}
 	}

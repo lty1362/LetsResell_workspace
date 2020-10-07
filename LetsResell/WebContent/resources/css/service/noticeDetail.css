@@ -1,0 +1,45 @@
+@charset "UTF-8";
+#serviceNotice>a{
+			text-decoration-line: underline;
+	        font-weight: bold;
+		}	
+        #body_right{
+            width: 75%;
+            height: 90%;
+            padding: 20px;
+            position:relative;
+        }
+        #title_content{
+        	height:700px;
+        }
+        #title{
+            background: lightgray;
+            height: 50px;
+            padding-top:5px;
+            font-size: 25px;
+            text-align:center;
+        }
+        #content{
+            height: 90%;
+        }
+        #content>div{
+            border: 1px solid lightgray;
+            font-size: 20px;
+            height: 100%;
+            padding:10px;
+        }
+        #back>input{
+            border:1px solid rgb(74, 74, 74);
+            background: rgb(74, 74, 74);
+            color: white;
+            border-radius: 3px;
+            font-size:18px;
+            width: 80px;
+            height: 40px;
+        }
+        #enrollDate{
+        	border-right:1px solid lightgray;
+        	border-left:1px solid lightgray;
+        	text-align:right;
+        	padding-right:10px;
+        }

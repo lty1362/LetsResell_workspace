@@ -68,9 +68,13 @@ div{
 #header_search_form_btn input{
 	border: none;
 	background-color: black;
-	color: white;            
+	color: white;
+	font-size:20px;         
 }
-
+#header_search_form_btn input[type=submit]:hover{
+	cursor:pointer;
+	background:rgb(60,60,60);
+}
 /* header_menu css */
 #header_menu button{
 	border: none;
@@ -79,7 +83,8 @@ div{
 	width: 100px;
 	height: 50px;
 	margin: 15px;
+	font-size:20px;
 }
 #header_menu_div{
-	margin-top: 75px;
+	margin-top: 85px;
 }

@@ -68,6 +68,31 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="searchListCount_codeCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NO LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_codeCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NO LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	<entry key="searchListCount_color">
 		 SELECT 
 		        COUNT(*) LISTCOUNT
@@ -86,6 +111,31 @@
 					   FROM P_REG
 					  WHERE PR_COLOR LIKE ?
 					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_colorCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_COLOR LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_colorCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_COLOR LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -114,6 +164,31 @@
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	<entry key="searchListCount_nameCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_NAME LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_nameCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_NAME LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	<entry key="searchListCount_brand">
 		 SELECT 
 		        COUNT(*) LISTCOUNT
@@ -132,6 +207,31 @@
 					   FROM P_REG
 					  WHERE PR_BRAND LIKE ?
 					  AND PR_STATUS = 'Y'
+					  ORDER BY PR_NO DESC
+		            ) A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="searchListCount_brandCategory">
+		 SELECT 
+		        COUNT(*) LISTCOUNT
+		   FROM P_REG
+		  WHERE PR_BRAND LIKE ?
+		  AND PR_STATUS = 'Y'
+		  AND PR_CATEGORY = ?
+	</entry>
+	<entry key="searchList_brandCategory">
+	    SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		             SELECT *
+					   FROM P_REG
+					  WHERE PR_BRAND LIKE ?
+					  AND PR_STATUS = 'Y'
+					  AND PR_CATEGORY = ?
 					  ORDER BY PR_NO DESC
 		            ) A
 		        )
@@ -174,6 +274,7 @@
 		     , ?
 		     , ?
 		     , ?
+		     , ?
 		     )
 	</entry>
 	<entry key="selectDetail">
@@ -198,12 +299,13 @@
 		 WHERE PR_NO = ?
 		   AND PR_STATUS = 'Y'
 	</entry>
-	<entry key="updateProductImage">
+	<entry key="updateProductMainImage">
 		UPDATE P_IMG
 		   SET 
 		       PR_ORIGIN_NAME = ?,
 			   PR_CHANGE_NAME = ?
-		 WHERE PR_IMG_NO = ?
+		 WHERE PR_NO = ?
+		   AND PR_FILE_LEVEL = 1
 	</entry>
 	<entry key="selectImage">
 		SELECT 
@@ -212,9 +314,39 @@
 		       , PR_IMG_URL
 		       , PR_ORIGIN_NAME
 		       , PR_CHANGE_NAME
+		       , PR_FILE_DETAIL_NO
 		       , PR_FILE_LEVEL
 		    FROM P_IMG
 		   WHERE PR_NO = ?
-		   ORDER BY PR_FILE_LEVEL
+		   ORDER BY PR_IMG_NO
+	</entry>
+	
+	<entry key="insertProductDetailImage">
+		INSERT 
+		  INTO P_IMG
+		VALUES
+		     (
+		        SEQ_P_IMG.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , 2
+		     )
+	</entry>
+	<entry key="updateProductDetailImage">
+		UPDATE P_IMG
+		   SET 
+		       PR_ORIGIN_NAME = ?
+		     , PR_CHANGE_NAME = ?
+		 WHERE PR_NO = ?
+		   AND PR_FILE_DETAIL_NO = ?
+	</entry>
+	<entry key="test">
+		SELECT COUNT(*) 
+		  FROM P_IMG
+		 WHERE PR_FILE_DETAIL_NO = ?
+		   AND PR_NO = ?
 	</entry>
 </properties>

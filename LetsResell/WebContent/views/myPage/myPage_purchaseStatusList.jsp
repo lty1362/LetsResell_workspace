@@ -2,183 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
 <%
-	ArrayList<Bid> list = (ArrayList<Bid>)request.getAttribute("list");
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
 	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
+	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        div{
-            box-sizing: border-box;
-        }
-        .content{
-            width: 1200px;
-            height: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 80px;
-        }
-        
-        #btn{
-            font-size: 12px;
-            padding: 4px;
-            margin: 4px;
-            background-color: #333;
-            border: 1px solid #333;
-            border-radius: 5px;
-            color: white;
-        }
-
-        .sales_list span{
-            color: red;
-            font-size: 15px;
-        }
-
-        /*판매내역 바디*/
-
-        .mypage_body{
-            width: 920px;
-            margin-left: 280px;
-            box-sizing: border-box;
-        }
-
-        .sales_title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333333;
-            margin-top: 0px;
-            margin-bottom: 30px;
-        }
-
-        /*header*/
-        
-        ul.sales_header {
-            background-color: #F7F7F7;
-            margin: 0;
-            padding: 20px 0;
-            list-style: none;
-            display: flex;
-        }
-
-        ul.sales_header li {
-            flex: 1;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-left: 25px;
-            padding-right: 15px;
-            border-right: 1px solid #e6e6e6;
-        }
-
-        ul.sales_header li div {
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        ul.sales_header li a {
-            color: #333;
-            font-size: 16px;
-            text-align: right;
-        }
-
-        ul.sales_header li a span {
-            display: block;
-            line-height: 1.8;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /*tab*/
-        ul.sales_tabs {
-            display: flex;
-            margin: 0;
-            margin-top: 20px;
-            padding: 0;
-        }
-
-        ul.sales_tabs li {
-            flex: 1;
-            border: 1px solid #dfdfdf;
-            box-sizing: border-box;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        ul.sales_tabs li a{
-            color: black;
-        }
-
-        ul.sales_tabs li span {
-            display: block;
-            font-size: 14px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .sales_list table{
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .sales_list table thead th{
-            background-color: #333;
-            color: white;
-            height: 40px;
-        }
-
-        .sales_list table tbody td{
-            height: 100px;
-        }
-        
-        /*상품 정보 테이블*/
-        .sales_list table{
-            width: 100%;
-            text-align: center;
-        }
-
-        .sales_list table thead th{
-            background-color: #333;
-            color: white;
-            height: 40px;
-        }
-
-        .sales_list table tbody td{
-            height: 150px;
-        }
-
-        .sales_list table tbody tr{
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .product_info dl{
-            text-align: left;
-            font-size: 13px;
-            margin: 0px;
-        }
-
-        .product_info dd{
-            margin: 0px;
-        }
-
-        .product_info span{
-            color: red;
-            font-size: 18px;
-        }
-                
-    </style>
+<%@ include file="../../resources/css/myPage/myPage_purchaseStatusList.css"%> 
 </head>
 <body>
 
@@ -202,7 +35,7 @@
                                 	구매입찰현황 <br>
                                 <span>
                                 
-                                	<%if(list.isEmpty()) {%>
+                                	<%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -210,7 +43,7 @@
                                     	
                                     	<% int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     	
                                     		<%result = i+1; %>
                                     		
@@ -258,16 +91,27 @@
                             </div>
                             <a>
                                 	구매완료 <br>
-                                <span>0건</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div>
-                                <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_paycard.png">
-                            </div>
-                            <a>
-                                	구매총액 <br>
-                                <span>0원</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                     </ul>
@@ -278,7 +122,7 @@
                                     <span>
                                     
                                     	(
-                                    		<%if(list.isEmpty()) {%>
+                                    		<%if(blist.isEmpty()) {%>
                                     
                                     	0
                                     
@@ -286,7 +130,7 @@
                                     	
                                     	<% int result = 0; %>
                                     
-                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
                                     	
                                     		<%result = i+1; %>
                                     		
@@ -331,11 +175,32 @@
                             <li class="3">
                                 <a>
                                    	 구매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
-                    
                     <script>
                     
 	                    $(function(){
@@ -357,14 +222,13 @@
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 	            	   		
 	            	   	});
 
                     </script>
-                    
                     <div class="myrow" style="margin-top: 20px;">
                         <div class="select_list">
                             <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
@@ -388,8 +252,8 @@
                             
                             <%if(tlist.isEmpty()) {%>
                                 <tr>
-                                    <td colspan="3">
-                                       	 구매진행
+                                    <td colspan="4">
+                                       	 진행중인 구매가 없습니다.
                                     </td>
                                 </tr>
                             <%}else { %>
@@ -413,7 +277,7 @@
                                         </dl>
                                     </td>
                                     <td>
-                                        <button id="btn" onclick="location.href='<%=contextPath%>/statusInfo.mp?tno=<%=tlist.get(i).getTradeNo()%>';">주문상세</button> <br>
+                                        <button id="btn" onclick="location.href='<%=contextPath%>/statusInfo.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';">주문상세</button> <br>
 
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
@@ -436,11 +300,10 @@
                                                   <div class="modal-body">
                                                     <strong style="color: red; font-size: 18px;">구매확정하시겠습니까?</strong> <br>
                                                     *구매확정시 구매완료로 넘어갑니다.
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/updateStatus.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>&sno=<%=tlist.get(i).getSaleNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
                                                   </div>
                                                   
@@ -453,7 +316,7 @@
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
                                             <button type="button" id="btn" data-toggle="modal" data-target="#bidModal<%=i%>">
-                                              	입찰취소
+                                              	구매취소
                                             </button>
                                           
                                             <!-- The Modal -->
@@ -463,20 +326,21 @@
                                                 
                                                   <!-- Modal Header -->
                                                   <div class="modal-header">
-                                                    <h6 class="modal-title">입찰취소</h6>
+                                                    <h6 class="modal-title">구매취소</h6>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                   </div>
                                                   
                                                   <!-- Modal body -->
                                                   <div class="modal-body">
-                                                    <strong>입찰을 취소하시겠습니까?</strong>
-                                                  </div>
-                                                  
-                                                  <!-- Modal footer -->
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+                                                    <strong>구매를 취소하시겠습니까?</strong>
+                                                    
+                                                    <hr>
+                                                    
+                                                    <button type="button" onclick="location.href='<%=contextPath%>/deletePurchase.mp?tno=<%=tlist.get(i).getTradeNo()%>&userNo=<%=loginUser.getUserNo()%>';" class="btn btn-danger" data-dismiss="modal">예</button>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                                                    
                                                   </div>
+ 
                                                   
                                                 </div>
                                               </div>

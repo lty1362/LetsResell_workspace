@@ -1,6 +1,8 @@
 package com.LetsResell.myPage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +32,11 @@ public class MyPage_updateMemberServlet extends HttpServlet {
 					     request.getParameter("userSsn2") + 
 					     request.getParameter("userSsn3");					// 생년월일
 		
-		int result = new MyPage_service().updateMember(userNo, name, userSsn);
+		int result = new MyPage_service().updateMember(userNo, name, userSsn);	
 		
 		if(result > 0) {
 			// 성공
-			response.sendRedirect(request.getContextPath() + "/success.my");
+			response.sendRedirect(request.getContextPath() + "/myPage.info?userNo=" + userNo);
 		}else {
 			//실패
 			response.sendRedirect(request.getContextPath() + "/fail.my");

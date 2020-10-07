@@ -19,97 +19,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
-<style>
-        #serviceFAQ>a{
-			text-decoration-line: underline;
-	        font-weight: bold;
-		}	
-        #body_right{
-            width: 75%;
-            height: 90%;
-            padding: 20px;
-            position:relative;
-        }
-        #title_FAQ{
-            background: lightgray;
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 5px;
-        }
-        #category{
-            width: 100%;
-            height: 50px;
-        }
-        #category>input{
-            background: rgb(150, 150, 150);
-            color: white;
-            border: 0px;
-            width: 17%;
-            height: 40px;
-            border-radius: 3px;
-            display:block;
-            float: left;
-            margin-right: 3.7%;
-            font-size: 20px;
-        }
-        #category>input:nth-child(5){
-            margin-right: 0;
-        }
-        #FAQ{
-            border-collapse: collapse;
-            width: 100%;
-        }
-        #FAQ th{
-            background: lightgray;
-            height: 25px;
-            font-size:25px;
-            text-align:center;
-        }
-        #FAQ td{
-            border: 1px solid lightgray;
-            font-size:20px;
-        }
-        #FAQ tr>th:nth-child(1){
-            border-right: 1px solid white;
-        }
-        #FAQ tr td:nth-child(1){
-            border-left: 0px;
-            text-align: center;
-            width: 40px;
-        }
-        #FAQ tr td:nth-child(2){
-            border-right: 0px;
-            padding: 7px;
-            padding-left: 10px;
-            cursor:pointer;
-        }
-        .titleDiv{
-        	padding-left:25px;
-        	margin-bottom:5px;
-        }
-        .hideDiv{
-        	display:none; 
-        }
-        .hideDiv div{
-        	float:left;
-        }
-        .hideDiv div:nth-child(1){
-        	height:100%; 
-        	width:3%;
-        }
-        .hideDiv div:nth-child(2){
-        	height:100%; 
-        	width:97%;
-        }
-        .contentDiv{
-        	background:lightgray;
-        	height:100%;
-        	width:100%;
-        	padding-left:3px;
-        }
-</style>
+<link rel="stylesheet" href="/LetsResell/resources/css/service/FAQcategory.css">
 </head>
 <body>
 	<div id="wrap">
@@ -119,12 +29,12 @@
 	        	<%@ include file="serviceSideMenu.jsp" %>
 		    </div>
 		    <div id="body_right">
-		    	<form action="FAQcategory.service#title_FAQ" method="post">
+		    	<form action="FAQcategory.service#body" method="post">
 		    		<input type="hidden" name="currentPage" value="1">
 		    		<input type="hidden" name="category" id="sendCategory">
 			    	<div id="title_FAQ">FAQ</div>
 		                <div id="category">
-		                    <input onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=1#title_FAQ';" type="button" value="전체">
+		                    <input onclick="location.href='<%=contextPath%>/FAQform.service?currentPage=1#body';" type="button" value="전체">
 		                    <input onclick="user();" type="submit" value="회원">
 		                    <input onclick="cash();" type="submit" value="결제">
 		                    <input onclick="event1();" type="submit" value="이벤트">
@@ -166,7 +76,7 @@
 				            <%if(currentPage == 1){ %>
 				            	<button>&lt;</button>
 				            <% } else { %>
-				            	<form action="FAQcategory.service#title_FAQ" method="post">
+				            	<form action="FAQcategory.service#body" method="post">
 				            		<input type="hidden" name="category" value="<%=category%>">
 				            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
 				           			<button type="submit">&lt;</button>
@@ -175,7 +85,7 @@
 				            
 					            <% for(int p = startPage; p <= endPage ; p++){ %>
 					            	<% if(p != currentPage){ %>
-					            	<form action="FAQcategory.service#title_FAQ" method="post">
+					            	<form action="FAQcategory.service#body" method="post">
 					            		<input type="hidden" name="category" value="<%=category%>">
 					            		<input type="hidden" name="currentPage" value="<%=p%>">
 					           			<button type="submit"><%= p %></button>
@@ -188,7 +98,7 @@
 				            <%if(currentPage == maxPage){ %>
 				            	<button>&gt;</button>
 				            <% } else {%>
-				            	<form action="FAQcategory.service#title_FAQ" method="post">
+				            	<form action="FAQcategory.service#body" method="post">
 				            		<input type="hidden" name="category" value="<%=category%>">
 				            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">
 				           			<button type="submit">&gt;</button>

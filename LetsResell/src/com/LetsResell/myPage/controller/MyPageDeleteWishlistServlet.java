@@ -17,10 +17,10 @@ import com.LetsResell.myPage.model.vo.Wishlist;
  * 위시리스트 삭제 Servlet
  */
 @WebServlet("/deleteWish.my")
-public class MyPage_deleteWishlistServlet extends HttpServlet {
+public class MyPageDeleteWishlistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MyPage_deleteWishlistServlet() {
+    public MyPageDeleteWishlistServlet() {
         super();
     }
 

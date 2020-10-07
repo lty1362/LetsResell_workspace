@@ -1,129 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.LetsResell.myPage.model.vo.*" %>
+<%
+	ArrayList<Bid> blist = (ArrayList<Bid>)request.getAttribute("blist");
+	ArrayList<Trade> tlist = (ArrayList<Trade>)request.getAttribute("tlist");
+	ArrayList<Trade> list = (ArrayList<Trade>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-        div{
-            box-sizing: border-box;
-        }
-        .content{
-            width: 1200px;
-            height: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 80px;
-        }
-
-        /*판매내역 바디*/
-
-        .mypage_body{
-            width: 920px;
-            margin-left: 280px;
-            box-sizing: border-box;
-        }
-
-        .sales_title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333333;
-            margin-top: 0px;
-            margin-bottom: 30px;
-        }
-
-        /*header*/
-        
-        ul.sales_header {
-            background-color: #F7F7F7;
-            margin: 0;
-            padding: 20px 0;
-            list-style: none;
-            display: flex;
-        }
-
-        ul.sales_header li {
-            flex: 1;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-left: 25px;
-            padding-right: 15px;
-            border-right: 1px solid #e6e6e6;
-        }
-
-        ul.sales_header li div {
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        ul.sales_header li a {
-            color: #333;
-            font-size: 16px;
-            text-align: right;
-        }
-
-        ul.sales_header li a span {
-            display: block;
-            line-height: 1.8;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /*tab*/
-        ul.sales_tabs {
-            display: flex;
-            margin: 0;
-            margin-top: 20px;
-            padding: 0;
-        }
-
-        ul.sales_tabs li {
-            flex: 1;
-            border: 1px solid #dfdfdf;
-            box-sizing: border-box;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        ul.sales_tabs li a{
-            color: black;
-        }
-
-        ul.sales_tabs li span {
-            display: block;
-            font-size: 14px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .sales_list table{
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .sales_list table thead th{
-            background-color: #333;
-            color: white;
-            height: 40px;
-        }
-
-        .sales_list table tbody td{
-            height: 100px;
-        }
-                
-    </style>
+<%@ include file="../../resources/css/myPage/myPage_salesStatusList.css"%>
 </head>
 <body>
 	
@@ -144,7 +32,27 @@
                             </div>
                             <a>
                                 	구매입찰현황 <br>
-                                <span>0건</span>
+                                <span>
+                                
+                                	<%if(blist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -153,7 +61,27 @@
                             </div>
                             <a>
                                 	진행중인 구매 <br>
-                                <span>0건</span>
+                                <span>
+                                
+                                	<%if(tlist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < tlist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -162,16 +90,27 @@
                             </div>
                             <a>
                                 	구매완료 <br>
-                                <span>0건</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div>
-                                <img src="https://outofstock.co.kr/assets/images/mypage/ic_tender_paycard.png">
-                            </div>
-                            <a>
-                                	구매총액 <br>
-                                <span>0원</span>
+                                <span>
+                                
+                                	<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>건
+                                
+                                </span>
                             </a>
                         </li>
                     </ul>
@@ -179,19 +118,85 @@
                             <li class="1">
                                 <a>
                                     	입찰현황 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(blist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < blist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                             <li class="2">
                                 <a>
                                     	구매진행 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    	
+                                    	(
+                                    		<%if(tlist.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < tlist.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                             <li class="3">
                                 <a style="color:orange;">
                                     	구매완료 <br>
-                                    <span>(0)</span>
+                                    <span>
+                                    
+                                    	(
+                                    		<%if(list.isEmpty()) {%>
+                                    
+                                    	0
+                                    
+                                    <%}else { %>
+                                    	
+                                    	<% int result = 0; %>
+                                    
+                                    	<%for(int i = 0; i < list.size(); i++) {%>
+                                    	
+                                    		<%result = i+1; %>
+                                    		
+                                    	<%} %>
+                                    	
+                                    	<%= result %>
+                                    
+                                    <%} %>
+                                    	)
+                                    
+                                    </span>
                                 </a>
                             </li>
                     </ul>
@@ -210,14 +215,14 @@
 							$(".2").click(function(){
 	                    		
 								$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseStatus.mp"
+	                    		location.href="<%= contextPath %>/purchaseStatus.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 							
 							$(".3").click(function(){
 	                    		
 	                    		$(this).css({color:"orange"});
-	                    		location.href="<%= contextPath %>/purchaseCom.mp"
+	                    		location.href="<%= contextPath %>/purchaseCom.mp?userNo=<%=login.getUserNo()%>"
 	                    		
 	                    	});
 	            	   		
@@ -240,42 +245,44 @@
                         <table class="sales_table">
                             <thead>
                                 <tr>
-                                    <th>등록정보</th>
-                                    <th>관리</th>
+                                    <th colspan="3">등록정보</th>
+                                    <th width="200">관리</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            
+                            <%if(list.isEmpty()) {%>
                                 <tr>
-                                    <td colspan="2">
-                                        	구매완료
+                                    <td colspan="4">
+                                        	완료된 구매가 없습니다.
                                     </td>
                                 </tr>
-                                
-                                <!-- 
-                                	<tr>
-                                    <td width="50">1</td>
-                                    <td width="200">
-                                        <div class="product_img">
-                                            <a href=""><img src="https://order.pay.naver.com/proxy/phinf/shop1/20200612_149/1591954976209zSrTl_JPEG/29316518844322888_411497941.jpg?type=m80" alt="2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능"></a>
-                                        </div>
-                                    </td>
-                                    <td class="product_info">
-                                        <dl>
-                                            <dt>
-                                                2020최신 샤오미 미밴드5 블랙 중국내수용 글로벌버전 한글패치 가능
-                                            </dt>
-                                            <dd>
-                                               	 샤오미 미밴드5(중국내수용/글로벌버전): 중국내수용 / 단품(블랙) / 1+1 (블랙+블랙): 단품(블랙) <br><br>
-                                                <span>890,000</span>
-                                            </dd>
-                                        </dl>
-                                    </td>
-                                    <td>
-                                        <span>거래완료</span>
-                                    </td>
-                                </tr>
-                                 -->
-                                 
+                            <%}else { %>
+                            	<%for(int i = 0 ; i < list.size() ; i++) { %>
+	                            	<tr>
+	                                    <td width="50"><%=i+1 %></td>
+	                                    <td width="200">
+	                                        <div class="product_img">
+	                                            <a href=""><img src="<%=list.get(i).getTitleImg()%>"></a>
+	                                        </div>
+	                                    </td>
+	                                    <td class="product_info">
+	                                        <dl>
+	                                            <dt>
+	                                                <%=list.get(i).getSaleName() %>
+	                                            </dt>
+	                                            <dd>
+	                                               	<%=list.get(i).getSaleCondition()%>/<%=list.get(i).getSaleCategory()%>/<%=list.get(i).getSaleSize()%> <br><br>
+	                                                <span><%=list.get(i).getTradePrice() %></span>
+	                                            </dd>
+	                                        </dl>
+	                                    </td>
+	                                    <td>
+	                                        <span><%=list.get(i).getTradeStatus()%></span>
+	                                    </td>
+	                                </tr>
+                            	<%} %>
+                            <%} %>
                             </tbody>
                         </table>
                     </div>

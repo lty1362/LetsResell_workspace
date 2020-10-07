@@ -20,72 +20,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
- <style>
-        #serviceNotice>a{
-			text-decoration-line: underline;
-	        font-weight: bold;
-		}	
-        #body_right{
-            width: 75%;
-            height: 90%;
-            padding: 20px;
-            position:relative;
-        }
-        
-        #title{
-            background: lightgray;
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 5px;
-        }
-        #notice{
-            border-collapse: collapse;
-            width: 100%;
-            font-size:20px;
-        }
-        #notice th{
-            background: lightgray;
-            height: 25px;
-            font-size:25px;
-            padding:5px;
-            text-align:center;
-        }
-        #notice td{
-            border: 1px solid lightgray;
-            
-        }
-        #notice tr>th:nth-child(1){
-            border-right: 1px solid white;
-        }
-        #notice tr>th:nth-child(2){
-            border-right: 1px solid white;
-        }
-        #notice tr td:nth-child(2){
-            border-left: 0px;
-            text-align: center;
-            width: 30px;
-        }
-        #notice tr td:nth-child(3){
-            border-right: 0px;
-            padding: 7px;
-            padding-left: 10px;
-            font-size: 0.9em;
-            cursor:pointer;
-        }
-        #notice tr td:nth-child(4){
-            border-right: 0px;
-            padding: 7px;
-            padding-left: 10px;
-            font-size: 0.9em;
-            width: 17%;
-            text-align: center;
-        }
-        #notice a{
-        	color:black;
-        }
-</style>
+<link rel="stylesheet" href="/LetsResell/resources/css/service/noticeSearch.css">
 </head>
 <body>
 	<div id="wrap">
@@ -121,7 +56,7 @@
 		                <% } %>
             		<% } %>
 	                </table>
-                    <form action="noticeSearch#title" method="post">
+                    <form action="noticeSearch#body" method="post">
                     	<input type="hidden" name="currentPage" value="1">
 		                <div id="search"  align="center">
 		                    <select name="filter" id="filter">
@@ -138,7 +73,7 @@
 				            <%if(currentPage == 1){ %>
 				            	<button>&lt;</button>
 				            <% } else { %>
-				            	<form action="noticeSearch#title" method="post">
+				            	<form action="noticeSearch#body" method="post">
 				            		<input type="hidden" name="filter" value="<%=filter%>">
 				            		<input type="hidden" name="search" value="<%=search%>">
 				            		<input type="hidden" name="currentPage" value="<%=currentPage-1%>">
@@ -148,7 +83,7 @@
 				            
 					            <% for(int p = startPage; p <= endPage ; p++){ %>
 					            	<% if(p != currentPage){ %>
-					            	<form action="noticeSearch#title" method="post">
+					            	<form action="noticeSearch#body" method="post">
 					            		<input type="hidden" name="filter" value="<%=filter%>">
 				            			<input type="hidden" name="search" value="<%=search%>">
 					            		<input type="hidden" name="currentPage" value="<%=p%>">
@@ -162,7 +97,7 @@
 				            <%if(currentPage == maxPage){ %>
 				            	<button>&gt;</button>
 				            <% } else {%>
-				            	<form action="noticeSearche#title" method="post">
+				            	<form action="noticeSearch#body" method="post">
 				            		<input type="hidden" name="filter" value="<%=filter%>">
 				            		<input type="hidden" name="search" value="<%=search%>">
 				            		<input type="hidden" name="currentPage" value="<%=currentPage+1%>">

@@ -60,8 +60,10 @@
 	
 			<% for(Product p : list) {%>
 	        <div id="product">
+	        
 				<input type="hidden" value="<%= p.getPrNo() %>">
-	            <div id="product_img">
+				
+	            <div id="product_img" class="product_img">
 	                <img src="<%=contextPath %>/<%= p.getTitleImg() %>" alt="<%= p.getPrModel() %>" width="100%" height="100%">
 	            </div>
 	

@@ -10,266 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지</title>
-<style>
-		form{
-			height:100%;
-		}
-		#menu2>*:nth-child(3){
-        	font-size:20px;
-        	text-decoration:underline;
-        	font-weight:bold;
-        	padding-left:40px;
-        }
-		#menu4>*:nth-child(2), #menu4>*:nth-child(3){
-	    	display:none;
-	    }
-	    #menu3>*:nth-child(2), #menu3>*:nth-child(3){
-        	display:none;
-        }
-	    #menu1>*:nth-child(2), #menu1>*:nth-child(3){
-	    	display:none;
-	    }
-        #title{
-            background: lightgray;
-            height: 5%;
-            border: 1px solid lightgray;
-            text-align: center;
-            font-size: 30px;
-            font-weight:bold;
-            padding-top:5px;
-        }
-        #registerWrap{
-            height: 1200px;
-            border: 1px solid lightgray;
-        }
-        #registerImage{
-            height: 250px;
-            padding: 20px;
-        }
-        #registerImageForm{
-        	height:100%;
-        }
-        #registerImage div{
-            float:left;
-            border:2px solid lightgray;
-        }
-        #registerImageMain{
-        	width:40%;
-        	height:100%;
-        }
-        #registerImageDetail{
-        	width:60%;
-        	height:100%;
-        }
-        #registerImageDetail div{
-        	float:left;
-        }
-        #registerImageDetail1{
-        	width:50%;
-        	height:50%;
-        }
-        #registerImageDetail2{
-        	width:50%;
-        	height:50%;
-        }
-        #registerImageDetail3{
-        	width:50%;
-        	height:50%;
-        }
-        #registerImageDetail4{
-        	width:50%;
-        	height:50%;
-        }
-        
-        #registerProduct{
-        	width:95%;
-        	margin:auto;
-        }
-        #registerProduct>table{
-            width: 100%;
-            height: 100%;
-            border-collapse: collapse;
-        }
-        #registerProduct>table *{
-            border: 1px solid black;
-        }
-        #registerProduct>table th{
-            width: 20%;
-            background: lightgray;
-            text-align:center;
-            font-size:20px;
-        }
-        #registerProduct>table td{
-            padding-left: 15px;
-        }
-        #category>input{
-            background: black;
-            color: white;
-            border: 0px;
-            height: 40px;
-            border-radius: 3px;
-            margin-right: 3px;
-            margin-left: 3px;
-            font-size:20px;
-        }
-        #category>:nth-child(1){
-            width: 70px;
-        }
-        #category>:nth-child(2){
-            width:120px;
-        }
-        #category>:nth-child(3){
-            width:100px;
-        }
-        #category>:nth-child(4){
-            width:120px;
-        }
-        #category>:nth-child(5){
-            width:140px;
-        }
-        .brand>input{
-            background: black;
-            color: white;
-            border: 0px;
-            width: 130px;
-            height: 40px;
-            border-radius: 3px;
-            margin-right: 15px;
-            margin-left: 3px;
-            font-size:20px;
-        }
-        #size1>input, #size2>input{
-            height: 25px;
-        }
-        #color>input{
-        	display:none;
-        }
-        #color{
-        	height:40px;
-        	padding-top:10px;
-        }
-        #color *{
-        	float:left;
-        }
-        #color label{
-            color:white;
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            cursor:pointer;
-            font-size:25px;
-            text-align:center;
-            display:block;
-            margin-right:10px;
-        }
-        #color>:nth-child(2){
-        	background:black;
-        }
-        #color>:nth-child(4){
-        	background:gray;
-        }
-        #color>:nth-child(6){
-        	background:white;
-        	color:black;
-        }
-        #color>:nth-child(8){
-        	background:red;
-        }
-        #color>:nth-child(10){
-        	background:orange;
-        }
-        #color>:nth-child(12){
-        	background:yellow;
-        	color:black;
-        }
-        #color>:nth-child(14){
-        	background:greenyellow;
-        	color:black;
-        }
-        #color>:nth-child(16){
-        	background:blue;
-        }
-        #color>:nth-child(18){
-        	background:purple;
-        }
-        
-        #size input{
-        	width:200px;
-        	height:40px;
-        }
-        
-        input[name="reviewYoutube"]{
-        	width:98%;
-        	height:40px;
-        }
-        input[name="productCode"]{
-        	width:98%;
-        	height:40px;
-        }
-        input[name="productName"]{
-        	width:98%;
-        	height:40px;
-        }
-        textarea[name="reviewDetail"]{
-        	width:100%;
-        	height:100%;
-        }
-        #table1 tr{
-        	height:70px;
-        }
-        #table1 tr:nth-last-child(2){
-        	padding:5px;
-            font-size:20px;
-        }
-        #table1 tr:nth-last-child(1){
-        	height:365px;
-        }
-        #submit{
-        	width:98.3%;
-        	text-align:right;
-        	margin-top:20px;
-        	margin-left:15px;
-        }
-        #submit>input{
-        	background: rgb(74,74,74);
-            color: white;
-            width: 80px;
-            height: 40px;
-            font-size: 20px;
-            border-radius: 3px;
-            border: 0px;
-        }
-        #footer{
-        	margin-top:190px;
-        }
-        .filebox label{
-	         color: white;
-	         width:100%;
-	         height:100%;
-	         text-align:center;
-	         background-color: black;
-	         cursor: pointer;
-         }
-         #main{
-         	line-height:200px;
-         	font-size:40px;
-         }
-         #registerImageDetail label{
-         	line-height:100px;
-         	font-size:25px;
-         }
-        /* 파일 필드 숨기기 */
-        .filebox input[type="file"]{
-	         position: absolute;
-	         width: 1px;
-	         height: 1px;
-	         padding: 0;
-	         margin: -1px;
-	         overflow: hidden;
-	         clip:rect(0,0,0,0);
-	         border: 0;
-         }
-</style>
+<link rel="stylesheet" href="/LetsResell/resources/css/admin/admin_productDetail.css">
 </head>
 <body>
 <div id="wrap" style="height:1900px;">
@@ -280,20 +21,7 @@
 	        </div>
             <div id="body_right">
 	        <form action="productUpdate.admin" method="post" enctype="multipart/form-data">
-	        	<input type="hidden" name="imageNumber" value="<%=images.size()%>">
 	        	<input type="hidden" name="pno" value="<%=product.getPRno()%>">
-	        	<%	
-	        		String imgNo = "";
-	        		for(int i = 0 ; i < images.size() ; i++){
-	        			if(images.get(i).getFileLevel()==2){
-		        			imgNo += images.get(i).getProductImgNo();
-		        			if(i != images.size()-1){
-		        				imgNo += ",";
-		        			}
-	        			}
-	        		}
-	        	%>
-	        	<input type="hidden" name="imagePKno" value="<%=imgNo%>">
                 <div id="title">제품 수정</div>
                 <div id="registerWrap">
                     <div id="registerImage">
@@ -304,54 +32,62 @@
                         </div>
                         <div id="registerImageDetail">
 	                        <div id="registerImageDetail1" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 1){ %>
-		                        	<%for(int i = 1 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg1" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%	
+	                        		int test1 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file2")){ 
+    		        					test1 = 1;
+                        		%>
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
+		                        	<% }else if(i == images.size()-1 && test1 == 0){ %>
+		                        		<img src="" id="detailImg1" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage1" id="detail1">상세 이미지 등록</label>
 		                     	<input type="file" name="image2" id="registerDetailImage1" onchange="loadImg(this,2);">
 	                        </div>
 	                        <div id="registerImageDetail2" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 2){ %>
-		                        	<%for(int i = 2 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg2" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%
+	                        		int test2 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file3")){ 
+    		        					test2 = 1;
+                        		%>
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
+	                        		<% }else if(i == images.size()-1 && test2 == 0){  %>
+		                        		<img src="" id="detailImg2" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage2" id="detail2">상세 이미지 등록</label>
 		                     	<input type="file" name="image3" id="registerDetailImage2" onchange="loadImg(this,3);">
 	                        </div>
 	                        <div id="registerImageDetail3" class="filebox" style="padding:0px;">
-		                        <%if(images.size() > 3){ %>
-		                        	<%for(int i = 3 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
-		                        		<% break;}%>
+		                        <%
+                        			int test3 = 0;
+		                        	for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file4")){ 
+    		        					test3 = 1;
+                        		%>
+	                        			<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
+		                        	<% }else if(i == images.size()-1 && test3 == 0){ %>
+		                        		<img src="" id="detailImg3" width="100%" height="100%">
 		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg3" width="100%" height="100%">
 	                        	<% } %>
 		                        <label for="registerDetailImage3" id="detail3">상세 이미지 등록</label>
 		                     	<input type="file" name="image4" id="registerDetailImage3" onchange="loadImg(this,4);">
 	                        </div>
 	                        <div id="registerImageDetail4" class="filebox" style="padding:0px;">
-	                        	<%if(images.size() > 4){ %>
-		                        	<%for(int i = 4 ; i < images.size() ; i++){ %>
-		                        		<%if(i<images.size()){ %>
-			                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
-		                        		<% break;}%>
-		                        	<% } %>
-	                        	<% }else{ %>
-	                        		<img src="" id="detailImg4" width="100%" height="100%">
-	                        	<% } %>
+	                        	<%	
+	                        		int test4 = 0;
+	                        		for(int i = 1 ; i < images.size() ; i++){ 
+                        			if(images.get(i).getProductDetailNo().equals("file5")){ 
+    		        					test4 = 1;
+                        		%>
+                        				<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
+	                        		<% }else if(i == images.size()-1 && test4 == 0){ %>
+	                        			<img src="" id="detailImg4" width="100%" height="100%">
+	                        		<% } %>
+                        		<% } %>
 		                        <label for="registerDetailImage4" id="detail4">상세 이미지 등록</label>
 		                     	<input type="file" name="image5" id="registerDetailImage4" onchange="loadImg(this,5);">
 	                        </div>
@@ -464,141 +200,10 @@
         </div>
        <%@ include file= "../common/footer.jsp"%>
     </div>
+    <script src="/LetsResell/resources/js/admin/admin_productDetail.js" rel="javascript"></script>
     <script>
-	   	$(function(){
-	   		
-	   		$("#category>input").click(function(){
-	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
-	   			$("#category>input").not($(this)).css({background:"black", color:"white"});
-	   			$("#hiddenCategory").val($(this).val());
-	   		});
-	   		
-	   		$(".brand>input").click(function(){
-	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
-	   			$(".brand>input").not($(this)).css({background:"black", color:"white"});
-	   			$("#hiddenBrand").val($(this).val());
-	   		});
-	   		
-	   		$("#color label").click(function(){
-	   			if($(this).text()==""){
-	   				$(this).text("V");
-	   			}else{
-	   				$(this).text("");
-	   			}
-	   		});
-	   		
-	   		$("#titleImg").click(function(){
-                $("#registerMainImage").click();
-            });
-	   		
-	   		$("#detailImg1").click(function(){
-                $("#registerDetailImage1").click();
-            });
-	   		
-	   		$("#detailImg2").click(function(){
-                $("#registerDetailImage2").click();
-            });
-	   		
-	   		$("#detailImg3").click(function(){
-                $("#registerDetailImage3").click();
-            });
-	   		
-	   		$("#detailImg4").click(function(){
-                $("#registerDetailImage4").click();
-            });
-	   		
-	   		// 분류에 대한 브랜드 선택
-	   		$("input[value=Tops]").click(function(){
-	   			$(".topsBrand").css("display","");
-	   			$(".brand").not(".topsBrand").css("display","none");
-	   			$(".brand input").css({"background":"black","color":"white"});
-	   		});
-	   		$("input[value=Bottoms]").click(function(){
-	   			$(".bottomsBrand").css("display","");
-	   			$(".brand").not(".bottomsBrand").css("display","none");
-	   			$(".brand input").css({"background":"black","color":"white"});
-	   		});
-	   		$("input[value=Outers]").click(function(){
-	   			$(".outersBrand").css("display","");
-	   			$(".brand").not(".outersBrand").css("display","none");
-	   			$(".brand input").css({"background":"black","color":"white"});
-	   		});
-	   		$("input[value=Footwear]").click(function(){
-	   			$(".footwearBrand").css("display","");
-	   			$(".brand").not(".footwearBrand").css("display","none");
-	   			$(".brand input").css({"background":"black","color":"white"});
-	   		});
-	   		$("input[value=Accessories]").click(function(){
-	   			$(".accessoriesBrand").css("display","");
-	   			$(".brand").not(".accessoriesBrand").css("display","none");
-	   			$(".brand input").css({"background":"black","color":"white"});
-	   		});
-	   		
-	   		// 로딩 시 미리보기 여부에 따른 라벨 유무
-	   		if($("#titleImg").attr("src")!=""){
-	   			$("#main").css("display","none");
-	   		}else{
-	   			$("#main").css("display","");
-	   		}
-	   		
-	   		if($("#detailImg1").attr("src")!=""){
-	   			$("#detail1").css("display","none");
-	   		}else{
-	   			$("#detail1").css("display","");
-	   		}
-	   		
-	   		if($("#detailImg2").attr("src")!=""){
-	   			$("#detail2").css("display","none");
-	   		}else{
-	   			$("#detail2").css("display","");
-	   		}
-	   		
-	   		if($("#detailImg3").attr("src")!=""){
-	   			$("#detail3").css("display","none");
-	   		}else{
-	   			$("#detail3").css("display","");
-	   		}
-	   		
-	   		if($("#detailImg4").attr("src")!=""){
-	   			$("#detail4").css("display","none");
-	   		}else{
-	   			$("#detail4").css("display","");
-	   		}
-	   		
-	   		// 로딩 시 미리보기 여부에 따른 이미지 유무
-	   		if($("#titleImg").attr("src")!=""){
-	   			$("#titleImg").css("display","");
-	   		}else{
-	   			$("#titleImg").css("display","none");
-	   		}
-	   		
-	   		if($("#detailImg1").attr("src")!=""){
-	   			$("#detailImg1").css("display","");
-	   		}else{
-	   			$("#detailImg1").css("display","none");
-	   		}
-	   		
-	   		if($("#detailImg2").attr("src")!=""){
-	   			$("#detailImg2").css("display","");
-	   		}else{
-	   			$("#detailImg2").css("display","none");
-	   		}
-	   		
-	   		if($("#detailImg3").attr("src")!=""){
-	   			$("#detailImg3").css("display","");
-	   		}else{
-	   			$("#detailImg3").css("display","none");
-	   		}
-	   		
-	   		if($("#detailImg4").attr("src")!=""){
-	   			$("#detailImg4").css("display","");
-	   		}else{
-	   			$("#detailImg4").css("display","none");
-	   		}
-	   		// footer 위치 조정
-	   		$("#footer").css("margin-top","155px");
-	   		
-	   		// 로딩 시 버튼 클릭
+    	$(function(){
+    		// 로딩 시 버튼 클릭
 	   		// category
 	   		<%if(product.getPRcategory().equals("Tops")){%>
 	   			$("input[value=Tops]").click();
@@ -705,80 +310,7 @@
 	   		<%if(product.getPRcolor().indexOf("purple")>=0){%>
 	   			$("#purpleColor").click();
 	   		<%}%>
-	   	});
-	   	
-	   	function loadImg(inputFile, num){
-	   		
-	   		if($("#registerMainImage").val()!=""){
-		   		$("#main").css("display","none");
-	   		}
-   			if($("#registerDetailImage1").val()!=""){
-		   		$("#detail1").css("display","none");
-	   		}
-   			if($("#registerDetailImage2").val()!=""){
-		   		$("#detail2").css("display","none");
-	   		}
-   			if($("#registerDetailImage3").val()!=""){
-		   		$("#detail3").css("display","none");
-	   		}
-   			if($("#registerDetailImage4").val()!=""){
-		   		$("#detail4").css("display","none");
-	   		}
-				   			
-	        if(inputFile.files.length == 1){
-	            var reader = new FileReader();              
-	            reader.readAsDataURL(inputFile.files[0])   
-	            reader.onload = function(e){                 
-                switch(num){
-                    case 1 : $("#titleImg").attr("src", e.target.result); break;
-                    case 2 : $("#detailImg1").attr("src", e.target.result); break;
-                    case 3 : $("#detailImg2").attr("src", e.target.result); break;
-                    case 4 : $("#detailImg3").attr("src", e.target.result); break;
-                    case 5 : $("#detailImg4").attr("src", e.target.result); break;
-                }
-	            }
-	        }else{
-                switch(num){
-                    case 1 : $("#titleImg").attr("src", null); break;
-                    case 2 : $("#detailImg1").attr("src", null); break;
-                    case 3 : $("#detailImg2").attr("src", null); break;
-                    case 4 : $("#detailImg3").attr("src", null); break;
-                    case 5 : $("#detailImg4").attr("src", null); break;
-                }
-	        }
-	        
-	        if($("#registerMainImage").val()!=""){
-		        $("#titleImg").css("display","block");
-	   		}
-	        if($("#registerDetailImage1").val()!=""){
-		        $("#detailImg1").css("display","block");
-	   		}
-	        if($("#registerDetailImage2").val()!=""){
-		        $("#detailImg2").css("display","block");
-	   		}
-	        if($("#registerDetailImage3").val()!=""){
-		        $("#detailImg3").css("display","block");
-	   		}
-	        if($("#registerDetailImage4").val()!=""){
-		        $("#detailImg4").css("display","block");
-	   		}
-	    }
-	   	
-	   	function check(){
-	   		if($("#hiddenCategory").val() == ""){
-	   			alert("분류를 선택하세요!");
-	   			return false;
-	   		}
-	   		if($("#hiddenBrand").val() == ""){
-	   			alert("브랜드를 선택하세요!");
-	   			return false;
-	   		}
-	   		if($("#color label").text() == ""){
-	   			alert("컬러를 선택하세요!");
-	   			return false;
-	   		}
-	   	}
-	   	
+    	});
     </script>
 </body>
 </html>

@@ -69,11 +69,11 @@ public class MyPage_purchaseService {
 	 * @param bno
 	 * @return
 	 */
-	public int deletePurchase(int bno) {
+	public int deleteDetail(int bno) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MyPage_purchaseDao().deletePurchase(conn, bno);
+		int result = new MyPage_purchaseDao().deleteDetail(conn, bno);
 		
 		if(result>0) {
 			commit(conn);
@@ -118,6 +118,80 @@ public class MyPage_purchaseService {
 		close(conn);
 		
 		return list;
+		
+	}
+	
+	/**
+	 * 7.구매진행/구매완료
+	 * @param tno
+	 * @return
+	 */
+	public int updateStatus(int tno) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_purchaseDao().updateStatus(conn,tno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 8. 구매취소
+	 * @param tno
+	 * @return
+	 */
+	public int deletePurchase(int tno) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MyPage_purchaseDao().deletePurchase(conn,tno);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+		
+	}
+	
+	/**
+	 * 9. 구매완료 리스트
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Trade> selectPurchaseCom(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Trade> list = new MyPage_purchaseDao().selectPurchaseCom(conn, userNo);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+
+	public int updateSalesStatus(int sno) {
+		
+		Connection conn = getConnection();
+		
+		int sResult = new MyPage_purchaseDao().updateSalesStatus(conn,sno);
+		
+		if(sResult > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return sResult;
 		
 	}
 

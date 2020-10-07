@@ -30,13 +30,11 @@
                         <div class="changePwd">
                                 
                             <div class="namePwd">
-					                                 현재 비밀번호<br><br>
 					                                 새 비밀번호<br><Br>
 					                                 새 비밀번호확인
                             </div>
                             <div class="newPwdinput">
                                 <input type="hidden" id="userName" name="userName" value="<%=m.getName()%>">
-                                <input type="password" id="userPwd" name="userPwd" required><br>
                                    
                                 <input type="password" id="newPwd" name="newPwd" required><br>
                          
@@ -60,61 +58,62 @@
       </div>
        <!-- footer -->
       <%@ include file="../common/footer.jsp" %>
-      <script>
-            function validate(){
-                //유효성 검사 : 비밀번호
-            
-                
-            
-                    //input요소들 가져오기
-                    var pw1 = document.getElementById("userPwd");
-                    var pw2 = document.getElementById("newPwd");
-                   	var pw3 = document.getElementById("checkNewPwd");
-            
-                       
-
-                        // 1) 비밀번호 검사
-                        // 영문자(대소문자), 숫자, 특수문자로만 총 8~16자로 입력해야되는 경우
-            
-                        pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
-            
-                        if(pw1.value === "") {
-                           alert("비밀번호를 입력하세요");
-                           pw1.focus();
-                           return false;
-                        } else if( pw1.value != "<%=m.getUserPwd() %>") {
-                            alert("현재 비밀번호가 일치하지  않습니다.");
-                            pw1.value="";
-                            pw1.focus();
-                            return false;
-                        }
-                        
-                        if(pw2.value === "") {
-                            alert("비밀번호를 입력하세요");
-                            pw2.focus();
-                            return false;
-                         } else if(!pwPattern.test(pw2.value)) {
-                             alert("유효한 비밀번호를 입력하세요");
-                             pw2.value="";
-                             pw2.focus();
-                             return false;
-                         }
-            
-                        // 2) 비밀번호와 비밀번호 확인이 일치하는지
-                        if(pw3.value === "") {
-                           alert("비밀번호 확인을 하세요.");
-                           pw3.focus();
-                           return false;
-                        } else if(pw2.value != pw3.value) {
-                            alert("동일한 비밀번호를 입력하세요");
-                            pw3.value="";
-                            pw3.focus();
-                            return false;
-                        }
-            
-                      
-
-                    }
+     <script>
+           
+      //input요소들 가져오기
+      
+      	var pw1 = document.getElementById("newPwd");
+     	var pw2 = document.getElementById("checkNewPwd");
+  	
+     	
+     	
+     	pw1.addEventListener("change", checkPwd, false);
+  		pw2.addEventListener("change", checkPwd2, false);
+     	
+  		
+  		 function checkPwd(){
+         	
+         			pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
+           	
+         	
+           	 
+	                       if(!pwPattern.test(pw1.value)){
+	                    		alert("형식에 맞지 않는 비밀번호입니다..");
+	                    	   pw1.value="";
+	                    	   pw1.focus();
+	                    	 
+	                       }
+	                	
+	                 	
+           }
+		            
+     	
+	     	function checkPwd2(){
+	     	
+	    		
+	           if(pw1.value != pw2.value){
+	        	  	alert("동일한 비밀번호를 입력하세요");
+	        	 	pw2.value="";
+	      	  		pw2.focus();
+	        	   
+	           }
+	    	
+		
+			 }
+	     	
+	     	function validate(){
+	     		
+	     		if("<%=m.getUserPwd()%>" == pw1.value){
+            		alert("새로운 비밀번호를 입력하세요");
+            		 pw1.value="";
+            		 pw2.value="";
+                	 pw1.focus();
+                	 return false;
+            	   
+               }
+	     		
+	     	}
+      
         </script>
       
 </body>

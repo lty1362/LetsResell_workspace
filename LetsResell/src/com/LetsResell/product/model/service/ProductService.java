@@ -124,4 +124,30 @@ public class ProductService {
 		
 		return imgList;
 	}
+	
+	public int wishListAdd(int prNo, int userNo) {
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().wishListAdd(conn, prNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int selectProductImgListCount(int prNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new ProductDao().selectProductImgListCount(conn, prNo);
+		
+		close(conn);
+		
+		return listCount;
+	}
 }

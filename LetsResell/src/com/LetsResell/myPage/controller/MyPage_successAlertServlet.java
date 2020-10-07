@@ -23,6 +23,7 @@ public class MyPage_successAlertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher("views/myPage/myPage_successAlert.jsp");
 		view.forward(request, response);
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
