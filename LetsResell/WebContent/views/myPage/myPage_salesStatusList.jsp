@@ -5,6 +5,7 @@
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
+	ArrayList<Address> alist = (ArrayList<Address>)request.getAttribute("alist");
 	Trade t = (Trade)session.getAttribute("t");
 %>
 <!DOCTYPE html>
@@ -217,7 +218,7 @@
                             	<%if(slist.isEmpty()) { %>
                                 <tr>
                                     <td colspan="4">
-                                        	거레중인 제품이 없습니다.
+                                        	거래중인 제품이 없습니다.
                                     </td>
                                 </tr>
                                 <%}else { %>
@@ -264,10 +265,9 @@
 		                                                  <!-- Modal body -->
 		                                                  <div class="modal-body" style="text-align: center;">
 		                                                   
-		                                                    	구매자배송지
-		                                                    <span style="margin: 10px; font-weight: bold; color: green;">00시 00구 00동</span>
-		
-		                                                    <br><br>
+		                                                    	<!--구매자배송지-->
+		                                                    <span style="margin: 10px; font-weight: bold; color: green;"></span>
+															
 		                                                    
 		                                                    <form action="<%=contextPath %>/updateDelivery.mp" method="get" id="update">
 			                                                    

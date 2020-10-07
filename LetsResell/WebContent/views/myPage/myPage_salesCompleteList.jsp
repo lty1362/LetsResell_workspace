@@ -5,6 +5,7 @@
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
+	ArrayList<Address> alist = (ArrayList<Address>)request.getAttribute("alist");
 	Trade t = (Trade)session.getAttribute("t");
 %>
 <!DOCTYPE html>
@@ -217,7 +218,7 @@
                             <%if(sclist.isEmpty()) {%>
                                 <tr>
                                     <td colspan="4">
-                                       	판매완료
+                                       	거래완료된 제품이 없습니다.
                                     </td>
                                 </tr>
                             <%}else { %>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.LetsResell.myPage.model.service.MyPageSalesService;
+import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Sale;
 
 /**

@@ -253,7 +253,7 @@
                             	<%if(blist.isEmpty()) {%>
 	                                <tr>
 	                                    <td colspan="4">
-	                                       	등록된 리스트가 없습니다.
+	                                       	입찰진행중인 제품이 없습니다.
 	                                    </td>
 	                                </tr>
                                 <%}else{ %>
@@ -306,7 +306,7 @@
 	                                                    <br>
 	                                                    <span style="color: red;">
 	                                                        * 현재입찰가격 : <%=blist.get(i).getBidPrice()%> <br>
-	                                                        * 현재최고입찰가격 : 
+	                                                        <!-- * 현재최고입찰가격 : -->
 	                                                    </span>
 	                                                    
 	                                                    <hr>

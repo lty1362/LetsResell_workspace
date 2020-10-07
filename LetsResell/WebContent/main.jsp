@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>레츠리셀</title>
 <link href="/LetsResell/resources/css/common/main.css" rel="stylesheet">
+
 </head>
 <body>
 <!-- header 영역 -->
@@ -24,4 +25,5 @@
 <!-- footer 영역 -->
 <%@ include file="/views/common/footer.jsp" %>
 </body>
+<script src="/LetsResell/resources/js/common/mainPage.js" rel="javascript"></script>
 </html>

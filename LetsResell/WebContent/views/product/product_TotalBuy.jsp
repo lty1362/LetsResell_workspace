@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구매total</title>
+<title>구매totald</title>
 <link href="/LetsResell/resources/css/product/product_TotalBuy.css" rel="stylesheet"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -124,6 +124,8 @@
                         </div>
                     </div>
                     <div class="buy-info-box">
+                    
+                    	<form id="buyend_form" action="<%= request.getContextPath() %>" method="post" >
                        <!-- 약관동의 -->
                           <div class="terms_p">
                             <p class="terms_chk_all">
@@ -168,7 +170,7 @@
                             <span><a href="#" id="btnAgree" class="btn_type btn_primary" >구매 확인</a></span>
                             <span><a href="#" id="btnCancel" class="btn_type btn_default" >구매 취소</a></span>
                         </div>   
-      
+      				</form>
                 </div>
                 
             </div>
@@ -268,7 +270,7 @@
                         return false;
                     }
             
-                    $("#join_form").submit();
+                    $("#buyend_form").submit();
                     return true;
                 }
             

@@ -5,6 +5,7 @@
 	ArrayList<Sale> list = (ArrayList<Sale>)request.getAttribute("list");
 	ArrayList<Sale> slist = (ArrayList<Sale>)request.getAttribute("slist");
 	ArrayList<Sale> sclist = (ArrayList<Sale>)request.getAttribute("sclist");
+	ArrayList<Address> alist = (ArrayList<Address>)request.getAttribute("alist");
 %>
 <!DOCTYPE html>
 <html>
@@ -173,21 +174,21 @@
                     	$(".1").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesDetail.mp?userNo=<%=login.getUserNo()%>";
                     		
                     	});
                     	
 						$(".2").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesStatus.mp?userNo=<%=login.getUserNo()%>";
                     		
                     	});
 						
 						$(".3").click(function(){
                     		
                     		$(this).css({color:"orange"});
-                    		location.href="<%= contextPath %>/salesCom.mp?userNo=<%=login.getUserNo()%>"
+                    		location.href="<%= contextPath %>/salesCom.mp?userNo=<%=login.getUserNo()%>";
                     		
                     	});
             	   		

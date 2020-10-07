@@ -92,7 +92,7 @@
                 <div class="buy-h-detail">
                     
                     <div class="buy-agree-box">
-                    
+                    	<form id="buyTotal_form" action="<%= request.getContextPath() %>/totalBuy.pro" method="post" >
                           <!-- 약관동의 -->
                           <div class="terms_p">
                             <p class="terms_chk_all">
@@ -143,7 +143,7 @@
                             <span><a href="#" id="btnAgree" class="btn_type btn_primary" >확인</a></span>
                             <span><a href="#" id="btnCancel" class="btn_type btn_default" >취소</a></span>
                         </div>   
-      
+      				</form>
                 </div>
                 
             </div>
@@ -248,7 +248,7 @@
                         return false;
                     }
             
-                    $("#join_form").submit();
+                    $("#buyTotal_form").submit();
                     return true;
                 }
             

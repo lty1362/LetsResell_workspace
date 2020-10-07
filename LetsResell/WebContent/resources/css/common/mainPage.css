@@ -1,4 +1,7 @@
 @charset "UTF-8";
+div{
+    box-sizing: border-box;
+}
 .main_outer{
     width: 1000px;
     height: 1900px;
@@ -16,7 +19,7 @@
 }
 
 #event_box>div{width: 100%;}
-#event_box_img, #product_img_1, #product_img_2, #product_img_3, #product_img_4{height: 85%;}
+#event_box_img, #product_img{height: 85%;}
 #event_box_btn, #product_btn{
     height: 15%;
     padding-top: 8px;
@@ -33,22 +36,25 @@
     font-size: 25px;
 }
 #left:hover, #right:hover{cursor: pointer;}
-#left{margin-left: 30px;}
+#left{
+	margin-left: 30px;
+	margin-right: 19px;
+}
 #event{width: 80%;}
 #event>div{
     float: left;
     height: 100%;
     margin-right: 20px;
 }
-#event1, #event2, #event3{
+#event1{
     width: 30%;
+    diplay: inline-block;
 }
-#event1{margin-left: 19px;}
-#event1>div, #event2>div, #event3>div{
+#event1>div{
     width: 100%;
 }
-#event1_img, #event2_img, #event3_img{height: 80%;}
-#event1_detail, #event2_detail, #event3_detail{
+#event1_img{height: 80%;}
+#event1_detail{
     height: 20%; 
     background-color:gray;
 }
@@ -66,22 +72,7 @@
     height: 10px;
 }
 #product_box>div{width: 100%;}
-#product_img_1>div{
-    float: left;
-    height: 100%;
-    margin-right: 20px;
-}
-#product_img_2>div{
-    float: left;
-    height: 100%;
-    margin-right: 20px;
-}
-#product_img_3>div{
-    float: left;
-    height: 100%;
-    margin-right: 20px;
-}
-#product_img_4>div{
+#product_img>div{
     float: left;
     height: 100%;
     margin-right: 20px;
@@ -92,6 +83,7 @@
 }
 #product2{width: 30%;}
 #product3{width: 30%;}
+#product_img>div>div{width: 100%;}
 #product_thumb{
     height: 80%;
 }

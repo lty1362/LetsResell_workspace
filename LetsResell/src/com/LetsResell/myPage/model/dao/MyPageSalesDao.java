@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.LetsResell.myPage.model.vo.Address;
 import com.LetsResell.myPage.model.vo.Bid;
 import com.LetsResell.myPage.model.vo.Sale;
 import com.LetsResell.myPage.model.vo.Trade;
@@ -360,6 +361,46 @@ public class MyPageSalesDao {
 		}
 		
 		return tResult;
+		
+	}
+
+	public ArrayList<Address> selectPAddress(Connection conn, int tno) {
+		
+		ArrayList<Address> alist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectPAddress");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, tno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Address add = new Address();
+				add.setAddressMain(rset.getString("ADDRESS_MAIN"));
+				add.setAddressDetail(rset.getString("ADDRESS_DETAIL"));
+				
+				alist.add(add);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return alist;
 		
 	}
 

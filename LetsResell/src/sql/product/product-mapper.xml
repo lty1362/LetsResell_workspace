@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="searchProduct">
+		SELECT *
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       PR_NO
+		                     , PR_MODEL
+		                     , PR_NAME
+		                     , PR_RELEASE_PRICE
+		                     , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
+		                  FROM P_REG
+		                  JOIN P_IMG USING(PR_NO)
+		                 WHERE PR_NAME LIKE ?
+		                   AND PR_STATUS = 'Y'
+		                   AND PR_FILE_LEVEL = '1'
+		                ORDER BY PR_NO DESC
+		               ) A
+		          	   )
+  		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*)
+		  FROM P_REG
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE PR_STATUS = 'Y'
+		   AND PR_NAME LIKE ?
+		   AND PR_FILE_LEVEL = '1'
+	</entry>
+	
+	<entry key="searchFilterCount">
+		SELECT COUNT(*)
+		  FROM P_REG
+		  JOIN P_IMG USING(PR_NO)
+		 WHERE PR_STATUS = 'Y'
+		   AND PR_CATEGORY = ?
+		   AND PR_BRAND = ?
+		   AND PR_COLOR = ?
+		   AND PR_RELEASE_PRICE >= ?
+		   AND PR_FILE_LEVEL = '1'
+	</entry>
+	
+	<entry key="filterSearchProduct">
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_NO DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="filterSearchProductPriceAsc">
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_RELEASE_PRICE ASC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="filterSearchProductPriceDesc">
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    PR_NO
+		                  , PR_MODEL
+		                  , PR_BRAND
+		                  , PR_NAME
+		                  , PR_RELEASE_PRICE
+		                  , PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
+		               FROM P_REG
+		               JOIN P_IMG USING(PR_NO)
+		              WHERE PR_CATEGORY = ?
+		                AND PR_BRAND = ?
+		                AND PR_COLOR = ?
+		                AND PR_RELEASE_PRICE >= ?
+		                AND PR_STATUS = 'Y'
+		                AND PR_FILE_LEVEL = '1'
+		              ORDER BY PR_RELEASE_PRICE DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectSaleListCount">
+		SELECT COUNT(*)
+		  FROM SALE
+		  JOIN SALE_IMG USING(SALE_NO)
+		 WHERE SALE_STATUS = '거래 전'
+		   AND PR_NO = ?
+		   AND SALE_FILE_LEVEL = '1'
+	</entry>
+	
+	<entry key="selectSaleList">
+		SELECT *
+		  FROM (
+		       SELECT 
+		              ROWNUM RNUM
+		            , A.*
+		        FROM (
+		             SELECT
+		                    SALE_NO
+		                  , PR_NO
+		                  , MEM_USER_NO
+		                  , SALE_PRICE
+		                  , SALE_NAME
+		                  , SALE_CONDITION
+		                  , SALE_SIZE
+		                  , SALE_IMG_URL || SALE_ORIGIN_NAME "TITLEIMG"
+		               FROM SALE
+		               JOIN SALE_IMG USING(SALE_NO)
+		              WHERE SALE_STATUS = '거래 전'
+		                AND SALE_FILE_LEVEL = '1'
+		                AND PR_NO = ?
+		              ORDER BY SALE_NO DESC
+		             ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectProductInfo">
+		SELECT 
+		       PR_MODEL
+		     , PR_NAME
+		     , PR_COLOR
+		     , PR_REVIEW_YOUTUBE
+		     , PR_REVIEW_DETAIL
+		     , PR_RELEASE_DATE
+		     , PR_RELEASE_PRICE
+		  FROM P_REG
+		 WHERE PR_NO = ?
+		   AND PR_STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectProductImgListCount">
+		SELECT
+		       COUNT(*)
+		  FROM P_IMG
+		  JOIN P_REG USING(PR_NO)
+		 WHERE PR_STATUS = 'Y'
+		   AND PR_NO = ?
+	</entry>
+	
+	<entry key="selectProductImgList">
+		SELECT *
+			   FROM (
+			        SELECT 
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			               SELECT
+			                      PR_IMG_URL || PR_ORIGIN_NAME "TITLEIMG"
+			                 FROM P_IMG
+			                 JOIN P_REG USING(PR_NO)
+			                WHERE PR_STATUS = 'Y'
+			                  AND PR_NO = ?
+			                ORDER BY PR_IMG_NO ASC
+			               ) A
+			         )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="wishListAdd">
+		INSERT INTO WISHLIST
+		(
+		       WISHLIST_PCODE
+		     , WISHLIST_MCODE
+		     , WISHLIST_ADD_DATE
+		) VALUES (
+		       ?
+		     , ?
+		     , SYSDATE
+		)
+	</entry>
+	
+	<entry key="selectViewBiddingList">
+		
+	
+	</entry>
+</properties>
