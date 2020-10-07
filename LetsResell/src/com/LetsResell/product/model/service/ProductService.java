@@ -150,4 +150,20 @@ public class ProductService {
 		
 		return listCount;
 	}
+	
+	public int insertBid(int saleNo, int userNo, int price) {
+		Connection conn = getConnection();
+		int result = new ProductDao().insertBid(conn, saleNo, userNo, price);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
+	
+	
 }

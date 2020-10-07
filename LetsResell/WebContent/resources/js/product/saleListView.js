@@ -9,4 +9,6 @@ $(function(){
 	$("#wish_btn_img").click(function(){
 		location.href="http://localhost:8888/LetsResell/wishList.wl?prNo=" + $(this).parents("#btn_box").children().eq(0).val();
 	});
+	
 });
+

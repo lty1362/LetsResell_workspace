@@ -16,4 +16,9 @@ $(function() {
 	$(".wishImg").click(function(){
 		location.href="http://localhost:8888/LetsResell/wishList.wl?prNo=" + $(this).parents("#wish_btn").children().eq(0).val();
 	});
+	$("#sell_btn_img").click(function(){
+		var prNo = $(this).parents("#btn_box").children().eq(0).val();
+		var userNo = $(this).parents("#btn_box").children().eq(1).val();
+		location.href="http://localhost:8888/LetsResell/enrollSale.sa?prNo="+prNo+"&userNo="+userNo;
+	});
 });

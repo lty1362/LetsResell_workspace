@@ -1,10 +1,4 @@
 $(function(){
-	   		
-	   		console.log($("#detailImg1").attr("src"));
-	   		console.log($("#detailImg2").attr("src"));
-	   		console.log($("#detailImg3").attr("src"));
-	   		console.log($("#detailImg4").attr("src"));
-	   		
 	   		$("#category>input").click(function(){
 	   			$(this).css({background:"white", color:"black", border:"1px solid black"});
 	   			$("#category>input").not($(this)).css({background:"black", color:"white"});

@@ -37,6 +37,7 @@
                     <div id="wish_btn">
                     
                     	<input type="hidden" value="<%= p.getPrNo() %>">
+                    	<input type="hidden" value="<%= loginUser.getUserNo() %>">
 
                         <div id="wish_btn_img">
                             <img src="/LetsResell/resources/images/product/heart.png" alt="" width="90%" height="90%" class="wishImg">
@@ -130,6 +131,6 @@
 
 <!-- footer 추가 -->
 <%@ include file="../common/footer.jsp" %>
-</body>
 <script src="/LetsResell/resources/js/product/noDataListView.js" rel="javascript"></script>
+</body>
 </html>

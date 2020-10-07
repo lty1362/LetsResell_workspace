@@ -26,7 +26,9 @@
                 <div id="registerWrap">
                     <div id="registerImage">
                         <div id="registerImageMain" class="filebox" style="padding:0px;">
-                        	<img src="<%=contextPath%>/<%=images.get(0).getProductImgUrl() + images.get(0).getProductImageChangeName()%>" id="titleImg" width="100%" height="100%">
+                        	<img src="<%=contextPath%>/<%=images.get(0).getProductImgUrl() + images.get(0).getProductImageOriginName()%>" id="titleImg" width="100%" height="100%">
+                        	
+                        	
 	                        <label for="registerMainImage" id="main">메인 이미지 등록</label>
 	                     	<input type="file" name="image1" id="registerMainImage" onchange="loadImg(this,1);">
                         </div>
@@ -38,7 +40,7 @@
                         			if(images.get(i).getProductDetailNo().equals("file2")){ 
     		        					test1 = 1;
                         		%>
-		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg1" width="100%" height="100%">
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageOriginName()%>" id="detailImg1" width="100%" height="100%">
 		                        	<% }else if(i == images.size()-1 && test1 == 0){ %>
 		                        		<img src="" id="detailImg1" width="100%" height="100%">
 	                        		<% } %>
@@ -53,7 +55,7 @@
                         			if(images.get(i).getProductDetailNo().equals("file3")){ 
     		        					test2 = 1;
                         		%>
-		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg2" width="100%" height="100%">
+		                        		<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageOriginName()%>" id="detailImg2" width="100%" height="100%">
 	                        		<% }else if(i == images.size()-1 && test2 == 0){  %>
 		                        		<img src="" id="detailImg2" width="100%" height="100%">
 	                        		<% } %>
@@ -68,7 +70,7 @@
                         			if(images.get(i).getProductDetailNo().equals("file4")){ 
     		        					test3 = 1;
                         		%>
-	                        			<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg3" width="100%" height="100%">
+	                        			<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageOriginName()%>" id="detailImg3" width="100%" height="100%">
 		                        	<% }else if(i == images.size()-1 && test3 == 0){ %>
 		                        		<img src="" id="detailImg3" width="100%" height="100%">
 		                        	<% } %>
@@ -83,7 +85,7 @@
                         			if(images.get(i).getProductDetailNo().equals("file5")){ 
     		        					test4 = 1;
                         		%>
-                        				<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageChangeName()%>" id="detailImg4" width="100%" height="100%">
+                        				<img src="<%=contextPath%>/<%=images.get(i).getProductImgUrl() + images.get(i).getProductImageOriginName()%>" id="detailImg4" width="100%" height="100%">
 	                        		<% }else if(i == images.size()-1 && test4 == 0){ %>
 	                        			<img src="" id="detailImg4" width="100%" height="100%">
 	                        		<% } %>

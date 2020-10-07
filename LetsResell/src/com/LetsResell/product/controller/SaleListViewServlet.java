@@ -2,6 +2,8 @@ package com.LetsResell.product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,7 +86,6 @@ public class SaleListViewServlet extends HttpServlet {
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			request.setAttribute("imgList", imgList);
-			
 			request.getRequestDispatcher("views/product/noDataListView.jsp").forward(request, response);
 		} else {
 			request.setAttribute("list", list);

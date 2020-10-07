@@ -115,7 +115,7 @@
                 <div id="product_thumb" align="center">
                     <a href=""><img src="" alt="나이키" width="90%" height="100%"></a>
                 </div>
-
+				
                 <div id="product_name" align="center">
 
                 </div>

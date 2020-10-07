@@ -460,4 +460,23 @@ public class ProductDao {
 		
 		return listCount;
 	}
+	
+	public int insertBid(Connection conn, int saleNo, int userNo, int price) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBid");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, saleNo);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, price);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }
